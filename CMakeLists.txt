@@ -7,6 +7,14 @@ if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Release)
 endif()
 
+# Ubuntu's PCL (io) pulls in VTK 9.1, whose CMake config links VTK::mpi to
+# MPI::MPI_C. Nothing here uses MPI; if it is not installed, provide an empty
+# target so configuration does not fail.
+find_package(MPI QUIET COMPONENTS C)
+if(NOT TARGET MPI::MPI_C)
+  add_library(MPI::MPI_C INTERFACE IMPORTED)
+endif()
+
 find_package(PCL 1.10 REQUIRED COMPONENTS common io octree kdtree search sample_consensus segmentation)
 find_package(Eigen3 REQUIRED)
 find_package(OpenMP)
