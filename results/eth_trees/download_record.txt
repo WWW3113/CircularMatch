@@ -1,0 +1,11 @@
+dataset=ETH Trees (Theiler et al., Globally Consistent Registration of Multiple Point Clouds)
+page=https://prs.igp.ethz.ch/research/completed_projects/automatic_registration_of_point_clouds.html
+url=https://ethz.ch/content/dam/ethz/special-interest/baug/igp/photogrammetry-remote-sensing-dam/documents/sourcecode-and-datasets/PascalTheiler/trees.zip
+final_url=https://ethz.ch/content/dam/ethz/special-interest/baug/igp/photogrammetry-remote-sensing-dam/documents/sourcecode-and-datasets/PascalTheiler/trees.zip
+server_content_length=1282864958
+server_last_modified=Mon, 16 Nov 2015 13:01:42 GMT
+zip_bytes=1282864958
+zip_sha256=ecb3f5e8791804341a3e7837c29f25789987c99fdf575aa3ebfbfd67d3acd37c
+unzipped_files=37
+unzipped_bytes=1943848096
+date_utc=2026-09-30T20:03:34Z

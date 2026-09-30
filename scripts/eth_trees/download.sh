@@ -30,8 +30,29 @@ fi
 echo "free space: $((avail_kb / 1024 / 1024)) GB"
 
 ZIP="$DIR/trees.zip"
+# Server metadata (expected size, last modification) for verification + record.
+hdr=$(curl -sSIL "$URL")
+expected=$(printf '%s\n' "$hdr" | tr -d '\r' | awk -F': ' 'tolower($1)=="content-length" {v=$2} END {print v}')
+last_modified=$(printf '%s\n' "$hdr" | tr -d '\r' | awk -F': ' 'tolower($1)=="last-modified" {v=$2} END {print v}')
+echo "server: content-length=$expected last-modified=$last_modified"
+
 if [ ! -s "$ZIP" ]; then
-  final_url=$(curl -fL --retry 3 --retry-delay 5 -o "$ZIP.part" -w '%{url_effective}' "$URL")
+  # Long transfers can be cut (connection reset); resume with HTTP ranges
+  # (-C -) until the file is complete. Partial data stays in $ZIP.part.
+  final_url=""
+  for attempt in $(seq 1 30); do
+    if final_url=$(curl -fsSL -C - -o "$ZIP.part" -w '%{url_effective}' "$URL"); then
+      break
+    fi
+    have=$(stat -c %s "$ZIP.part" 2>/dev/null || echo 0)
+    echo "attempt $attempt interrupted at $((have / 1048576)) MB; resuming in 5 s" >&2
+    sleep 5
+  done
+  have=$(stat -c %s "$ZIP.part" 2>/dev/null || echo 0)
+  if [ -n "$expected" ] && [ "$have" != "$expected" ]; then
+    echo "ERROR: downloaded $have bytes, server says $expected" >&2
+    exit 1
+  fi
   mv "$ZIP.part" "$ZIP"
 else
   echo "reusing existing $ZIP"
@@ -53,6 +74,8 @@ raw_bytes=$(du -sb "$DIR/raw" | cut -f1)
   echo "page=https://prs.igp.ethz.ch/research/completed_projects/automatic_registration_of_point_clouds.html"
   echo "url=$URL"
   echo "final_url=$final_url"
+  echo "server_content_length=$expected"
+  echo "server_last_modified=$last_modified"
   echo "zip_bytes=$size"
   echo "zip_sha256=$sha"
   echo "unzipped_files=$n_files"
