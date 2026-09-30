@@ -11,7 +11,12 @@
 
 ## 目前狀態
 
-- 雲端開發環境的網路政策擋下 `prs.igp.ethz.ch`（proxy 回 403），尚未下載資料。
+- 官方頁面已確認：「Globally Consistent Registration of Multiple Point Clouds」段落的
+  「Download Trees (ZIP, 1.2 GB)」指向
+  `https://ethz.ch/content/dam/ethz/special-interest/baug/igp/photogrammetry-remote-sensing-dam/documents/sourcecode-and-datasets/PascalTheiler/trees.zip`
+  （頁面說明：6 scans acquired in a forest with large amount of underwood and medium overlap；
+  ground truth 為 pairwise transformation matrices）。
+- ZIP 實際放在 `ethz.ch` 網域；雲端開發環境目前仍擋下該網域（proxy 回 403），尚未下載。
 - 下列工具已在合成資料上測試過：下載／驗證腳本（語法檢查）、`run_all.py`（有站位才執行、無站位會跳過並記錄）、
   `aggregate.py`（每站表格與跨站平均 ± 標準差）。
 
@@ -23,8 +28,8 @@ git clone https://github.com/WWW3113/CircularMatch.git && cd CircularMatch
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release && cmake --build build -j
 ./build/cm_tests
 
-# 1. 下載 + SHA-256 + 解壓（URL 從官方頁面複製「Download Trees (ZIP, 1.2 GB)」）
-scripts/eth_trees/download.sh '<官方 ZIP 網址>'
+# 1. 下載 + SHA-256 + 解壓（官方「Download Trees (ZIP, 1.2 GB)」連結）
+scripts/eth_trees/download.sh 'https://ethz.ch/content/dam/ethz/special-interest/baug/igp/photogrammetry-remote-sensing-dam/documents/sourcecode-and-datasets/PascalTheiler/trees.zip'
 #    -> data/eth_trees/trees.zip, data/eth_trees/raw/, results/eth_trees/download_record.txt
 
 # 2. 填 scripts/eth_trees/stations.csv：每個 scan 的路徑、掃描儀位置、位置來源
