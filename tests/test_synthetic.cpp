@@ -58,34 +58,62 @@ TEST(Synthetic, VerticalityRemovesGround) {
   EXPECT_LT(double(on_ground), 0.01 * s.pre.vertical.size());
 }
 
+// Checks every detection is an accurate match of a true stem (no false
+// positives) and that every stem with tilt <= max_required_tilt is found.
+void checkRun(const RunResult& r, const std::vector<SynthTruth>& truth, double max_required_tilt,
+              const std::string& ctx) {
+  std::vector<Eigen::Vector2d> det, ref;
+  for (const auto& t : r.trees) det.emplace_back(t.position.x(), t.position.y());
+  for (const auto& t : truth) ref.emplace_back(t.position.x(), t.position.y());
+  const auto mt = matchPositions(det, ref, 0.5);
+  EXPECT_EQ(mt.pairs.size(), r.trees.size()) << ctx << ": false positives";
+  std::vector<char> found(truth.size(), 0);
+  for (std::size_t k = 0; k < mt.pairs.size(); ++k) {
+    const auto& tr = r.trees[mt.pairs[k].first];
+    const auto& gt = truth[mt.pairs[k].second];
+    found[mt.pairs[k].second] = 1;
+    const std::string id = ctx + " stem " + std::to_string(mt.pairs[k].second) + " tilt " + std::to_string(gt.tilt_deg);
+    EXPECT_LT(mt.errors[k], 0.02) << id;
+    EXPECT_LT(std::abs(tr.radius - gt.radius), 0.01) << id;
+    EXPECT_LT(std::abs(tr.position.z() - gt.position.z()), 0.02) << id;
+    EXPECT_NEAR(tr.tilt_deg, gt.tilt_deg, 2.0) << id;
+  }
+  for (std::size_t i = 0; i < truth.size(); ++i)
+    if (truth[i].tilt_deg <= max_required_tilt)
+      EXPECT_TRUE(found[i]) << ctx << ": missed stem " << i << " (tilt " << truth[i].tilt_deg << ")";
+}
+
 class SyntheticVersions : public ::testing::TestWithParam<RetentionKind> {};
 
-TEST_P(SyntheticVersions, RecoversAllStems) {
+// Paper defaults (verticality > 0.9): vertical and 10-degree stems must be
+// recovered. The 15-degree stem keeps only narrow side strips after the
+// verticality filter (|n_z| < 0.1 <=> normal within 5.7 deg of horizontal);
+// it must not produce false positives, but it is not required to be found.
+TEST_P(SyntheticVersions, RecoversStemsAtPaperThreshold) {
   const auto& s = scene();
   const auto m = RetentionModel::make(GetParam(), s.cfg.retention);
-  for (std::uint64_t seed : {1, 2, 3}) {
-    const RunResult r = runStages(s.pre, m, seed, s.cfg);
-    std::vector<Eigen::Vector2d> det, ref;
-    for (const auto& t : r.trees) det.emplace_back(t.position.x(), t.position.y());
-    for (const auto& t : s.truth) ref.emplace_back(t.position.x(), t.position.y());
-    const auto mt = matchPositions(det, ref, 0.5);
-    ASSERT_EQ(mt.pairs.size(), s.truth.size()) << toString(GetParam()) << " seed " << seed;
-    EXPECT_EQ(r.trees.size(), s.truth.size()) << "false positives";
-    for (std::size_t k = 0; k < mt.pairs.size(); ++k) {
-      const auto& tr = r.trees[mt.pairs[k].first];
-      const auto& gt = s.truth[mt.pairs[k].second];
-      EXPECT_LT(mt.errors[k], 0.02) << "stem " << mt.pairs[k].second << " tilt " << gt.tilt_deg;
-      EXPECT_LT(std::abs(tr.radius - gt.radius), 0.01) << "stem " << mt.pairs[k].second;
-      EXPECT_LT(std::abs(tr.position.z() - gt.position.z()), 0.02) << "stem " << mt.pairs[k].second;
-      EXPECT_NEAR(tr.tilt_deg, gt.tilt_deg, 2.0) << "stem " << mt.pairs[k].second;
-    }
-  }
+  for (std::uint64_t seed : {1, 2, 3})
+    checkRun(runStages(s.pre, m, seed, s.cfg), s.truth, 10.0,
+             toString(GetParam()) + " seed " + std::to_string(seed));
 }
 
 INSTANTIATE_TEST_SUITE_P(AllVersions, SyntheticVersions,
                          ::testing::Values(RetentionKind::Step, RetentionKind::LinearA, RetentionKind::LinearMid,
                                            RetentionKind::Physical),
                          [](const auto& info) { return toString(info.param); });
+
+// With a looser verticality threshold (0.8 <=> 11.5 deg) the 15-degree stem is
+// recovered too: shows the miss above comes from the paper's threshold, not
+// from the tilted-axis / DTM-intersection logic.
+TEST(Synthetic, LooserVerticalityRecoversAllStems) {
+  const auto& s = scene();
+  Config cfg = s.cfg;
+  cfg.normals.vert_threshold = 0.8;
+  const Preprocessed pre = preprocess(prepareCloud(makeSynthetic(SynthParams::defaultScene(), nullptr), cfg.scanner), cfg);
+  for (std::uint64_t seed : {1, 2, 3})
+    checkRun(runStages(pre, RetentionModel::make(RetentionKind::Step, cfg.retention), seed, cfg), s.truth, 90.0,
+             "vert0.8 seed " + std::to_string(seed));
+}
 
 TEST(Synthetic, SurveyCoordinatesWithScannerPosition) {
   SynthParams p = SynthParams::defaultScene();
@@ -103,6 +131,7 @@ TEST(Synthetic, SurveyCoordinatesWithScannerPosition) {
   for (const auto& t : r.trees) det.emplace_back((t.position + pre.offset).head<2>());
   for (const auto& t : truth) ref.emplace_back(t.position.head<2>());
   const auto mt = matchPositions(det, ref, 0.5);
-  EXPECT_EQ(mt.pairs.size(), truth.size());
+  EXPECT_EQ(mt.pairs.size(), 4u);  // all but the 15-degree stem (see above)
+  EXPECT_EQ(mt.pairs.size(), r.trees.size());
   EXPECT_LT(mt.rmse(), 0.02);
 }

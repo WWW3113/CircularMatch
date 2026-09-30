@@ -47,6 +47,8 @@ const char* toString(FitFail f) {
     case FitFail::LowInlierRatio: return "low_inlier_ratio";
     case FitFail::RadiusOutOfRange: return "radius_out_of_range";
     case FitFail::TiltTooLarge: return "tilt_too_large";
+    case FitFail::NormalInconsistent: return "normal_inconsistent";
+    case FitFail::ArcCoverageLow: return "arc_coverage_low";
     case FitFail::NoDtmIntersection: return "no_dtm_intersection";
     default: return "?";
   }
@@ -69,6 +71,8 @@ CylinderFit fitCylinder(const Cloud& cloud, const NormalCloud& normals, const st
   CylinderFit r;
   r.n_points = idx.size();
   r.ransac_seed = ransac_seed;
+  for (int i : idx) r.centroid += cloud[i].getVector3fMap().cast<double>();
+  if (!idx.empty()) r.centroid /= double(idx.size());
   if (static_cast<int>(idx.size()) < std::max(p.min_points, 3)) {
     r.fail = FitFail::TooFewPoints;
     r.fail_mask = 1u << int(FitFail::TooFewPoints);
@@ -98,13 +102,31 @@ CylinderFit fitCylinder(const Cloud& cloud, const NormalCloud& normals, const st
     r.fail_mask = 1u << int(FitFail::NoModel);
     return r;
   }
-  if (p.lm_refit && inliers.size() > 7) {
-    Eigen::VectorXf refined;
-    model->optimizeModelCoefficients(inliers, coef, refined);
-    if (refined.size() == 7 && refined.allFinite()) {
-      coef = refined;
-      model->selectWithinDistance(coef, p.dist_threshold, inliers);
+  // LM refit (PCL's optimizeModelCoefficients: Euclidean point-to-surface
+  // distance) on the GEOMETRIC inliers of the current model. Using PCL's
+  // normal-weighted inliers here would drop points with poor normals and bias
+  // the arc that constrains the radius. Repeated lm_passes times.
+  auto geometricInliers = [&](const Eigen::VectorXf& c) {
+    pcl::Indices out;
+    Eigen::Vector3d ap(c[0], c[1], c[2]), d(c[3], c[4], c[5]);
+    if (d.norm() < 1e-12) return out;
+    d.normalize();
+    for (std::size_t k = 0; k < s.cloud->size(); ++k) {
+      const Eigen::Vector3d w = (*s.cloud)[k].getVector3fMap().cast<double>() - ap;
+      if (std::abs((w - w.dot(d) * d).norm() - std::abs(double(c[6]))) <= p.dist_threshold) out.push_back(int(k));
     }
+    return out;
+  };
+  if (p.lm_refit) {
+    for (int pass = 0; pass < std::max(1, p.lm_passes); ++pass) {
+      const pcl::Indices gi = geometricInliers(coef);
+      if (gi.size() <= 7) break;
+      Eigen::VectorXf refined;
+      model->optimizeModelCoefficients(gi, coef, refined);
+      if (refined.size() != 7 || !refined.allFinite()) break;
+      coef = refined;
+    }
+    model->selectWithinDistance(coef, p.dist_threshold, inliers);
   }
   Eigen::Vector3d dir(coef[3], coef[4], coef[5]);
   if (dir.norm() < 1e-12) {
@@ -118,12 +140,33 @@ CylinderFit fitCylinder(const Cloud& cloud, const NormalCloud& normals, const st
   r.axis_dir = dir;
   r.radius = std::abs(coef[6]);
   r.tilt_deg = std::acos(std::min(1.0, dir.z())) * 180.0 / M_PI;
-  r.n_inliers = inliers.size();
+  r.n_inliers_sac = inliers.size();
+  const double cos_max = std::cos(p.normal_max_angle_deg * M_PI / 180.0);
+  const Eigen::Vector3d u1 = dir.unitOrthogonal(), u2 = dir.cross(u1);
+  constexpr int kArcBins = 72;  // 5 degrees
+  std::vector<char> arc(kArcBins, 0);
+  for (std::size_t k = 0; k < s.cloud->size(); ++k) {
+    const Eigen::Vector3d w = (*s.cloud)[k].getVector3fMap().cast<double>() - r.axis_point;
+    const Eigen::Vector3d radial = w - w.dot(dir) * dir;  // surface normal direction at q
+    const double dist_axis = radial.norm();
+    if (std::abs(dist_axis - r.radius) <= p.dist_threshold) {
+      ++r.n_inliers;
+      const double ang = std::atan2(radial.dot(u2), radial.dot(u1)) + M_PI;  // [0, 2pi]
+      arc[std::min(kArcBins - 1, static_cast<int>(ang / (2 * M_PI) * kArcBins))] = 1;
+    }
+    const Eigen::Vector3d nq((*s.normals)[k].normal_x, (*s.normals)[k].normal_y, (*s.normals)[k].normal_z);
+    if (dist_axis > 1e-12 && nq.allFinite() && nq.norm() > 1e-12)
+      r.n_normal_ok += std::abs(nq.dot(radial) / (dist_axis * nq.norm())) >= cos_max ? 1 : 0;
+  }
 
+  for (char b : arc) r.arc_deg += b ? 360.0 / kArcBins : 0.0;
   const double ratio = double(r.n_inliers) / double(r.n_points);
   if (ratio < p.min_inlier_ratio) r.fail_mask |= 1u << int(FitFail::LowInlierRatio);
   if (r.radius < p.radius_min || r.radius > p.radius_max) r.fail_mask |= 1u << int(FitFail::RadiusOutOfRange);
   if (r.tilt_deg > p.max_tilt_deg) r.fail_mask |= 1u << int(FitFail::TiltTooLarge);
+  if (double(r.n_normal_ok) / double(r.n_points) < p.min_normal_ratio)
+    r.fail_mask |= 1u << int(FitFail::NormalInconsistent);
+  if (r.arc_deg < p.min_arc_deg) r.fail_mask |= 1u << int(FitFail::ArcCoverageLow);
   for (int f = 1; f < int(FitFail::Count); ++f)
     if (r.fail_mask & (1u << f)) {
       r.fail = FitFail(f);

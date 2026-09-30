@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 
 #include <cmath>
+#include <cstdio>
 
 #include "cm/dtm.hpp"
 #include "cm/retention.hpp"
@@ -23,26 +24,50 @@ Cloud slopeCloud(bool with_stems, bool with_hole) {
     for (int i = 0; i < 20000; ++i) {
       const double th = 2 * M_PI * uni(), h = 3 * uni();
       const double x = -2 + 0.3 * std::cos(th), y = 4 + 0.3 * std::sin(th);
-      c.push_back(PointT(float(x), float(y), float(plane(-2, 4) + h)));
+      c.push_back(PointT(float(x), float(y), float(plane(x, y) + h)));  // wall starts on the ground
     }
   return c;
 }
 }  // namespace
 
-TEST(Dtm, UnbiasedOnSlope) {
-  const Cloud c = slopeCloud(true, true);
-  DtmParams p;
-  const Dtm d = Dtm::build(c, p);
+double maxDtmError(const Dtm& d) {
   double maxerr = 0;
   for (double x = -9; x <= 9; x += 0.37)
     for (double y = -9; y <= 9; y += 0.41) {
       const auto h = d.height(x, y);
-      ASSERT_TRUE(h.has_value()) << x << "," << y;
+      if (!h) return 1e9;
       maxerr = std::max(maxerr, std::abs(*h - plane(x, y)));
     }
+  return maxerr;
+}
+
+TEST(Dtm, UnbiasedOnSlopeWithHole) {
   // A naive "percentile height at cell centre" DTM would be ~4-5 cm low here.
-  EXPECT_LT(maxerr, 0.01);
-  EXPECT_GT(d.stats().cells_filled, 0u);  // the hole was filled
+  for (const char* mode : {"percentile", "supported_lowest"}) {
+    DtmParams p;
+    p.ground_select = mode;
+    const Dtm d = Dtm::build(slopeCloud(false, true), p);
+    EXPECT_LT(maxDtmError(d), 0.01) << mode;
+    EXPECT_GT(d.stats().cells_filled, 0u);  // the hole was filled
+  }
+}
+
+// Documents a limitation of the confirmed default: cells where stem points
+// (here ~5000) outnumber ground points (~125) push the 5th percentile ~8 cm up
+// the stem; the 5x5 plane fit spreads that into a ~1.5 cm bump.
+TEST(Dtm, DenseStemCellBiasesPercentile) {
+  const Cloud c = slopeCloud(true, true);
+  DtmParams pp;
+  const double e_pct = maxDtmError(Dtm::build(c, pp));
+  DtmParams ps;
+  ps.ground_select = "supported_lowest";
+  const double e_sup = maxDtmError(Dtm::build(c, ps));
+  RecordProperty("max_err_percentile_mm", int(e_pct * 1000));
+  RecordProperty("max_err_supported_lowest_mm", int(e_sup * 1000));
+  std::printf("[ info ] DTM max error near dense stem: percentile %.1f mm, supported_lowest %.1f mm\n", e_pct * 1e3,
+              e_sup * 1e3);
+  EXPECT_GT(e_pct, 0.01);   // the known bias is present with the default
+  EXPECT_LT(e_sup, 0.01);   // and absent with the alternative
 }
 
 TEST(Dtm, OutsideCoverageIsNullopt) {

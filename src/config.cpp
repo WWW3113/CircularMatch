@@ -69,6 +69,10 @@ void Config::buildRegistry() {
   add("scanner.max_local_coord", &scanner.max_local_coord, U, "error if |local coord| exceeds this [m]");
 
   add("dtm.cell", &dtm.cell, U, "DTM grid cell size [m]");
+  add("dtm.ground_select", &dtm.ground_select, U,
+      "percentile (confirmed default) | supported_lowest (lowest point with support_count points within support_dz above)");
+  add("dtm.support_count", &dtm.support_count, U, "supported_lowest: required points above the candidate");
+  add("dtm.support_dz", &dtm.support_dz, U, "supported_lowest: height window above the candidate [m]");
   add("dtm.percentile", &dtm.percentile, U, "k-th percentile of z per cell");
   add("dtm.min_points", &dtm.min_points, U, "min points per cell for a ground sample");
   add("dtm.fit_radius", &dtm.fit_radius, U, "plane-fit window half width [cells]");
@@ -112,8 +116,15 @@ void Config::buildRegistry() {
   add("cylinder.normal_weight", &cylinder.normal_weight, U, "RANSAC normal distance weight");
   add("cylinder.max_tilt_deg", &cylinder.max_tilt_deg, U, "post-fit axis tilt check [deg]");
   add("cylinder.min_inlier_ratio", &cylinder.min_inlier_ratio, U, "post-fit inlier ratio check");
+  add("cylinder.normal_max_angle_deg", &cylinder.normal_max_angle_deg, U,
+      "normal consistency: max angle between point normal and fitted surface normal [deg]");
+  add("cylinder.min_normal_ratio", &cylinder.min_normal_ratio, U,
+      "normal consistency: min fraction of points within normal_max_angle_deg");
+  add("cylinder.min_arc_deg", &cylinder.min_arc_deg, U,
+      "min angular coverage of geometric inliers around the axis [deg] (5-degree bins)");
   add("cylinder.min_points", &cylinder.min_points, U, "clusters smaller than this are not fitted");
   add("cylinder.lm_refit", &cylinder.lm_refit, P, "Levenberg-Marquardt refit on inliers");
+  add("cylinder.lm_passes", &cylinder.lm_passes, U, "LM refit passes on geometric inliers");
   add("cylinder.seed_mode", &cylinder.seed_mode, P, "follow | fixed");
   add("cylinder.fixed_seed", &cylinder.fixed_seed, P, "used when seed_mode = fixed");
 

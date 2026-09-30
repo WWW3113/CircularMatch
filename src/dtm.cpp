@@ -5,6 +5,7 @@
 #include <cmath>
 #include <limits>
 #include <stdexcept>
+#include <tuple>
 
 namespace cm {
 
@@ -66,16 +67,36 @@ Dtm Dtm::build(const Cloud& cloud, const DtmParams& p) {
   }
   std::sort(keyed.begin(), keyed.end());
   std::vector<Sample> samples(static_cast<std::size_t>(nx) * ny);
-  std::vector<std::pair<float, int>> zs;
+  // (z, x, y, index): ties in z (common with quantised files) are broken by
+  // coordinates, so the chosen sample does not depend on input order.
+  std::vector<std::tuple<float, float, float, int>> zs;
   for (std::size_t b = 0; b < keyed.size();) {
     std::size_t e = b;
     while (e < keyed.size() && keyed[e].first == keyed[b].first) ++e;
     if (static_cast<int>(e - b) >= p.min_points) {
       zs.clear();
-      for (std::size_t k = b; k < e; ++k) zs.emplace_back(cloud[keyed[k].second].z, keyed[k].second);
-      const std::size_t kth = static_cast<std::size_t>(std::floor(p.percentile / 100.0 * double(zs.size() - 1)));
-      std::nth_element(zs.begin(), zs.begin() + kth, zs.end());
-      const auto& q = cloud[zs[kth].second];
+      for (std::size_t k = b; k < e; ++k) {
+        const auto& q = cloud[keyed[k].second];
+        zs.emplace_back(q.z, q.x, q.y, keyed[k].second);
+      }
+      std::size_t kth = static_cast<std::size_t>(std::floor(p.percentile / 100.0 * double(zs.size() - 1)));
+      if (p.ground_select == "supported_lowest") {
+        // Lowest point that has >= support_count points within support_dz above it:
+        // drops isolated below-ground noise without depending on how many
+        // non-ground (stem/canopy) points share the cell.
+        std::sort(zs.begin(), zs.end());
+        for (std::size_t k = 0; k < zs.size(); ++k) {
+          std::size_t above = 0;
+          for (std::size_t m = k + 1; m < zs.size() && std::get<0>(zs[m]) <= std::get<0>(zs[k]) + p.support_dz; ++m)
+            ++above;
+          if (int(above) >= p.support_count) { kth = k; break; }
+        }
+      } else if (p.ground_select != "percentile") {
+        throw std::runtime_error("dtm.ground_select must be percentile or supported_lowest");
+      } else {
+        std::nth_element(zs.begin(), zs.begin() + kth, zs.end());
+      }
+      const auto& q = cloud[std::get<3>(zs[kth])];
       samples[keyed[b].first] = Sample{q.x, q.y, q.z, true};
       ++d.stats_.cells_with_sample;
     }

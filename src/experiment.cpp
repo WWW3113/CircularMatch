@@ -135,13 +135,14 @@ void writeTreesCsv(const std::string& path, const RunResult& r, const Eigen::Vec
 
 void writeClustersCsv(const std::string& path, const RunResult& r, const Eigen::Vector3d& off) {
   auto o = openOut(path);
-  o << "cluster_id,status,fail_mask,n_points,n_inliers,radius,tilt_deg,axis_x,axis_y,axis_z,dir_x,dir_y,dir_z,"
-       "ransac_seed\n";
+  o << "cluster_id,status,fail_mask,n_points,n_inliers,n_inliers_sac,n_normal_ok,arc_deg,radius,tilt_deg,centroid_x,centroid_y,centroid_z,"
+       "axis_x,axis_y,axis_z,dir_x,dir_y,dir_z,ransac_seed\n";
   for (const auto& d : r.diag) {
     const auto& f = d.fit;
-    const Eigen::Vector3d ap = f.axis_point + off;
+    const Eigen::Vector3d ap = f.axis_point + off, ce = f.centroid + off;
     o << d.cluster_id << "," << toString(f.fail) << "," << f.fail_mask << "," << f.n_points << "," << f.n_inliers
-      << "," << std::setprecision(4) << f.radius << "," << std::setprecision(3) << f.tilt_deg << ","
+      << "," << f.n_inliers_sac << "," << f.n_normal_ok << "," << f.arc_deg << "," << std::setprecision(4) << f.radius << "," << std::setprecision(3) << f.tilt_deg
+      << "," << std::setprecision(4) << ce.x() << "," << ce.y() << "," << ce.z() << ","
       << std::setprecision(4) << ap.x() << "," << ap.y() << "," << ap.z() << "," << std::setprecision(6)
       << f.axis_dir.x() << "," << f.axis_dir.y() << "," << f.axis_dir.z() << "," << f.ransac_seed << "\n";
   }

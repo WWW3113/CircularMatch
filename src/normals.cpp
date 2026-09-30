@@ -3,6 +3,7 @@
 #include <pcl/octree/octree_search.h>
 
 #include <Eigen/Eigenvalues>
+#include <algorithm>
 #include <cmath>
 #include <limits>
 
@@ -33,6 +34,14 @@ NormalResult computeNormals(const Cloud& cloud, const NormalParams& p) {
       out.normal_x = out.normal_y = out.normal_z = out.curvature = nan;
       continue;
     }
+    // Octree result order depends on insertion order; sort by coordinates so the
+    // floating-point sums (and thus verticality at the threshold) are order-independent.
+    std::sort(nb.begin(), nb.end(), [&](int a, int b) {
+      const auto &pa = (*c)[a], &pb = (*c)[b];
+      if (pa.x != pb.x) return pa.x < pb.x;
+      if (pa.y != pb.y) return pa.y < pb.y;
+      return pa.z < pb.z;
+    });
     Eigen::Vector3d C = Eigen::Vector3d::Zero();
     for (auto k : nb) C += (*c)[k].getVector3fMap().cast<double>();
     C /= double(nb.size());

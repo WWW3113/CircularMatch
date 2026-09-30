@@ -10,6 +10,24 @@
 // SeededCylinderModel::reseed() therefore gives per-cluster control. The
 // sampling order also depends on the order of indices, which is fixed here.
 //
+// Inliers: RANSAC/LM use PCL's normal-weighted distance
+//   w * angle(normal, surface normal) + (1 - w) * |euclidean distance|,
+// but the reported n_inliers and the inlier-ratio check use the purely
+// GEOMETRIC point-to-surface distance ||q - axis| - r| <= dist_threshold.
+// (With w = 0.1 an 11-degree normal error alone exceeds 2 cm, and normals from
+// a 10 cm neighbourhood on thin stems are that noisy, so the weighted count
+// would reject correct fits for a reason unrelated to the fit.)
+//
+// Two post-fit checks are OUR additions (論文未指定), found necessary on the
+// synthetic scene: the verticality filter (> 0.9) leaves only narrow strips of
+// tilted stems, and RANSAC fits wrong cylinders to such strips.
+//  - normal consistency: >= min_normal_ratio of the points have a normal within
+//    normal_max_angle_deg of the fitted surface normal (rejects tiny-radius
+//    fits to fragments; correct fits scored 0.89-1.00, fragments 0.15-0.65);
+//  - arc coverage: geometric inliers must span >= min_arc_deg around the axis
+//    (a narrow arc does not constrain the radius; correct fits 120-195 deg,
+//    wrong strip fits 5-80 deg).
+//
 // Radius / tilt limits are NOT passed to RANSAC (PCL would silently discard
 // such models and they would only show up as "no model"); they are checked
 // after the fit so that every failure has a specific reason.
@@ -31,6 +49,8 @@ enum class FitFail : int {
   LowInlierRatio,     // inlier 比例過低
   RadiusOutOfRange,   // 半徑超出範圍
   TiltTooLarge,       // 軸傾角過大
+  NormalInconsistent, // 點法向量與擬合面不一致 (our addition; rejects fits to strips/fragments)
+  ArcCoverageLow,     // inlier 繞軸覆蓋角過小 (our addition; radius unobservable from a narrow arc)
   NoDtmIntersection,  // 軸與 DTM 無交點 (set by the pipeline)
   Count
 };
@@ -42,7 +62,12 @@ struct CylinderFit {
   Eigen::Vector3d axis_point = Eigen::Vector3d::Zero();
   Eigen::Vector3d axis_dir = Eigen::Vector3d::UnitZ();  // unit, dir.z >= 0
   double radius = 0, tilt_deg = 0;
-  std::size_t n_points = 0, n_inliers = 0;
+  std::size_t n_points = 0;
+  std::size_t n_inliers = 0;      // geometric inliers (used for the ratio check)
+  std::size_t n_inliers_sac = 0;  // PCL normal-weighted inliers after refit
+  double arc_deg = 0;             // angular coverage of geometric inliers around the axis (5-degree bins)
+  std::size_t n_normal_ok = 0;    // points whose normal is within normal_max_angle_deg of the fitted surface normal
+  Eigen::Vector3d centroid = Eigen::Vector3d::Zero();
   std::uint32_t ransac_seed = 0;
 };
 

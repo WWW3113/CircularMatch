@@ -21,7 +21,10 @@ struct ScannerParams {
 
 struct DtmParams {
   double cell = 0.5;           // grid cell size [m]
+  std::string ground_select = "percentile";  // percentile | supported_lowest
   double percentile = 5.0;     // k-th percentile of z per cell = ground sample
+  int support_count = 3;       // supported_lowest: >= this many points ...
+  double support_dz = 0.05;    // ... within this height above the candidate [m]
   int min_points = 3;          // cells with fewer points get no ground sample
   int fit_radius = 2;          // plane-fit window half width [cells] (5x5)
   int fill_max_radius = 5;     // window may grow up to this to fill empty cells
@@ -75,8 +78,12 @@ struct CylinderParams {
   double normal_weight = 0.1;
   double max_tilt_deg = 20.0;
   double min_inlier_ratio = 0.5;
+  double normal_max_angle_deg = 30.0;  // point normal vs fitted surface normal
+  double min_arc_deg = 100.0;          // min angular coverage of inliers around the axis [deg]
+  double min_normal_ratio = 0.75;      // fraction of points with consistent normals
   int min_points = 30;
   bool lm_refit = true;
+  int lm_passes = 2;
   std::string seed_mode = "follow";  // follow: derived from run seed; fixed: from fixed_seed
   std::uint64_t fixed_seed = 12345;
 };
