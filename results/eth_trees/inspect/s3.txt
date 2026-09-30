@@ -1,0 +1,35 @@
+file: data/eth_trees/raw/trees/s3.ply
+format: ply xyz field type float32/int
+points read: 19767841, skipped (non-finite/unparsable): 0
+PLY header vertex count: 19767841 -> matches read+skipped
+bbox x [-49.485, 48.095]  y [-47.511, 48.889]  z [-11.551, 33.151]  extent 97.6 x 96.4 x 44.7 m
+candidate origin (0.000, 0.000, 0.000):
+  horizontal distance: min 0.529  p1 0.84  median 2.46  p99 29.5  max 50.0 m
+  3-D range: median 2.88  max 50.0 m
+  points within horizontal 0.5 / 1 / 2 m: 0 / 1289598 / 8465955
+angular-lattice test (stride 10, bin 0.0020 deg, share of points in top-10% bins):
+  origin offset [m]                   n  elevation    azimuth
+  (range clip check) points with 3-D range in [49.5, 50.0] m: 2033, > 50.0 m: 0
+  0 (candidate)                 1463581      0.337      0.185
+  x -0.20                       1531355      0.209      0.194
+  y -0.20                       1501325      0.204      0.194
+  z -0.20                       1356935      0.209      0.189
+  x -0.05                       1478637      0.220      0.198
+  y -0.05                       1469411      0.221      0.194
+  z -0.05                       1430029      0.205      0.186
+  x -0.02                       1469019      0.245      0.204
+  y -0.02                       1465412      0.251      0.198
+  z -0.02                       1449233      0.221      0.185
+  x +0.02                       1458976      0.243      0.191
+  y +0.02                       1462007      0.259      0.199
+  z +0.02                       1478309      0.219      0.184
+  x +0.05                       1452284      0.219      0.193
+  y +0.05                       1459803      0.224      0.193
+  z +0.05                       1500035      0.206      0.183
+  x +0.20                       1437865      0.204      0.200
+  y +0.20                       1459413      0.209      0.192
+  z +0.20                       1631163      0.195      0.178
+  x +1.00                       1486113      0.253      0.237
+  y +1.00                       1581521      0.255      0.229
+  z +1.00                       1884540      0.226      0.169
+  scan centroid (absolute)      1372244      0.229      0.212

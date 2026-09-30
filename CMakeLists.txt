@@ -45,7 +45,7 @@ if(OpenMP_CXX_FOUND)
 endif()
 target_compile_options(cm_core PRIVATE -Wall -Wextra)
 
-foreach(app cm_extract cm_compare cm_synth)
+foreach(app cm_extract cm_compare cm_synth cm_inspect)
   add_executable(${app} apps/${app}.cpp apps/app_common.cpp)
   target_link_libraries(${app} PRIVATE cm_core)
 endforeach()
