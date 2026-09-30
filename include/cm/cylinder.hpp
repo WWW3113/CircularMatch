@@ -18,8 +18,12 @@
 // a 10 cm neighbourhood on thin stems are that noisy, so the weighted count
 // would reject correct fits for a reason unrelated to the fit.)
 //
-// Two post-fit checks are OUR additions (論文未指定), found necessary on the
-// synthetic scene: the verticality filter (> 0.9) leaves only narrow strips of
+// Inlier counting and the LM refit on geometric inliers are IMPLEMENTATION
+// CHOICES (the paper does not specify them), not the paper's method.
+//
+// Two post-fit checks are OUR additions (not in the paper), each can be
+// disabled (cylinder.check_normal_consistency / check_arc_coverage); their
+// metrics are always computed and reported. Motivation, from the synthetic scene: the verticality filter (> 0.9) leaves only narrow strips of
 // tilted stems, and RANSAC fits wrong cylinders to such strips.
 //  - normal consistency: >= min_normal_ratio of the points have a normal within
 //    normal_max_angle_deg of the fitted surface normal (rejects tiny-radius

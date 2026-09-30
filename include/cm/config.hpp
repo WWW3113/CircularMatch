@@ -21,7 +21,9 @@ struct ScannerParams {
 
 struct DtmParams {
   double cell = 0.5;           // grid cell size [m]
-  std::string ground_select = "percentile";  // percentile | supported_lowest
+  // Implementation choice (paper does not specify the DTM method). Default
+  // supported_lowest; percentile is kept for comparison.
+  std::string ground_select = "supported_lowest";  // supported_lowest | percentile
   double percentile = 5.0;     // k-th percentile of z per cell = ground sample
   int support_count = 3;       // supported_lowest: >= this many points ...
   double support_dz = 0.05;    // ... within this height above the candidate [m]
@@ -78,6 +80,10 @@ struct CylinderParams {
   double normal_weight = 0.1;
   double max_tilt_deg = 20.0;
   double min_inlier_ratio = 0.5;
+  // Extra post-fit checks (our additions, not in the paper); can be disabled.
+  // cm_compare reports both profiles: baseline (both off) and improved (both on).
+  bool check_normal_consistency = true;
+  bool check_arc_coverage = true;
   double normal_max_angle_deg = 30.0;  // point normal vs fitted surface normal
   double min_arc_deg = 100.0;          // min angular coverage of inliers around the axis [deg]
   double min_normal_ratio = 0.75;      // fraction of points with consistent normals
@@ -99,6 +105,7 @@ struct ExperimentParams {
   int n_seeds = 10;
   std::uint64_t seed_base = 1;  // seeds = seed_base .. seed_base + n_seeds - 1
   double match_radius = 0.5;    // reference matching: horizontal distance limit [m]
+  std::string profiles = "both";  // cm_compare: both | baseline (extra checks off) | improved (extra checks on)
 };
 
 struct Config {

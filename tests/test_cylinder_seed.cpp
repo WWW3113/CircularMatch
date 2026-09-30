@@ -99,3 +99,29 @@ TEST(CylinderSeed, FailureReasons) {
   const auto f = fitCylinder(big.c, big.n, idx, p, 1);
   EXPECT_EQ(f.fail, FitFail::RadiusOutOfRange) << toString(f.fail) << " r=" << f.radius;
 }
+
+TEST(CylinderChecks, ExtraChecksCanBeDisabled) {
+  // A narrow strip (40 degrees) of an r = 0.3 m cylinder: arc coverage is low.
+  Cyl strip;
+  std::uint64_t s = 5;
+  auto uni = [&] { s = splitmix64(s); return (s >> 11) * 0x1.0p-53; };
+  for (int i = 0; i < 2000; ++i) {
+    const double th = (uni() - 0.5) * 40.0 * M_PI / 180.0, z = 2 * uni();
+    strip.c.push_back(PointT(float(0.3 * std::cos(th)), float(0.3 * std::sin(th)), float(z)));
+    NormalT n;
+    n.normal_x = float(std::cos(th)); n.normal_y = float(std::sin(th)); n.normal_z = 0;
+    strip.n.push_back(n);
+  }
+  std::vector<int> idx(strip.c.size());
+  for (std::size_t i = 0; i < idx.size(); ++i) idx[i] = int(i);
+  CylinderParams on;
+  CylinderParams off = on;
+  off.check_normal_consistency = off.check_arc_coverage = false;
+  const auto f_on = fitCylinder(strip.c, strip.n, idx, on, 3);
+  const auto f_off = fitCylinder(strip.c, strip.n, idx, off, 3);
+  EXPECT_TRUE(f_on.fail_mask & (1u << int(FitFail::ArcCoverageLow))) << f_on.arc_deg;
+  EXPECT_FALSE(f_off.fail_mask & (1u << int(FitFail::ArcCoverageLow)));
+  EXPECT_FALSE(f_off.fail_mask & (1u << int(FitFail::NormalInconsistent)));
+  EXPECT_EQ(f_on.arc_deg, f_off.arc_deg);  // metric still computed and reported when disabled
+  EXPECT_EQ(f_on.radius, f_off.radius);    // the checks never change the fit itself
+}

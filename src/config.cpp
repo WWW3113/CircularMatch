@@ -70,7 +70,8 @@ void Config::buildRegistry() {
 
   add("dtm.cell", &dtm.cell, U, "DTM grid cell size [m]");
   add("dtm.ground_select", &dtm.ground_select, U,
-      "percentile (confirmed default) | supported_lowest (lowest point with support_count points within support_dz above)");
+      "IMPLEMENTATION CHOICE: supported_lowest (default; lowest point with support_count points within support_dz "
+      "above) | percentile (k-th percentile, kept for comparison)");
   add("dtm.support_count", &dtm.support_count, U, "supported_lowest: required points above the candidate");
   add("dtm.support_dz", &dtm.support_dz, U, "supported_lowest: height window above the candidate [m]");
   add("dtm.percentile", &dtm.percentile, U, "k-th percentile of z per cell");
@@ -88,7 +89,7 @@ void Config::buildRegistry() {
   add("normals.radius", &normals.radius, P, "paper: 10 cm");
   add("normals.octree_res", &normals.octree_res, U, "octree resolution [m]");
   add("normals.min_neighbors", &normals.min_neighbors, U, "min neighbours for PCA");
-  add("normals.vert_threshold", &normals.vert_threshold, P, "paper: verticality > 0.9");
+  add("normals.vert_threshold", &normals.vert_threshold, P, "paper: verticality > 0.9 (0.8 = optional, NOT the paper setting)");
 
   add("retention.version", &retention.version, P, "step | linear_a | linear_mid | physical");
   add("retention.linear_slope", &retention.linear_slope, P, "our modification: 0.05 / m");
@@ -115,7 +116,12 @@ void Config::buildRegistry() {
   add("cylinder.radius_max", &cylinder.radius_max, U, "post-fit radius check [m]");
   add("cylinder.normal_weight", &cylinder.normal_weight, U, "RANSAC normal distance weight");
   add("cylinder.max_tilt_deg", &cylinder.max_tilt_deg, U, "post-fit axis tilt check [deg]");
-  add("cylinder.min_inlier_ratio", &cylinder.min_inlier_ratio, U, "post-fit inlier ratio check");
+  add("cylinder.min_inlier_ratio", &cylinder.min_inlier_ratio, U,
+      "post-fit inlier ratio check; IMPLEMENTATION CHOICE: inliers counted by geometric point-to-surface distance");
+  add("cylinder.check_normal_consistency", &cylinder.check_normal_consistency, U,
+      "OUR ADDITION (not in paper): enable normal-consistency check");
+  add("cylinder.check_arc_coverage", &cylinder.check_arc_coverage, U,
+      "OUR ADDITION (not in paper): enable arc-coverage check");
   add("cylinder.normal_max_angle_deg", &cylinder.normal_max_angle_deg, U,
       "normal consistency: max angle between point normal and fitted surface normal [deg]");
   add("cylinder.min_normal_ratio", &cylinder.min_normal_ratio, U,
@@ -123,8 +129,8 @@ void Config::buildRegistry() {
   add("cylinder.min_arc_deg", &cylinder.min_arc_deg, U,
       "min angular coverage of geometric inliers around the axis [deg] (5-degree bins)");
   add("cylinder.min_points", &cylinder.min_points, U, "clusters smaller than this are not fitted");
-  add("cylinder.lm_refit", &cylinder.lm_refit, P, "Levenberg-Marquardt refit on inliers");
-  add("cylinder.lm_passes", &cylinder.lm_passes, U, "LM refit passes on geometric inliers");
+  add("cylinder.lm_refit", &cylinder.lm_refit, U, "Levenberg-Marquardt refit (task spec, not in paper)");
+  add("cylinder.lm_passes", &cylinder.lm_passes, U, "IMPLEMENTATION CHOICE: LM refit passes on geometric inliers");
   add("cylinder.seed_mode", &cylinder.seed_mode, P, "follow | fixed");
   add("cylinder.fixed_seed", &cylinder.fixed_seed, P, "used when seed_mode = fixed");
 
@@ -135,6 +141,8 @@ void Config::buildRegistry() {
 
   add("experiment.n_seeds", &experiment.n_seeds, P, "seeds per version");
   add("experiment.seed_base", &experiment.seed_base, P, "first seed");
+  add("experiment.profiles", &experiment.profiles, P,
+      "cm_compare: both | baseline (extra checks off) | improved (extra checks on)");
   add("experiment.match_radius", &experiment.match_radius, P, "reference matching radius [m]");
 }
 

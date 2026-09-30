@@ -1,10 +1,12 @@
 // Grid DTM ("lowest point" family, 論文未指定 details):
-//  1. per cell, the point at the k-th z percentile is the ground sample
-//     (its full x,y,z is kept; the percentile removes below-ground outliers).
-//     Known weakness (see test Dtm.DenseStemCellBiasesPercentile): when a cell
-//     holds many more stem/canopy points than ground points, the k-th
-//     percentile lands above the ground. dtm.ground_select=supported_lowest
-//     (lowest point with support_count points within support_dz above) avoids it;
+//  1. per cell, one ground sample (its full x,y,z is kept). The paper does not
+//     specify the DTM method; this is OUR implementation choice:
+//       supported_lowest (default): the lowest point that has >= support_count
+//         points within support_dz above it (drops isolated below-ground noise
+//         independently of how many stem/canopy points share the cell);
+//       percentile (kept for comparison): the k-th z percentile. Biased upward
+//         when stem/canopy points outnumber ground points in a cell (see test
+//         Dtm.DenseStemCellBiasesPercentile).
 //  2. ground samples higher than a plane fitted to their neighbours by more
 //     than outlier_above are rejected (occluded cells that only hold stems);
 //  3. every cell gets a local plane z = a + b(x-cx) + c(y-cy), least squares

@@ -164,9 +164,11 @@ CylinderFit fitCylinder(const Cloud& cloud, const NormalCloud& normals, const st
   if (ratio < p.min_inlier_ratio) r.fail_mask |= 1u << int(FitFail::LowInlierRatio);
   if (r.radius < p.radius_min || r.radius > p.radius_max) r.fail_mask |= 1u << int(FitFail::RadiusOutOfRange);
   if (r.tilt_deg > p.max_tilt_deg) r.fail_mask |= 1u << int(FitFail::TiltTooLarge);
-  if (double(r.n_normal_ok) / double(r.n_points) < p.min_normal_ratio)
+  // Our additions (not in the paper): metrics are always computed and written
+  // to the diagnostics CSV; they only reject a fit when enabled.
+  if (p.check_normal_consistency && double(r.n_normal_ok) / double(r.n_points) < p.min_normal_ratio)
     r.fail_mask |= 1u << int(FitFail::NormalInconsistent);
-  if (r.arc_deg < p.min_arc_deg) r.fail_mask |= 1u << int(FitFail::ArcCoverageLow);
+  if (p.check_arc_coverage && r.arc_deg < p.min_arc_deg) r.fail_mask |= 1u << int(FitFail::ArcCoverageLow);
   for (int f = 1; f < int(FitFail::Count); ++f)
     if (r.fail_mask & (1u << f)) {
       r.fail = FitFail(f);
