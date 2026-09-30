@@ -1,1 +1,4 @@
 build/
+# Raw datasets and large intermediates are never committed.
+data/
+results/**/runs/

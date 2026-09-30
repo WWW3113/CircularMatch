@@ -1,0 +1,7 @@
+# One row per scan. A scan is processed ONLY if x0, y0, z0 AND source are filled.
+# x0,y0,z0: scanner position in the scan file's ORIGINAL coordinates [m].
+# source: where the position comes from (file metadata field, official document
+#         + section, ...). Never the scan centroid; (0,0,0) only if a source
+#         states the scan is stored in the scanner's own frame.
+# path: relative to the repository root.
+scan,path,x0,y0,z0,source
