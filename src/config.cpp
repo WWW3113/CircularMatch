@@ -215,6 +215,11 @@ void Config::dump(std::ostream& os) const {
       os << "\n[" << s << "]\n";
       section = s;
     }
+    // An unset scanner position is written commented out: loading it back must
+    // not mark the position as explicitly given (that would bypass the
+    // large-coordinate stop in prepareCloud).
+    const bool unset_scanner = !scanner.position_given && (k == "scanner.x0" || k == "scanner.y0" || k == "scanner.z0");
+    if (unset_scanner) os << "# ";
     os << k.substr(dot + 1) << " = ";
     std::visit(
         [&](auto* p) {

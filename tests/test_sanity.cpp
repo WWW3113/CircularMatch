@@ -1,5 +1,8 @@
 #include <gtest/gtest.h>
 
+#include <filesystem>
+#include <fstream>
+
 #include "cm/config.hpp"
 #include "cm/sanity.hpp"
 
@@ -61,4 +64,29 @@ TEST(Sanity, ConfigTracksExplicitScanner) {
   EXPECT_DOUBLE_EQ(a.dtm.cell, 0.5);
   EXPECT_THROW(a.set("no.such", "1"), std::runtime_error);
   EXPECT_THROW(a.set("dtm.cell", "abc"), std::runtime_error);
+}
+
+TEST(Sanity, ConfigDumpRoundTripKeepsScannerUnset) {
+  const auto dir = std::filesystem::temp_directory_path() / "cm_test_cfg";
+  std::filesystem::create_directories(dir);
+  const std::string path = (dir / "c.ini").string();
+  Config a;
+  a.set("dtm.cell", "0.75");
+  {
+    std::ofstream o(path);
+    a.dump(o);
+  }
+  Config b;
+  b.loadIni(path);
+  EXPECT_FALSE(b.scanner.position_given);
+  EXPECT_DOUBLE_EQ(b.dtm.cell, 0.75);
+  a.set("scanner.x0", "12.5");
+  {
+    std::ofstream o(path);
+    a.dump(o);
+  }
+  Config c;
+  c.loadIni(path);
+  EXPECT_TRUE(c.scanner.position_given);
+  EXPECT_DOUBLE_EQ(c.scanner.x0, 12.5);
 }
