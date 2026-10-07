@@ -46,8 +46,8 @@ def main():
     ap.add_argument("--seeds", type=int, default=10)
     ap.add_argument("--bin", default=os.path.join(ROOT, "build"))
     ap.add_argument("--only", nargs="*", help="run only these scan names")
-    ap.add_argument("extra", nargs="*", help="extra --section.key=value options for cm_compare")
-    a = ap.parse_args()
+    a, extra = ap.parse_known_args()  # unknown options (--section.key=value, --ref=...) go to cm_compare
+    a.extra = extra
 
     exe = os.path.join(a.bin, "cm_compare")
     if not os.access(exe, os.X_OK):
