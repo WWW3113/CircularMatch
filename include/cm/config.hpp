@@ -85,6 +85,12 @@ struct CylinderParams {
   double normal_weight = 0.1;
   double max_tilt_deg = 20.0;
   double min_inlier_ratio = 0.5;
+  // Post-fit filters NOT in the paper (the paper only says "RANSAC cylinder
+  // fitting"); on by default, can be disabled. All off + the two checks below
+  // off = closest to the paper's text ("paper-literal" diagnostic).
+  bool check_radius = true;        // radius_min .. radius_max
+  bool check_tilt = true;          // max_tilt_deg
+  bool check_inlier_ratio = true;  // min_inlier_ratio
   // Extra post-fit checks (our additions, not in the paper); can be disabled.
   // cm_compare reports both profiles: baseline (both off) and improved (both on).
   bool check_normal_consistency = true;

@@ -28,7 +28,7 @@ Pipeline 順序與 Fig. 1 一致：DTM → 0–3 m 高度濾波 → 1 cm voxel �
 | D6 | triangle bit comparison | 最佳配對分數 < Th 時，取其所有符合維度的點索引為候選集，以點為頂點組三角形，邊長相符者為匹配三角形，頂點成為配對點；Fig. 4：source 的 bit 2 可對 target 的 bit 3 | 候選集 = 最佳配對所有符合維度的索引；兩組三角形邊長（2D）在某種頂點對應下**三邊都**差 < 閾值才算匹配；**頂點順序可置換**（使用者決定） |
 | D7 | 由配對點求轉換的方法 | 只寫「calculate the Euclidean transform」，**未指定** | 兩種都跑、分開報告：SVD（Kabsch，3D 樹位）與 SVD + RANSAC（最小樣本 3、inlier 0.3 m、1000 次、seed 1，皆為我們的參數）（使用者決定）；兩者都估完整 3D 剛體轉換，**不使用只估 yaw + 平移的 4 自由度解法**（論文沒有，使用者決定不加） |
 | D8 | 輸入 keypoints | — | baseline 與 improved 兩組都跑（step、seed 1），並排比較（使用者決定） |
-| D9 | 是否合併重複偵測 | 論文沒有此步驟 | baseline 不合併；合併為選項（`--merge_radius`），**預設關**（使用者決定） |
+| D9 | 是否合併重複偵測 | 論文沒有此步驟 | baseline 不合併；合併為選項（`--merge_radius`），**預設關**（使用者決定）。ETH 上 improved + 0.3 m 合併為 10/10（`results/eth_trees/variants/findings.md`，在 ETH 上選出） |
 | D10 | 一對 scan 的成功標準 | Table I 有成功率但**未給標準** | 旋轉誤差 < 2° **且** 平移誤差 < 0.5 m；每一對另保留旋轉誤差、平移誤差、e_p 原始數字 |
 | D11 | 精配準（ICP） | 論文方法為描述子匹配求轉換 | 不做 ICP，只評估由匹配求得的轉換 |
 | D12 | encode2 的 sector 0 中離 p0 最近的點可能是 p1（encode3 可能是 p1 或 p2） | 未說明 | 照字面：每個 sector 取最近的點；統計發生次數並輸出 |

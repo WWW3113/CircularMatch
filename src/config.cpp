@@ -123,6 +123,11 @@ void Config::buildRegistry() {
   add("cylinder.max_tilt_deg", &cylinder.max_tilt_deg, U, "post-fit axis tilt check [deg]");
   add("cylinder.min_inlier_ratio", &cylinder.min_inlier_ratio, U,
       "post-fit inlier ratio check; IMPLEMENTATION CHOICE: inliers counted by geometric point-to-surface distance");
+  add("cylinder.check_radius", &cylinder.check_radius, U,
+      "NOT IN PAPER (post-fit filter): enable radius_min/radius_max check");
+  add("cylinder.check_tilt", &cylinder.check_tilt, U, "NOT IN PAPER (post-fit filter): enable max_tilt_deg check");
+  add("cylinder.check_inlier_ratio", &cylinder.check_inlier_ratio, U,
+      "NOT IN PAPER (post-fit filter): enable min_inlier_ratio check");
   add("cylinder.check_normal_consistency", &cylinder.check_normal_consistency, U,
       "OUR ADDITION (not in paper): enable normal-consistency check");
   add("cylinder.check_arc_coverage", &cylinder.check_arc_coverage, U,

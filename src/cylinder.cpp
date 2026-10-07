@@ -161,9 +161,12 @@ CylinderFit fitCylinder(const Cloud& cloud, const NormalCloud& normals, const st
 
   for (char b : arc) r.arc_deg += b ? 360.0 / kArcBins : 0.0;
   const double ratio = double(r.n_inliers) / double(r.n_points);
-  if (ratio < p.min_inlier_ratio) r.fail_mask |= 1u << int(FitFail::LowInlierRatio);
-  if (r.radius < p.radius_min || r.radius > p.radius_max) r.fail_mask |= 1u << int(FitFail::RadiusOutOfRange);
-  if (r.tilt_deg > p.max_tilt_deg) r.fail_mask |= 1u << int(FitFail::TiltTooLarge);
+  // Post-fit filters not described in the paper (it only says "RANSAC cylinder
+  // fitting"); on by default, each can be switched off.
+  if (p.check_inlier_ratio && ratio < p.min_inlier_ratio) r.fail_mask |= 1u << int(FitFail::LowInlierRatio);
+  if (p.check_radius && (r.radius < p.radius_min || r.radius > p.radius_max))
+    r.fail_mask |= 1u << int(FitFail::RadiusOutOfRange);
+  if (p.check_tilt && r.tilt_deg > p.max_tilt_deg) r.fail_mask |= 1u << int(FitFail::TiltTooLarge);
   // Our additions (not in the paper): metrics are always computed and written
   // to the diagnostics CSV; they only reject a fit when enabled.
   if (p.check_normal_consistency && double(r.n_normal_ok) / double(r.n_points) < p.min_normal_ratio)

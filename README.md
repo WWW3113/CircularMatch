@@ -26,10 +26,13 @@ Clouds Using Circular Neighborhood Descriptor*, IEEE GRSL 23, 2026 的 **keypoin
 | LM refit | 未提及 | 在幾何 inlier 上 refit 2 次 | 實作選擇（任務規格要求 LM refit） |
 | 法向一致性檢查 | 無 | 可關閉，`cylinder.check_normal_consistency` | 我們新增 |
 | 圓弧覆蓋角檢查 | 無 | 可關閉，`cylinder.check_arc_coverage` | 我們新增 |
+| 擬合後篩選：半徑、傾角、inlier 比例 | **無**（論文只寫 RANSAC 圓柱擬合） | 預設開，可分別關閉：`cylinder.check_radius` / `check_tilt` / `check_inlier_ratio` | **論文沒有**（我們新增的篩選步驟） |
 | 其他數值參數 | 未指定 | 見「論文未指定的參數」 | 實作選擇 |
 
 **本專案沒有任何一種設定可稱為「論文原法」**：即使關閉兩項新增檢查，DTM、inlier 計數、
-LM refit 仍是我們的實作選擇。
+LM refit 仍是我們的實作選擇。最接近論文字面的是 5 個擬合後檢查全關（`check_radius`、`check_tilt`、
+`check_inlier_ratio`、`check_normal_consistency`、`check_arc_coverage` 皆 false），只作診斷用；
+比較見 `results/eth_trees/variants/variants.md`。
 
 ### 兩種報告設定
 
@@ -196,6 +199,7 @@ P(d) 是**保留**機率：近處少留、遠處多留，因為遠處點本來�
 | `cluster.tolerance` / `min_points` / `max_points` | 0.10 m / 30 / 1e7 | Euclidean clustering |
 | `cylinder.dist_threshold` | 0.02 m | RANSAC 與幾何 inlier 距離 |
 | `cylinder.max_iterations` / `probability` | 1000 / 0.99 | RANSAC |
+| `cylinder.check_radius` / `check_tilt` / `check_inlier_ratio` | true | **論文沒有**的擬合後篩選，可分別關閉 |
 | `cylinder.radius_min` / `radius_max` | 0.03 / 1.0 m | 擬合後檢查 |
 | `cylinder.normal_weight` | 0.1 | RANSAC normal distance weight |
 | `cylinder.max_tilt_deg` | 20° | 軸傾角上限 |

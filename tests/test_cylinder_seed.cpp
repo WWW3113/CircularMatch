@@ -125,3 +125,21 @@ TEST(CylinderChecks, ExtraChecksCanBeDisabled) {
   EXPECT_EQ(f_on.arc_deg, f_off.arc_deg);  // metric still computed and reported when disabled
   EXPECT_EQ(f_on.radius, f_off.radius);    // the checks never change the fit itself
 }
+
+// The post-fit filters that are not in the paper (radius, tilt, inlier ratio)
+// can each be switched off; the fit itself is unchanged.
+TEST(CylinderChecks, NotInPaperFiltersCanBeDisabled) {
+  const Cyl cy = noisyCylinder(1.5, 800, 0.0);  // radius above radius_max = 1 m
+  std::vector<int> idx(cy.c.size());
+  for (std::size_t i = 0; i < idx.size(); ++i) idx[i] = int(i);
+  CylinderParams on;
+  on.check_normal_consistency = on.check_arc_coverage = false;
+  const CylinderFit a = fitCylinder(cy.c, cy.n, idx, on, 1);
+  EXPECT_TRUE(a.fail_mask & (1u << int(FitFail::RadiusOutOfRange)));
+  CylinderParams off = on;
+  off.check_radius = false;
+  const CylinderFit b = fitCylinder(cy.c, cy.n, idx, off, 1);
+  EXPECT_EQ(b.fail, FitFail::None);
+  EXPECT_NEAR(b.radius, 1.5, 0.01);
+  EXPECT_DOUBLE_EQ(a.radius, b.radius);
+}

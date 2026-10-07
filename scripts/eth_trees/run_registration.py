@@ -47,6 +47,8 @@ def main():
     ap.add_argument("--out", default=os.path.join(ROOT, "results/eth_trees/registration"))
     ap.add_argument("--report", default=os.path.join(ROOT, "results/eth_trees/registration_report.md"))
     ap.add_argument("--skip_run", action="store_true", help="only rebuild the report from existing CSVs")
+    ap.add_argument("--merge_radius", type=float, default=0.0,
+                    help="merge tree positions closer than this before matching (D9; NOT in the paper; default off)")
     a = ap.parse_args()
     os.makedirs(a.out, exist_ok=True)
     pairs = [l.split() for l in open(os.path.join(a.raw, "pairs.txt")) if l.strip()]
@@ -59,7 +61,8 @@ def main():
                        f"--tgt_trees={os.path.join(a.runs, sb, prof, a.trees)}",
                        f"--src_cloud={os.path.join(a.raw, sa + '.ply')}",
                        f"--gt={os.path.join(a.raw, 'groundtruth', f'{sa}-{sb}.tfm')}",
-                       f"--thresholds={a.thresholds}", f"--label={prof}_{sa}-{sb}", f"--out={out}"]
+                       f"--thresholds={a.thresholds}", f"--merge_radius={a.merge_radius}",
+                       f"--label={prof}_{sa}-{sb}", f"--out={out}"]
                 print("RUN", " ".join(cmd).replace(ROOT + "/", ""), flush=True)
                 subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             for r in csv.DictReader(open(out)):
@@ -74,6 +77,7 @@ def main():
          "- 求轉換：`svd`（Kabsch）與 `svd+ransac` 兩種，**論文未指定求轉換的方法**。",
          "- 成功：旋轉誤差 < 2° 且平移誤差 < 0.5 m（論文未給標準，D10）。e_p（式 8）對 source scan 的所有點計算。",
          "- 正確配對數：配對的 source 樹位經 GT 轉換後與 target 樹位的 2D 距離 < 0.3 m（只作診斷）。",
+         f"- 合併重複樹位（D9，論文沒有）：{'關' if a.merge_radius <= 0 else f'開，{a.merge_radius} m'}",
          f"- {PAPER_ETH}", ""]
     thresholds = sorted({float(r["threshold"]) for r in rows})
     # Summary table
