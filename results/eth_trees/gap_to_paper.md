@@ -40,3 +40,7 @@ xy  improved svd+ransac success 6/10  e_p median 0.277  matches/correct 10/10 9/
 - 論文的 DTM 方法未指定（本實作的 DTM 細節是實作選擇），論文也聲稱其樹位「accurate and reliable」，但沒有給精度數字。
 - 無法排除的其他差異：歧義表 D1–D17 的解讀可能和作者不同；論文成功標準未給（D10）；論文沒說 ETH 用哪些 scan pair。
 - 依使用者指示不做「改善樹位精度」（選項 3），此處只記錄原因。
+
+## 後續：已修 DTM（使用者同意，只改論文未指定的細節）
+
+加入坡度濾波後，improved 5 cm 成功 8/10、e_p 中位數 0.037 m，見 `dtm_slope/README.md`。

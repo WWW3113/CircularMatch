@@ -86,3 +86,36 @@ TEST(Dtm, HeightFilterKeepsZeroToThreeMetres) {
   const auto idx = heightFilter(q, d, HeightParams{});
   EXPECT_EQ(idx, (std::vector<int>{1, 2, 3, 4}));
 }
+
+// Far from the scanner the ground is occluded over large areas: every cell there
+// holds only branch / canopy points, so the neighbour-plane check (step 2)
+// compares canopy with canopy. Only a small ground patch at a stem foot is
+// visible. The slope filter (step 1b) must keep the DTM on the ground there.
+TEST(Dtm, SlopeFilterRejectsCanopyWhereGroundIsOccluded) {
+  std::uint64_t s = 5;
+  auto uni = [&] { s = splitmix64(s); return (s >> 11) * 0x1.0p-53; };
+  Cloud c;
+  for (int k = 0; k < 200000; ++k) {  // visible ground, x < 4
+    const double x = 14 * uni() - 10, y = 20 * uni() - 10;
+    c.push_back(PointT(float(x), float(y), float(plane(x, y))));
+  }
+  for (int k = 0; k < 2000; ++k) {  // ground patch at a stem foot (8, 0)
+    const double x = 7.5 + uni(), y = -0.5 + uni();
+    c.push_back(PointT(float(x), float(y), float(plane(x, y))));
+  }
+  for (int k = 0; k < 100000; ++k) {  // canopy 6-8 m above the occluded ground, 4 <= x <= 10
+    const double x = 4 + 6 * uni(), y = 20 * uni() - 10;
+    if (std::abs(x - 8) < 0.5 && std::abs(y) < 0.5) continue;
+    c.push_back(PointT(float(x), float(y), float(plane(x, y) + 6 + 2 * uni())));
+  }
+  DtmParams on, off;
+  off.slope_filter = false;
+  const Dtm a = Dtm::build(c, on), b = Dtm::build(c, off);
+  ASSERT_TRUE(a.height(8, 0).has_value());
+  ASSERT_TRUE(b.height(8, 0).has_value());
+  EXPECT_LT(std::abs(*a.height(8, 0) - plane(8, 0)), 0.05);
+  EXPECT_GT(std::abs(*b.height(8, 0) - plane(8, 0)), 1.0);  // the failure seen on ETH Trees
+  EXPECT_GT(a.stats().samples_rejected_slope, 0u);
+  // on the visible ground the filter changes nothing
+  EXPECT_LT(std::abs(*a.height(-5, 3) - plane(-5, 3)), 0.01);
+}

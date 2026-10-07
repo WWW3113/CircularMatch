@@ -79,6 +79,11 @@ void Config::buildRegistry() {
   add("dtm.fit_radius", &dtm.fit_radius, U, "plane-fit window half width [cells]");
   add("dtm.fill_max_radius", &dtm.fill_max_radius, U, "max window half width when filling [cells]");
   add("dtm.outlier_above", &dtm.outlier_above, U, "reject ground samples above neighbour plane + this [m]");
+  add("dtm.slope_filter", &dtm.slope_filter, U,
+      "IMPLEMENTATION CHOICE: slope-based ground filter (Vosselman 2000) before the neighbour-plane check");
+  add("dtm.max_slope", &dtm.max_slope, U, "slope filter: max terrain rise per horizontal metre");
+  add("dtm.slope_tol", &dtm.slope_tol, U, "slope filter: height tolerance [m]");
+  add("dtm.slope_radius", &dtm.slope_radius, U, "slope filter: neighbourhood radius [m]");
 
   add("height.zmin", &height.zmin, P, "paper: 0 m");
   add("height.zmax", &height.zmax, P, "paper: 3 m");

@@ -113,9 +113,38 @@ Dtm Dtm::build(const Cloud& cloud, const DtmParams& p) {
       }
   };
 
-  // 2. reject samples far above their neighbours' plane (single pass on the original samples).
-  std::vector<const Sample*> nb;
+  // 1b. slope-based filter (Vosselman 2000): a sample higher than another sample
+  // within slope_radius by more than max_slope * distance + slope_tol cannot be
+  // ground (where ground is occluded, the lowest point of a cell is on a branch
+  // or canopy, and so are its neighbours', so step 2 alone cannot reject it).
+  // Compared against the original samples (single pass, order independent).
   std::vector<char> reject(samples.size(), 0);
+  if (p.slope_filter) {
+    const int rc = static_cast<int>(std::ceil(p.slope_radius / p.cell));
+    for (int j = 0; j < ny; ++j)
+      for (int i = 0; i < nx; ++i) {
+        const Sample& s = samples[static_cast<std::size_t>(j) * nx + i];
+        if (!s.valid) continue;
+        bool bad = false;
+        for (int jj = std::max(0, j - rc); jj <= std::min(ny - 1, j + rc) && !bad; ++jj)
+          for (int ii = std::max(0, i - rc); ii <= std::min(nx - 1, i + rc) && !bad; ++ii) {
+            const Sample& t = samples[static_cast<std::size_t>(jj) * nx + ii];
+            if (!t.valid || (ii == i && jj == j)) continue;
+            const double dist = std::hypot(s.x - t.x, s.y - t.y);
+            if (dist <= p.slope_radius && s.z - t.z > p.max_slope * dist + p.slope_tol) bad = true;
+          }
+        if (bad) reject[static_cast<std::size_t>(j) * nx + i] = 1;
+      }
+    for (std::size_t k = 0; k < samples.size(); ++k)
+      if (reject[k]) {
+        samples[k].valid = false;
+        ++d.stats_.samples_rejected_slope;
+        reject[k] = 0;
+      }
+  }
+
+  // 2. reject samples far above their neighbours' plane (single pass on the remaining samples).
+  std::vector<const Sample*> nb;
   for (int j = 0; j < ny; ++j)
     for (int i = 0; i < nx; ++i) {
       const Sample& s = samples[static_cast<std::size_t>(j) * nx + i];

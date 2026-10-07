@@ -1,0 +1,7 @@
+label,threshold,setting,solver,n_src_kp,n_tgt_kp,descriptors_src,descriptors_tgt,d12_enc2_s0_is_p1,d12_enc3_s0_is_p1p2,gate_passed,candidates,best_score,best_dc,best_fm,used_triangle,tri_set_src,tri_set_tgt,tri_matches,n_matches,n_correct_matches,ransac_inliers,transform_ok,rot_err_deg,trans_err_m,e_p_m,success,time_ms,r00,r01,r02,r10,r11,r12,r20,r21,r22,t0,t1,t2
+baseline_s1-s3,0.05,paper,svd,298,273,298,273,8,31,7645,122,14,4,1,1,4,3,0,0,0,0,0,nan,nan,nan,0,30.007482,1,0,0,0,1,0,0,0,1,0,0,0
+baseline_s1-s3,0.05,paper,svd+ransac,298,273,298,273,8,31,7645,122,14,4,1,1,4,3,0,0,0,0,0,nan,nan,nan,0,30.006378,1,0,0,0,1,0,0,0,1,0,0,0
+baseline_s1-s3,0.1,sensitivity(not paper),svd,298,273,298,273,8,31,13891,158,15,5,1,1,5,5,0,0,0,0,0,nan,nan,nan,0,32.783882,1,0,0,0,1,0,0,0,1,0,0,0
+baseline_s1-s3,0.1,sensitivity(not paper),svd+ransac,298,273,298,273,8,31,13891,158,15,5,1,1,5,5,0,0,0,0,0,nan,nan,nan,0,32.783536,1,0,0,0,1,0,0,0,1,0,0,0
+baseline_s1-s3,0.15,sensitivity(not paper),svd,298,273,298,273,8,31,19245,148,17,7,1,1,7,7,2,4,0,0,1,147.9963185,6.737645156,11.79970396,0,34.344893,-0.9538105917,0.1776737561,-0.2422341667,-0.209594908,-0.9712483284,0.1129011032,-0.2152099664,0.1584573159,0.9636264574,7.309907965,-5.26652804,1.099531463
+baseline_s1-s3,0.15,sensitivity(not paper),svd+ransac,298,273,298,273,8,31,19245,148,17,7,1,1,7,7,2,4,0,4,1,147.9963185,6.737645156,11.79970396,0,34.615388,-0.9538105917,0.1776737561,-0.2422341667,-0.209594908,-0.9712483284,0.1129011032,-0.2152099664,0.1584573159,0.9636264574,7.309907965,-5.26652804,1.099531463

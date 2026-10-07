@@ -7,6 +7,11 @@
 //       percentile (kept for comparison): the k-th z percentile. Biased upward
 //         when stem/canopy points outnumber ground points in a cell (see test
 //         Dtm.DenseStemCellBiasesPercentile).
+//  1b. slope filter (dtm.slope_filter, default on): a sample higher than any
+//     other sample within slope_radius by more than max_slope * d + slope_tol is
+//     rejected (Vosselman 2000). Needed where ground is occluded over large
+//     areas (far from the scanner): there the lowest point of every cell is a
+//     branch / canopy point and step 2 compares them only with each other;
 //  2. ground samples higher than a plane fitted to their neighbours by more
 //     than outlier_above are rejected (occluded cells that only hold stems);
 //  3. every cell gets a local plane z = a + b(x-cx) + c(y-cy), least squares
@@ -29,7 +34,8 @@ namespace cm {
 struct DtmStats {
   int nx = 0, ny = 0;
   std::size_t cells_with_sample = 0;
-  std::size_t samples_rejected = 0;
+  std::size_t samples_rejected_slope = 0;  // step 1b
+  std::size_t samples_rejected = 0;        // step 2
   std::size_t cells_valid = 0;   // cells with a plane
   std::size_t cells_filled = 0;  // valid cells without own sample
 };

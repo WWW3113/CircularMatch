@@ -109,7 +109,7 @@ scale ≤ 0。
 
 | # | 步驟 | 實作 | 依據 |
 |---|---|---|---|
-| 1 | DTM + 高度濾波 | 網格法：每格選一個地面樣本點（保留 xyz）。預設 `supported_lowest`：上方 5 cm 內至少有 3 點的最低點；可選 `percentile`：第 k 百分位的點。→ 剔除高於鄰格平面 `outlier_above` 的樣本 → 每格以 (2r+1)² 鄰格樣本做最小平方平面（同時平滑與補洞，坡地無偏）→ 查詢時對 4 個最近格的平面做雙線性混合。保留 `zmin − neg_tol ≤ z − DTM ≤ zmax` | 論文：0–3 m；**DTM 方法為實作選擇** |
+| 1 | DTM + 高度濾波 | 網格法：每格選一個地面樣本點（保留 xyz）。預設 `supported_lowest`：上方 5 cm 內至少有 3 點的最低點；可選 `percentile`：第 k 百分位的點。→ **坡度濾波**（`slope_filter`，預設開；Vosselman 2000）：若某樣本比 `slope_radius` 內任一樣本高出 `max_slope·d + slope_tol`，剔除（遠處地面被遮蔽時，格內最低點是枝葉）→ 剔除高於鄰格平面 `outlier_above` 的樣本 → 每格以 (2r+1)² 鄰格樣本做最小平方平面（同時平滑與補洞，坡地無偏）→ 查詢時對 4 個最近格的平面做雙線性混合。保留 `zmin − neg_tol ≤ z − DTM ≤ zmax` | 論文：0–3 m；**DTM 方法為實作選擇** |
 | 2 | Voxel 1 cm | 每格保留**最靠近格內重心的原始點**（自寫，PCL VoxelGrid / UniformSampling 皆不符） | 論文 |
 | 3 | 法向量 | octree 半徑 10 cm 鄰域、共變異數矩陣、最小特徵值對應的特徵向量 e3 | 論文 eq. 1–3 |
 | 4 | Verticality | `1 − |z·e3| > 0.9`（0.8 為可選參數，非論文設定） | 論文 eq. 4 |
@@ -187,6 +187,8 @@ P(d) 是**保留**機率：近處少留、遠處多留，因為遠處點本來�
 | `dtm.fit_radius` | 2 格 | 平面擬合視窗半寬（5×5） |
 | `dtm.fill_max_radius` | 5 格 | 補洞時視窗最大半寬 |
 | `dtm.outlier_above` | 0.5 m | 高於鄰格平面此值的地面樣本剔除 |
+| `dtm.slope_filter` | true | **實作選擇**。坡度濾波（Vosselman 2000）；在 ETH Trees 上發現遠處 DTM 被枝葉抬高數公尺後加入（`results/eth_trees/dtm_slope/`） |
+| `dtm.max_slope` / `slope_tol` / `slope_radius` | 0.5 / 0.3 m / 5 m | 坡度濾波參數。0.5（約 27°）依 ETH 近站地形量測決定（相鄰格坡度中位數 0.11–0.16），**不是**以配準結果調整；地形比 `max_slope` 陡時上坡地面會被誤刪 |
 | `dtm.support_count` / `support_dz` | 3 / 0.05 m | 僅 `supported_lowest` 使用：候選點上方 `support_dz` 內至少 `support_count` 點 |
 | `height.neg_tol` | 0.05 m | 高度濾波負向容差 |
 | `normals.octree_res` | 0.05 m | octree 解析度 |
@@ -308,7 +310,7 @@ RANSAC 成功率 = 通過所有檢查且有樹位的叢數 / 送進 RANSAC 的�
 | `Budget.*` | 調整後保留數與 step 差距在容差內（隨機 d 與合成場景 pipeline）；回報數 = 實際數；linear_a / linear_mid 收斂到同一截距 |
 | `IO.*` | ASCII（標頭、逗號、分號、多欄）；PCD ascii / binary / compressed；PCD float64 精度；PLY ascii / binary；LAS 1.0–1.4 × 所有合法點格式 × 額外 bytes；不支援格式、LAZ 位元、截斷、錯誤簽章、record length 過短、.laz、未知副檔名皆報錯 |
 | `Sanity.*` | 大座標 + 預設掃描儀 → 停止；給正確位置 → 通過；給錯位置 → 停止；最近點過遠 → 警告；參數讀寫；dump / 讀回不會誤標掃描儀位置 |
-| `Dtm.*` | 坡地加空洞時誤差 < 1 cm（兩種 ground_select）；預設為 `supported_lowest`；密集樹幹旁 `percentile` 的偏差（記錄限制）；範圍外回傳 nullopt；0–3 m 高度濾波 |
+| `Dtm.*` | 坡地加空洞時誤差 < 1 cm（兩種 ground_select）；地面被遮蔽、只有樹腳可見時，坡度濾波使 DTM 誤差 < 5 cm（關閉時 > 1 m）；預設為 `supported_lowest`；密集樹幹旁 `percentile` 的偏差（記錄限制）；範圍外回傳 nullopt；0–3 m 高度濾波 |
 | `TreePosition.*` | 坡地上傾斜 0–30°、4 個方位的交點與解析解誤差 < 3 mm；陡坡時退回二分法；範圍外無解 |
 | `CylinderSeed.*` | PCL RANSAC 亂數行為（見上）；擬合可重現且準確；失敗原因分類 |
 | `CylinderChecks.*` | 兩項新增檢查可關閉：關閉時不再造成失敗，但指標仍計算；檢查不改變擬合本身 |

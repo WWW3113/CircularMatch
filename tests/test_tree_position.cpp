@@ -13,7 +13,11 @@ Dtm slopeDtm(double sx, double sy) {
   Cloud c;
   for (double x = -12; x <= 12; x += 0.05)
     for (double y = -12; y <= 12; y += 0.05) c.push_back(PointT(float(x), float(y), float(sx * x + sy * y)));
-  return Dtm::build(c, DtmParams{});
+  DtmParams p;
+  // These tests check the axis/DTM intersection; terrain steeper than
+  // dtm.max_slope would be removed by the slope filter, which is not under test here.
+  p.slope_filter = std::hypot(sx, sy) <= p.max_slope;
+  return Dtm::build(c, p);
 }
 }  // namespace
 

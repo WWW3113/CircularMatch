@@ -31,6 +31,11 @@ struct DtmParams {
   int fit_radius = 2;          // plane-fit window half width [cells] (5x5)
   int fill_max_radius = 5;     // window may grow up to this to fill empty cells
   double outlier_above = 0.5;  // ground samples higher than neighbour plane + this are rejected [m]
+  // Slope-based filter (implementation choice; the paper does not specify the DTM method).
+  bool slope_filter = true;
+  double max_slope = 0.5;      // max terrain rise per horizontal metre (ETH near-scanner terrain: 0.11-0.16 median)
+  double slope_tol = 0.3;      // [m]
+  double slope_radius = 5.0;   // [m]
 };
 
 struct HeightParams {
