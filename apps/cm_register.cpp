@@ -5,6 +5,9 @@
 //               [--thresholds=0.05,0.10,0.15] [--label=name] [--out=result.csv]
 //               [--N=183 --w=10 --th_score=40 --min_dc=3] [--merge_radius=0]
 //               [--ransac_iters=1000 --ransac_inlier=0.3 --ransac_seed=1] [--gt_match=0.3]
+//   cm_register --batch=jobs.txt [same options]
+//     jobs.txt: one job per line "src_trees tgt_trees src_cloud gt out label" (whitespace separated);
+//     the source cloud is read once and reused while consecutive jobs share it (sort jobs by cloud).
 //
 // Tree CSVs: header with columns x, y, z (cm_extract / cm_compare *_trees.csv).
 // GT .tfm: 4x4 matrix mapping source coordinates into the target frame.
@@ -80,6 +83,83 @@ std::vector<double> parseList(const std::string& s) {
   return v;
 }
 
+struct Job {
+  std::string src_trees, tgt_trees, src_cloud, gt, out, label;
+};
+
+struct Settings {
+  CnParams base;
+  double merge = 0, gt_match = 0.3;
+  RansacParams rp;
+  std::vector<double> thresholds;
+};
+
+// Runs one pair; returns the CSV text (header + one row per threshold and solver).
+std::string runJob(const Job& job, const Settings& st, const RawCloud& cloud) {
+  const CnParams& base = st.base;
+  const double merge = st.merge, gt_match = st.gt_match;
+  const RansacParams& rp = st.rp;
+  const auto& thresholds = st.thresholds;
+  auto skp = mergeKeypoints(readTreesCsv(job.src_trees), merge);
+  auto tkp = mergeKeypoints(readTreesCsv(job.tgt_trees), merge);
+  const RigidTransform gt = readTfm(job.gt);
+
+  std::ostringstream o;
+  o << std::setprecision(10);
+  o << "label,threshold,setting,solver,n_src_kp,n_tgt_kp,descriptors_src,descriptors_tgt,d12_enc2_s0_is_p1,"
+       "d12_enc3_s0_is_p1p2,gate_passed,candidates,best_score,best_dc,best_fm,used_triangle,tri_set_src,"
+       "tri_set_tgt,tri_matches,n_matches,n_correct_matches,ransac_inliers,transform_ok,rot_err_deg,trans_err_m,"
+       "e_p_m,success,time_ms,r00,r01,r02,r10,r11,r12,r20,r21,r22,t0,t1,t2\n";
+  for (double thr : thresholds) {
+    CnParams p = base;
+    p.threshold = thr;
+    Timer tm;
+    CnStats ss, ts;
+    const auto sd = buildCnDescriptors(skp, p, &ss);
+    const auto td = buildCnDescriptors(tkp, p, &ts);
+    const CnMatchResult m = matchCn(sd, td, skp, tkp, p);
+    const double match_ms = tm.ms();
+    std::vector<Eigen::Vector3d> ps, pt;
+    std::size_t correct = 0;
+    for (const auto& [i, j] : m.pairs) {
+      ps.push_back(skp[i]);
+      pt.push_back(tkp[j]);
+      const Eigen::Vector3d g = gt.apply(skp[i]);
+      correct += std::hypot(g.x() - tkp[j].x(), g.y() - tkp[j].y()) < gt_match;
+    }
+    for (const char* solver : {"svd", "svd+ransac"}) {
+      Timer ts2;
+      std::optional<RigidTransform> T;
+      std::size_t inl = 0;
+      if (std::string(solver) == "svd") {
+        T = kabsch(ps, pt);
+      } else {
+        const auto rr = kabschRansac(ps, pt, rp);
+        T = rr.T;
+        inl = rr.inliers;
+      }
+      const double ms = match_ms + ts2.ms();
+      RegistrationError e;
+      e.rot_deg = e.trans_m = e.e_p = std::nan("");
+      if (T) e = evaluate(*T, gt, cloud.points);
+      const RigidTransform Tv = T ? *T : RigidTransform{};
+      o << job.label << "," << thr << "," << (std::abs(thr - 0.05) < 1e-12 ? "paper" : "sensitivity(not paper)") << ","
+        << solver << "," << skp.size() << "," << tkp.size() << "," << ss.descriptors << "," << ts.descriptors << ","
+        << ss.enc2_sector0_is_p1 + ts.enc2_sector0_is_p1 << ","
+        << ss.enc3_sector0_is_p1_or_p2 + ts.enc3_sector0_is_p1_or_p2 << "," << m.gate_passed << ","
+        << m.candidates << "," << m.best_score << "," << m.best_dc << "," << m.best_fm << "," << m.used_triangle
+        << "," << m.triangle_set_src << "," << m.triangle_set_tgt << "," << m.triangle_matches << ","
+        << m.pairs.size() << "," << correct << "," << inl << "," << (T ? 1 : 0) << "," << e.rot_deg << ","
+        << e.trans_m << "," << e.e_p << "," << (T && e.success ? 1 : 0) << "," << ms;
+      for (int r = 0; r < 3; ++r)
+        for (int c = 0; c < 3; ++c) o << "," << Tv.R(r, c);
+      for (int r = 0; r < 3; ++r) o << "," << Tv.t(r);
+      o << "\n";
+    }
+  }
+  return o.str();
+}
+
 }  // namespace
 
 int main(int argc, char** argv) {
@@ -87,9 +167,9 @@ int main(int argc, char** argv) {
     auto a = app::parseArgs(argc, argv,
                             {"src_trees", "tgt_trees", "src_cloud", "gt", "thresholds", "label", "out", "N", "w",
                              "th_score", "min_dc", "merge_radius", "ransac_iters", "ransac_inlier", "ransac_seed",
-                             "gt_match", "help"});
+                             "gt_match", "batch", "help"});
     for (const char* k : {"src_trees", "tgt_trees", "src_cloud", "gt"})
-      if (!a.opts.count(k)) {
+      if (!a.opts.count("batch") && !a.opts.count(k)) {
         std::cout << "usage: cm_register --src_trees=CSV --tgt_trees=CSV --src_cloud=PLY --gt=TFM [options]\n";
         return a.opts.count("help") ? 0 : 2;
       }
@@ -108,70 +188,44 @@ int main(int argc, char** argv) {
     const auto thresholds = parseList(a.opts.count("thresholds") ? a.opts["thresholds"] : "0.05");
     const std::string label = a.opts.count("label") ? a.opts["label"] : "";
 
-    auto skp = mergeKeypoints(readTreesCsv(a.opts["src_trees"]), merge);
-    auto tkp = mergeKeypoints(readTreesCsv(a.opts["tgt_trees"]), merge);
-    const RigidTransform gt = readTfm(a.opts["gt"]);
-    const RawCloud cloud = readPointCloud(a.opts["src_cloud"]);
-
-    std::ostringstream o;
-    o << std::setprecision(10);
-    o << "label,threshold,setting,solver,n_src_kp,n_tgt_kp,descriptors_src,descriptors_tgt,d12_enc2_s0_is_p1,"
-         "d12_enc3_s0_is_p1p2,gate_passed,candidates,best_score,best_dc,best_fm,used_triangle,tri_set_src,"
-         "tri_set_tgt,tri_matches,n_matches,n_correct_matches,ransac_inliers,transform_ok,rot_err_deg,trans_err_m,"
-         "e_p_m,success,time_ms,r00,r01,r02,r10,r11,r12,r20,r21,r22,t0,t1,t2\n";
-    for (double thr : thresholds) {
-      CnParams p = base;
-      p.threshold = thr;
-      Timer tm;
-      CnStats ss, ts;
-      const auto sd = buildCnDescriptors(skp, p, &ss);
-      const auto td = buildCnDescriptors(tkp, p, &ts);
-      const CnMatchResult m = matchCn(sd, td, skp, tkp, p);
-      const double match_ms = tm.ms();
-      std::vector<Eigen::Vector3d> ps, pt;
-      std::size_t correct = 0;
-      for (const auto& [i, j] : m.pairs) {
-        ps.push_back(skp[i]);
-        pt.push_back(tkp[j]);
-        const Eigen::Vector3d g = gt.apply(skp[i]);
-        correct += std::hypot(g.x() - tkp[j].x(), g.y() - tkp[j].y()) < gt_match;
+    Settings st;
+    st.base = base;
+    st.merge = merge;
+    st.gt_match = gt_match;
+    st.rp = rp;
+    st.thresholds = thresholds;
+    std::vector<Job> jobs;
+    if (a.opts.count("batch")) {
+      std::ifstream in(a.opts["batch"]);
+      if (!in) throw std::runtime_error("cannot open " + a.opts["batch"]);
+      std::string line;
+      while (std::getline(in, line)) {
+        std::istringstream ls(line);
+        Job j;
+        if (!(ls >> j.src_trees >> j.tgt_trees >> j.src_cloud >> j.gt >> j.out)) continue;
+        ls >> j.label;
+        jobs.push_back(j);
       }
-      for (const char* solver : {"svd", "svd+ransac"}) {
-        Timer ts2;
-        std::optional<RigidTransform> T;
-        std::size_t inl = 0;
-        if (std::string(solver) == "svd") {
-          T = kabsch(ps, pt);
-        } else {
-          const auto rr = kabschRansac(ps, pt, rp);
-          T = rr.T;
-          inl = rr.inliers;
-        }
-        const double ms = match_ms + ts2.ms();
-        RegistrationError e;
-        e.rot_deg = e.trans_m = e.e_p = std::nan("");
-        if (T) e = evaluate(*T, gt, cloud.points);
-        const RigidTransform Tv = T ? *T : RigidTransform{};
-        o << label << "," << thr << "," << (std::abs(thr - 0.05) < 1e-12 ? "paper" : "sensitivity(not paper)") << ","
-          << solver << "," << skp.size() << "," << tkp.size() << "," << ss.descriptors << "," << ts.descriptors << ","
-          << ss.enc2_sector0_is_p1 + ts.enc2_sector0_is_p1 << ","
-          << ss.enc3_sector0_is_p1_or_p2 + ts.enc3_sector0_is_p1_or_p2 << "," << m.gate_passed << ","
-          << m.candidates << "," << m.best_score << "," << m.best_dc << "," << m.best_fm << "," << m.used_triangle
-          << "," << m.triangle_set_src << "," << m.triangle_set_tgt << "," << m.triangle_matches << ","
-          << m.pairs.size() << "," << correct << "," << inl << "," << (T ? 1 : 0) << "," << e.rot_deg << ","
-          << e.trans_m << "," << e.e_p << "," << (T && e.success ? 1 : 0) << "," << ms;
-        for (int r = 0; r < 3; ++r)
-          for (int c = 0; c < 3; ++c) o << "," << Tv.R(r, c);
-        for (int r = 0; r < 3; ++r) o << "," << Tv.t(r);
-        o << "\n";
+    } else {
+      jobs.push_back({a.opts["src_trees"], a.opts["tgt_trees"], a.opts["src_cloud"], a.opts["gt"],
+                      a.opts.count("out") ? a.opts["out"] : "", label});
+    }
+    std::string cloud_path;
+    RawCloud cloud;
+    for (const Job& job : jobs) {
+      if (job.src_cloud != cloud_path) {
+        cloud = readPointCloud(job.src_cloud);
+        cloud_path = job.src_cloud;
       }
+      const std::string csv = runJob(job, st, cloud);
+      if (!job.out.empty()) {
+        std::ofstream f(job.out);
+        if (!f) throw std::runtime_error("cannot write " + job.out);
+        f << csv;
+      }
+      if (!a.opts.count("batch")) std::cout << csv;
     }
-    if (a.opts.count("out")) {
-      std::ofstream f(a.opts["out"]);
-      if (!f) throw std::runtime_error("cannot write " + a.opts["out"]);
-      f << o.str();
-    }
-    std::cout << o.str();
+    if (a.opts.count("batch")) std::cout << "ran " << jobs.size() << " jobs\n";
     return 0;
   } catch (const std::exception& e) {
     std::cerr << "ERROR: " << e.what() << "\n";

@@ -66,3 +66,7 @@
 - 論文 Table II（ETH-tree，matching）：3.04 ms；Table III（總時間，含特徵擷取）：8.70 s（i7-9700F）。
 - 本實作 improved：描述子 + 匹配 + SVD 中位數 2.4 ms（每對）。樹位擷取每站約 37 s（含讀 300 MB PLY，4 核雲端容器），未最佳化，不與論文比較。
 
+
+> **更正（10 seed）**：本檔只用 step、seed 1。10 個 seed 的平均見 `dtm_slope/retention_registration.md`：
+> improved + 合併 0.3 m 在 15 對成功 10.9 ± 1.5、官方 10 對 7.8 ± 1.6（seed 1 的 12/15、10/10 偏幸運）；
+> improved 15 對 9.7 ± 1.3。變體之間小於約 ±1.5 對的差異無法和 seed 變動區分。

@@ -42,3 +42,7 @@
 | `cluster.tolerance` | 0.10 m | 論文未指定的參數 |
 
 預設值沒有改：要用建議設定，配準時加 `--merge_radius=0.3`。
+
+> **更正（10 seed）**：本檔只用 step、seed 1。10 個 seed 的平均見 `../dtm_slope/retention_registration.md`：
+> improved + 合併 0.3 m 在 15 對成功 10.9 ± 1.5、官方 10 對 7.8 ± 1.6（seed 1 的 12/15、10/10 偏幸運）；
+> improved 15 對 9.7 ± 1.3。變體之間小於約 ±1.5 對的差異無法和 seed 變動區分。
