@@ -1,0 +1,7 @@
+label,threshold,setting,solver,n_src_kp,n_tgt_kp,descriptors_src,descriptors_tgt,d12_enc2_s0_is_p1,d12_enc3_s0_is_p1p2,gate_passed,candidates,best_score,best_dc,best_fm,used_triangle,tri_set_src,tri_set_tgt,tri_matches,n_matches,n_correct_matches,ransac_inliers,transform_ok,rot_err_deg,trans_err_m,e_p_m,success,time_ms,r00,r01,r02,r10,r11,r12,r20,r21,r22,t0,t1,t2
+baseline_s3-s4,0.05,paper,svd,286,292,286,292,20,43,8974,109,14,4,1,1,4,4,0,0,0,0,0,nan,nan,nan,0,29.874216,1,0,0,0,1,0,0,0,1,0,0,0
+baseline_s3-s4,0.05,paper,svd+ransac,286,292,286,292,20,43,8974,109,14,4,1,1,4,4,0,0,0,0,0,nan,nan,nan,0,29.873259,1,0,0,0,1,0,0,0,1,0,0,0
+baseline_s3-s4,0.1,sensitivity(not paper),svd,286,292,286,292,20,43,15682,146,15,5,1,1,4,5,0,0,0,0,0,nan,nan,nan,0,32.069577,1,0,0,0,1,0,0,0,1,0,0,0
+baseline_s3-s4,0.1,sensitivity(not paper),svd+ransac,286,292,286,292,20,43,15682,146,15,5,1,1,4,5,0,0,0,0,0,nan,nan,nan,0,32.068536,1,0,0,0,1,0,0,0,1,0,0,0
+baseline_s3-s4,0.15,sensitivity(not paper),svd,286,292,286,292,20,43,21092,155,16,6,1,1,6,5,0,0,0,0,0,nan,nan,nan,0,33.655444,1,0,0,0,1,0,0,0,1,0,0,0
+baseline_s3-s4,0.15,sensitivity(not paper),svd+ransac,286,292,286,292,20,43,21092,155,16,6,1,1,6,5,0,0,0,0,0,nan,nan,nan,0,33.654801,1,0,0,0,1,0,0,0,1,0,0,0

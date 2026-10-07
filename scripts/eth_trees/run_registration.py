@@ -26,6 +26,17 @@ def f(x, p=3):
     return "–" if math.isnan(v) else f"{v:.{p}f}"
 
 
+def yaw_tilt(r, gt_path):
+    """Split the rotation error into yaw (about z) and tilt (deviation of the z axis) [deg]."""
+    if r["transform_ok"] != "1":
+        return float("nan"), float("nan")
+    G = [[float(v) for v in l.split()][:3] for l in open(gt_path) if l.strip()][:3]
+    R = [[float(r[f"r{i}{j}"]) for j in range(3)] for i in range(3)]
+    D = [[sum(G[k][i] * R[k][j] for k in range(3)) for j in range(3)] for i in range(3)]  # G^T R
+    return (math.degrees(math.atan2(D[1][0], D[0][0])),
+            math.degrees(math.acos(max(-1.0, min(1.0, D[2][2])))))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--runs", default=os.path.join(ROOT, "results/eth_trees/runs"))
@@ -53,6 +64,7 @@ def main():
                 subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             for r in csv.DictReader(open(out)):
                 r["profile"], r["pair"] = prof, f"{sa}-{sb}"
+                r["yaw"], r["tilt"] = yaw_tilt(r, os.path.join(a.raw, "groundtruth", f"{sa}-{sb}.tfm"))
                 rows.append(r)
 
     L = ["# ETH Trees — CN 描述子配準結果（coarse，無 ICP）", "",
@@ -88,8 +100,8 @@ def main():
     for thr in thresholds:
         tag = "論文設定" if abs(thr - 0.05) < 1e-9 else "敏感度分析，非論文設定"
         L += [f"## 每一對的原始數字：閾值 {thr * 100:.0f} cm（{tag}）", "",
-              "| keypoints | pair | 求轉換 | 樹位數 src/tgt | 候選對 | 最佳分數 (DC, FM) | triangle | 配對數 | 正確配對 | RANSAC inliers | 旋轉誤差 [°] | 平移誤差 [m] | e_p [m] | 成功 |",
-              "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
+              "| keypoints | pair | 求轉換 | 樹位數 src/tgt | 候選對 | 最佳分數 (DC, FM) | triangle | 配對數 | 正確配對 | RANSAC inliers | 旋轉誤差 [°] | 其中 yaw / tilt [°] | 平移誤差 [m] | e_p [m] | 成功 |",
+              "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
         for prof in ("baseline", "improved"):
             for solver in ("svd", "svd+ransac"):
                 for r in rows:
@@ -99,6 +111,7 @@ def main():
                              f"{f(r['best_score'], 0)} ({r['best_dc']}, {r['best_fm']}) | "
                              f"{'是' if r['used_triangle'] == '1' else '否'} | {r['n_matches']} | {r['n_correct_matches']} | "
                              f"{r['ransac_inliers'] if solver != 'svd' else '–'} | {f(r['rot_err_deg'], 2)} | "
+                             f"{f(r['yaw'], 2)} / {f(r['tilt'], 2)} | "
                              f"{f(r['trans_err_m'])} | {f(r['e_p_m'])} | {'✓' if r['success'] == '1' else '✗'} |")
         L.append("")
     # D12 statistics (paper setting)
