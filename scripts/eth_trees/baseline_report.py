@@ -24,7 +24,8 @@ import statistics as st
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 RUNS = os.path.join(ROOT, "results/eth_trees/runs")
 OUT = os.path.join(ROOT, "results/eth_trees/baseline_report.md")
-SCANS = []  # filled in main(): every <runs>/<scan>/baseline with summaries
+SCANS = []  # filled in main(): every <runs>/<scan>/<profile> with summaries
+PROFILE = "baseline"  # baseline (extra checks off) | improved (extra checks on)
 RAW = ["step", "linear_a", "linear_mid", "physical"]
 MATCHED = ["step", "linear*", "physical*"]
 NEAR = 10.0  # band split for the position comparison (step, linear_a, physical reach P = 1 here)
@@ -89,27 +90,33 @@ def fname(label, table):
 
 def main():
     import argparse
-    global RUNS, OUT, SCANS
+    global RUNS, OUT, SCANS, PROFILE
     ap = argparse.ArgumentParser(description="Baseline-profile per-station report (any dataset run by run_all.py)")
     ap.add_argument("--runs", default=RUNS, help="directory with <scan>/baseline/ outputs of cm_compare")
     ap.add_argument("--out", default=OUT)
     ap.add_argument("--title", default="ETH Trees")
+    ap.add_argument("--profile", default="baseline", choices=["baseline", "improved"])
     ap.add_argument("--scans", nargs="*", help="scan names (default: every scan with baseline summaries)")
     a = ap.parse_args()
-    RUNS, OUT = a.runs, a.out
+    RUNS, OUT, PROFILE = a.runs, a.out, a.profile
     SCANS = a.scans or sorted(d for d in os.listdir(RUNS)
-                              if os.path.isfile(os.path.join(RUNS, d, "baseline", "summary_raw.csv")))
+                              if os.path.isfile(os.path.join(RUNS, d, PROFILE, "summary_raw.csv")))
     if not SCANS:
         raise SystemExit(f"no scans with baseline/summary_raw.csv under {RUNS}")
-    nseeds = len(glob.glob(os.path.join(RUNS, SCANS[0], "baseline", "step_raw_seed*_trees.csv")))
+    nseeds = len(glob.glob(os.path.join(RUNS, SCANS[0], PROFILE, "step_raw_seed*_trees.csv")))
     if nseeds < 2:
         raise SystemExit("need >= 2 seeds for the seed-to-seed reference")
-    L = [f"# {a.title} — baseline 設定：四種 P(d) 的逐站比較", "",
+    on = PROFILE == "improved"
+    pname = "improved（啟用檢查的改良設定）" if on else "baseline（未啟用額外檢查的基準設定）"
+    checks = ("半徑、傾角、inlier 比例、DTM 交點，以及我們新增的法向一致性與圓弧覆蓋角" if on
+              else "半徑、傾角、inlier 比例、DTM 交點；未啟用法向一致性與圓弧覆蓋角")
+    flag = "true" if on else "false"
+    L = [f"# {a.title} — {pname}：四種 P(d) 的逐站比較", "",
          "> **圓柱數尚未經樹木真值驗證。** 本資料集沒有人工標註的參考樹位；「通過檢查的圓柱數」是通過全部擬合後檢查"
-         "（baseline：半徑、傾角、inlier 比例、DTM 交點；未啟用法向一致性與圓弧覆蓋角）並求得樹位的圓柱數量，"
+         f"（{checks}）並求得樹位的圓柱數量，"
          "不等於實際樹木數，也不代表樹位正確。", "",
          f"站：{', '.join(SCANS)}。", "",
-         "設定：`config/default.ini`，`cylinder.check_normal_consistency=false`、`cylinder.check_arc_coverage=false`；"
+         f"設定：`config/default.ini`，`cylinder.check_normal_consistency={flag}`、`cylinder.check_arc_coverage={flag}`；"
          "掃描儀位置見該資料集的 stations.csv；每種 P(d) 使用 run_all.py 設定的 seed 數。"
          "數值為 10 seed 的平均 ± 樣本標準差。", ""]
     agg = {}
@@ -120,7 +127,7 @@ def main():
             L += ["linear_a 與 linear_mid 只差截距，保留點數對齊後是同一個函數，所以合併為一欄 `linear*`。", ""]
         L += ["| 站 | P(d) | 保留點數 | 通過檢查的圓柱數 | RANSAC 成功率 | 第 5–8 階段時間 [ms] |", "|---|---|---|---|---|---|"]
         for s in SCANS:
-            d = summary(os.path.join(RUNS, s, "baseline", f"summary_{table}.csv"))
+            d = summary(os.path.join(RUNS, s, PROFILE, f"summary_{table}.csv"))
             for l in labels:
                 L.append(f"| {s} | {l} | {ms(*d['kept points'][l], 0)} | {ms(*d['trees'][l], 1)} | "
                          f"{ms(*d['RANSAC success rate'][l], 3)} | {ms(*d['time total 5-8 [ms]'][l], 0)} |")
@@ -144,7 +151,7 @@ def main():
           "| 站 | 垂直候選點 < 10 m | ≥ 10 m | 保留 < 10 m：step | linear_a | linear_mid | physical | 保留 ≥ 10 m：step / linear_a / physical | linear_mid |",
           "|---|---|---|---|---|---|---|---|---|"]
     for s in SCANS:
-        vals = {l: bins(os.path.join(RUNS, s, "baseline", f"{fname(l, 'raw')}_seed1_retention_bins.csv")) for l in RAW}
+        vals = {l: bins(os.path.join(RUNS, s, PROFILE, f"{fname(l, 'raw')}_seed1_retention_bins.csv")) for l in RAW}
         nc, _, fc, fk = vals["step"]
         same3 = vals["linear_a"][3] == fk == vals["physical"][3] == fc
         L.append(f"| {s} | {nc:,} | {fc:,} | " + " | ".join(f"{vals[l][1]:,} ({vals[l][1] / nc:.0%})" for l in RAW)
@@ -165,11 +172,11 @@ def main():
             tot = {b: {"identical": 0, "shifted": 0, "new": 0, "lost": 0, "ref": 0, "shifts": []} for b in ("near", "far")}
             for s in SCANS:
                 for seed in range(1, nseeds + 1):
-                    ref = trees(os.path.join(RUNS, s, "baseline", f"step_raw_seed{seed}_trees.csv"))
+                    ref = trees(os.path.join(RUNS, s, PROFILE, f"step_raw_seed{seed}_trees.csv"))
                     if table == "noise":
-                        oth = trees(os.path.join(RUNS, s, "baseline", f"step_raw_seed{seed % nseeds + 1}_trees.csv"))
+                        oth = trees(os.path.join(RUNS, s, PROFILE, f"step_raw_seed{seed % nseeds + 1}_trees.csv"))
                     else:
-                        oth = trees(os.path.join(RUNS, s, "baseline", f"{fname(l, table)}_seed{seed}_trees.csv"))
+                        oth = trees(os.path.join(RUNS, s, PROFILE, f"{fname(l, table)}_seed{seed}_trees.csv"))
                     c = compare(ref, oth)
                     for b in c:
                         for k in c[b]:
