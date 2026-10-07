@@ -36,6 +36,9 @@ add_library(cm_core
   src/matching.cpp
   src/experiment.cpp
   src/synth.cpp
+  src/cn_descriptor.cpp
+  src/cn_matching.cpp
+  src/registration.cpp
 )
 target_include_directories(cm_core PUBLIC include ${PCL_INCLUDE_DIRS})
 target_compile_definitions(cm_core PUBLIC ${PCL_DEFINITIONS})
@@ -45,7 +48,7 @@ if(OpenMP_CXX_FOUND)
 endif()
 target_compile_options(cm_core PRIVATE -Wall -Wextra)
 
-foreach(app cm_extract cm_compare cm_synth cm_inspect)
+foreach(app cm_extract cm_compare cm_synth cm_inspect cm_register)
   add_executable(${app} apps/${app}.cpp apps/app_common.cpp)
   target_link_libraries(${app} PRIVATE cm_core)
 endforeach()
@@ -66,6 +69,7 @@ if(CM_BUILD_TESTS)
     tests/test_matching.cpp
     tests/test_synthetic.cpp
     tests/test_reproducibility.cpp
+    tests/test_cn.cpp
   )
   target_link_libraries(cm_tests PRIVATE cm_core GTest::gtest GTest::gtest_main)
   include(GoogleTest)
