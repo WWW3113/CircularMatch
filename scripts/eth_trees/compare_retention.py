@@ -37,7 +37,10 @@ def main():
     ap.add_argument("--seeds", type=int, default=10)
     ap.add_argument("--jobs", type=int, default=3)
     ap.add_argument("--out", default=os.path.join(ROOT, "results/eth_trees/dtm_slope/retention_registration"))
+    ap.add_argument("--profiles", nargs="+", default=[f"{p}:{m}" for p, m in PROFILES],
+                    help="profile:merge_radius, e.g. improved:0.0")
     a = ap.parse_args()
+    profiles = [(x.split(':')[0], float(x.split(':')[1])) for x in a.profiles]
     official = {tuple(l.split()) for l in open(os.path.join(RAW, "pairs.txt")) if l.strip()}
     pairs = list(itertools.combinations(SCANS, 2))
     regdir = os.path.join(a.runs, "registration")
@@ -45,7 +48,7 @@ def main():
 
     jobs = {s: [] for s in SCANS}  # grouped by source cloud
     keys = []
-    for (prof, merge), (ver, _), seed, (sa, sb) in itertools.product(PROFILES, VERSIONS, range(1, a.seeds + 1), pairs):
+    for (prof, merge), (ver, _), seed, (sa, sb) in itertools.product(profiles, VERSIONS, range(1, a.seeds + 1), pairs):
         tf = lambda s: os.path.join(a.runs, s, prof, f"{ver}_seed{seed}_trees.csv")
         out = os.path.join(regdir, f"{prof}_m{merge}_{ver}_seed{seed}_{sa}-{sb}.csv")
         keys.append((prof, merge, ver, seed, sa, sb, out))
@@ -91,7 +94,7 @@ def main():
          "兩者相近代表差異只是隨機變動。",
          "- step 是論文式 (5)；其他三種是我們的修改。budget-matched 版本的保留點數調成與 step 相同（linear_a 與 linear_mid 調整後相同）。",
          "- improved 與合併重複樹位都不是論文的方法（見 `../variants/findings.md`）。", ""]
-    for prof, merge in PROFILES:
+    for prof, merge in profiles:
         title = prof + ("" if merge == 0 else f" + 合併 {merge} m")
         L += [f"## {title}", "",
               "| P(d) | 每站平均樹位數 | 成功對數 / 15 | 成功對數 / 官方 10 | e_p 中位數（成功）[m] | 正確配對比例 | 勝 step | 輸 step |",
