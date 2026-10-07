@@ -2,7 +2,7 @@
 
 論文 Table I（ETH-tree）：e_p = 0.153 m，成功率 100%。本實作（5 cm，論文設定）：improved 4/10、baseline 1/10。
 
-## 1. 對照實驗：程式本身（）
+## 1. 對照實驗：程式本身（`scripts/eth_trees/oracle_check.py`）
 
 保留 target 的全部樹位，只把「GT 對齊後 0.3 m 內互為最近鄰」的 target 樹換成 GT 轉換後的 source 樹位，
 其餘（含多餘、錯誤的樹）不動，再用同一個 `cm_register`、論文參數（5 cm）跑。只用於診斷（用到 GT）。
