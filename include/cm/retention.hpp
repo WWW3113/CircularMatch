@@ -15,6 +15,8 @@
 //              not uniform in d, so the kept count is NOT the same as step.
 //  physical    clip((d/d0)^2, P_min, 1), d0 = 10 m, P_min = 0.1 (our modification)
 //              Assumes TLS density ~ 1/d^2, so kept density is roughly uniform in d.
+//  none        1 for every d: NO distance-dependent down-sampling (comparison only;
+//              removes a step of the paper). Not part of cm_compare's four versions.
 //
 // Never assume two versions keep the same number of points: always measure.
 //
@@ -33,7 +35,7 @@
 
 namespace cm {
 
-enum class RetentionKind { Step, LinearA, LinearMid, Physical };
+enum class RetentionKind { Step, LinearA, LinearMid, Physical, None };
 
 RetentionKind parseRetentionKind(const std::string& s);
 std::string toString(RetentionKind k);

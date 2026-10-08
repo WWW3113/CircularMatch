@@ -87,3 +87,10 @@ TEST(Retention, LinearMidSegmentMeansMatchStepUnderUniformD) {
   EXPECT_NEAR(s1 / n, 0.5, 1e-9);
   EXPECT_NEAR(s2 / n, 0.75, 1e-9);
 }
+
+TEST(Retention, NoneKeepsEverything) {
+  const auto m = M(RetentionKind::None);
+  for (double d : {0.0, 0.5, 4.999, 5.0, 9.999, 10.0, 49.0}) EXPECT_DOUBLE_EQ(m(d), 1.0) << d;
+  EXPECT_EQ(parseRetentionKind("none"), RetentionKind::None);
+  EXPECT_EQ(toString(RetentionKind::None), "none");
+}

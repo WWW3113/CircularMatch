@@ -34,7 +34,22 @@ VERS = [
      ("matched", "linear*")),
     ("physical_matched", "physical（同點數）", "physical 形狀，d0 調整到保留點數 = step", "我們的修改（點數對齊）",
      ("matched", "physical*")),
+    ("none_raw", "none（不降採樣）", "P(d) = 1（全部保留）", "對照組：拿掉論文的降採樣步驟", ("log", None)),
 ]
+NONE_RUNS = os.path.join(ROOT, "results/eth_trees/dtm_slope/seeds/none_ctol20/runs")
+
+
+def none_stats(scan):
+    """Mean kept points and trees over the 10 seeds, from cm_extract logs (version none)."""
+    kept, trees = [], []
+    for k in SEEDS:
+        for line in open(os.path.join(NONE_RUNS, scan, f"log_seed{k}.txt")):
+            t = line.split()
+            if len(t) >= 3 and t[0] == "5" and t[1] == "retention":
+                kept.append(float(t[2]))
+            if line.strip().startswith("trees:"):
+                trees.append(float(t[1]))
+    return sum(kept) / len(kept), sum(trees) / len(trees)
 
 FONT = "Arial"
 F = Font(name=FONT, size=10)
@@ -116,6 +131,11 @@ def main():
             hdr = next(csv.reader(open(os.path.join(RUNS, s, "improved", f"summary_{kind}.csv"))))
             summ[(kind, "_hdr")] = hdr
         for j, (_, _, _, _, (kind, pre)) in enumerate(VERS):
+            if kind == "log":
+                kp_, tr_ = none_stats(s)
+                cell(wk, i, 2 + j, kp_, fmt="#,##0", font=FBLUE)
+                cell(wk, i, 2 + len(VERS) + j, tr_, fmt="0.0", font=FBLUE)
+                continue
             hdr = summ[(kind, "_hdr")]
             k = hdr.index(f"{pre}_mean")
             cell(wk, i, 2 + j, float(summ[(kind, "kept points")][k]), fmt="#,##0", font=FBLUE)
@@ -125,7 +145,7 @@ def main():
     for j in range(2 * len(VERS)):
         c = L(2 + j)
         cell(wk, r_avg, 2 + j, f"=AVERAGE({c}4:{c}{r_avg - 1})", fmt="#,##0" if j < len(VERS) else "0.0", font=FB)
-    wk.cell(row=r_avg + 2, column=1, value="藍字：cm_compare 輸出的數值（10 個 seed 的平均）。樹位數是送進配準前的數量。").font = F
+    wk.cell(row=r_avg + 2, column=1, value="藍字：cm_compare 輸出的數值（10 個 seed 的平均）；none 取自 cm_extract --version=none 的輸出。樹位數是送進配準前的數量。").font = F
     wk.column_dimensions["A"].width = 8
     for j in range(2, 2 + 2 * len(VERS)):
         wk.column_dimensions[L(j)].width = 15
@@ -240,7 +260,7 @@ def main():
             cell(ws, r, 19, f"=SUMPRODUCT(('成對'!{pc}3:{pc}{p_last}=1)*('成對'!D3:D{p_last}=0))")
             cell(ws, r, 20, f"=SUMPRODUCT(('成對'!{pc}3:{pc}{p_last}=0)*('成對'!D3:D{p_last}=1))")
             cell(ws, r, 21, f'=IF(S{r}+T{r}=0,1,MIN(1,2*BINOMDIST(MIN(S{r},T{r}),S{r}+T{r},0.5,TRUE)))', fmt="0.000")
-            cell(ws, r, 22, f'=IF(U{r}<0.05/5,IF(S{r}>T{r},"顯著較好","顯著較差"),"無顯著差異")', align=LEFT)
+            cell(ws, r, 22, f'=IF(U{r}<0.05/{len(VERS) - 1},IF(S{r}>T{r},"顯著較好","顯著較差"),"無顯著差異")', align=LEFT)
     last = 5 + len(VERS)
     # paper reference row
     rp = last + 1
@@ -264,8 +284,10 @@ def main():
         "• 成功對數：每個 seed 分別計算，再取 10 個 seed 的平均、標準差、最少、最多（見「每seed」）。",
         "• e_p（論文式 8）：對 source 掃描的所有點計算，這裡只平均成功的對；論文的 e_p 統計方式未說明，不能直接比較。",
         "• 勝 / 輸 step：同一 seed、同一對（共用隨機數 CRN），該版本成功而 step 失敗為「勝」，反之為「輸」（見「成對」）。",
-        "• 符號檢定 p：雙尾二項檢定；5 個版本各與 step 比一次，判讀用 Bonferroni 門檻 0.05 / 5 = 0.01。"
+        f"• 符號檢定 p：雙尾二項檢定；{len(VERS) - 1} 個版本各與 step 比一次，判讀用 Bonferroni 門檻 0.05 / {len(VERS) - 1} = {0.05 / (len(VERS) - 1):.4f}。"
         "同一對在不同 seed 之間不獨立，p 值偏樂觀。",
+        "• none（不降採樣）：P(d) = 1，所有點都保留，用來看「做不做距離降採樣」的影響；它拿掉了論文的一個步驟，不是論文的方法。"
+        "不降採樣時沒有抽點的隨機性，10 個 seed 之間只差在 RANSAC 圓柱擬合。",
         "• step 是論文式 (5)；其他版本是我們的修改。「同點數」版本把參數調到保留點數與 step 相同，用來分開「點數」與「曲線形狀」的影響。",
         "• 固定組合中「論文沒有」的部分：半徑、傾角、inlier 比例、法向一致性、圓弧覆蓋角 5 個擬合後檢查；"
         "clustering 距離 0.20 m（論文未給值）與 DTM 方法（論文未指定）是實作選擇。此組合是在 ETH 上選出的，沒有獨立驗證資料。",

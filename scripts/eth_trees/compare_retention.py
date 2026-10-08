@@ -28,6 +28,9 @@ SCANS = ["s1", "s2", "s3", "s4", "s5", "s6"]
 VERSIONS = [("step_raw", "step（論文式 5，基準）"), ("linear_a_raw", "linear_a = min(1, 0.5 + 0.05d)"),
             ("linear_mid_raw", "linear_mid = min(1, 0.375 + 0.05d)"), ("physical_raw", "physical = clip((d/d0)², Pmin, 1)"),
             ("linear_matched", "linear（保留點數與 step 相同）"), ("physical_matched", "physical（保留點數與 step 相同）")]
+# Optional: P(d) = 1 (no distance down-sampling; comparison only, not the paper's method). Its tree files are
+# <runs>/<scan>/<profile>/none_raw_seed<k>_trees.csv (links to cm_extract --version=none output).
+NONE = ("none_raw", "none = 1（不降採樣，對照組）")
 PROFILES = [("baseline", 0.0), ("improved", 0.0), ("improved", 0.3)]
 
 
@@ -37,9 +40,11 @@ def main():
     ap.add_argument("--seeds", type=int, default=10)
     ap.add_argument("--jobs", type=int, default=3)
     ap.add_argument("--out", default=os.path.join(ROOT, "results/eth_trees/dtm_slope/retention_registration"))
+    ap.add_argument("--with_none", action="store_true", help="also compare P(d) = 1 (no down-sampling)")
     ap.add_argument("--profiles", nargs="+", default=[f"{p}:{m}" for p, m in PROFILES],
                     help="profile:merge_radius, e.g. improved:0.0")
     a = ap.parse_args()
+    versions = VERSIONS + ([NONE] if a.with_none else [])
     profiles = [(x.split(':')[0], float(x.split(':')[1])) for x in a.profiles]
     official = {tuple(l.split()) for l in open(os.path.join(RAW, "pairs.txt")) if l.strip()}
     pairs = list(itertools.combinations(SCANS, 2))
@@ -48,7 +53,7 @@ def main():
 
     jobs = {s: [] for s in SCANS}  # grouped by source cloud
     keys = []
-    for (prof, merge), (ver, _), seed, (sa, sb) in itertools.product(profiles, VERSIONS, range(1, a.seeds + 1), pairs):
+    for (prof, merge), (ver, _), seed, (sa, sb) in itertools.product(profiles, versions, range(1, a.seeds + 1), pairs):
         tf = lambda s: os.path.join(a.runs, s, prof, f"{ver}_seed{seed}_trees.csv")
         out = os.path.join(regdir, f"{prof}_m{merge}_{ver}_seed{seed}_{sa}-{sb}.csv")
         keys.append((prof, merge, ver, seed, sa, sb, out))
@@ -99,7 +104,7 @@ def main():
         L += [f"## {title}", "",
               "| P(d) | 每站平均樹位數 | 成功對數 / 15 | 成功對數 / 官方 10 | e_p 中位數（成功）[m] | 正確配對比例 | 勝 step | 輸 step |",
               "|---|---|---|---|---|---|---|---|"]
-        for ver, vlabel in VERSIONS:
+        for ver, vlabel in versions:
             s15 = [sum(idx[(prof, merge, ver, s, p, "svd")]["success"] for p in pk) for s in seeds]
             s10 = [sum(idx[(prof, merge, ver, s, p, "svd")]["success"] for p in pk10) for s in seeds]
             ok = [float(idx[(prof, merge, ver, s, p, "svd")]["e_p_m"]) for s in seeds for p in pk

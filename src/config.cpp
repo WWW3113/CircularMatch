@@ -96,7 +96,7 @@ void Config::buildRegistry() {
   add("normals.min_neighbors", &normals.min_neighbors, U, "min neighbours for PCA");
   add("normals.vert_threshold", &normals.vert_threshold, P, "paper: verticality > 0.9 (0.8 = optional, NOT the paper setting)");
 
-  add("retention.version", &retention.version, P, "step | linear_a | linear_mid | physical");
+  add("retention.version", &retention.version, P, "step | linear_a | linear_mid | physical | none (none = no down-sampling, comparison only)");
   add("retention.linear_slope", &retention.linear_slope, P, "our modification: 0.05 / m");
   add("retention.physical_d0", &retention.physical_d0, P, "our modification: d0 [m]");
   add("retention.physical_pmin", &retention.physical_pmin, P, "our modification: P_min");

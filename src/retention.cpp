@@ -12,7 +12,8 @@ RetentionKind parseRetentionKind(const std::string& s) {
   if (s == "linear_a") return RetentionKind::LinearA;
   if (s == "linear_mid") return RetentionKind::LinearMid;
   if (s == "physical") return RetentionKind::Physical;
-  throw std::runtime_error("unknown retention version '" + s + "' (step | linear_a | linear_mid | physical)");
+  if (s == "none") return RetentionKind::None;
+  throw std::runtime_error("unknown retention version '" + s + "' (step | linear_a | linear_mid | physical | none)");
 }
 
 std::string toString(RetentionKind k) {
@@ -21,6 +22,7 @@ std::string toString(RetentionKind k) {
     case RetentionKind::LinearA: return "linear_a";
     case RetentionKind::LinearMid: return "linear_mid";
     case RetentionKind::Physical: return "physical";
+    case RetentionKind::None: return "none";
   }
   return "?";
 }
@@ -40,6 +42,9 @@ double RetentionModel::operator()(double d) const {
       p = std::max(p_min, r * r);
       break;
     }
+    case RetentionKind::None:
+      p = 1.0;
+      break;
   }
   return std::clamp(p, 0.0, 1.0);
 }
@@ -63,6 +68,7 @@ std::string RetentionModel::describe() const {
     case RetentionKind::LinearA:
     case RetentionKind::LinearMid: o << label << ": clamp(" << intercept << " + " << slope << " d, 0, 1)"; break;
     case RetentionKind::Physical: o << label << ": clip((d/" << d0 << ")^2, " << p_min << ", 1)"; break;
+    case RetentionKind::None: o << "none: 1 (no distance-dependent down-sampling)"; break;
   }
   return o.str();
 }
