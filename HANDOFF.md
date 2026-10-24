@@ -102,32 +102,11 @@ DTM → 保留離 DTM 0–3 m → 1 cm voxel（保留最靠近重心的原始點
 
 ---
 
-## 6. 資料集來源
+## 6. ETH Trees 資料
 
-### 6.1 ETH Trees（已使用）
-
-| 項目 | 內容 |
-|---|---|
-| 出處 | Theiler, Wegner, Schindler, "Globally consistent registration of terrestrial laser scans via graph optimization", ISPRS J. 109, 2015（論文參考文獻 [11]） |
-| 資料頁 | https://prs.igp.ethz.ch/research/completed_projects/automatic_registration_of_point_clouds.html （頁面上的「Download Trees (ZIP, 1.2 GB)」） |
-| ZIP 直接連結 | https://ethz.ch/content/dam/ethz/special-interest/baug/igp/photogrammetry-remote-sensing-dam/documents/sourcecode-and-datasets/PascalTheiler/trees.zip |
-| 校驗 | 1,282,864,958 bytes；SHA-256 `ecb3f5e8791804341a3e7837c29f25789987c99fdf575aa3ebfbfd67d3acd37c`；伺服器 Last-Modified 2015-11-16；下載日 2026-09-30（`results/eth_trees/download_record.txt`） |
-| 解壓後 | 37 個檔案、約 1.9 GB：`trees/s1.ply`–`s6.ply`（每個約 300 MB、約 2000 萬點，binary PLY，x y z intensity）、`trees/groundtruth/*.tfm`（30 個方向，4×4 矩陣）、`trees/pairs.txt`（10 對） |
-| 網路 | 雲端容器需在網路政策中允許 `prs.igp.ethz.ch` 與 `ethz.ch`（當時由使用者放行）。代理會切斷長傳輸，`download.sh` 用 HTTP range 續傳 |
-
-- **`sA-sB.tfm` 把 sA 座標轉到 sB**（用兩站樹位驗證過方向）。
-- **掃描儀位置**：PLY 標頭沒有感測器原點，官方也沒說明。用 `cm_inspect` 從資料推得 (0,0,0)：
-  每站所有點的 3D 距離都在 50.0 m 內（以原點裁切），且仰角格點分數在 (0,0,0) 最高（0.31–0.34，偏移 2 cm–1 m 或用重心都 ≤ 0.26）。
-  使用者同意採用。記錄在 `scripts/eth_trees/stations.csv` 與 `results/eth_trees/inspect/s*.txt`。
-- **沒有樹木真值**（沒有人工量的樹位），只能評估配準，不能算樹位 precision／recall。
-
-### 6.2 其他資料集（尚未使用）
-
-| 資料集 | 論文參考 | 來源 | 狀態 |
-|---|---|---|---|
-| Tongji-Trees | [9] Wang et al., GlobalMatch, ISPRS J. 197, 2023 | https://github.com/zexinyang/GlobalMatch （README 提供 Google Drive 與百度網盤連結，約 10 GB，含原始掃描與 GT 矩陣） | 使用者本機已有檔案；需在本機跑 `cm_inspect`（`scripts/OTHER_DATASETS.md`），尚未處理 |
-| Liang et al. 2018（Plot1–5） | [13] Liang et al., ISPRS J. 144, 2018 | https://laserscanning.fi/benchmarking-of-terrestrial-laser-scanning-methods-test-datasets-available/ 、https://laserscanning.fi/results-available-for-international-benchmarking-of-terrestrial-laser-scanning-methods/ | 當時 laserscanning.fi 維護中；改用 web.archive.org 被雲端容器網路政策擋住。**未下載** |
-| WHU-FGI | [12] Dong et al., ISPRS J. 163, 2020 | 未查 | 未嘗試 |
+- 官方 trees.zip，解壓後約 1.9 GB：6 個 PLY，每個約 300 MB、約 2000 萬點，`download.sh` 可續傳（代理會切斷長連線）。
+- 6 站 s1–s6；`pairs.txt` 列 10 對；`groundtruth/` 有全部 30 個方向的轉換。**`sA-sB.tfm` 把 sA 座標轉到 sB**（已用樹位驗證）。
+- **沒有樹木真值**（沒有人工量的樹位），所以只能評估配準，不能算樹位 precision／recall。
 
 ---
 
@@ -208,109 +187,34 @@ Bonferroni 門檻 0.05/6 ≈ 0.008，**沒有一個達到顯著**。none 沒有�
 
 ---
 
-## 10. 從零做到現在的完整步驟
-
-以下依實際做的順序，從新機器開始。所有指令在 repo 根目錄執行。
-對應第 7 節的階段：A = 步驟 0（合成測試在 `cm_tests`）；B = 步驟 1–3；C、D = 步驟 4；E = 步驟 5；F = 步驟 6；G、H = 步驟 7–8。
-
-### 步驟 0：取得程式並建置
+## 10. 如何重現
 
 ```bash
-git clone https://github.com/WWW3113/CircularMatch.git && cd CircularMatch
-sudo apt-get install libpcl-dev libgtest-dev
-cmake -S . -B build -DCMAKE_BUILD_TYPE=Release && cmake --build build -j
-./build/cm_tests                                   # 75 個測試應全過
-```
+bash scripts/eth_trees/download.sh                        # 下載並解壓到 data/eth_trees/raw/
+python3 scripts/eth_trees/run_all.py --seeds 10           # cm_compare 全部 6 站（舊流程；輸出 results/eth_trees/runs）
 
-### 步驟 1：下載 ETH Trees（約 1.2 GB；需 8 GB 空間）
+# 新 DTM、10 seed 的樹位（預設設定已含坡度濾波）
+build/cm_compare --input=data/eth_trees/raw/trees/s1.ply --out=results/eth_trees/dtm_slope/seeds/runs/s1 \
+    --config=config/default.ini --experiment.n_seeds=10 --scanner.x0=0 --scanner.y0=0 --scanner.z0=0 --quiet
+#   最佳組合另加 --experiment.profiles=improved --cluster.tolerance=0.20，輸出到 seeds/ctol20/runs/<scan>
+#   照論文字面：--experiment.profiles=baseline --cylinder.check_radius=false --cylinder.check_tilt=false
+#               --cylinder.check_inlier_ratio=false，輸出到 seeds/literal/runs/<scan>
+#   none：build/cm_extract --version=none --seed=K --cluster.tolerance=0.20 ...，輸出到 seeds/none_ctol20/runs/<scan>，
+#         再以絕對路徑 symlink 成 seeds/ctol20/runs/<scan>/improved/none_raw_seed<K>_trees.csv
 
-```bash
-bash scripts/eth_trees/download.sh \
-  https://ethz.ch/content/dam/ethz/special-interest/baug/igp/photogrammetry-remote-sensing-dam/documents/sourcecode-and-datasets/PascalTheiler/trees.zip
-# → data/eth_trees/trees.zip、data/eth_trees/raw/trees/…，並寫 results/eth_trees/download_record.txt（核對 SHA-256 與 6.1 節相同）
-```
-
-### 步驟 2：檢查資料、確定掃描儀位置
-
-```bash
-for s in s1 s2 s3 s4 s5 s6; do ./build/cm_inspect --input=data/eth_trees/raw/trees/$s.ply > results/eth_trees/inspect/$s.txt; done
-```
-看每站的範圍裁切與仰角格點分數，得出掃描儀在 (0,0,0)，寫入 `scripts/eth_trees/stations.csv`（已提交，可直接用）。
-
-### 步驟 3（歷史，舊 DTM）：樹位擷取 4 種 P(d) × 10 seed
-
-```bash
-./build/cm_extract --input=data/eth_trees/raw/trees/s1.ply --out=results/eth_trees/smoke_s1 \
-    --scanner.x0=0 --scanner.y0=0 --scanner.z0=0          # 單站冒煙測試
-python3 scripts/eth_trees/run_all.py --seeds 10           # 6 站 cm_compare → results/eth_trees/runs/
-python3 scripts/eth_trees/aggregate.py --runs results/eth_trees/runs --out results/eth_trees/summary.md
-python3 scripts/eth_trees/baseline_report.py --runs results/eth_trees/runs --out results/eth_trees/baseline_report.md --title "ETH Trees"
-python3 scripts/eth_trees/baseline_report.py --runs results/eth_trees/runs --out results/eth_trees/improved_report.md --title "ETH Trees" --profile improved
-python3 scripts/eth_trees/dtm_check.py --ply data/eth_trees/raw/trees/s1.ply --trees results/eth_trees/runs/s1/improved/step_raw_seed1_trees.csv
-```
-注意：**現在的程式預設已含坡度濾波**，重跑這一步得到的是新 DTM 的結果，不會和舊報告一樣。
-要重現舊 DTM，加 `--dtm.slope_filter=false`。
-
-### 步驟 4（歷史，舊 DTM）：CN 描述子配準與診斷
-
-```bash
-python3 scripts/eth_trees/diag_pair_dist.py                      # 配對樹距離一致性 → diag_pair_dist.md
-python3 scripts/eth_trees/run_registration.py                    # 官方 10 對，5/10/15 cm → registration_report.md
-python3 scripts/eth_trees/oracle_check.py <一個空目錄>             # oracle 診斷 → gap_to_paper.md 的數字
-```
-
-### 步驟 5：修 DTM（坡度濾波）後重跑 seed 1
-
-```bash
-for s in s1 s2 s3 s4 s5 s6; do
-  ./build/cm_compare --input=data/eth_trees/raw/trees/$s.ply --out=results/eth_trees/dtm_slope/runs/$s \
-      --config=config/default.ini --experiment.n_seeds=1 --scanner.x0=0 --scanner.y0=0 --scanner.z0=0 --quiet
-done
-python3 scripts/eth_trees/tree_consistency.py --runs 舊DTM=results/eth_trees/runs 坡度濾波=results/eth_trees/dtm_slope/runs \
-    --out results/eth_trees/dtm_slope/tree_consistency.md
-python3 scripts/eth_trees/run_registration.py --runs results/eth_trees/dtm_slope/runs \
-    --out results/eth_trees/dtm_slope/registration --report results/eth_trees/dtm_slope/registration_report.md
-```
-
-### 步驟 6：變體實驗（單一 seed）
-
-```bash
-python3 scripts/eth_trees/run_variants.py --jobs 2              # 20 個變體 → variants/variants.md、variants.csv
-```
-
-### 步驟 7：10 個 seed 的樹位（後面所有比較都用這些）
-
-```bash
-B=results/eth_trees/dtm_slope/seeds
-for s in s1 s2 s3 s4 s5 s6; do
-  C="--input=data/eth_trees/raw/trees/$s.ply --config=config/default.ini --experiment.n_seeds=10 --scanner.x0=0 --scanner.y0=0 --scanner.z0=0 --quiet"
-  ./build/cm_compare $C --out=$B/runs/$s                                                     # baseline + improved
-  ./build/cm_compare $C --out=$B/literal/runs/$s --experiment.profiles=baseline \
-      --cylinder.check_radius=false --cylinder.check_tilt=false --cylinder.check_inlier_ratio=false   # 照論文字面
-  ./build/cm_compare $C --out=$B/ctol20/runs/$s --experiment.profiles=improved --cluster.tolerance=0.20   # 最佳組合
-  for k in 1 2 3 4 5 6 7 8 9 10; do                                                          # 不降採樣
-    ./build/cm_extract --input=data/eth_trees/raw/trees/$s.ply --out=$B/none_ctol20/runs/$s --version=none --seed=$k \
-        --config=config/default.ini --cluster.tolerance=0.20 --scanner.x0=0 --scanner.y0=0 --scanner.z0=0 > $B/none_ctol20/runs/$s/log_seed$k.txt
-    ln -sfn $PWD/$B/none_ctol20/runs/$s/none_seed${k}_trees.csv $PWD/$B/ctol20/runs/$s/improved/none_raw_seed${k}_trees.csv
-  done
-done
-```
-（每個 cm_compare 10 seed 約 5–10 分鐘；當時用 `xargs -P 3` 平行跑。`mkdir -p` 各輸出目錄。）
-
-### 步驟 8：與論文比較、P(d) 比較、試算表
-
-```bash
-python3 scripts/eth_trees/compare_paper.py --seeds 10            # → paper_comparison.md/.csv（10/15/30 對）
-python3 scripts/eth_trees/compare_retention.py                   # → dtm_slope/retention_registration.md/.csv
+python3 scripts/eth_trees/compare_paper.py --seeds 10              # → paper_comparison.md/.csv
+python3 scripts/eth_trees/compare_retention.py                     # → dtm_slope/retention_registration.*
 python3 scripts/eth_trees/compare_retention.py --runs results/eth_trees/dtm_slope/seeds/ctol20/runs \
     --profiles improved:0.0 --with_none --out results/eth_trees/dtm_slope/retention_registration_ctol20
-pip install openpyxl; sudo apt-get install libreoffice-calc
-python3 scripts/eth_trees/make_retention_xlsx.py                 # → dtm_slope/retention_comparison.xlsx
+python3 scripts/eth_trees/make_retention_xlsx.py                   # → retention_comparison.xlsx
+python3 <xlsx skill>/scripts/recalc.py results/eth_trees/dtm_slope/retention_comparison.xlsx 120
+python3 scripts/eth_trees/run_variants.py                          # 20 個變體（單一 seed）
+python3 scripts/eth_trees/oracle_check.py <空目錄>                  # oracle 診斷
+python3 scripts/eth_trees/tree_consistency.py --runs 名稱=目錄 ...   # 兩站樹位一致性
 ```
-xlsx 的統計都是公式，openpyxl 寫出時沒有快取值；用 Excel 開啟會自動計算。當時另用 LibreOffice 無頭模式重算並檢查無錯誤。
 
-耗時參考（4 核容器）：cm_extract 每站約 37 秒；cm_register 單次約 4 秒（主要在讀 300 MB 點雲），
-腳本都用 `--batch`，每對只需毫秒級；步驟 8 每個比較 2–4 分鐘。
+耗時參考（4 核容器）：cm_compare 10 seed 6 站約 15 分鐘（3 平行）；cm_extract 每站約 37 秒；
+cm_register 每次約 4 秒（主要在讀 300 MB 點雲），用 `--batch` 後每對只需毫秒級。
 
 ---
 
