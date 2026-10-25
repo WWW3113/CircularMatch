@@ -5,6 +5,8 @@ import math
 from pathlib import Path
 import statistics as st
 import re
+from datetime import datetime
+from zoneinfo import ZoneInfo
 import numpy as np
 from openpyxl import Workbook
 from make_study_workbook import table
@@ -28,6 +30,7 @@ def median(values):return st.median(values) if values else None
 def p90(values):return float(np.quantile(values,.9)) if values else None
 def value(x):
     if x in ('',None):return None
+    if isinstance(x,str) and len(x) in [40,64] and all(c in '0123456789abcdef' for c in x.lower()):return x
     try:f=float(x);return f if math.isfinite(f) else None
     except (ValueError,TypeError):return x
 
@@ -71,6 +74,13 @@ def summaries(rows):
             for weighting in ['scene_equal','pair_weighted']:
                 datasets.append(dict(dataset=dataset,method=method,weighting=weighting,scenes=len(ss),trials=len(rr),success=sum(r['success'] for r in rr),success_rate=st.mean(r['success_rate'] for r in ss) if weighting=='scene_equal' else sum(r['success'] for r in rr)/len(rr),finite_error_cases=len(finite(r['e_p_m'] for r in rr)),mean_finite_ep_m=mean(finite(r['mean_finite_ep_m'] for r in ss)) if weighting=='scene_equal' else mean(finite(r['e_p_m'] for r in rr)),interpretation='finite errors include failed cases; missing transforms remain failures and have no computable error'))
     write_csv(OUT/'scene_summary.csv',summary);write_csv(OUT/'dataset_summary.csv',datasets);write_csv(OUT/'seed_summary.csv',seedrows);write_csv(OUT/'ablation.csv',paired)
+    official={tuple(line.split()) for line in (ROOT/'data/eth_trees/raw/trees/pairs.txt').read_text().splitlines() if line.strip()};assert len(official)==10
+    supplemental=[]
+    for method in METHODS:
+        rr=[r for r in rows if r['dataset']=='ETH' and r['method']==method and tuple(r['pair'].split('-')) in official];assert len(rr)==100
+        ep=finite(r['e_p_m'] for r in rr)
+        supplemental.append(dict(method=method,trials=100,pairs=10,success=sum(r['success'] for r in rr),finite_error_cases=len(ep),mean_finite_ep_m=mean(ep),median_finite_ep_m=median(ep),p90_finite_ep_m=p90(ep),scope='supplement only; primary ETH benchmark remains all15 pairs'))
+    write_csv(OUT/'eth_official10_summary.csv',supplemental)
     goals=[]
     for r in summary:
         if r['method']!=PRIMARY:continue
@@ -138,11 +148,22 @@ def make_books(rows,summary,datasets,seeds,paired,goals,station,cold,resources):
     for r in summary:
         for name,key in [('descriptor','mean_descriptor_ms'),('matching','mean_matching_ms'),('求粗變換','mean_solve_ms'),('refinement','mean_refine_ms'),('候選及未細分開銷','mean_other_ms'),('配對online總計','mean_online_ms')]:costrows.append([r['dataset'],r['scene'],NAMES[r['method']],name,r[key]/1000,None,'逐配對／seed平均；不含一次性站點成本及GT評分'])
     for r in cold:costrows.append([r['dataset'],r['scene'],NAMES[r['method']],'從原始點雲冷啟動',r['wall_s'],r['peak_child_rss_kib']/1024,'seed31固定配對；重提取兩站；OS快取未重置；epoch='+r.get('runtime_epoch','legacy_before_environment_restart')])
+    for r in resources:
+        if r['label'].startswith('evaluate_'):
+            parts=r['label'].split('_');scene=parts[2]
+            costrows.append(['ETH' if scene=='ETH' else 'Tongji',scene,parts[-1],'GT全來源點評分（非推論）',r['wall_s'],r['peak_process_mib'],'包含評分讀原始來源點；另列成本，不與論文matching時間比較'])
     if (OUT/'station_feature_cost.csv').exists():
         for r in read_csv(OUT/'station_feature_cost.csv'):
             for name,key in [('提取DTM及高度切片','dtm_height_s'),('提取體素','voxel_s'),('提取法向量','normal_s'),('提取垂直度','verticality_s'),('距離抽樣','retention_s'),('分群','clustering_s'),('圓柱擬合','cylinder_s'),('地面交點','position_s'),('讀檔及未細分開銷','io_and_other_residual_s'),('單站完整提取seed31','wall_s')]:costrows.append([r['dataset'],r['scene'],r['scan'],name,float(r[key]),float(r['peak_process_mib']) if key=='wall_s' else None,'全26站重測一次seed31；4並行／每程序4threads；其他seed需另加抽樣至交點成本'])
     table(full,'時間與記憶體',['資料集','場景','站或方法','階段','秒','峰值子程序MiB','成本範圍'],costrows,[20,18,48,32,24,30,125])
+    budget=[]
+    for title,prefix in [('幾何快取','geometry_'),('v1準確度採集','final_'),('v2準確度採集','v2_'),('v3準確度採集','v3_'),('GT評分','evaluate_'),('冷啟動對照','cold_'),('26站提取成本','feature_benchmark_')]:
+        rr=[r for r in resources if r['label'].startswith(prefix)]
+        if rr:budget.append([title,len(rr),sum(r['wall_s'] for r in rr),sum(r['cpu_s'] for r in rr),max(r['peak_process_mib'] for r in rr),'wall為各工作加總，並行時不等於整輪經過時間；包含實際重複執行，不增加準確度樣本數'])
+    table(full,'本輪計算預算',['階段','程序次數','程序wall加總秒','CPU加總秒','最大子程序MiB','解讀'],budget,[30,20,30,26,28,135])
     table(full,'一般化證據與限制',['證據','解讀'],evidence,[32,145])
+    official=read_csv(OUT/'eth_official10_summary.csv')
+    table(full,'ETH官方10補充',['方法','成功試驗','試驗數','配對數','有限誤差案例數','平均有限e_p cm','中位e_p cm','P90 e_p cm','用途'],[[NAMES[r['method']],int(r['success']),100,10,int(r['finite_error_cases']),100*float(r['mean_finite_ep_m']) if r['mean_finite_ep_m'] else None,100*float(r['median_finite_ep_m']) if r['median_finite_ep_m'] else None,100*float(r['p90_finite_ep_m']) if r['p90_finite_ep_m'] else None,'補充；主要ETH仍全部15對，未以此刪除困難配對'] for r in official],[48,22,18,18,26,30,24,24,110])
     if failures:table(full,'失敗分析',['場景','配對','seed','狀態','旋轉度','平移m','e_p m','候選數','幾何overlap'],[[r['scene'],r['pair'],r['seed'],r['status'],value(r['rot_err_deg']),value(r['trans_err_m']),value(r['e_p_m']),value(r['proposal_count']),value(r['geo_overlap'])] for r in failures],[18,25,18,28,24,24,24,24,26])
     else:table(full,'失敗分析',['項目','說明'],[['主要方法','本輪550次均通過專案門檻；有限測試不保證所有森林。'],['原始失敗','其他版本失敗與有限誤差均保留於全部逐次結果；消融列出新增／退步。']],[32,145])
     for title,records in [('全部逐次結果',rows),('每seed變異',seeds),('資源原始紀錄',resources),('固定配對清單',study.manifest()['pairs'])]:
@@ -151,6 +172,63 @@ def make_books(rows,summary,datasets,seeds,paired,goals,station,cold,resources):
     full.save(OUT/'comparison_full.xlsx')
     validation=dict(trials=len(rows),unique_pairs=55,datasets=2,scenes=5,seeds=SEEDS,numeric_success_all_scenes=numeric_success,numeric_error_below_paper_all_scenes=numeric_error,ten_percent_all_scenes=ten,strict_author_baseline_verified=False,unseen_forest_generalization_verified=False,code_commit=json.loads((OUT/'method_v3_frozen.json').read_text())['code_commit'],cold_benchmark_cases=len(cold),files={name:sha(OUT/name) for name in ['registration_rows.csv','scene_summary.csv','dataset_summary.csv','ablation.csv','paper_reference_comparison.csv','comparison_simple.xlsx','comparison_full.xlsx']})
     (OUT/'validation.json').write_text(json.dumps(validation,indent=2)+'\n')
+    scene_lines=[]
+    for g in goals:
+        formatted=f'{g["mean_ep_m"]:.6f}' if g['mean_ep_m'] is not None else '無有限誤差'
+        decrease=f'{100*g["relative_decrease"]:.1f}%' if g['relative_decrease'] is not None else '—'
+        scene_lines.append(f'| {g["scene"]} | {g["success"]}/{g["trials"]} | {g["strict_pairs"]}/{g["pairs"]} | {formatted} | {g["paper_ep_m"]:.6f} | {decrease} |')
+    text='''# 統一森林配準benchmark
+
+本輪只計Tongji-trees（四Plot）及ETH-tree兩個獨立來源。全部55個固定配對、seed31–40；每次推論只使用當前兩站，不讀GT、不用其他站圖。兩資料均已參與開發，不能稱未見森林驗證。
+
+主要統一版本為v3：保留ETH粗配準，弱CN時擴大有限候選，使用垂直結構驗證降低水平地面錯配偏差，再做完整6DOF點對平面refinement。5cm參考與ETH固定版也套相同v3 refinement作公平對照。沒有依Plot或dataset切換方法。
+
+## 逐場景主要結果
+
+| 場景 | 成功試驗 | 所有seed皆成功配對 | 平均有限e_p m | 論文報告e_p m | 降低比例 |
+|---|---:|---:|---:|---:|---:|
+'''+ '\n'.join(scene_lines)+f'''
+
+成功門檻為本專案rotation<2°且translation<0.5m，未聲稱是論文門檻。e_p依Eq8計算全部來源點；有限失敗也納入平均，無變換仍計失敗且另列無法計算誤差數。550次是55個配對重複10次，不能當作550個獨立場景。
+
+本輪五場景全成功：{numeric_success}；五場景誤差數值低於論文：{numeric_error}；五場景各降低至少10%且全成功：{ten}。這些是固定benchmark的數值判定，論文配對及成功率門檻未完全核對。
+
+## 尚未完成的研究驗收
+
+- 作者原作baseline未重跑：論文指定 https://github.com/MercerSU/CircularMatch 的完整history僅README，無程式、tags、releases或forks。5cm參考是我們實作，不冒稱未修改作者原作。
+- ETH及全部Tongji已參與開發／失敗分析；沒有完全獨立未見森林。相同固定方法的兩來源benchmark改善，不等同更廣泛一般化。
+- 不以整體平均掩蓋場景退步；所有九版本逐場景及逐案例保留。
+
+## 版本與消融
+
+v1在Plot4為96/100；v2擴大候選後退到78/100，說明候選多而幾何評分偏好重疊地面會造成退步。v3改結構驗證，不改全6DOF求解。全55配對均重新評估，沒有只補失敗。
+
+第一個ETH凍結後的Tongji遷移仍在 `../tongji_trees/fixed_eth_20261025`；DTM定位／完整Plot2追測仍在 `../tongji_trees/dtm_height_20261025`。本輪未覆寫這些紀錄。配置、程式hash與各候選預算見protocol、method_frozen、method_v2_frozen、method_v3_frozen、unified_config及versions。
+
+## 報告及成本
+
+- comparison_simple.xlsx：白話結論、五場景、論文數值與參數。
+- comparison_full.xlsx：全部4950列、消融、Tongji等權／配對加權、ETH單列、時間／記憶體、失敗、seed變異、一般化限制。
+- registration_rows.csv與scene_summary.csv保留可計算失敗；status及finite_error_cases避免把缺輸出當零誤差。
+- v3的相同refinement控制與統一版冷啟動在同一新runtime epoch比較。舊epoch時間只作歷史紀錄；並行準確度採集online時間不是獨占速度基準。
+- 每站幾何快取與seed31完整提取另量測，不當作免費；12筆冷啟動重建兩站應用快取，OS檔案快取未重置並反向排序。記憶體為最大子程序RSS，不含Python父程序及OS page cache。
+- GT全點評分成本獨立列出，不混入推論；不同硬體的論文matching-only時間不作直接比較。
+
+## 續跑與重現
+
+先看RESUME.md。原始點雲及私人Drive識別碼不隨Git分發；manifest記錄26站、55配對、checksum、方向、單位與開發接觸歷史。checkpoint可恢復完整及部分seed，SHA先核驗。環境重啟會殺背景程序，需先核對活程序再啟動resume_unified.py。
+
+核驗文件為evaluator_audit、evaluator_full_cloud_audit、matrix_direction_audit、validation及workbook_validation。DELIVERY.json提供核對過下載SHA的固定commit連結。FINAL_COMPLETE只標示本輪計算及交付結束，不代表整個研究已驗收。
+
+報表生成時間：{datetime.now(ZoneInfo('Asia/Taipei')).isoformat(timespec='seconds')}（Asia/Taipei）。
+'''
+    (OUT/'README.md').write_text(text)
+    log=OUT/'RESEARCH_LOG.md'
+    if log.exists():
+        content=log.read_text().split('\n## 本輪完成節點')[0]
+        content=content.replace('結果仍待完成。','本輪結果見下方完成節點，規則未再更換。')
+        content+='\n## 本輪完成節點\n\n'+ '\n'.join(f'- {g["scene"]}：{g["success"]}/{g["trials"]}成功，平均有限e_p={g["mean_ep_m"]}m。' for g in goals)+f'\n\n數值全成功={numeric_success}，五場景低於論文={numeric_error}，各降低10%={ten}；嚴格原作者baseline與未見森林驗證仍未完成。\n'
+        log.write_text(content)
     print(json.dumps(goals,indent=2),flush=True)
 
 def main():
