@@ -120,7 +120,12 @@ def make_books(rows,summary,datasets,seeds,paired,goals,station,cold,resources):
         else:
             for row in ws.iter_rows(min_row=2):row[5].number_format='0.0%'
         ws=table(book,'論文報告值並列',['場景','成功次數','試驗次數','本輪平均e_p m','論文報告e_p m','降低比例','100%門檻','誤差門檻','10%目標','限制'],[[g['scene'],g['success'],g['trials'],g['mean_ep_m'],g['paper_ep_m'],g['relative_decrease'],'達成' if g['success_goal'] else '未達成','達成' if g['error_goal'] else '未達成','達成' if g['success_goal'] and g['ten_percent_goal'] else '未達成','論文配對／成功門檻未完全確認；數值參考比較'] for g in goals],[18,18,18,30,30,24,22,22,22,100])
-        for row in ws.iter_rows(min_row=2):row[5].number_format='0.0%'
+        if simple:
+            book.remove(ws)
+            ws=table(book,'論文報告值並列',['場景','成功／試驗','統一版平均e_p cm','論文e_p cm','降低比例','100%且降低10%'],[[g['scene'],f'{g["success"]}/{g["trials"]}',100*g['mean_ep_m'] if g['mean_ep_m'] is not None else None,100*g['paper_ep_m'],g['relative_decrease'],'達成' if g['success_goal'] and g['ten_percent_goal'] else '未達成'] for g in goals],[20,24,32,26,24,30])
+            for row in ws.iter_rows(min_row=2):row[4].number_format='0.0%'
+        else:
+            for row in ws.iter_rows(min_row=2):row[5].number_format='0.0%'
         table(book,'改了哪些參數',['項目','目的與設定'],parameters,[32,145])
     simple=Workbook();simple.remove(simple.active);common(simple,True);simple.save(OUT/'comparison_simple.xlsx')
     full=Workbook();full.remove(full.active);common(full)
@@ -150,6 +155,8 @@ def make_books(rows,summary,datasets,seeds,paired,goals,station,cold,resources):
 
 def main():
     rows=collect();summary,datasets,seeds,paired,goals=summaries(rows);station,cold,resources=costs()
+    assert len(cold)==12,'Cold benchmarks incomplete; keep CSV summaries but do not publish final workbooks yet'
+    assert (OUT/'station_feature_cost.csv').exists() and len(read_csv(OUT/'station_feature_cost.csv'))==26,'Station cost measurements incomplete'
     make_books(rows,summary,datasets,seeds,paired,goals,station,cold,resources)
 
 if __name__=='__main__':main()

@@ -91,3 +91,7 @@ python scripts/eth_trees/unified_study.py checkpoint
 checkpoint_watch.py會每120秒保存並推送小型結果，使用Git鎖，且只提交checkpoint與已完成成本JSON，不包含原始點雲／樹位。若FINAL_COMPLETE.json出現則停止；推送失敗會記錄於data/unified/checkpoint-watch.log並保留本地資料。不要重複啟動watcher。
 
 注意：cold_benchmark.json在舊階段可能先有8筆，不能把檔案存在當作v3的12筆全部完成；需核對方法標籤及筆數。FINAL_COMPLETE.json僅代表本輪實驗與報表完結，不代表嚴格原作baseline或獨立森林一般化已驗收。
+
+## 自動交付
+
+finalize_unified.py等待v3全55組評分、12筆冷啟動及26站成本齊全，才生成兩份XLSX、核對4950列、檢查私人識別碼、推送GitHub並核驗下載SHA。主日誌data/unified/finalize-controller.log。若環境再重啟，需確認沒有活程序後重啟此等待器。DELIVERY.json會保存可下載的固定commit連結。FINAL_COMPLETE僅表示本輪計算／報表完成，研究驗收不因此自動達成。
