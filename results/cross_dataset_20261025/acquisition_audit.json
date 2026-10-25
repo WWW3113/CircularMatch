@@ -1,0 +1,43 @@
+{
+  "ETH": {
+    "complete": true,
+    "fresh_extractions": 180,
+    "case_rows": 1950,
+    "methods": 13
+  },
+  "WHU_TLS_public_archive": {
+    "downloaded": true,
+    "sha256": "33a7a29577faa631c2a3bec828f9552182dbcbfd0da67ce572c8c28df60caf0a",
+    "pointcloud_scenes": {
+      "Tunnel": 7,
+      "RiverBank": 7,
+      "Campus": 10,
+      "Mountain": 6,
+      "Park": 32,
+      "UndergroundExcavation": 12
+    },
+    "contains_FGI_Forest": false
+  },
+  "Liang2018": {
+    "public_announcement_read": true,
+    "share_web_http": 403,
+    "share_api_http": 401,
+    "downloaded": true,
+    "version": "TreeTool processed samples; six PCD clouds and six LHD tree reference files",
+    "source": "https://github.com/porteratzo/TreeTool",
+    "has_registration_ground_truth": false,
+    "has_original_per_station_clouds": false
+  },
+  "Tongji_Trees": {
+    "official_download_is_request_form": true,
+    "downloaded": false
+  },
+  "additional_source_checks": {
+    "ForAlign": "https://github.com/yiliutan/ForAlign — datasets require request form",
+    "PRF": "https://github.com/yiliutan/PRF — code/data not released",
+    "CC-ICP": "https://github.com/MSpace-WHU/CC-ICP — no public forest benchmark download found in README"
+  },
+  "cross_dataset_registration_tested": false,
+  "cross_dataset_tree_extraction_tested": true,
+  "cross_dataset_validation_scope": "ETH extraction settings transferred to six Liang/TreeTool processed plots; registration remains unevaluated"
+}

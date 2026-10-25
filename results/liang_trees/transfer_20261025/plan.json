@@ -1,0 +1,71 @@
+{
+  "dataset": "Liang2018 / TreeTool processed samples",
+  "plots": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "seeds": [
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "variants": {
+    "control": [],
+    "vertical085": [
+      "--normals.vert_threshold=0.85"
+    ],
+    "ransac999": [
+      "--cylinder.max_iterations=3000",
+      "--cylinder.probability=0.999"
+    ]
+  },
+  "cluster_tolerance_m": 0.2,
+  "retention": "step",
+  "scanner_origin": [
+    0,
+    0,
+    0
+  ],
+  "match_radius_m": 0.5,
+  "reference_columns": [
+    "id",
+    "x",
+    "y",
+    "height",
+    "diameter"
+  ],
+  "matching": "maximum-cardinality one-to-one XY assignment; minimize total distance within gate",
+  "primary": "matched_reference_trees / all_provided_reference_trees",
+  "limitations": [
+    "Processed/downsampled clouds; not original station scans",
+    "PCD VIEWPOINT is zero but physical sensor origin is not independently verified",
+    "Unknown annotation boundary; unmatched detections are not confirmed false positives",
+    "Reference XY anchor height is not documented; no DBH/height accuracy claim",
+    "No registration ground truth; no registration success rate"
+  ],
+  "input_sha256": {
+    "downsampledlesscloudEURO1.pcd": "799e23912f7c2ad02abdd8dc951b29922b2f8a14724e20d173e41fb0a5798689",
+    "TLS_Benchmarking_Plot_1_LHD.txt": "9adb412f73736d0f5887aae50d32a75f1b7f7f68bad2815196e25150ad3ba0b6",
+    "downsampledlesscloudEURO2.pcd": "0f1b53c9c3f1cfb58d503817911fec3b3f3179e3473be7610dabc314337d8357",
+    "TLS_Benchmarking_Plot_2_LHD.txt": "9c740d069b44def28af90121c36ba66dbca325c3d986fccc4d5d33048f069e20",
+    "downsampledlesscloudEURO3.pcd": "3c8ea08990486b651464c665a5dc69b098664467707847e91029ae3aeed227aa",
+    "TLS_Benchmarking_Plot_3_LHD.txt": "fe0bccc464dada65aad62e86a4c63f6d3f2e05cda55b4267a990b656bf1adce5",
+    "downsampledlesscloudEURO4.pcd": "5be971024377dd3e37669c5b3bb3d3f8ecf3fcca46090378a5804471e919cf30",
+    "TLS_Benchmarking_Plot_4_LHD.txt": "bd6c7a7db7833aeb49d3c5cbea33c5d965ef06ed947b7ead093fc46b8b47fb0a",
+    "downsampledlesscloudEURO5.pcd": "c83af621b1f7c39e3f42f9e0f32ccaf34936d1023b3b87cbe00f94705d7fd0c3",
+    "TLS_Benchmarking_Plot_5_LHD.txt": "c39effc97699506d1f6207a4cea6697b778b59332b26904c1d899b04650c9f95",
+    "downsampledlesscloudEURO6.pcd": "52bbf667f32196e64466015cedf9fd443fd66643678756433d425ddd3bfd0930",
+    "TLS_Benchmarking_Plot_6_LHD.txt": "ea65ad37541378fa2b0ceba2ab238f05a55093b27a8737302b666abf983e9498"
+  }
+}

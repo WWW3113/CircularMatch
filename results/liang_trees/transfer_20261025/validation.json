@@ -1,0 +1,21 @@
+{
+  "rows": 180,
+  "unique_cases": 180,
+  "completed_batches": 18,
+  "effective_configs_identical_to_eth": true,
+  "all_tree_counts_match_logs": true,
+  "all_matches_within_half_metre": true,
+  "registration_evaluated": false,
+  "macro_reference_match_rate": {
+    "six_plots": {
+      "control": 0.3833516412935598,
+      "vertical085": 0.3494055988668525,
+      "ransac999": 0.3851880137775315
+    },
+    "paper_plots": {
+      "control": 0.4380475221516982,
+      "vertical085": 0.39479534541276795,
+      "ransac999": 0.4410481990746921
+    }
+  }
+}
