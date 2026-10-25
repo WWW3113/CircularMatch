@@ -116,7 +116,17 @@ def make_books(rows,summary,datasets,seeds,paired,goals,station,cold,resources):
     evidence=[['第一次ETH→Tongji','保留fixed_eth_20261025：ETH選定補救在Tongji329/400，未看Tongji前凍結；未覆寫。'],['Tongji內部DTM','Plot2開發後在其餘Plot定位測試；已參與本輪方法假設，不再稱未見。'],['本輪統一benchmark','同一方法用於Tongji/ETH；兩資料均已開發接觸，可證benchmark改善，不能抹去接觸歷史。'],['完全獨立資料','目前沒有；WHU-Park只作額外診斷，不當作原論文WHU-FGI，本輪不混入它的分數。'],['原作者baseline','https://github.com/MercerSU/CircularMatch；commit1e9623f目前僅README，缺少可建置程式。'],['兩站限制','每次native inference僅讀來源與目標快取及其樹位；沒有GT參數、其他站圖或跨站地圖。'],['seed解讀','55配對重複10次，不是550個獨立場景；同時列所有seed均成功的唯一配對數。']]
     failures=[r for r in rows if r['method']==PRIMARY and not r['success']]
     def common(book,simple=False):
-        table(book,'先看結論',['項目','說明'],conclusion,[32,145])
+        simple_conclusion=[
+            ['測了什麼','Tongji四個Plot＋ETH；共55組兩站配對，每組測10個固定seed。'],
+            ['是否全部成功','五個場景全部成功（限本輪測試）' if numeric_success else '仍有失敗：'+', '.join(g['scene'] for g in goals if not g['success_goal'])],
+            ['誤差有沒有更小','五個場景平均誤差都低於論文報告值' if numeric_error else '還沒全部低於論文：'+', '.join(g['scene'] for g in goals if not g['error_goal'])],
+            ['有沒有各降低10%','五個場景均成功且各降低至少10%' if ten else '尚未全部達成，請看「論文報告值並列」。'],
+            ['怎麼看數字','e_p越小越好，這份表用公分；平均保留能計算的失敗，無輸出另算失敗。'],
+            ['改善的代價','增加點雲幾何處理、候選搜尋及最後微調；完整時間和記憶體在完整版。'],
+            ['能說超越論文嗎','目前只能比較報告數字。作者未釋出程式，還不能完成同環境原作對照；表中的5cm參考是我們的實作。'],
+            ['跨資料集做到哪裡','兩組資料共用同一設定；兩組都已參與開發，還需要另一個沒看過的森林驗證。'],
+            ['成功怎麼算','本專案：旋轉誤差小於2度且平移誤差小於50公分；論文門檻未查明，配對清單也未完全核對。']]
+        table(book,'先看結論',['項目','說明'],simple_conclusion if simple else conclusion,[30,100] if simple else [32,145])
         chosen=[r for r in summary if not simple or r['method'] in ['reference5_raw','reference5_refined_v3',PRIMARY]]
         ws=table(book,'逐場景比較',['資料集','場景','方法','成功次數','試驗次數','成功率','所有seed皆成功配對','配對數','有限誤差案例數','平均e_p cm（含可算失敗）','中位e_p cm','P90 e_p cm','成功案例平均e_p cm','平均online ms'],[[r['dataset'],r['scene'],NAMES[r['method']],r['success_trials'],r['trials'],r['success_rate'],r['pairs_all_seeds_success'],r['pairs'],r['finite_error_cases'],100*r['mean_finite_ep_m'] if r['mean_finite_ep_m'] is not None else None,100*r['median_finite_ep_m'] if r['median_finite_ep_m'] is not None else None,100*r['p90_finite_ep_m'] if r['p90_finite_ep_m'] is not None else None,100*r['mean_success_ep_m'] if r['mean_success_ep_m'] is not None else None,r['mean_online_ms']] for r in chosen],[20,18,48,18,18,20,30,18,26,36,24,24,32,28])
         if simple:
@@ -136,7 +146,20 @@ def make_books(rows,summary,datasets,seeds,paired,goals,station,cold,resources):
             for row in ws.iter_rows(min_row=2):row[4].number_format='0.0%'
         else:
             for row in ws.iter_rows(min_row=2):row[5].number_format='0.0%'
-        table(book,'改了哪些參數',['項目','目的與設定'],parameters,[32,145])
+        if simple:
+            by_scene={scene:{r['method']:r for r in summary if r['scene']==scene} for scene in PAPER}
+            def successes(method):
+                return '；'.join(f'{scene} {by_scene[scene][method]["success_trials"]}/{by_scene[scene][method]["trials"]}' for scene in PAPER)
+            simple_parameters=[
+                ['樹幹提取','本輪所有版本用相同樹位輸入；沒有替不同Plot換提取參數。'],
+                ['粗配準組合','從5cm匹配容差＋SVD，改為10cm＋RANSAC及弱配對補救；這些是一起改，不能把效果全歸給10cm。'],
+                ['粗配準效果','5cm：'+successes('reference5_raw')+'。10cm組合：'+successes('eth10_raw')+'。'],
+                ['最後微調','新增由粗到細的點對平面微調（50→20→10cm尺度），能修正旋轉與平移；5cm參考也加相同微調作公平比較。'],
+                ['擴大候選曾變壞','弱配對時多試幾個起始位置；Plot4由v1的96/100退到v2的78/100，原因是錯誤位置的地面也可能重疊。'],
+                ['本輪修正','用接近垂直的表面驗證位置，減少地面誤導；最後微調仍使用各方向的表面。Plot4本輪為'+str(by_scene['Plot4'][PRIMARY]['success_trials'])+'/100。'],
+                ['哪些變好、哪些變壞','「逐場景比較」並列參考、參考加相同微調、統一版；完整消融保留每次新增成功與退步，沒有挑最佳seed。']]
+            table(book,'改了哪些參數',['改動','白話說明與結果'],simple_parameters,[30,100])
+        else:table(book,'改了哪些參數',['項目','目的與設定'],parameters,[32,145])
     simple=Workbook();simple.remove(simple.active);common(simple,True);simple.save(OUT/'comparison_simple.xlsx')
     full=Workbook();full.remove(full.active);common(full)
     ws=table(full,'Tongji與ETH彙整',['資料集','方法','彙整方式','場景數','成功次數','試驗次數','成功率','有限誤差案例數','平均有限e_p cm'],[[r['dataset'],NAMES[r['method']],'場景等權' if r['weighting']=='scene_equal' else '配對加權',r['scenes'],r['success'],r['trials'],r['success_rate'],r['finite_error_cases'],100*r['mean_finite_ep_m'] if r['mean_finite_ep_m'] is not None else None] for r in datasets],[22,48,26,18,18,18,20,26,32])
