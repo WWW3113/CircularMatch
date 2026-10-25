@@ -1,0 +1,6 @@
+scene,trials,success,strict_pairs,pairs,finite_cases,mean_ep_m,paper_ep_m,relative_decrease,success_goal,error_goal,ten_percent_goal,comparison
+Plot1,100,100,10,10,100,0.02886600508789238,0.052558,0.45077809110140454,True,True,True,paper values only; exact pair list/success definition not independently established
+Plot2,100,100,10,10,100,0.011854158585288406,0.114808,0.8967479741369208,True,True,True,paper values only; exact pair list/success definition not independently established
+Plot3,100,100,10,10,100,0.011183158288115707,0.048756,0.7706301114095557,True,True,True,paper values only; exact pair list/success definition not independently established
+Plot4,100,100,10,10,100,0.03392022720762585,0.04356,0.2212987326073037,True,True,True,paper values only; exact pair list/success definition not independently established
+ETH,150,150,15,15,150,0.006038135170910868,0.153427,0.9606448984148105,True,True,True,paper values only; exact pair list/success definition not independently established

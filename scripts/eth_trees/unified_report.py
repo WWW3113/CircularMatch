@@ -147,13 +147,13 @@ def make_books(rows,summary,datasets,seeds,paired,goals,station,cold,resources):
                 original,control,new=rr['reference5_raw'],rr['reference5_refined_v3'],rr[PRIMARY]
                 cm=lambda r:100*r['mean_finite_ep_m'] if r['mean_finite_ep_m'] is not None else None
                 compact.append(['Tongji / '+scene if scene!='ETH' else 'ETH-tree',f'{original["success_trials"]}/{original["trials"]}',cm(original),f'{control["success_trials"]}/{control["trials"]}',cm(control),f'{new["success_trials"]}/{new["trials"]}',cm(new),100*PAPER[scene]])
-            table(book,'逐場景比較',['來源／場景','5cm參考成功','參考有限平均e_p cm','參考＋相同ref成功','相同ref有限平均e_p cm','統一版成功','統一版有限平均e_p cm','論文報告e_p cm'],compact,[26,24,30,32,34,24,34,28])
+            table(book,'逐場景比較',['來源／場景','5cm參考成功','參考平均誤差cm','參考＋微調成功','微調後平均誤差cm','統一版成功','統一版平均誤差cm','論文報告誤差cm'],compact,[19,16,22,22,24,18,24,22])
         else:
             for row in ws.iter_rows(min_row=2):row[5].number_format='0.0%'
         ws=table(book,'論文報告值並列',['場景','成功次數','試驗次數','本輪平均e_p m','論文報告e_p m','降低比例','100%門檻','誤差門檻','10%目標','限制'],[[g['scene'],g['success'],g['trials'],g['mean_ep_m'],g['paper_ep_m'],g['relative_decrease'],'達成' if g['success_goal'] else '未達成','達成' if g['error_goal'] else '未達成','達成' if g['success_goal'] and g['ten_percent_goal'] else '未達成','論文配對／成功門檻未完全確認；數值參考比較'] for g in goals],[18,18,18,30,30,24,22,22,22,100])
         if simple:
             book.remove(ws)
-            ws=table(book,'論文報告值並列',['場景','成功／試驗','統一版平均e_p cm','論文e_p cm','降低比例','100%且降低10%'],[[g['scene'],f'{g["success"]}/{g["trials"]}',100*g['mean_ep_m'] if g['mean_ep_m'] is not None else None,100*g['paper_ep_m'],g['relative_decrease'],'達成' if g['success_goal'] and g['ten_percent_goal'] else '未達成'] for g in goals],[20,24,32,26,24,30])
+            ws=table(book,'論文報告值並列',['場景','成功／試驗','統一版平均誤差cm','論文誤差cm','降低比例','100%且降低10%'],[[g['scene'],f'{g["success"]}/{g["trials"]}',100*g['mean_ep_m'] if g['mean_ep_m'] is not None else None,100*g['paper_ep_m'],g['relative_decrease'],'達成' if g['success_goal'] and g['ten_percent_goal'] else '未達成'] for g in goals],[18,18,25,20,18,25])
             for row in ws.iter_rows(min_row=2):row[4].number_format='0.0%'
         else:
             for row in ws.iter_rows(min_row=2):row[5].number_format='0.0%'
