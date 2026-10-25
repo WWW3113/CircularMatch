@@ -329,6 +329,47 @@
     }
   },
   {
+    "marker": "feature_benchmark/ETH/s3/complete.json",
+    "record": {
+      "label": "feature_benchmark_ETH_s3",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/eth_trees/raw/trees/s3.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/feature_benchmark/ETH/s3",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 547.706757437998,
+      "cpu_s": 581.087525,
+      "peak_rss_kib": 1466312,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "ETH",
+      "scene": "ETH",
+      "scan": "s3",
+      "seed": 31,
+      "concurrent_jobs": 4,
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 34.42607,
+        "2": 29.60836,
+        "3": 389.5333,
+        "4": 1.26721,
+        "5": 0.04929,
+        "6": 61.53094,
+        "7": 8.09163,
+        "8": 0.02092
+      }
+    }
+  },
+  {
     "marker": "feature_benchmark/Plot1/S1/complete.json",
     "record": {
       "label": "cold_extract_Plot1_multi_v3_refined_S1",
@@ -1108,6 +1149,47 @@
         "6": 81.83695,
         "7": 7.19015,
         "8": 0.015050000000000001
+      }
+    }
+  },
+  {
+    "marker": "feature_benchmark/Plot4/S5/complete.json",
+    "record": {
+      "label": "feature_benchmark_Plot4_S5",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/tongji_trees/received/Tongji-Trees/Plot4/S5.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/feature_benchmark/Plot4/S5",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 640.6826902590001,
+      "cpu_s": 599.1797809999999,
+      "peak_rss_kib": 2146732,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "Tongji",
+      "scene": "Plot4",
+      "scan": "S5",
+      "seed": 31,
+      "concurrent_jobs": 4,
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 64.67653,
+        "2": 50.45926,
+        "3": 353.34115,
+        "4": 2.4894000000000003,
+        "5": 0.05781,
+        "6": 32.69757,
+        "7": 14.41835,
+        "8": 0.03688
       }
     }
   }
