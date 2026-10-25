@@ -104,7 +104,7 @@ def costs():
                 log=(RUNS/'logs'/(r['label']+'.log')).read_text()
                 stages={int(k):float(ms)/1000 for k,ms in re.findall(r'^\s+(\d) [\w+]+\s+\d+\s+([\d.]+)',log,re.M)}
             assert set(stages)==set(range(9))
-            features.append(dict(dataset=r['dataset'],scene=r['scene'],scan=r['scan'],seed=31,wall_s=r['wall_s'],cpu_s=r['cpu_s'],peak_process_mib=r['peak_rss_kib']/1024,dtm_height_s=stages[1],voxel_s=stages[2],normal_s=stages[3],verticality_s=stages[4],retention_s=stages[5],clustering_s=stages[6],cylinder_s=stages[7],position_s=stages[8],io_and_other_residual_s=r['wall_s']-sum(stages.values()),concurrent_jobs=4))
+            features.append(dict(dataset=r['dataset'],scene=r['scene'],scan=r['scan'],seed=31,wall_s=r['wall_s'],cpu_s=r['cpu_s'],peak_process_mib=r['peak_rss_kib']/1024,dtm_height_s=stages[1],voxel_s=stages[2],normal_s=stages[3],verticality_s=stages[4],retention_s=stages[5],clustering_s=stages[6],cylinder_s=stages[7],position_s=stages[8],io_and_other_residual_s=r['wall_s']-sum(stages.values()),concurrent_jobs=r.get('concurrent_jobs',4),reused_cold_extraction=r.get('reused_cold_extraction',False)))
         write_csv(OUT/'station_feature_cost.csv',features)
     cold=json.loads((OUT/'cold_benchmark.json').read_text()) if (OUT/'cold_benchmark.json').exists() else []
     normalized=[dict(label=r['label'],exit_code=r['exit_code'],wall_s=r['wall_s'],cpu_s=r['cpu_s'],peak_process_mib=r['peak_rss_kib']/1024,command=json.dumps(r['command']),runtime_epoch=r.get('runtime_epoch','legacy_before_environment_restart')) for r in resources]
@@ -168,6 +168,7 @@ def make_books(rows,summary,datasets,seeds,paired,goals,station,cold,resources):
                 ['粗配準組合','從5cm匹配容差＋SVD，改為10cm＋RANSAC及弱配對補救；這些是一起改，不能把效果全歸給10cm。'],
                 ['粗配準效果','5cm：'+successes('reference5_raw')+'。10cm組合：'+successes('eth10_raw')+'。'],
                 ['最後微調','新增由粗到細的點對平面微調（50→20→10cm尺度），能修正旋轉與平移；5cm參考也加相同微調作公平比較。'],
+                ['相同微調的公平對照','5cm參考＋微調 '+str(sum(r['success_trials'] for r in summary if r['method']=='reference5_refined_v3'))+'/550；ETH固定版＋微調 '+str(sum(r['success_trials'] for r in summary if r['method']=='eth10_refined_v3'))+'/550；統一版 '+str(sum(r['success_trials'] for r in primary))+'/550。統一版相對ETH固定版加相同微調，再救回4個Plot4試驗。'],
                 ['擴大候選曾變壞','弱配對時多試幾個起始位置；Plot4由v1的96/100退到v2的78/100，原因是錯誤位置的地面也可能重疊。'],
                 ['本輪修正','用接近垂直的表面驗證位置，減少地面誤導；最後微調仍使用各方向的表面。Plot4本輪為'+str(by_scene['Plot4'][PRIMARY]['success_trials'])+'/100。'],
                 ['本輪仍有的誤差退步',regression_note],
@@ -191,7 +192,7 @@ def make_books(rows,summary,datasets,seeds,paired,goals,station,cold,resources):
             costrows.append(['ETH' if scene=='ETH' else 'Tongji',scene,parts[-1],'GT全來源點評分（非推論）',r['wall_s'],r['peak_process_mib'],'包含評分讀原始來源點；另列成本，不與論文matching時間比較'])
     if (OUT/'station_feature_cost.csv').exists():
         for r in read_csv(OUT/'station_feature_cost.csv'):
-            for name,key in [('提取DTM及高度切片','dtm_height_s'),('提取體素','voxel_s'),('提取法向量','normal_s'),('提取垂直度','verticality_s'),('距離抽樣','retention_s'),('分群','clustering_s'),('圓柱擬合','cylinder_s'),('地面交點','position_s'),('讀檔及未細分開銷','io_and_other_residual_s'),('單站完整提取seed31','wall_s')]:costrows.append([r['dataset'],r['scene'],r['scan'],name,float(r[key]),float(r['peak_process_mib']) if key=='wall_s' else None,'全26站重測一次seed31；4並行／每程序4threads；其他seed需另加抽樣至交點成本'])
+            for name,key in [('提取DTM及高度切片','dtm_height_s'),('提取體素','voxel_s'),('提取法向量','normal_s'),('提取垂直度','verticality_s'),('距離抽樣','retention_s'),('分群','clustering_s'),('圓柱擬合','cylinder_s'),('地面交點','position_s'),('讀檔及未細分開銷','io_and_other_residual_s'),('單站完整提取seed31','wall_s')]:costrows.append([r['dataset'],r['scene'],r['scan'],name,float(r[key]),float(r['peak_process_mib']) if key=='wall_s' else None,f'全26站seed31實測；{r["concurrent_jobs"]}並行／每程序4threads；重用相同cold提取={r["reused_cold_extraction"]}；其他seed另加抽樣至交點成本'])
     table(full,'時間與記憶體',['資料集','場景','站或方法','階段','秒','峰值子程序MiB','成本範圍'],costrows,[20,18,48,32,24,30,125])
     budget=[]
     for title,prefix in [('幾何快取','geometry_'),('v1準確度採集','final_'),('v2準確度採集','v2_'),('v3準確度採集','v3_'),('GT評分','evaluate_'),('冷啟動對照','cold_'),('26站提取成本','feature_benchmark_')]:
@@ -250,7 +251,7 @@ v1在Plot4為96/100；v2擴大候選後退到78/100，說明候選多而幾何�
 - comparison_full.xlsx：全部4950列、消融、Tongji等權／配對加權、ETH單列、時間／記憶體、失敗、seed變異、一般化限制。
 - registration_rows.csv與scene_summary.csv保留可計算失敗；status及finite_error_cases避免把缺輸出當零誤差。
 - v3的相同refinement控制與統一版冷啟動在同一新runtime epoch比較。舊epoch時間只作歷史紀錄；並行準確度採集online時間不是獨占速度基準。
-- 每站幾何快取與seed31完整提取另量測，不當作免費；12筆冷啟動重建兩站應用快取，OS檔案快取未重置並反向排序。記憶體為最大子程序RSS，不含Python父程序及OS page cache。
+- 每站幾何快取與seed31完整提取另列，不當作免費；其中4站重用當前epoch第一筆相同設定的冷啟動提取實測（串行），其餘22站以4工作並行量測，每程序4threads。此為共用成本重用，不依耗時挑選；不同並行數不可當獨占速度直接比較。12筆冷啟動重建兩站應用快取，OS檔案快取未重置並反向排序。記憶體為最大子程序RSS，不含Python父程序及OS page cache。
 - GT全點評分成本獨立列出，不混入推論；不同硬體的論文matching-only時間不作直接比較。
 
 ## 續跑與重現

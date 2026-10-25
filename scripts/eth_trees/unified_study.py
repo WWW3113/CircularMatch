@@ -206,6 +206,23 @@ def cold_benchmark():
             marker.write_text(json.dumps(result,indent=2)+'\n');results.append(result)
     (OUT/'cold_benchmark.json').write_text(json.dumps(results,indent=2)+'\n')
 
+def reuse_cold_extraction_costs():
+    """Reuse the first completed identical one-seed extraction, never the fastest."""
+    epoch=json.loads((OUT/'current_epoch.json').read_text())['id']
+    approved={label for p in (RUNS/'cold_benchmark').glob('*/*/complete.json') for label in json.loads(p.read_text())['resources']}
+    reused=[]
+    for line in (RUNS/'resources.jsonl').read_text().splitlines():
+        r=json.loads(line)
+        if not r['label'].startswith('cold_extract_') or r['label'] not in approved or r.get('runtime_epoch')!=epoch or r['exit_code']!=0:continue
+        parts=r['label'].split('_');scene,scan=parts[2],parts[-1]
+        station=next(s for s in manifest()['scans'] if s['scene']==scene and s['scan']==scan)
+        marker=RUNS/'feature_benchmark'/scene/scan/'complete.json'
+        if marker.exists():continue
+        r.update(dataset=station['dataset'],scene=scene,scan=scan,seed=31,concurrent_jobs=1,reused_cold_extraction=True,reuse_policy='first completed exact-config seed31 extraction in current runtime epoch; tree values already checked against canonical input; no timing-based selection')
+        marker.parent.mkdir(parents=True,exist_ok=True);marker.write_text(json.dumps(r,indent=2)+'\n');reused.append(dict(scene=scene,scan=scan,label=r['label']))
+    (OUT/'feature_cost_reuse.json').write_text(json.dumps(dict(policy='identical completed cold extraction reused once per station; other stations freshly measured; mixed concurrency explicitly recorded',newly_reused=reused),indent=2)+'\n')
+    return reused
+
 def feature_benchmark():
     """Fresh one-seed cost for every station; shared by all method variants."""
     def one(scan):
@@ -215,6 +232,7 @@ def feature_benchmark():
         assert read_csv(out/'step_seed31_trees.csv')==read_csv(feature_dir(scan)/'step_seed31_trees.csv')
         result.update(dataset=scan['dataset'],scene=scan['scene'],scan=scan['scan'],seed=31,concurrent_jobs=4)
         marker.write_text(json.dumps(result,indent=2)+'\n');return result
+    reuse_cold_extraction_costs()
     records=parallel(one,manifest()['scans']);(OUT/'feature_benchmark.json').write_text(json.dumps(records,indent=2)+'\n')
 
 def checkpoint():

@@ -95,3 +95,7 @@ checkpoint_watch.py會每120秒保存並推送小型結果，使用Git鎖，且�
 ## 自動交付
 
 finalize_unified.py等待v3全55組評分、12筆冷啟動及26站成本齊全，才生成兩份XLSX、核對4950列、檢查私人識別碼、推送GitHub並核驗下載SHA。主日誌data/unified/finalize-controller.log。若環境再重啟，需確認沒有活程序後重啟此等待器。DELIVERY.json會保存可下載的固定commit連結。FINAL_COMPLETE僅表示本輪計算／報表完成，研究驗收不因此自動達成。
+
+## 成本結果續接補強
+
+checkpoints/completed_cost_cases.json會逐案例保存cold與feature標記，geometry_cost_tables.json保存26站幾何計時；還原前同樣核對SHA。26站seed31提取成本中，ETH s1/s2及Plot1 S2/S1重用當前epoch第一筆同設定、樹位已核對的冷啟動實測（1並行），其他22站新測（4並行）。重用不依耗時挑選，也不重複計CPU預算。stage_times_s隨checkpoint保存，無需依賴原始stdout才能續報。
