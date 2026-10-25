@@ -128,6 +128,7 @@ def make_books(rows,summary,datasets,seeds,paired,goals,station,cold,resources):
     parameters=[['共用樹幹提取','沿用固定ETH版：DTM原設定、1cm體素、10cm法向半徑、垂直度0.90、分群20cm、階梯抽樣。未針對Plot切換DTM。'],['5cm參考','Thscore40、w10、N183、匹配容差0.05m、SVD；DTM與額外擬合檢查來自我們的實作，作者未釋出細節。'],['ETH固定版','匹配容差10cm、配準RANSAC、初始CN配對<6時證據補救，保留先前ETH設計。'],['新增refinement','完整6DOF點對平面迭代，不鎖roll/pitch或使用GT。'],['三個尺度','0.5m→0.2m→0.1m體素；最多30→25→20次迭代。'],['法向量規則','refinement半徑=2.5×體素，至少6鄰點，曲率≤0.1；兩站法向量夾角餘弦絕對值至少0.7。'],['錯配排除','最近鄰距離<3×體素、一對一目標、保留較近的70%；Huber尺度=max(0.05×體素,2×絕對殘差中位數)。'],['點數預算','每尺度來源最多20000點；雙向幾何評分各最多8000點；均用確定性取樣。'],['多初始值觸發','原CN配對<6時，取前20描述子候選、最多120證據邊、7140組水平雙點種子及10000相容三元組。'],['初始值選擇','保留最多256個相異姿態，加既有粗配準；既有姿態保留於最多8個refinement候選，再依雙向幾何及全樹位XY支持選擇。'],['選擇分數','雙向overlap/(0.03+最近鄰RMSE)乘log(1+全樹位XY支持數)；這是推論分數，不是e_p。'],['水平種子限制','僅初始值使用直立掃描假設；最終refinement可估roll/pitch及高度位移，沒有鎖成4DOF。'],['結構驗證修正','v3只用|normal.z|<0.3的垂直表面驗證，至少各30點，否則退回所有方向；驗證距離min(體素,0.2m)，降低水平地面偏差。'],['公平refinement','v3的5cm參考與ETH固定版都加上相同結構refinement；優化仍使用所有表面方向。'],['精度代價','refinement增加幾何快取、法向量與逐配對計算；不宣稱同時比原粗配準更快。']]
     evidence=[['第一次ETH→Tongji','保留fixed_eth_20261025：ETH選定補救在Tongji329/400，未看Tongji前凍結；未覆寫。'],['Tongji內部DTM','Plot2開發後在其餘Plot定位測試；已參與本輪方法假設，不再稱未見。'],['本輪統一benchmark','同一方法用於Tongji/ETH；兩資料均已開發接觸，可證benchmark改善，不能抹去接觸歷史。'],['完全獨立資料','目前沒有；WHU-Park只作額外診斷，不當作原論文WHU-FGI，本輪不混入它的分數。'],['原作者baseline','https://github.com/MercerSU/CircularMatch；commit1e9623f目前僅README，缺少可建置程式。'],['兩站限制','每次native inference僅讀來源與目標快取及其樹位；沒有GT參數、其他站圖或跨站地圖。'],['seed解讀','55配對重複10次，不是550個獨立場景；同時列所有seed均成功的唯一配對數。'],['冷啟動樣本範圍','每方法每資料只量一個固定配對、seed31；記錄這次實際成本，不據此宣稱穩定速度排名或所有配對耗時。']]
     parameters.insert(1,['距離抽樣（沿用）','階梯式，依掃描原點的水平距離：小於5m保留50%、5至小於10m保留75%、10m以上保留100%；seed31–40。各站掃描原點沿用(0,0,0)假設。'])
+    evidence.append(['環境中斷與續跑','環境重啟的未完成批次按同一case補算，不新增樣本；第一筆完整輸出保留，no_transform完整輸出仍算失敗。550/550指恢復後的固定完整case結果，不表示整個執行從未中斷。被殺死而未返回wait4的程序成本未知，未冒充已量測。'])
     failures=[r for r in rows if r['method']==PRIMARY and not r['success']]
     def common(book,simple=False):
         simple_conclusion=[
@@ -199,7 +200,7 @@ def make_books(rows,summary,datasets,seeds,paired,goals,station,cold,resources):
     budget=[]
     for title,prefix in [('幾何快取','geometry_'),('v1準確度採集','final_'),('v2準確度採集','v2_'),('v3準確度採集','v3_'),('GT評分','evaluate_'),('冷啟動對照','cold_'),('26站提取成本','feature_benchmark_')]:
         rr=[r for r in resources if r['label'].startswith(prefix)]
-        if rr:budget.append([title,len(rr),sum(r['wall_s'] for r in rr),sum(r['cpu_s'] for r in rr),max(r['peak_process_mib'] for r in rr),'wall為各工作加總，並行時不等於整輪經過時間；包含實際重複執行，不增加準確度樣本數'])
+        if rr:budget.append([title,len(rr),sum(r['wall_s'] for r in rr),sum(r['cpu_s'] for r in rr),max(r['peak_process_mib'] for r in rr),'已取得wait4的程序紀錄加總，含實際重複執行；環境殺死而未返回者成本未知。並行wall加總不等於整輪經過時間，不增加準確度樣本數。'])
     table(full,'本輪計算預算',['階段','程序次數','程序wall加總秒','CPU加總秒','最大子程序MiB','解讀'],budget,[30,20,30,26,28,135])
     table(full,'一般化證據與限制',['證據','解讀'],evidence,[32,145])
     official=read_csv(OUT/'eth_official10_summary.csv')
@@ -270,6 +271,7 @@ v1在Plot4為96/100；v2擴大候選後退到78/100，說明候選多而幾何�
         content=log.read_text().split('\n## 本輪完成節點')[0]
         content=content.replace('結果仍待完成。','本輪結果見下方完成節點，規則未再更換。')
         content=content.replace('五場景全成功與誤差目標尚待v3驗證；','五場景數值目標結果見下方完成節點；')
+        content=content.replace('成本與報表最終核驗進行中；','成本與本輪報表核驗已完成；')
         content+='\n## 本輪完成節點\n\n'+ '\n'.join(f'- {g["scene"]}：{g["success"]}/{g["trials"]}成功，平均有限e_p={g["mean_ep_m"]}m。' for g in goals)+f'\n\n數值全成功={numeric_success}，五場景低於論文={numeric_error}，各降低10%={ten}；嚴格原作者baseline與未見森林驗證仍未完成。\n'
         log.write_text(content)
     print(json.dumps(goals,indent=2),flush=True)
