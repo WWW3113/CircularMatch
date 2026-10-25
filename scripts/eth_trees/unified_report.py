@@ -111,6 +111,11 @@ def costs():
 
 def make_books(rows,summary,datasets,seeds,paired,goals,station,cold,resources):
     primary=[r for r in summary if r['method']==PRIMARY];numeric_success=all(g['success_goal'] for g in goals);numeric_error=all(g['error_goal'] for g in goals);ten=all(g['success_goal'] and g['ten_percent_goal'] for g in goals)
+    versions_path=OUT/'versions.json'
+    versions=json.loads(versions_path.read_text())
+    for version in versions:
+        if version['name']=='unified_v3':version['status']='full five-scene evaluation completed; preselected primary retained, both matched refinement controls included'
+    versions_path.write_text(json.dumps(versions,ensure_ascii=False,indent=2)+'\n')
     conclusion=[['本輪統一方法',NAMES[PRIMARY]],['資料範圍','2個獨立來源：Tongji四個Plot、ETH一個場景；共26站、55配對，各seed31–40。'],['五場景100%成功','達成（限本輪固定評估範圍）' if numeric_success else '未達成：'+', '.join(g['scene'] for g in goals if not g['success_goal'])],['五場景平均e_p低於論文','參考數值比較達成' if numeric_error else '未達成：'+', '.join(g['scene'] for g in goals if not g['error_goal'])],['五場景各降低至少10%','參考數值比較達成' if ten else '未達成：'+', '.join(g['scene'] for g in goals if not (g['success_goal'] and g['ten_percent_goal']))],['同環境重跑原作者程式','尚未完成：作者GitHub只有README，無程式／tags／releases。5cm參考為我們實作，不冒稱作者原作。'],['相同規則跨兩資料使用','本輪所有場景使用同一份已凍結方法；推論程式不接收dataset名稱或GT。'],['未見森林的一般化','未驗證：ETH及Tongji均已參與開發；只換seed不構成新場景。'],['與論文比較限制','論文配對清單與成功率門檻未完全核對；低於報告值不能當成嚴格超越原作。'],['成功門檻','本專案自訂：rotation<2°且translation<0.5m，未稱為論文門檻。'],['誤差統計','主要表含所有可計算失敗；沒有變換仍算失敗，並列有限誤差數。成功案例另算。'],['成本解讀','每站成本另列；online不含提取／GT評分，部分採集有2程序CPU共用。嚴格速度看串行冷啟動；v3參考控制與統一版於同一新epoch比較。'],['研究完成狀態','保留本輪證據與未達成項目；原作baseline與獨立森林驗證仍缺，不能宣布整個研究完成。']]
     parameters=[['共用樹幹提取','沿用固定ETH版：DTM原設定、1cm體素、10cm法向半徑、垂直度0.90、分群20cm、階梯抽樣。未針對Plot切換DTM。'],['5cm參考','Thscore40、w10、N183、匹配容差0.05m、SVD；DTM與額外擬合檢查來自我們的實作，作者未釋出細節。'],['ETH固定版','匹配容差10cm、配準RANSAC、初始CN配對<6時證據補救，保留先前ETH設計。'],['新增refinement','完整6DOF點對平面迭代，不鎖roll/pitch或使用GT。'],['三個尺度','0.5m→0.2m→0.1m體素；最多30→25→20次迭代。'],['法向量規則','refinement半徑=2.5×體素，至少6鄰點，曲率≤0.1；兩站法向量夾角餘弦絕對值至少0.7。'],['錯配排除','最近鄰距離<3×體素、一對一目標、保留較近的70%；Huber尺度=max(0.05×體素,2×絕對殘差中位數)。'],['點數預算','每尺度來源最多20000點；雙向幾何評分各最多8000點；均用確定性取樣。'],['多初始值觸發','原CN配對<6時，取前20描述子候選、最多120證據邊、7140組水平雙點種子及10000相容三元組。'],['初始值選擇','保留最多256個相異姿態，加既有粗配準；既有姿態保留於最多8個refinement候選，再依雙向幾何及全樹位XY支持選擇。'],['選擇分數','雙向overlap/(0.03+最近鄰RMSE)乘log(1+全樹位XY支持數)；這是推論分數，不是e_p。'],['水平種子限制','僅初始值使用直立掃描假設；最終refinement可估roll/pitch及高度位移，沒有鎖成4DOF。'],['結構驗證修正','v3只用|normal.z|<0.3的垂直表面驗證，至少各30點，否則退回所有方向；驗證距離min(體素,0.2m)，降低水平地面偏差。'],['公平refinement','v3的5cm參考與ETH固定版都加上相同結構refinement；優化仍使用所有表面方向。'],['精度代價','refinement增加幾何快取、法向量與逐配對計算；不宣稱同時比原粗配準更快。']]
     evidence=[['第一次ETH→Tongji','保留fixed_eth_20261025：ETH選定補救在Tongji329/400，未看Tongji前凍結；未覆寫。'],['Tongji內部DTM','Plot2開發後在其餘Plot定位測試；已參與本輪方法假設，不再稱未見。'],['本輪統一benchmark','同一方法用於Tongji/ETH；兩資料均已開發接觸，可證benchmark改善，不能抹去接觸歷史。'],['完全獨立資料','目前沒有；WHU-Park只作額外診斷，不當作原論文WHU-FGI，本輪不混入它的分數。'],['原作者baseline','https://github.com/MercerSU/CircularMatch；commit1e9623f目前僅README，缺少可建置程式。'],['兩站限制','每次native inference僅讀來源與目標快取及其樹位；沒有GT參數、其他站圖或跨站地圖。'],['seed解讀','55配對重複10次，不是550個獨立場景；同時列所有seed均成功的唯一配對數。']]
@@ -250,6 +255,7 @@ v1在Plot4為96/100；v2擴大候選後退到78/100，說明候選多而幾何�
     if log.exists():
         content=log.read_text().split('\n## 本輪完成節點')[0]
         content=content.replace('結果仍待完成。','本輪結果見下方完成節點，規則未再更換。')
+        content=content.replace('五場景全成功與誤差目標尚待v3驗證；','五場景數值目標結果見下方完成節點；')
         content+='\n## 本輪完成節點\n\n'+ '\n'.join(f'- {g["scene"]}：{g["success"]}/{g["trials"]}成功，平均有限e_p={g["mean_ep_m"]}m。' for g in goals)+f'\n\n數值全成功={numeric_success}，五場景低於論文={numeric_error}，各降低10%={ten}；嚴格原作者baseline與未見森林驗證仍未完成。\n'
         log.write_text(content)
     print(json.dumps(goals,indent=2),flush=True)
