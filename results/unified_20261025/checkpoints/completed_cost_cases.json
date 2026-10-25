@@ -161,6 +161,27 @@
     }
   },
   {
+    "marker": "cold_benchmark/Plot1/reference5_refined_v3/complete.json",
+    "record": {
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "pair": "S2-S1",
+      "method": "reference5_refined_v3",
+      "wall_s": 703.8726905160001,
+      "cpu_s": 1861.969057,
+      "peak_child_rss_kib": 2056992,
+      "peak_scope": "largest native child RSS, excludes OS page cache and Python parent; processes run serially",
+      "resources": [
+        "cold_extract_Plot1_reference5_refined_v3_S2",
+        "cold_geometry_Plot1_reference5_refined_v3_S2",
+        "cold_extract_Plot1_reference5_refined_v3_S1",
+        "cold_geometry_Plot1_reference5_refined_v3_S1",
+        "cold_pair_Plot1_reference5_refined_v3"
+      ],
+      "runtime_epoch": "20261025T162801Z"
+    }
+  },
+  {
     "marker": "feature_benchmark/ETH/s1/complete.json",
     "record": {
       "label": "cold_extract_ETH_reference5_refined_v3_s1",
