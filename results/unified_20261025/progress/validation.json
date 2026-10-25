@@ -1,0 +1,39 @@
+{
+  "provisional": true,
+  "round_complete": false,
+  "accuracy_rows": 4950,
+  "primary_trials": 550,
+  "primary_success": 550,
+  "scenes": 5,
+  "datasets": 2,
+  "cold_complete": 9,
+  "cold_planned": 12,
+  "station_costs_complete": 4,
+  "station_costs_planned": 26,
+  "generated_at": "2026-10-26T02:29:51+08:00",
+  "tests_passed": 93,
+  "workbooks": [
+    {
+      "file": "comparison_simple_progress.xlsx",
+      "bytes": 10611,
+      "sha256": "5dffb13695c01771b7b8af12eb99aac7f8ec4d0aa6a414eeed524dffb9b4f335"
+    },
+    {
+      "file": "comparison_full_progress.xlsx",
+      "bytes": 1195342,
+      "sha256": "5919bea5131d9bf8f62c22cc026172d9621d2330a6ce35631ce71249325ab9e6"
+    }
+  ],
+  "source_sha256": {
+    "method_v3_frozen.json": "b28a5ccbbf4bcb2218c07160d7faa14bb9aef42d4702066676fbdb2ad3278849",
+    "eth_official10_summary.csv": "e2c809b991df6a647f12612fc4998ebd0f959aa1825b276520baf2bfaa5db3b9",
+    "registration_rows.csv": "e111ef1216ceff2ca3a11b16f38fcfa56c2d16fc599cc8570340c6ba6c1304a0",
+    "scene_summary.csv": "ecfce53105e724b880aebe54dd6a6ea9b227b92199617b1e643f855c85109305",
+    "dataset_summary.csv": "677e8718aef28f204f13182f02d0730f0b950deac59101b018ed3cc44577f2c7",
+    "ablation.csv": "c3c31d533df80858630cae575527c3762ab65c026578f5c8f0da9934366dda01",
+    "paper_reference_comparison.csv": "3cf390315569b6aa72074c2d662e10849591a56b9ffe3cee72a802c40a95a675"
+  },
+  "raw_rows_verified_against_csv": 4950,
+  "private_ids_checked": 72,
+  "private_ids_absent": true
+}
