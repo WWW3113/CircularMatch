@@ -28,6 +28,8 @@ ETH獨立兩站優先採用匹配閾值10cm＋配準RANSAC；六站圖路徑另�
 
 ## 試算表
 
+comparison_simple.xlsx為三張表的精簡版：調參重點、ETH各配對改善、Liang各樣區變化。首頁直接說明改動、變好或變壞及保留建議；與完整版使用同一份結果。重建：`python3 scripts/eth_trees/make_simple_workbook.py`，只需要openpyxl及已保存的完整版/摘要CSV，不需重跑實驗。
+
 comparison.xlsx採白底、灰色表頭、凍結表頭、篩選和統一數字格式；未取得配準資料顯示「未執行／待取得資料」，不是0%。包含1950筆ETH逐對結果、每seed、方法參數、共同成功案例精度、篩選紀錄、GT獨立性核對，以及180次外部提取結果、逐樣區摘要、論文子集比較、來源版本與限制。
 
 重建：先執行scripts/eth_trees/make_study_workbook.py，再用LibreOffice Calc將runs/input/comparison.xlsx重算輸出到本目錄。只在取得並核驗新資料、完成同參數測試後，才將datasets.json對應列改為available並加入結果路徑。
