@@ -1,0 +1,164 @@
+dataset_name: "Tongji-Trees"
+
+root: "/mnt/z/迷路的人/給竣程/forest_dataset/Tongji-Trees/"
+
+pairs:
+  - source: "Plot1/S2.ply"
+    target: "Plot1/S1.ply"
+    transformation_file: "Plot1/S2_S1.txt"
+
+  - source: "Plot1/S3.ply"
+    target: "Plot1/S1.ply"
+    transformation_file: "Plot1/S3_S1.txt"
+
+  - source: "Plot1/S3.ply"
+    target: "Plot1/S2.ply"
+    transformation_file: "Plot1/S3_S2.txt"
+
+  - source: "Plot1/S4.ply"
+    target: "Plot1/S1.ply"
+    transformation_file: "Plot1/S4_S1.txt"
+    
+  - source: "Plot1/S4.ply"
+    target: "Plot1/S2.ply"
+    transformation_file: "Plot1/S4_S2.txt"
+
+  - source: "Plot1/S4.ply"
+    target: "Plot1/S3.ply"
+    transformation_file: "Plot1/S4_S3.txt"
+
+  - source: "Plot1/S5.ply"
+    target: "Plot1/S1.ply"
+    transformation_file: "Plot1/S5_S1.txt"
+
+  - source: "Plot1/S5.ply"
+    target: "Plot1/S2.ply"
+    transformation_file: "Plot1/S5_S2.txt"
+
+  - source: "Plot1/S5.ply"
+    target: "Plot1/S3.ply"
+    transformation_file: "Plot1/S5_S3.txt"
+
+  - source: "Plot1/S5.ply"
+    target: "Plot1/S4.ply"
+    transformation_file: "Plot1/S5_S4.txt"
+
+  - source: "Plot2/S2.ply"
+    target: "Plot2/S1.ply"
+    transformation_file: "Plot2/S2_S1.txt"
+
+  - source: "Plot2/S3.ply"
+    target: "Plot2/S1.ply"
+    transformation_file: "Plot2/S3_S1.txt"
+
+  - source: "Plot2/S3.ply"
+    target: "Plot2/S2.ply"
+    transformation_file: "Plot2/S3_S2.txt"
+
+  - source: "Plot2/S4.ply"
+    target: "Plot2/S1.ply"
+    transformation_file: "Plot2/S4_S1.txt"
+
+  - source: "Plot2/S4.ply"
+    target: "Plot2/S2.ply"
+    transformation_file: "Plot2/S4_S2.txt"
+
+  - source: "Plot2/S4.ply"
+    target: "Plot2/S3.ply"
+    transformation_file: "Plot2/S4_S3.txt"
+
+  - source: "Plot2/S5.ply"
+    target: "Plot2/S1.ply"
+    transformation_file: "Plot2/S5_S1.txt"
+
+  - source: "Plot2/S5.ply"
+    target: "Plot2/S2.ply"
+    transformation_file: "Plot2/S5_S2.txt"
+
+  - source: "Plot2/S5.ply"
+    target: "Plot2/S3.ply"
+    transformation_file: "Plot2/S5_S3.txt"
+
+  - source: "Plot2/S5.ply"
+    target: "Plot2/S4.ply"
+    transformation_file: "Plot2/S5_S4.txt"
+
+  - source: "Plot3/S2.ply"
+    target: "Plot3/S1.ply"
+    transformation_file: "Plot3/S2_S1.txt"
+
+  - source: "Plot3/S3.ply"
+    target: "Plot3/S1.ply"
+    transformation_file: "Plot3/S3_S1.txt"
+
+  - source: "Plot3/S3.ply"
+    target: "Plot3/S2.ply"
+    transformation_file: "Plot3/S3_S2.txt"
+
+  - source: "Plot3/S4.ply"
+    target: "Plot3/S1.ply"
+    transformation_file: "Plot3/S4_S1.txt"
+
+  - source: "Plot3/S4.ply"
+    target: "Plot3/S2.ply"
+    transformation_file: "Plot3/S4_S2.txt"
+
+  - source: "Plot3/S4.ply"
+    target: "Plot3/S3.ply"
+    transformation_file: "Plot3/S4_S3.txt"
+
+  - source: "Plot3/S5.ply"
+    target: "Plot3/S1.ply"
+    transformation_file: "Plot3/S5_S1.txt"
+
+  - source: "Plot3/S5.ply"
+    target: "Plot3/S2.ply"
+    transformation_file: "Plot3/S5_S2.txt"
+
+  - source: "Plot3/S5.ply"
+    target: "Plot3/S3.ply"
+    transformation_file: "Plot3/S5_S3.txt"
+
+  - source: "Plot3/S5.ply"
+    target: "Plot3/S4.ply"
+    transformation_file: "Plot3/S5_S4.txt"
+
+  - source: "Plot4/S2.ply"
+    target: "Plot4/S1.ply"
+    transformation_file: "Plot4/S2_S1.txt"
+
+  - source: "Plot4/S3.ply"
+    target: "Plot4/S1.ply"
+    transformation_file: "Plot4/S3_S1.txt"
+
+  - source: "Plot4/S3.ply"
+    target: "Plot4/S2.ply"
+    transformation_file: "Plot4/S3_S2.txt"
+
+  - source: "Plot4/S4.ply"
+    target: "Plot4/S1.ply"
+    transformation_file: "Plot4/S4_S1.txt"
+
+  - source: "Plot4/S4.ply"
+    target: "Plot4/S2.ply"
+    transformation_file: "Plot4/S4_S2.txt"
+
+  - source: "Plot4/S4.ply"
+    target: "Plot4/S3.ply"
+    transformation_file: "Plot4/S4_S3.txt"
+
+  - source: "Plot4/S5.ply"
+    target: "Plot4/S1.ply"
+    transformation_file: "Plot4/S5_S1.txt"
+
+  - source: "Plot4/S5.ply"
+    target: "Plot4/S2.ply"
+    transformation_file: "Plot4/S5_S2.txt"
+
+  - source: "Plot4/S5.ply"
+    target: "Plot4/S3.ply"
+    transformation_file: "Plot4/S5_S3.txt"
+
+  - source: "Plot4/S5.ply"
+    target: "Plot4/S4.ply"
+    transformation_file: "Plot4/S5_S4.txt"
