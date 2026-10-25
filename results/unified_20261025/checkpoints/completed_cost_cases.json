@@ -120,6 +120,27 @@
     }
   },
   {
+    "marker": "cold_benchmark/Plot1/multi_refined/complete.json",
+    "record": {
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "pair": "S2-S1",
+      "method": "multi_refined",
+      "wall_s": 744.287508165,
+      "cpu_s": 1804.23452,
+      "peak_child_rss_kib": 2057184,
+      "peak_scope": "largest native child RSS, excludes OS page cache and Python parent; processes run serially",
+      "resources": [
+        "cold_extract_Plot1_multi_refined_S2",
+        "cold_geometry_Plot1_multi_refined_S2",
+        "cold_extract_Plot1_multi_refined_S1",
+        "cold_geometry_Plot1_multi_refined_S1",
+        "cold_pair_Plot1_multi_refined"
+      ],
+      "runtime_epoch": "20261025T162801Z"
+    }
+  },
+  {
     "marker": "cold_benchmark/Plot1/multi_v2_refined/complete.json",
     "record": {
       "dataset": "Tongji",
