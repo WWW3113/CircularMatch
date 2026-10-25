@@ -102,6 +102,9 @@ def main():
               '## 驗證與重現','',
               '81項C++測試通過，含6項新補救測試：預設不變、足夠匹配時不啟動、最高分已過門檻仍可補救、真實6DOF、拒絕僅XY相符而Z錯誤、支持不足保留原結果。舊300列變換/匹配已比對；兩個實際案例把評分GT平移100m後，推論結果與支持數不變。','',
               '先執行recovery_study.py discover產生舊seed候選比較，再執行audit_pair_failures.py與recovery_study.py freeze、extract、validate，最後執行report_recovery_study.py。資料及執行日誌保留在忽略的runs/；小型摘要與試算表由Git保存。']
+    lines += ['', '## 試算表', '',
+              '[完整版 comparison_full.xlsx](comparison_full.xlsx)：歷次比較、本輪全部逐次結果、變換、診斷與驗證紀錄。',
+              '[精簡版 comparison_simple.xlsx](comparison_simple.xlsx)：改動重點、各配對改善與主要逐次比較。']
     (OUT/'report.md').write_text('\n'.join(lines)+'\n')
     wb=Workbook();wb.remove(wb.active)
     overview=[['使用資料','每次只用兩站','每次只用兩站','沒有使用六站資訊'],

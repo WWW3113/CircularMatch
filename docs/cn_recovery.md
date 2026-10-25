@@ -41,3 +41,9 @@ discover只讀舊seed，產生三組候選比較及失敗追蹤。freeze保存�
 使用 `--diagnostics=DIR` 可輸出所有描述子配對及候選維度證據；附加的GT距離欄位僅為事後診斷。`--skip_point_error=1` 僅供診斷，省略讀取原始點雲及完整點誤差，該欄為NaN；正式驗證不使用此選項。
 
 新增模式才附加 recovery 系列CSV欄位；預設模式維持原本欄位。診斷已核對舊300列的匹配與變換保持一致；兩個實際補救案例把評分GT平移100m後，匹配、支持數與估計變換保持不變。
+
+## 完整版與精簡版試算表
+
+`report_recovery_study.py` 產生三張表的 `comparison_simple.xlsx`。需要完整資料時，再執行 `OPENBLAS_NUM_THREADS=1 python3 scripts/eth_trees/make_recovery_full_workbook.py`，然後用LibreOffice Calc把 `runs/input/comparison_full.xlsx` 重算輸出到 `results/eth_trees/failure_followup_20261025/`。
+
+完整版保留前輪17張表，再加入本輪14張表，共31張：600筆新seed驗證、1200筆舊seed候選比較、變換矩陣、每seed、各配對、失敗診斷、參數凍結、提取數與核驗紀錄。新舊seed及任務分開列出，資料列數不代表獨立森林數量。`full_workbook_validation.json` 保存公式與前輪資料核對結果，以及完整／精簡兩份檔案的SHA256。
