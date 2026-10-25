@@ -1,0 +1,34 @@
+{
+  "trials": 4950,
+  "unique_pairs": 55,
+  "datasets": 2,
+  "scenes": 5,
+  "seeds": [
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40
+  ],
+  "numeric_success_all_scenes": true,
+  "numeric_error_below_paper_all_scenes": true,
+  "ten_percent_all_scenes": true,
+  "strict_author_baseline_verified": false,
+  "unseen_forest_generalization_verified": false,
+  "code_commit": "e0c573c42433b65588d0a6158c0f7ae3ea09ec99",
+  "cold_benchmark_cases": 12,
+  "files": {
+    "registration_rows.csv": "e111ef1216ceff2ca3a11b16f38fcfa56c2d16fc599cc8570340c6ba6c1304a0",
+    "scene_summary.csv": "ecfce53105e724b880aebe54dd6a6ea9b227b92199617b1e643f855c85109305",
+    "dataset_summary.csv": "677e8718aef28f204f13182f02d0730f0b950deac59101b018ed3cc44577f2c7",
+    "ablation.csv": "c3c31d533df80858630cae575527c3762ab65c026578f5c8f0da9934366dda01",
+    "paper_reference_comparison.csv": "3cf390315569b6aa72074c2d662e10849591a56b9ffe3cee72a802c40a95a675",
+    "comparison_simple.xlsx": "7469844a06f271737e3f4bd502841f63d76a6f74861a3c5210103a7327b41448",
+    "comparison_full.xlsx": "371fd733e6dd213f683a500672a067e7cf949d573c6642598151b3e8d7dcc523"
+  }
+}

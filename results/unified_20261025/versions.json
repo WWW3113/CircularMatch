@@ -32,6 +32,6 @@
     "name": "unified_v3",
     "commit": "e0c573c42433b65588d0a6158c0f7ae3ea09ec99",
     "source": "method_v3_frozen.json",
-    "status": "preselected structural-verification candidate; full five-scene evaluation pending; both matched refinement controls retained"
+    "status": "full five-scene evaluation completed; preselected primary retained, both matched refinement controls included"
   }
 ]
