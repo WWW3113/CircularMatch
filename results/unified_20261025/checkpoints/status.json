@@ -1,5 +1,5 @@
 {
-  "saved_at_utc": "2026-10-25T16:56:28.107495+00:00",
+  "saved_at_utc": "2026-10-25T16:58:31.223656+00:00",
   "counts": {
     "final": {
       "pair_files": 55,
@@ -10,8 +10,8 @@
       "rows": 550
     },
     "v3": {
-      "pair_files": 25,
-      "rows": 728
+      "pair_files": 28,
+      "rows": 818
     },
     "final_evaluation": {
       "pair_files": 55,
@@ -27,9 +27,9 @@
     }
   },
   "files": {
-    "completed_predictions.csv": "2ad1893ab4c84ee5e6ec6ee1d9199edd7a72641d2000f380bf7a10590b38653c",
+    "completed_predictions.csv": "468ae4278f5ad226508f41132d73baf35f326805f08ea9ab0f9b47183b1576df",
     "completed_scores.csv": "488f57aa4e16bc30d5ba6442ec13374421a0a2c137866a8fb3c6d958b548287a",
-    "resources.jsonl": "75e4537f2321bfe50d0a415fd7ee65750030aa7f48f088f8ece4f7861c0b1145"
+    "resources.jsonl": "e3aafa28b71a98d3c6feb91956114a08b29ca90409887f20fbb6571fbf80248f"
   },
   "raw_clouds_uploaded": false,
   "tree_coordinates_uploaded": false,
