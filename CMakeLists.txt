@@ -56,6 +56,8 @@ endforeach()
 
 add_executable(cm_geometry_register apps/cm_geometry_register.cpp apps/geometry_refinement.cpp apps/app_common.cpp)
 target_link_libraries(cm_geometry_register PRIVATE cm_core)
+add_executable(cm_geometry_register_v2 apps/cm_geometry_register_v2.cpp apps/geometry_refinement.cpp apps/app_common.cpp)
+target_link_libraries(cm_geometry_register_v2 PRIVATE cm_core)
 add_executable(cm_evaluate_transforms apps/cm_evaluate_transforms.cpp apps/app_common.cpp)
 target_link_libraries(cm_evaluate_transforms PRIVATE cm_core)
 target_compile_options(cm_evaluate_transforms PRIVATE -O3 -fno-math-errno)

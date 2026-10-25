@@ -93,14 +93,15 @@ def freeze_method():
     if path.exists():assert {k:v for k,v in json.loads(path.read_text()).items() if k!='frozen_at_utc'}=={k:v for k,v in frozen.items() if k!='frozen_at_utc'}
     else:path.write_text(json.dumps(frozen,indent=2)+'\n')
 
-def infer_pair(pair,seeds=SEEDS,methods=None,tag='final'):
+def infer_pair(pair,seeds=SEEDS,methods=None,tag='final',version='v1'):
     methods=methods or ['reference5_raw','reference5_refined','eth10_raw','eth10_refined','multi_refined']
     directory=RUNS/tag/pair['scene'];directory.mkdir(parents=True,exist_ok=True);name=f'{pair["source"]}-{pair["target"]}'
     out=directory/(name+'.csv');batch=directory/(name+'.jobs');marker=directory/(name+'.complete')
     if marker.exists() and out.exists():return
     scans={s['scan']:s for s in manifest()['scans'] if s['scene']==pair['scene']};src=feature_dir(scans[pair['source']]);tgt=feature_dir(scans[pair['target']])
     batch.write_text(''.join(f'{method} {src}/step_seed{seed}_trees.csv {tgt}/step_seed{seed}_trees.csv {seed}\n' for seed in seeds for method in methods))
-    execute(tag+'_'+pair['scene']+'_'+name,[ROOT/'build/cm_geometry_register',f'--src_cache={RUNS}/geometry/{pair["scene"]}/{pair["source"]}.bin',f'--tgt_cache={RUNS}/geometry/{pair["scene"]}/{pair["target"]}.bin',f'--batch={batch}',f'--out={out}'])
+    binary='cm_geometry_register_v2' if version=='v2' else 'cm_geometry_register'
+    execute(tag+'_'+pair['scene']+'_'+name,[ROOT/'build'/binary,f'--src_cache={RUNS}/geometry/{pair["scene"]}/{pair["source"]}.bin',f'--tgt_cache={RUNS}/geometry/{pair["scene"]}/{pair["target"]}.bin',f'--batch={batch}',f'--out={out}'])
     assert len(read_csv(out))==len(seeds)*len(methods);marker.write_text('complete\n')
 
 def diagnose():
@@ -111,6 +112,17 @@ def infer():
     frozen=json.loads((OUT/'method_frozen.json').read_text())
     for path,digest in frozen['sha256'].items():assert sha(ROOT/path)==digest
     parallel(infer_pair,manifest()['pairs'],workers=1)
+
+def freeze_v2():
+    record=dict(frozen_at_utc=datetime.now(timezone.utc).isoformat(),reason='v1 missed four weak-correspondence cases; retain v1 and evaluate broader coverage on all scenes',code_commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),top_descriptor_candidates=20,max_evidence_edges=120,max_pair_seeds=7140,max_3d_triples=10000,max_diverse_poses=256,refined_candidates=8,initialization='upright yaw from two horizontal correspondences; vertical translation median; existing full6DOF coarse estimate retained; final refinement full6DOF',selection='bidirectional geometry quality times log1p(global horizontal tree support); no GT',sha256={p:sha(ROOT/p) for p in ['apps/cm_geometry_register_v2.cpp','build/cm_geometry_register_v2','apps/geometry_refinement.cpp','include/cm/geometry_refinement.hpp']})
+    path=OUT/'method_v2_frozen.json'
+    if path.exists():assert {k:v for k,v in json.loads(path.read_text()).items() if k!='frozen_at_utc'}=={k:v for k,v in record.items() if k!='frozen_at_utc'}
+    else:path.write_text(json.dumps(record,indent=2)+'\n')
+
+def infer_v2():
+    record=json.loads((OUT/'method_v2_frozen.json').read_text())
+    for path,digest in record['sha256'].items():assert sha(ROOT/path)==digest
+    for pair in manifest()['pairs']:infer_pair(pair,methods=['multi_v2_refined'],tag='v2',version='v2')
 
 def evaluate(tag='final'):
     def one(pair):
@@ -123,5 +135,48 @@ def evaluate(tag='final'):
         assert len(read_csv(est))==len(read_csv(out));marker.write_text('complete\n')
     parallel(one,manifest()['pairs'],workers=1)
 
+def cold_benchmark():
+    """Application caches are rebuilt from raw inputs for each version, serially."""
+    chosen=[next(p for p in manifest()['pairs'] if p['scene']==scene) for scene in ['ETH','Plot1']]
+    protocol=dict(pairs=chosen,seed=31,methods=['reference5_raw','reference5_refined','multi_refined','multi_v2_refined'],order='ETH forward; Tongji reverse (counterbalanced)',application_cache='cold: re-extract both stations and rebuild geometry if needed',filesystem_cache='uncontrolled/warm; no OS cache reset',threads=4,workers=1)
+    (OUT/'cold_benchmark_protocol.json').write_text(json.dumps(protocol,indent=2)+'\n')
+    results=[]
+    for pair in chosen:
+        methods=['reference5_raw','reference5_refined','multi_refined','multi_v2_refined']
+        if pair['dataset']=='Tongji':methods.reverse()
+        for method in methods:
+            dest=RUNS/'cold_benchmark'/pair['scene']/method;dest.mkdir(parents=True,exist_ok=True);marker=dest/'complete.json'
+            if marker.exists():results.append(json.loads(marker.read_text()));continue
+            start=time.monotonic();resources=[];caches=[];features=[]
+            for scan_name in [pair['source'],pair['target']]:
+                scan=next(s for s in manifest()['scans'] if s['scene']==pair['scene'] and s['scan']==scan_name)
+                directory=dest/scan_name;directory.mkdir(exist_ok=True);features.append(directory/'step_seed31_trees.csv')
+                resources.append(execute('cold_extract_'+pair['scene']+'_'+method+'_'+scan_name,[ROOT/'build/cm_extract_batch',f'--input={ROOT/scan["path"]}',f'--out={directory}','--config=config/default.ini','--version=step','--cluster.tolerance=0.20','--scanner.x0=0','--scanner.y0=0','--scanner.z0=0','--experiment.seed_base=31','--experiment.n_seeds=1']))
+                assert read_csv(features[-1])==read_csv(feature_dir(scan)/'step_seed31_trees.csv')
+                cache=directory/'geometry.bin';caches.append(cache)
+                if method!='reference5_raw':resources.append(execute('cold_geometry_'+pair['scene']+'_'+method+'_'+scan_name,[ROOT/'build/cm_geometry_register',f'--input={ROOT/scan["path"]}',f'--prepare={cache}']))
+                else:
+                    import struct
+                    with cache.open('wb') as f:
+                        f.write(b'CMGEO001')
+                        for h in [.5,.2,.1]:f.write(struct.pack('<dQ',h,0))
+            batch=dest/'jobs.txt';batch.write_text(f'{method} {features[0]} {features[1]} 31\n')
+            binary='cm_geometry_register_v2' if method=='multi_v2_refined' else 'cm_geometry_register'
+            resources.append(execute('cold_pair_'+pair['scene']+'_'+method,[ROOT/'build'/binary,f'--src_cache={caches[0]}',f'--tgt_cache={caches[1]}',f'--batch={batch}',f'--out={dest}/pose.csv']))
+            result=dict(dataset=pair['dataset'],scene=pair['scene'],pair=f'{pair["source"]}-{pair["target"]}',method=method,wall_s=time.monotonic()-start,cpu_s=sum(r['cpu_s'] for r in resources),peak_child_rss_kib=max(r['peak_rss_kib'] for r in resources),peak_scope='largest native child RSS, excludes OS page cache and Python parent; processes run serially',resources=[r['label'] for r in resources])
+            marker.write_text(json.dumps(result,indent=2)+'\n');results.append(result)
+    (OUT/'cold_benchmark.json').write_text(json.dumps(results,indent=2)+'\n')
+
+def feature_benchmark():
+    """Fresh one-seed cost for every station; shared by all method variants."""
+    def one(scan):
+        out=RUNS/'feature_benchmark'/scan['scene']/scan['scan'];out.mkdir(parents=True,exist_ok=True);marker=out/'complete.json'
+        if marker.exists():return json.loads(marker.read_text())
+        result=execute('feature_benchmark_'+scan['scene']+'_'+scan['scan'],[ROOT/'build/cm_extract_batch',f'--input={ROOT/scan["path"]}',f'--out={out}','--config=config/default.ini','--version=step','--cluster.tolerance=0.20','--scanner.x0=0','--scanner.y0=0','--scanner.z0=0','--experiment.seed_base=31','--experiment.n_seeds=1'])
+        assert read_csv(out/'step_seed31_trees.csv')==read_csv(feature_dir(scan)/'step_seed31_trees.csv')
+        result.update(dataset=scan['dataset'],scene=scan['scene'],scan=scan['scan'],seed=31,concurrent_jobs=4)
+        marker.write_text(json.dumps(result,indent=2)+'\n');return result
+    records=parallel(one,manifest()['scans']);(OUT/'feature_benchmark.json').write_text(json.dumps(records,indent=2)+'\n')
+
 if __name__=='__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('phase',choices=['audit','extract_eth','geometry','freeze_method','diagnose','infer','evaluate']);args=parser.parse_args();globals()[args.phase]()
+    parser=argparse.ArgumentParser();parser.add_argument('phase',choices=['audit','extract_eth','geometry','freeze_method','diagnose','infer','freeze_v2','infer_v2','evaluate','cold_benchmark','feature_benchmark']);args=parser.parse_args();globals()[args.phase]()
