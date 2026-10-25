@@ -1,0 +1,21 @@
+{
+  "perturbation_translation_m": [
+    100,
+    100,
+    100
+  ],
+  "checks": [
+    {
+      "seed": 14,
+      "pair": "s4-s5",
+      "estimated_transform_unchanged": true,
+      "recovery_support_unchanged": true
+    },
+    {
+      "seed": 11,
+      "pair": "s1-s6",
+      "estimated_transform_unchanged": true,
+      "recovery_support_unchanged": true
+    }
+  ]
+}

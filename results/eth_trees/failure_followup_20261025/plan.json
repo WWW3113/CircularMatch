@@ -1,0 +1,58 @@
+{
+  "base_commit": "b8e47c75f7b5928c6dc4137359001576aca86ee8",
+  "diagnosis_seeds": [
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "reserved_validation_seeds": [
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30
+  ],
+  "primary_baseline": "step/ctol0.20/verticality0.90; descriptor threshold0.10 and svd+ransac",
+  "primary_success": "rotation<2deg AND translation<0.5m; no ICP or 4DOF",
+  "scope": "same ETH forest; new seeds do not establish cross-forest generalization",
+  "paper_comparability": "paper does not specify success threshold or unambiguously identify ETH pair list; report all15 and official10 separately",
+  "ground_truth": "diagnosis and evaluation only; inference may never use it",
+  "candidate_recovery": [
+    {
+      "name": "triangle_scarce",
+      "mode": "triangles",
+      "trigger": 3
+    },
+    {
+      "name": "evidence_scarce",
+      "mode": "evidence",
+      "trigger": 3
+    },
+    {
+      "name": "evidence_weak",
+      "mode": "evidence",
+      "trigger": 6
+    }
+  ],
+  "recovery_constants": {
+    "top_candidates": 3,
+    "max_evidence_pairs": 60,
+    "minimum_3d_support": 6,
+    "full_3d_inlier_m": 0.3,
+    "pairwise_horizontal_length_tolerance_m": 0.2,
+    "geometry": "enumerate bounded evidence triples; full6DOF Kabsch; no iterative nearest-neighbour refinement or GT inference"
+  },
+  "selection": "maximum successes of svd+ransac on all150 old-seed cases; ties prefer earlier simpler candidate; use baseline if no improvement; then freeze once before extracting reserved seeds21-30"
+}

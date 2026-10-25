@@ -1,0 +1,58 @@
+{
+  "primary_solver": "svd+ransac",
+  "rescued_cases": [
+    {
+      "seed": 23,
+      "pair": "s1-s4"
+    },
+    {
+      "seed": 24,
+      "pair": "s1-s6"
+    },
+    {
+      "seed": 26,
+      "pair": "s1-s5"
+    },
+    {
+      "seed": 26,
+      "pair": "s1-s6"
+    },
+    {
+      "seed": 28,
+      "pair": "s1-s5"
+    },
+    {
+      "seed": 30,
+      "pair": "s1-s6"
+    },
+    {
+      "seed": 29,
+      "pair": "s2-s5"
+    },
+    {
+      "seed": 23,
+      "pair": "s4-s5"
+    }
+  ],
+  "regressed_cases": [],
+  "seed_gains": [
+    0,
+    0,
+    2,
+    1,
+    0,
+    2,
+    0,
+    1,
+    1,
+    1
+  ],
+  "winning_seeds": 6,
+  "losing_seeds": 0,
+  "tied_seeds": 4,
+  "paired_seed_sign_p": 0.03125,
+  "common_success_cases": 142,
+  "common_ep_baseline_m": 0.067380268495,
+  "common_ep_recovery_m": 0.06194308208,
+  "interpretation": "one prespecified frozen primary comparison; seeds repeat the same forest, not independent forests"
+}

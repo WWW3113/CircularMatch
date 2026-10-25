@@ -54,3 +54,5 @@ OPENBLAS_NUM_THREADS=1 python3 scripts/eth_trees/tune_registration.py report
 已另取得 Liang2018 的 TreeTool 公開處理版六樣區與 LHD 參考樹；固定 ETH 的三組擷取設定直接轉用。流程需要 NumPy、SciPy，執行 `scripts/eth_trees/download_liang_samples.py` 後再執行 `scripts/eth_trees/validate_liang_trees.py`。這份資料僅能驗證提取階段，未提供分站點雲與配準真值。版本與評分限制見 `results/liang_trees/transfer_20261025/README.md`。
 
 `OPENBLAS_NUM_THREADS=1 python3 scripts/eth_trees/make_study_workbook.py` 產生未重算的 `results/cross_dataset_20261025/runs/input/comparison.xlsx`。再用 LibreOffice Calc 重算至上層報告目錄；大型輸入保持在 Git 忽略目錄，結果摘要、來源、方法與全部逐對數據保存在白底灰表頭的試算表。
+
+後續兩站失敗診斷與選用的匹配補救方法見 `docs/cn_recovery.md`。舊seed11–20用於本輪設計；固定方案後另用seed21–30比較原本推薦組與補救組，輸出於 `results/eth_trees/failure_followup_20261025/`，不覆寫原研究報表。

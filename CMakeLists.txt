@@ -38,6 +38,7 @@ add_library(cm_core
   src/synth.cpp
   src/cn_descriptor.cpp
   src/cn_matching.cpp
+  src/cn_recovery.cpp
   src/registration.cpp
 )
 target_include_directories(cm_core PUBLIC include ${PCL_INCLUDE_DIRS})
@@ -70,6 +71,7 @@ if(CM_BUILD_TESTS)
     tests/test_synthetic.cpp
     tests/test_reproducibility.cpp
     tests/test_cn.cpp
+    tests/test_cn_recovery.cpp
   )
   target_link_libraries(cm_tests PRIVATE cm_core GTest::gtest GTest::gtest_main)
   include(GoogleTest)
