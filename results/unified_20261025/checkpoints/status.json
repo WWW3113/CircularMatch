@@ -1,5 +1,5 @@
 {
-  "saved_at_utc": "2026-10-25T17:19:10.795442+00:00",
+  "saved_at_utc": "2026-10-25T17:21:13.965438+00:00",
   "counts": {
     "final": {
       "pair_files": 55,
@@ -11,7 +11,7 @@
     },
     "v3": {
       "pair_files": 51,
-      "rows": 1502
+      "rows": 1526
     },
     "final_evaluation": {
       "pair_files": 55,
@@ -27,7 +27,7 @@
     }
   },
   "files": {
-    "completed_predictions.csv": "ac9559ec6b9eac534c289f6743e50f7d94058827624ede696c76210302e7a642",
+    "completed_predictions.csv": "977e7ab7527d9b34479f078bdde78c4dcb52a832a70b7db0d55222ae93786e48",
     "completed_scores.csv": "488f57aa4e16bc30d5ba6442ec13374421a0a2c137866a8fb3c6d958b548287a",
     "resources.jsonl": "dd7c4f9aa8383f4d691668dd37cf4ceec2e82b1e264183ffe4a22cf6f59ec20c"
   },
