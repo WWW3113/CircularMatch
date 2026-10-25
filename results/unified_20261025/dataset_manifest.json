@@ -775,5 +775,18 @@
     40
   ],
   "independent_unseen_scenes": [],
-  "raw_drive_ids_not_published": true
+  "raw_drive_ids_not_published": true,
+  "sources": {
+    "Tongji": "User-provided authorized folder only; private sharing URL kept outside Git",
+    "ETH": "https://prs.igp.ethz.ch/research/completed_projects/automatic_registration_of_point_clouds.html; original Trees ZIP; original SHA documented in results/eth_trees/download_record.txt"
+  },
+  "exposure_history": {
+    "ETH": "All6 stations used to design/tune CN recovery before first Tongji transfer; no unseen ETH forest remains",
+    "Plot1": "Fixed transfer and DTM position-only outcomes reviewed; no longer unseen for architecture design",
+    "Plot2": "Failure analysis and DTM development on seeds31-35; seed36-40 shares same stations; full DTM follow-up done",
+    "Plot3": "Fixed transfer and DTM position-only outcomes reviewed; no longer unseen",
+    "Plot4": "Fixed transfer and DTM position-only outcomes and weak-correspondence failures reviewed; no longer unseen"
+  },
+  "pair_list_comparability": "All40 supplied Tongji pairs, all15 unordered ETH pairs; exact paper lists not independently established; official ETH10 subset additionally reported",
+  "project_success_threshold": "rotation<2deg and translation<0.5m; paper success threshold not found in supplied text"
 }

@@ -1,0 +1,10 @@
+{
+  "code_commit": "b8eefb0c677a56d55428c86cb43839eec74639a0",
+  "openmp_threads": 4,
+  "omp_pair_workers": 1,
+  "prepare_workers": 4,
+  "cpu_quota": "400000 100000",
+  "memory_limit": "34359738368",
+  "architecture": "x86_64",
+  "timing": "resource wait4 captures each native job; evaluator separate; one-time station prep costs not counted as zero"
+}

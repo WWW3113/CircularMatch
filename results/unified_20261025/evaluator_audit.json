@@ -1,0 +1,10 @@
+{
+  "full_source_formula_verified": true,
+  "synthetic_translation_error": 0.1,
+  "finite_failure_retained": true,
+  "no_transform_counted_failure": true,
+  "direction_checks": 55,
+  "evaluator_sha256": "7d15a14e667390d6c69b01bc2b08da7c6332096fab43938f8490c26c1aea608d",
+  "evaluator_source_sha256": "06b361e1b31a637037f57ca5f0c62ea281cbfaf011742d722f397841fa33a68f",
+  "project_threshold_not_paper_threshold": true
+}
