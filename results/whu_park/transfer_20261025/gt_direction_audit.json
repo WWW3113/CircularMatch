@@ -1,0 +1,20 @@
+[
+  {
+    "source": 23,
+    "target": 24,
+    "provided_direction_share_within_030": 0.7608006341656758,
+    "reversed_direction_share_within_030": 0.04141894569956401
+  },
+  {
+    "source": 22,
+    "target": 24,
+    "provided_direction_share_within_030": 0.7280719280719281,
+    "reversed_direction_share_within_030": 0.014785214785214785
+  },
+  {
+    "source": 11,
+    "target": 12,
+    "provided_direction_share_within_030": 0.8172962226640159,
+    "reversed_direction_share_within_030": 0.043339960238568585
+  }
+]

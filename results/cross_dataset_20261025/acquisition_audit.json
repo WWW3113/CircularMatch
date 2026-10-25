@@ -37,7 +37,18 @@
     "PRF": "https://github.com/yiliutan/PRF — code/data not released",
     "CC-ICP": "https://github.com/MSpace-WHU/CC-ICP — no public forest benchmark download found in README"
   },
-  "cross_dataset_registration_tested": false,
+  "cross_dataset_registration_tested": true,
   "cross_dataset_tree_extraction_tested": true,
-  "cross_dataset_validation_scope": "ETH extraction settings transferred to six Liang/TreeTool processed plots; registration remains unevaluated"
+  "cross_dataset_validation_scope": "ETH original trees; Liang processed-tree extraction; WHU-Park processed park registration (fixed0/310, density-adapted exploratory2/310). WHU-Park is not FGI-Forest and does not establish forest generalization.",
+  "WHU_Park": {
+    "downloaded": true,
+    "scans": 32,
+    "provided_gt_pairs": 31,
+    "normal_radius_fixed_m": 0.1,
+    "normal_radius_density_adapted_m": 0.2,
+    "fixed_primary_success": 0,
+    "density_adapted_primary_success": 2,
+    "cases_per_method": 310,
+    "physical_sensor_origin_independently_verified": false
+  }
 }

@@ -1,0 +1,33 @@
+{
+  "scans": 32,
+  "provided_gt_pairs": 31,
+  "seeds": [
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30
+  ],
+  "extractions_checked": 640,
+  "registration_rows": 2480,
+  "zero_shot_primary_success": 0,
+  "adapted_primary_success": 2,
+  "primary_cases_per_method": 310,
+  "no_gt_parameter_tuning": true,
+  "physical_origin_independently_verified": false,
+  "workbook_sha256": "34bb7b76d2211b425db9e24051e3838de368a62c58ad7d7ab5c762511c67e4ef",
+  "sheets": [
+    "\u5148\u770b\u7d50\u679c",
+    "ETH\u8207Park\u6bd4\u8f03",
+    "Park\u5404\u914d\u5c0d",
+    "\u63d0\u53d6\u5361\u5728\u54ea\u88e1",
+    "\u53c3\u6578\u8207\u4f86\u6e90",
+    "\u5176\u4ed6\u68ee\u6797\u4f86\u6e90",
+    "\u5168\u90e8\u9010\u6b21\u7d50\u679c"
+  ]
+}
