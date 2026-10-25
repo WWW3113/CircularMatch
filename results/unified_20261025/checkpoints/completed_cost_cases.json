@@ -159,5 +159,177 @@
       ],
       "runtime_epoch": "20261025T162801Z"
     }
+  },
+  {
+    "marker": "feature_benchmark/ETH/s1/complete.json",
+    "record": {
+      "label": "cold_extract_ETH_reference5_refined_v3_s1",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/eth_trees/raw/trees/s1.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/cold_benchmark/ETH/reference5_refined_v3/s1",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 135.10166183699948,
+      "cpu_s": 382.446375,
+      "peak_rss_kib": 1456624,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "ETH",
+      "scene": "ETH",
+      "scan": "s1",
+      "seed": 31,
+      "concurrent_jobs": 1,
+      "reused_cold_extraction": true,
+      "reuse_policy": "first completed exact-config seed31 extraction in current runtime epoch; tree values already checked against canonical input; no timing-based selection",
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 10.38475,
+        "2": 7.38711,
+        "3": 92.16894,
+        "4": 0.28757,
+        "5": 0.005,
+        "6": 15.159559999999999,
+        "7": 1.75982,
+        "8": 0.0010500000000000002
+      }
+    }
+  },
+  {
+    "marker": "feature_benchmark/ETH/s2/complete.json",
+    "record": {
+      "label": "cold_extract_ETH_reference5_refined_v3_s2",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/eth_trees/raw/trees/s2.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/cold_benchmark/ETH/reference5_refined_v3/s2",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 178.43574154899943,
+      "cpu_s": 526.032224,
+      "peak_rss_kib": 1452676,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "ETH",
+      "scene": "ETH",
+      "scan": "s2",
+      "seed": 31,
+      "concurrent_jobs": 1,
+      "reused_cold_extraction": true,
+      "reuse_policy": "first completed exact-config seed31 extraction in current runtime epoch; tree values already checked against canonical input; no timing-based selection",
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 10.342450000000001,
+        "2": 9.24953,
+        "3": 124.63695,
+        "4": 0.23526,
+        "5": 0.00364,
+        "6": 25.75916,
+        "7": 2.15219,
+        "8": 0.01759
+      }
+    }
+  },
+  {
+    "marker": "feature_benchmark/Plot1/S1/complete.json",
+    "record": {
+      "label": "cold_extract_Plot1_multi_v3_refined_S1",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/tongji_trees/received/Tongji-Trees/Plot1/S1.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/cold_benchmark/Plot1/multi_v3_refined/S1",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 315.0995904829997,
+      "cpu_s": 814.167779,
+      "peak_rss_kib": 1980676,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "scan": "S1",
+      "seed": 31,
+      "concurrent_jobs": 1,
+      "reused_cold_extraction": true,
+      "reuse_policy": "first completed exact-config seed31 extraction in current runtime epoch; tree values already checked against canonical input; no timing-based selection",
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 17.74291,
+        "2": 9.81187,
+        "3": 181.90795,
+        "4": 0.8009400000000001,
+        "5": 0.01554,
+        "6": 54.63554,
+        "7": 8.76133,
+        "8": 0.022719999999999997
+      }
+    }
+  },
+  {
+    "marker": "feature_benchmark/Plot1/S2/complete.json",
+    "record": {
+      "label": "cold_extract_Plot1_multi_v3_refined_S2",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/tongji_trees/received/Tongji-Trees/Plot1/S2.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/cold_benchmark/Plot1/multi_v3_refined/S2",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 244.09437369099942,
+      "cpu_s": 687.8008699999999,
+      "peak_rss_kib": 2057276,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "scan": "S2",
+      "seed": 31,
+      "concurrent_jobs": 1,
+      "reused_cold_extraction": true,
+      "reuse_policy": "first completed exact-config seed31 extraction in current runtime epoch; tree values already checked against canonical input; no timing-based selection",
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 18.076880000000003,
+        "2": 12.935870000000001,
+        "3": 159.10769,
+        "4": 0.28707,
+        "5": 0.010029999999999999,
+        "6": 27.59968,
+        "7": 3.13381,
+        "8": 0.00376
+      }
+    }
   }
 ]
