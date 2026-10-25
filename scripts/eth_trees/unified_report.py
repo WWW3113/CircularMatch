@@ -135,6 +135,11 @@ def make_books(rows,summary,datasets,seeds,paired,goals,station,cold,resources):
     evidence=[['第一次ETH→Tongji','保留fixed_eth_20261025：ETH選定補救在Tongji329/400，未看Tongji前凍結；未覆寫。'],['Tongji內部DTM','Plot2開發後在其餘Plot定位測試；已參與本輪方法假設，不再稱未見。'],['本輪統一benchmark','同一方法用於Tongji/ETH；兩資料均已開發接觸，可證benchmark改善，不能抹去接觸歷史。'],['完全獨立資料','目前沒有；WHU-Park只作額外診斷，不當作原論文WHU-FGI，本輪不混入它的分數。'],['原作者baseline','https://github.com/MercerSU/CircularMatch；commit1e9623f目前僅README，缺少可建置程式。'],['兩站限制','每次native inference僅讀來源與目標快取及其樹位；沒有GT參數、其他站圖或跨站地圖。'],['seed解讀','55配對重複10次，不是550個獨立場景；同時列所有seed均成功的唯一配對數。'],['冷啟動樣本範圍','每方法每資料只量一個固定配對、seed31；記錄這次實際成本，不據此宣稱穩定速度排名或所有配對耗時。']]
     parameters.insert(1,['距離抽樣（沿用）','階梯式，依掃描原點的水平距離：小於5m保留50%、5至小於10m保留75%、10m以上保留100%；seed31–40。各站掃描原點沿用(0,0,0)假設。'])
     evidence.append(['環境中斷與續跑','環境重啟的未完成批次按同一case補算，不新增樣本；第一筆完整輸出保留，no_transform完整輸出仍算失敗。550/550指恢復後的固定完整case結果，不表示整個執行從未中斷。被殺死而未返回wait4的程序成本未知，未冒充已量測。'])
+    epoch=json.loads((study.OUT/'current_epoch.json').read_text())
+    quota,period=epoch['cpu_quota'].split()
+    cores=f'{int(quota)/int(period):g}' if quota.isdigit() else quota
+    memory=f'{int(epoch["memory_limit"])/2**30:g}GiB' if epoch['memory_limit'].isdigit() else epoch['memory_limit']
+    evidence.append(['本輪硬體與執行緒',f'{epoch["cpu_model"]}；CPU配額{cores}、記憶體上限{memory}，每程序4 OpenMP threads。新epoch={epoch["id"]}；站點成本最多4工作並行，冷啟動native串行。舊epoch時間另作歷史紀錄。'])
     failures=[r for r in rows if r['method']==PRIMARY and not r['success']]
     def common(book,simple=False):
         simple_conclusion=[
