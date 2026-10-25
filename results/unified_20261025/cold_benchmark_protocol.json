@@ -24,7 +24,9 @@
     "reference5_raw",
     "reference5_refined",
     "multi_refined",
-    "multi_v2_refined"
+    "multi_v2_refined",
+    "reference5_refined_v3",
+    "multi_v3_refined"
   ],
   "order": "ETH forward; Tongji reverse (counterbalanced)",
   "application_cache": "cold: re-extract both stations and rebuild geometry if needed",
