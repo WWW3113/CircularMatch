@@ -95,5 +95,17 @@
     "success_rotation_lt_deg": 2,
     "success_translation_lt_m": 0.5,
     "paper_success_definition_verified": false
+  },
+  "verification_v3": {
+    "vertical_abs_normal_z_lt": 0.3,
+    "min_vertical_points_each_cloud": 30,
+    "verification_gate": "min(voxel_m,0.2)",
+    "target_index": "vertical points only; all directions fallback when insufficient",
+    "optimization": "all directions, same full6DOF solver",
+    "applied_to": [
+      "reference5_refined_v3",
+      "eth10_refined_v3",
+      "multi_v3_refined"
+    ]
   }
 }

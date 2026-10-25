@@ -31,6 +31,8 @@ def execute(label,args):
         child=subprocess.Popen(command,cwd=ROOT,stdout=log,stderr=subprocess.STDOUT)
         _,status,usage=os.wait4(child.pid,0);child.returncode=os.waitstatus_to_exitcode(status)
     record=dict(label=label,command=command,exit_code=child.returncode,wall_s=time.monotonic()-started,cpu_s=usage.ru_utime+usage.ru_stime,peak_rss_kib=usage.ru_maxrss)
+    epoch=OUT/'current_epoch.json'
+    record['runtime_epoch']=json.loads(epoch.read_text())['id'] if epoch.exists() else 'legacy_before_environment_restart'
     with LOCK:
         with (RUNS/'resources.jsonl').open('a') as f:f.write(json.dumps(record)+'\n')
     if child.returncode:raise RuntimeError(str(logfile))
@@ -200,6 +202,7 @@ def cold_benchmark():
             binary='cm_geometry_register_v3' if method.endswith('_v3') or method=='multi_v3_refined' else ('cm_geometry_register_v2' if method=='multi_v2_refined' else 'cm_geometry_register')
             resources.append(execute('cold_pair_'+pair['scene']+'_'+method,[ROOT/'build'/binary,f'--src_cache={caches[0]}',f'--tgt_cache={caches[1]}',f'--batch={batch}',f'--out={dest}/pose.csv']))
             result=dict(dataset=pair['dataset'],scene=pair['scene'],pair=f'{pair["source"]}-{pair["target"]}',method=method,wall_s=time.monotonic()-start,cpu_s=sum(r['cpu_s'] for r in resources),peak_child_rss_kib=max(r['peak_rss_kib'] for r in resources),peak_scope='largest native child RSS, excludes OS page cache and Python parent; processes run serially',resources=[r['label'] for r in resources])
+            result['runtime_epoch']=resources[-1].get('runtime_epoch','legacy_before_environment_restart')
             marker.write_text(json.dumps(result,indent=2)+'\n');results.append(result)
     (OUT/'cold_benchmark.json').write_text(json.dumps(results,indent=2)+'\n')
 

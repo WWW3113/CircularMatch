@@ -1,3 +1,19 @@
+目前可能另有assist_unified.py由尾端處理ETH，僅精確重用固定方法的完整批次；它不接收GT。恢復前也要檢查此程序，避免重複排程。準確度採集後段為兩個程序、各4threads共用4core配額；冷啟動對照仍串行。
+
+# 新環境續跑入口
+
+目前以 `scripts/eth_trees/resume_unified.py` 為單一控制器，使用controller.lock避免重複。主日誌是 `data/unified/resume-controller.log`；自動備份日誌是 `checkpoint-watch-resumed.log`。先確認是否仍有該程序，別重複啟動。
+
+若程序已因環境重啟消失，執行：
+
+```bash
+OPENBLAS_NUM_THREADS=1 python -u scripts/eth_trees/resume_unified.py >data/unified/resume-controller.log 2>&1
+```
+
+順序為：還原checkpoint→建置及測試v3→凍結／驗證v3→僅補缺少推論→評分→補冷啟動成本→26站成本。已完成marker會跳過。另以checkpoint_watch.py定時備份；環境重啟會殺背景程序，不能只看舊日誌推測仍在跑。冷啟動的不同runtime_epoch不可混作嚴格速度比較。
+
+---
+
 # 可續跑狀態與指令
 
 這是進行中的統一方法研究，尚未宣稱整個專案完成。先讀 `checkpoints/status.json` 的保存時間與實際列數；不要憑本文的數字推測最新進度。
