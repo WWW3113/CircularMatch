@@ -143,7 +143,7 @@ def make_books(rows,summary,datasets,seeds,paired,goals,station,cold,resources):
             ['成功怎麼算','本專案：旋轉誤差小於2度且平移誤差小於50公分；論文門檻未查明，配對清單也未完全核對。']]
         table(book,'先看結論',['項目','說明'],simple_conclusion if simple else conclusion,[30,100] if simple else [32,145])
         chosen=[r for r in summary if not simple or r['method'] in ['reference5_raw','reference5_refined_v3',PRIMARY]]
-        ws=table(book,'逐場景比較',['資料集','場景','方法','成功次數','試驗次數','成功率','所有seed皆成功配對','配對數','有限誤差案例數','平均e_p cm（含可算失敗）','中位e_p cm','P90 e_p cm','成功案例平均e_p cm','平均online ms'],[[r['dataset'],r['scene'],NAMES[r['method']],r['success_trials'],r['trials'],r['success_rate'],r['pairs_all_seeds_success'],r['pairs'],r['finite_error_cases'],100*r['mean_finite_ep_m'] if r['mean_finite_ep_m'] is not None else None,100*r['median_finite_ep_m'] if r['median_finite_ep_m'] is not None else None,100*r['p90_finite_ep_m'] if r['p90_finite_ep_m'] is not None else None,100*r['mean_success_ep_m'] if r['mean_success_ep_m'] is not None else None,r['mean_online_ms']] for r in chosen],[20,18,48,18,18,20,30,18,26,36,24,24,32,28])
+        ws=table(book,'逐場景比較',['資料集','場景','方法','成功次數','試驗次數','成功率','所有seed皆成功配對','配對數','有限誤差案例數','平均e_p cm（含可算失敗）','中位e_p cm','P90 e_p cm','成功案例平均e_p cm','平均online ms','平均旋轉誤差°','平均平移誤差cm'],[[r['dataset'],r['scene'],NAMES[r['method']],r['success_trials'],r['trials'],r['success_rate'],r['pairs_all_seeds_success'],r['pairs'],r['finite_error_cases'],100*r['mean_finite_ep_m'] if r['mean_finite_ep_m'] is not None else None,100*r['median_finite_ep_m'] if r['median_finite_ep_m'] is not None else None,100*r['p90_finite_ep_m'] if r['p90_finite_ep_m'] is not None else None,100*r['mean_success_ep_m'] if r['mean_success_ep_m'] is not None else None,r['mean_online_ms'],r['mean_rotation_deg'],100*r['mean_translation_m'] if r['mean_translation_m'] is not None else None] for r in chosen],[20,18,48,18,18,20,30,18,26,36,24,24,32,28,26,28])
         if simple:
             book.remove(ws);compact=[]
             for scene in PAPER:
@@ -195,7 +195,7 @@ def make_books(rows,summary,datasets,seeds,paired,goals,station,cold,resources):
             costrows.append(['ETH' if scene=='ETH' else 'Tongji',scene,parts[-1],'GT全來源點評分（非推論）',r['wall_s'],r['peak_process_mib'],'包含評分讀原始來源點；另列成本，不與論文matching時間比較'])
     if (OUT/'station_feature_cost.csv').exists():
         for r in read_csv(OUT/'station_feature_cost.csv'):
-            for name,key in [('提取DTM及高度切片','dtm_height_s'),('提取體素','voxel_s'),('提取法向量','normal_s'),('提取垂直度','verticality_s'),('距離抽樣','retention_s'),('分群','clustering_s'),('圓柱擬合','cylinder_s'),('地面交點','position_s'),('讀檔及未細分開銷','io_and_other_residual_s'),('單站完整提取seed31','wall_s')]:costrows.append([r['dataset'],r['scene'],r['scan'],name,float(r[key]),float(r['peak_process_mib']) if key=='wall_s' else None,f'全26站seed31實測；{r["concurrent_jobs"]}並行／每程序4threads；重用相同cold提取={r["reused_cold_extraction"]}；其他seed另加抽樣至交點成本'])
+            for name,key in [('提取DTM及高度切片','dtm_height_s'),('提取體素','voxel_s'),('提取法向量','normal_s'),('提取垂直度','verticality_s'),('距離抽樣','retention_s'),('分群','clustering_s'),('圓柱擬合','cylinder_s'),('地面交點','position_s'),('讀檔及未細分開銷','io_and_other_residual_s'),('單站完整提取seed31','wall_s')]:costrows.append([r['dataset'],r['scene'],r['scan'],name,float(r[key]),float(r['peak_process_mib']) if key=='wall_s' else None,f'全26站seed31實測；最多{r["concurrent_jobs"]}工作並行／每程序4threads；重用相同cold提取={r["reused_cold_extraction"]}；其他seed另加抽樣至交點成本'])
     table(full,'時間與記憶體',['資料集','場景','站或方法','階段','秒','峰值子程序MiB','成本範圍'],costrows,[20,18,48,32,24,30,125])
     budget=[]
     for title,prefix in [('幾何快取','geometry_'),('v1準確度採集','final_'),('v2準確度採集','v2_'),('v3準確度採集','v3_'),('GT評分','evaluate_'),('冷啟動對照','cold_'),('26站提取成本','feature_benchmark_')]:
@@ -254,7 +254,7 @@ v1在Plot4為96/100；v2擴大候選後退到78/100，說明候選多而幾何�
 - comparison_full.xlsx：全部4950列、消融、Tongji等權／配對加權、ETH單列、時間／記憶體、失敗、seed變異、一般化限制。
 - registration_rows.csv與scene_summary.csv保留可計算失敗；status及finite_error_cases避免把缺輸出當零誤差。
 - v3的相同refinement控制與統一版冷啟動在同一新runtime epoch比較。舊epoch時間只作歷史紀錄；並行準確度採集online時間不是獨占速度基準。
-- 每站幾何快取與seed31完整提取另列，不當作免費；其中4站重用當前epoch第一筆相同設定的冷啟動提取實測（串行），其餘22站以4工作並行量測，每程序4threads。此為共用成本重用，不依耗時挑選；不同並行數不可當獨占速度直接比較。12筆冷啟動重建兩站應用快取，OS檔案快取未重置並反向排序。記憶體為最大子程序RSS，不含Python父程序及OS page cache。
+- 每站幾何快取與seed31完整提取另列，不當作免費；其中4站重用當前epoch第一筆相同設定的冷啟動提取實測（串行），其餘22站以最多4工作並行量測，每程序4threads。此為共用成本重用，不依耗時挑選；不同並行數不可當獨占速度直接比較。12筆冷啟動重建兩站應用快取，OS檔案快取未重置並反向排序。記憶體為最大子程序RSS，不含Python父程序及OS page cache。
 - GT全點評分成本獨立列出，不混入推論；不同硬體的論文matching-only時間不作直接比較。
 
 ## 續跑與重現
