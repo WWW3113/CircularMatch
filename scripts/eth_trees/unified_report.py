@@ -111,6 +111,12 @@ def costs():
 
 def make_books(rows,summary,datasets,seeds,paired,goals,station,cold,resources):
     primary=[r for r in summary if r['method']==PRIMARY];numeric_success=all(g['success_goal'] for g in goals);numeric_error=all(g['error_goal'] for g in goals);ten=all(g['success_goal'] and g['ten_percent_goal'] for g in goals)
+    regressions=[]
+    for r in primary:
+        old=next(x for x in summary if x['scene']==r['scene'] and x['method']=='multi_v2_refined')
+        if r['mean_finite_ep_m'] is not None and old['mean_finite_ep_m'] is not None and r['mean_finite_ep_m']>old['mean_finite_ep_m']+1e-6:
+            regressions.append(f'{r["scene"]}平均e_p比v2增加{1000*(r["mean_finite_ep_m"]-old["mean_finite_ep_m"]):.3f}毫米，成功率{old["success_trials"]}/{old["trials"]}→{r["success_trials"]}/{r["trials"]}')
+    regression_note='；'.join(regressions) if regressions else '各場景平均有限e_p相對v2未增加超過0.001毫米。'
     versions_path=OUT/'versions.json'
     versions=json.loads(versions_path.read_text())
     for version in versions:
@@ -162,6 +168,7 @@ def make_books(rows,summary,datasets,seeds,paired,goals,station,cold,resources):
                 ['最後微調','新增由粗到細的點對平面微調（50→20→10cm尺度），能修正旋轉與平移；5cm參考也加相同微調作公平比較。'],
                 ['擴大候選曾變壞','弱配對時多試幾個起始位置；Plot4由v1的96/100退到v2的78/100，原因是錯誤位置的地面也可能重疊。'],
                 ['本輪修正','用接近垂直的表面驗證位置，減少地面誤導；最後微調仍使用各方向的表面。Plot4本輪為'+str(by_scene['Plot4'][PRIMARY]['success_trials'])+'/100。'],
+                ['本輪仍有的誤差退步',regression_note],
                 ['哪些變好、哪些變壞','「逐場景比較」並列參考、參考加相同微調、統一版；完整消融保留每次新增成功與退步，沒有挑最佳seed。']]
             table(book,'改了哪些參數',['改動','白話說明與結果'],simple_parameters,[30,100])
         else:table(book,'改了哪些參數',['項目','目的與設定'],parameters,[32,145])
@@ -193,7 +200,7 @@ def make_books(rows,summary,datasets,seeds,paired,goals,station,cold,resources):
     official=read_csv(OUT/'eth_official10_summary.csv')
     table(full,'ETH官方10補充',['方法','成功試驗','試驗數','配對數','有限誤差案例數','平均有限e_p cm','中位e_p cm','P90 e_p cm','用途'],[[NAMES[r['method']],int(r['success']),100,10,int(r['finite_error_cases']),100*float(r['mean_finite_ep_m']) if r['mean_finite_ep_m'] else None,100*float(r['median_finite_ep_m']) if r['median_finite_ep_m'] else None,100*float(r['p90_finite_ep_m']) if r['p90_finite_ep_m'] else None,'補充；主要ETH仍全部15對，未以此刪除困難配對'] for r in official],[48,22,18,18,26,30,24,24,110])
     if failures:table(full,'失敗分析',['場景','配對','seed','狀態','旋轉度','平移m','e_p m','候選數','幾何overlap'],[[r['scene'],r['pair'],r['seed'],r['status'],value(r['rot_err_deg']),value(r['trans_err_m']),value(r['e_p_m']),value(r['proposal_count']),value(r['geo_overlap'])] for r in failures],[18,25,18,28,24,24,24,24,26])
-    else:table(full,'失敗分析',['項目','說明'],[['主要方法','本輪550次均通過專案門檻；有限測試不保證所有森林。'],['原始失敗','其他版本失敗與有限誤差均保留於全部逐次結果；消融列出新增／退步。']],[32,145])
+    else:table(full,'失敗分析',['項目','說明'],[['主要方法','本輪550次均通過專案門檻；有限測試不保證所有森林。'],['原始失敗','其他版本失敗與有限誤差均保留於全部逐次結果；消融列出新增／退步。'],['相對v2的平均誤差退步',regression_note]],[32,145])
     for title,records in [('全部逐次結果',rows),('每seed變異',seeds),('資源原始紀錄',resources),('固定配對清單',study.manifest()['pairs'])]:
         h=list(records[0]);table(full,title,h,[[value(r.get(k,'')) for k in h] for r in records],[38 if k in ['method','command','gt'] else 26 for k in h])
     table(full,'欄位說明',['欄位','說明'],[['e_p_m','Eq8：全部來源點在估計與GT變換下位置差的平均；不是ICP fitness或最近鄰。'],['geo_overlap / geo_rmse','推論幾何評分；v3使用垂直結構、v1/v2用全體表面，不宜直接比數值；與GT無關，不能取代e_p。'],['status','computed可計算變換誤差；no_transform沒有有效輸出仍算失敗。'],['mean_finite_ep','包含可計算失敗；沒有變換者無法計算，須同時核對finite_error_cases。'],['online_ms','原生配對推論時間，不含快取讀檔及站點預處理；其中未細分的提案生成包含在總計。'],['peak_process_mib','Linux wait4最大子程序RSS；並行快取時不等於整台機器峰值；不含OS page cache。'],['matching / refinement公平性','baseline亦有同一refinement版本；先比較成功率，再比較共同成功案例誤差。'],['原作baseline','尚缺作者程式；reference5是參考實作，不可標為嚴格原作重現。']],[42,145])
@@ -230,6 +237,8 @@ def make_books(rows,summary,datasets,seeds,paired,goals,station,cold,resources):
 ## 版本與消融
 
 v1在Plot4為96/100；v2擴大候選後退到78/100，說明候選多而幾何評分偏好重疊地面會造成退步。v3改結構驗證，不改全6DOF求解。全55配對均重新評估，沒有只補失敗。
+
+相對v2仍有的平均誤差退步：{regression_note}。統一版保留此結果，沒有為該場景換回其他版本。
 
 第一個ETH凍結後的Tongji遷移仍在 `../tongji_trees/fixed_eth_20261025`；DTM定位／完整Plot2追測仍在 `../tongji_trees/dtm_height_20261025`。本輪未覆寫這些紀錄。配置、程式hash與各候選預算見protocol、method_frozen、method_v2_frozen、method_v3_frozen、unified_config及versions。
 
