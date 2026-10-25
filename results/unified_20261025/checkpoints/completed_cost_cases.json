@@ -370,6 +370,47 @@
     }
   },
   {
+    "marker": "feature_benchmark/ETH/s4/complete.json",
+    "record": {
+      "label": "feature_benchmark_ETH_s4",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/eth_trees/raw/trees/s4.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/feature_benchmark/ETH/s4",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 584.4461661169989,
+      "cpu_s": 515.33158,
+      "peak_rss_kib": 1500264,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "ETH",
+      "scene": "ETH",
+      "scan": "s4",
+      "seed": 31,
+      "concurrent_jobs": 4,
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 105.37095,
+        "2": 110.737,
+        "3": 278.06089000000003,
+        "4": 1.26185,
+        "5": 0.00817,
+        "6": 49.11048,
+        "7": 5.70172,
+        "8": 0.01222
+      }
+    }
+  },
+  {
     "marker": "feature_benchmark/Plot1/S1/complete.json",
     "record": {
       "label": "cold_extract_Plot1_multi_v3_refined_S1",
