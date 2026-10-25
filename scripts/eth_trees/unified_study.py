@@ -246,6 +246,22 @@ def checkpoint():
             try:json.loads(line);valid.append(line)
             except json.JSONDecodeError:pass
         temp.write_text('\n'.join(valid)+'\n');temp.replace(target);files.append(target.name)
+    # Preserve completed cost jobs before the whole 12/26-job phase finishes.
+    # No raw input or derived point/axis coordinates enter these records.
+    import re
+    cost_cases=[]
+    for phase in ['cold_benchmark','feature_benchmark']:
+        for marker in sorted((RUNS/phase).glob('*/*/complete.json')):
+            record=json.loads(marker.read_text())
+            if phase=='feature_benchmark':
+                log=RUNS/'logs'/(record['label']+'.log')
+                if log.exists():record['stage_times_s']={k:float(ms)/1000 for k,ms in re.findall(r'^\s+(\d) [\w+]+\s+\d+\s+([\d.]+)',log.read_text(),re.M)}
+            cost_cases.append(dict(marker=str(marker.relative_to(RUNS)),record=record))
+    target=destination/'completed_cost_cases.json';temp=target.with_suffix('.tmp')
+    temp.write_text(json.dumps(cost_cases,indent=2)+'\n');temp.replace(target);files.append(target.name)
+    tables={str(p.relative_to(RUNS)):p.read_text() for p in sorted((RUNS/'geometry').glob('*/*.bin.timing.csv'))}
+    target=destination/'geometry_cost_tables.json';temp=target.with_suffix('.tmp')
+    temp.write_text(json.dumps(tables,indent=2)+'\n');temp.replace(target);files.append(target.name)
     state=dict(saved_at_utc=datetime.now(timezone.utc).isoformat(),counts=counts,files={name:sha(destination/name) for name in files},raw_clouds_uploaded=False,tree_coordinates_uploaded=False,cold_benchmark_complete=(OUT/'cold_benchmark.json').exists(),feature_benchmark_complete=(OUT/'feature_benchmark.json').exists())
     temp=destination/'status.tmp';temp.write_text(json.dumps(state,indent=2)+'\n');temp.replace(destination/'status.json');print(json.dumps(counts),flush=True)
 
@@ -267,6 +283,19 @@ def restore_checkpoint(destination=None):
             write_csv(out,list(existing.values()))
             expected=50 if run.startswith('final') else (30 if run.startswith('v3') else 10)
             if len(existing)==expected:marker.write_text('restored complete\n')
+    cost_file=source/'completed_cost_cases.json'
+    if cost_file.exists():
+        for case in json.loads(cost_file.read_text()):
+            relative=Path(case['marker'])
+            assert not relative.is_absolute() and '..' not in relative.parts and relative.parts[0] in ['cold_benchmark','feature_benchmark']
+            marker=target/relative
+            if not marker.exists():marker.parent.mkdir(parents=True,exist_ok=True);marker.write_text(json.dumps(case['record'],indent=2)+'\n')
+    tables=source/'geometry_cost_tables.json'
+    if tables.exists():
+        for name,body in json.loads(tables.read_text()).items():
+            relative=Path(name);assert not relative.is_absolute() and '..' not in relative.parts and relative.parts[0]=='geometry'
+            path=target/relative
+            if not path.exists():path.parent.mkdir(parents=True,exist_ok=True);path.write_text(body)
     if not (target/'resources.jsonl').exists() and (source/'resources.jsonl').exists():target.mkdir(parents=True,exist_ok=True);shutil.copyfile(source/'resources.jsonl',target/'resources.jsonl')
     print('CHECKPOINT RESTORED',target,flush=True)
 

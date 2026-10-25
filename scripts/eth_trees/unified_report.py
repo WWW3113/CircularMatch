@@ -99,8 +99,10 @@ def costs():
     if (OUT/'feature_benchmark.json').exists():
         features=[]
         for r in json.loads((OUT/'feature_benchmark.json').read_text()):
-            log=(RUNS/'logs'/(r['label']+'.log')).read_text()
-            stages={int(k):float(ms)/1000 for k,ms in re.findall(r'^\s+(\d) [\w+]+\s+\d+\s+([\d.]+)',log,re.M)}
+            if 'stage_times_s' in r:stages={int(k):float(v) for k,v in r['stage_times_s'].items()}
+            else:
+                log=(RUNS/'logs'/(r['label']+'.log')).read_text()
+                stages={int(k):float(ms)/1000 for k,ms in re.findall(r'^\s+(\d) [\w+]+\s+\d+\s+([\d.]+)',log,re.M)}
             assert set(stages)==set(range(9))
             features.append(dict(dataset=r['dataset'],scene=r['scene'],scan=r['scan'],seed=31,wall_s=r['wall_s'],cpu_s=r['cpu_s'],peak_process_mib=r['peak_rss_kib']/1024,dtm_height_s=stages[1],voxel_s=stages[2],normal_s=stages[3],verticality_s=stages[4],retention_s=stages[5],clustering_s=stages[6],cylinder_s=stages[7],position_s=stages[8],io_and_other_residual_s=r['wall_s']-sum(stages.values()),concurrent_jobs=4))
         write_csv(OUT/'station_feature_cost.csv',features)

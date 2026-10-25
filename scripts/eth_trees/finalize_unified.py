@@ -20,6 +20,10 @@ def ready():
         try:
             if len(json.loads(p.read_text()))!=count:return False
         except json.JSONDecodeError:return False
+    # Let the controller finish its last checkpoint before final publication.
+    with (s.RUNS/'controller.lock').open('a') as lock:
+        try:fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+        except BlockingIOError:return False
     return True
 
 def compare(raw,actual):
@@ -73,6 +77,7 @@ def main():
     while not ready():time.sleep(20)
     subprocess.run(['python','scripts/eth_trees/unified_report.py'],cwd=s.ROOT,check=True)
     validation=validate()
+    s.publish_checkpoint()
     flag=s.OUT/'FINAL_COMPLETE.json'
     # This stops periodic checkpointing, not the research acceptance checks.
     flag.write_text(json.dumps(dict(round_complete=True,research_project_complete=False,note='Strict author baseline and unseen-forest validation remain unverified; see report for any additional unmet numerical goals',validation_sha256=s.sha(s.OUT/'workbook_validation.json')),indent=2)+'\n')
