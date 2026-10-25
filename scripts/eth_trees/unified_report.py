@@ -191,6 +191,14 @@ def make_books(rows,summary,datasets,seeds,paired,goals,station,cold,resources):
         else:table(book,'改了哪些參數',['項目','目的與設定'],parameters,[32,145])
     simple=Workbook();simple.remove(simple.active);common(simple,True);simple.save(OUT/'comparison_simple.xlsx')
     full=Workbook();full.remove(full.active);common(full)
+    settings=[]
+    def flatten(path,item):
+        if isinstance(item,dict):
+            for key,val in item.items():flatten(path+'.'+key if path else key,val)
+        else:settings.append([path,json.dumps(item,ensure_ascii=False)])
+    flatten('',json.loads((study.OUT/'unified_config.json').read_text()))
+    settings.insert(0,['設定檔SHA256',sha(study.OUT/'unified_config.json')])
+    table(full,'固定設定明細',['設定路徑（各版本共用與覆寫）','固定值；統一版使用v2候選規則與v3驗證規則'],settings,[65,115])
     ws=table(full,'Tongji與ETH彙整',['資料集','方法','彙整方式','場景數','成功次數','試驗次數','成功率','有限誤差案例數','平均有限e_p cm'],[[r['dataset'],NAMES[r['method']],'場景等權' if r['weighting']=='scene_equal' else '配對加權',r['scenes'],r['success'],r['trials'],r['success_rate'],r['finite_error_cases'],100*r['mean_finite_ep_m'] if r['mean_finite_ep_m'] is not None else None] for r in datasets],[22,48,26,18,18,18,20,26,32])
     for row in ws.iter_rows(min_row=2):row[6].number_format='0.0%'
     table(full,'消融實驗',['場景','原方法','新方法','新增成功','退步失敗','兩法皆成功','平均e_p變化cm（負數較好）'],[[r['scene'],NAMES[r['before']],NAMES[r['after']],r['gained'],r['lost'],r['common_success'],100*r['mean_common_ep_change_m'] if r['mean_common_ep_change_m'] is not None else None] for r in paired],[18,48,48,20,20,24,38])
