@@ -69,3 +69,7 @@ python scripts/eth_trees/unified_study.py checkpoint
 ## 新增v3續跑
 
 完整來源凍結規則見v3_protocol.json；原地面overlap會選錯位置，因此另測垂直結構驗證。原優化器仍用所有方向並解完整6DOF。v3也對5cm參考及ETH固定版套相同refinement，不能省略公平控制。若既有v3控制器不在執行，先建置cm_geometry_register_v3及cm_geometry_structural_tests並執行測試，再freeze_v3、infer_v3、evaluate("v3")；最後補cold_benchmark及feature_benchmark。phase publish_checkpoint會核驗並推送小型結果；不會上傳點雲或樹位。
+
+## 定時遠端備份
+
+checkpoint_watch.py會每120秒保存並推送小型結果，使用Git鎖，且只提交checkpoint與已完成成本JSON，不包含原始點雲／樹位。若FINAL_COMPLETE.json出現則停止；推送失敗會記錄於data/unified/checkpoint-watch.log並保留本地資料。不要重複啟動watcher。
