@@ -1,0 +1,42 @@
+{
+  "rows": 2400,
+  "scans": 20,
+  "pairs": 40,
+  "seeds": [
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40
+  ],
+  "extractions": 200,
+  "finite_keypoints_verified": true,
+  "input_point_counts_verified": true,
+  "independent_full_cloud_ep_cases": 4,
+  "duplicate_cases": 0,
+  "source_folder_read_only": true,
+  "no_target_parameter_tuning": true,
+  "analysis_script_sha256": "b771429c24fe4ae17e773dac251cd6491ff536bc0194786948d65c6341eefd82",
+  "prior_result_sha256": {
+    "results/eth_trees/failure_followup_20261025/comparison_full.xlsx": "6533616fffed707a44dc67f058891da56093d59a06aa164a3b867e134f0479f8",
+    "results/whu_park/transfer_20261025/summary.csv": "e43724141e826e7f2a270d3bd72c8634a2331bea35d1bd682e6275016ca3f9de"
+  },
+  "files": {
+    "comparison_full.xlsx": "a46a58980621d8cf88322f4dd15cc79d1569cc95fcd4be3893c6cfbd97c5774e",
+    "comparison_simple.xlsx": "91f063b0b3f7b2f85a6d0a1dc933fea32df9575756f69a8b755b83fbb09ac78c",
+    "registration_rows.csv": "be80ea133faf080bae060279ab9401346bb3263f319589450ec998822f1913a1",
+    "summary.csv": "fdfb9bf0f2b92bcf59c5a31d7f116983b5afd3a45c8db0b38e0fcdcb6ac1c1a0",
+    "paired_comparison.csv": "454398aff06b1b00135b55d00f3a75f701bfaca2d1c16e1c9b816e19ecb0ec92",
+    "pair_summary.csv": "41c89e38b5343f1faacf44e9a6a8736d74c9fe27997d59a41d1ec2bb57b11ba4",
+    "cross_dataset_summary.csv": "990d420cba5a3ec131a022bc1c80ec312686670ab9b8f16918cb97eb0f955eb5",
+    "extraction_summary.csv": "9c29d85f3d1c3364784668a6b943023457f6e6f2aba1919d4367d88ef6a1eeb6",
+    "independent_ep_audit.json": "c45e45bd3852bfdee8dea2d7b40effa9ec7a3336a057603a4fae2e6f99f1b92e",
+    "posthoc_height_diagnostic.csv": "1e9625b2760668b7239375b5845cf3c1408c2f09a4adf688773780271c363fbd",
+    "extraction_repeat_audit.json": "a13a9af5ada055eeb7031c5fab482e7504cd2385c92023cf7f445c71a9447031"
+  }
+}

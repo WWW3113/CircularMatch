@@ -1,0 +1,46 @@
+[
+  {
+    "plot": 1,
+    "pair": "S2-S1",
+    "seed": 31,
+    "method": "recovery10cm",
+    "solver": "svd+ransac",
+    "source_points": 33469500,
+    "native_ep_m": 0.1235166431,
+    "independent_full_cloud_ep_m": 0.12351664407551156,
+    "absolute_difference_m": 9.755115604193065e-10
+  },
+  {
+    "plot": 2,
+    "pair": "S2-S1",
+    "seed": 31,
+    "method": "recovery10cm",
+    "solver": "svd+ransac",
+    "source_points": 33889075,
+    "native_ep_m": 0.3113579001,
+    "independent_full_cloud_ep_m": 0.31135790033773014,
+    "absolute_difference_m": 2.377301688838429e-10
+  },
+  {
+    "plot": 3,
+    "pair": "S2-S1",
+    "seed": 31,
+    "method": "recovery10cm",
+    "solver": "svd+ransac",
+    "source_points": 35169400,
+    "native_ep_m": 0.02614442755,
+    "independent_full_cloud_ep_m": 0.026144427163889393,
+    "absolute_difference_m": 3.8611060529381014e-10
+  },
+  {
+    "plot": 4,
+    "pair": "S2-S1",
+    "seed": 31,
+    "method": "recovery10cm",
+    "solver": "svd+ransac",
+    "source_points": 35129444,
+    "native_ep_m": 0.03948058613,
+    "independent_full_cloud_ep_m": 0.03948058576830974,
+    "absolute_difference_m": 3.616902610747985e-10
+  }
+]

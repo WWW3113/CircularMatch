@@ -1,0 +1,13 @@
+{
+  "attempts": 90,
+  "unique_completed_jobs": 89,
+  "terminal_failures": 0,
+  "interrupted_attempts": [
+    {
+      "label": "extract_Plot4_S2",
+      "exit_code": -15
+    }
+  ],
+  "final_extraction_markers": 20,
+  "final_registration_markers": 48
+}

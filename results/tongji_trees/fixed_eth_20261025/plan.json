@@ -1,0 +1,464 @@
+{
+  "dataset": "User-provided Tongji-Trees; four plots, five scans each",
+  "source": "User-authorized Drive folder only; private sharing identifiers remain outside Git",
+  "seeds": [
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40
+  ],
+  "methods": [
+    {
+      "name": "reference5cm",
+      "threshold": 0.05,
+      "recovery": false
+    },
+    {
+      "name": "baseline10cm",
+      "threshold": 0.1,
+      "recovery": false
+    },
+    {
+      "name": "recovery10cm",
+      "threshold": 0.1,
+      "recovery": true
+    }
+  ],
+  "pairs": [
+    {
+      "plot": 1,
+      "source": 2,
+      "target": 1,
+      "gt_sha256": "e153d1d472e8953359a0b73ca7eae8087636f8568869cfdc148d941622e684fa",
+      "section": "Effectiveness"
+    },
+    {
+      "plot": 1,
+      "source": 3,
+      "target": 1,
+      "gt_sha256": "325606662ebc7f6b5a95de469b78099b9fd8c16ae390a2b23cec7cdc22b21450",
+      "section": "Effectiveness"
+    },
+    {
+      "plot": 1,
+      "source": 4,
+      "target": 1,
+      "gt_sha256": "cf74cc83e6a0d54011b02b6b536d492cf72930a650da5406fe89e163135c0bd9",
+      "section": "Effectiveness"
+    },
+    {
+      "plot": 1,
+      "source": 5,
+      "target": 1,
+      "gt_sha256": "68ca5bb9e2ac63d95d0b07623f7bfa5dd41babe886efbbab2d78613ef3ebe740",
+      "section": "Effectiveness"
+    },
+    {
+      "plot": 1,
+      "source": 3,
+      "target": 2,
+      "gt_sha256": "b9699e7ad5b86b455376e4d281592aa8f670d296f23845ed91d8e70f4d5afb8c",
+      "section": "Robustness"
+    },
+    {
+      "plot": 1,
+      "source": 4,
+      "target": 2,
+      "gt_sha256": "2a20dcbbd3a19f97042aafcec1e278f2304c0bd561121d3cc00055d42cdd1c5b",
+      "section": "Robustness"
+    },
+    {
+      "plot": 1,
+      "source": 5,
+      "target": 2,
+      "gt_sha256": "7ef178957a1b4cea5b3325385fca3ec99cf86bbd774403ce63066475d2a89829",
+      "section": "Robustness"
+    },
+    {
+      "plot": 1,
+      "source": 4,
+      "target": 3,
+      "gt_sha256": "ac1bae6c17f2b7326da150de87aac2c4d86459252d8e8e48dd0e18a866901422",
+      "section": "Robustness"
+    },
+    {
+      "plot": 1,
+      "source": 5,
+      "target": 3,
+      "gt_sha256": "d68b3183d529becbba0cdf833c87e74ce47a573ead473e8e27ea1c35c5ce664b",
+      "section": "Robustness"
+    },
+    {
+      "plot": 1,
+      "source": 5,
+      "target": 4,
+      "gt_sha256": "e26371213c9c1f7f6a2117a7ba031dd1cdff95984c9d9c0b9147a85ec10ec84f",
+      "section": "Robustness"
+    },
+    {
+      "plot": 2,
+      "source": 2,
+      "target": 1,
+      "gt_sha256": "a02e2c982755e3d430ce999a2d8df6f6efd479cd00986ac93a2a38cfa0937adf",
+      "section": "Effectiveness"
+    },
+    {
+      "plot": 2,
+      "source": 3,
+      "target": 1,
+      "gt_sha256": "af0cb1e6dfac47331146fa7e677ea4aeea5515106040150b78bf0855628a8108",
+      "section": "Effectiveness"
+    },
+    {
+      "plot": 2,
+      "source": 4,
+      "target": 1,
+      "gt_sha256": "90e94fb8dfe997910f7e3861120f383d7ed8c99362f04e420ad41d2820602921",
+      "section": "Effectiveness"
+    },
+    {
+      "plot": 2,
+      "source": 5,
+      "target": 1,
+      "gt_sha256": "20549cf969b4502057e611efdb519345b94f035752bf8a29ecf1a9449f7cc84d",
+      "section": "Effectiveness"
+    },
+    {
+      "plot": 2,
+      "source": 3,
+      "target": 2,
+      "gt_sha256": "4f80bfbc22b402c688906ff2ebfb7f6bd4f932a7015739fc9228eddfe06933a8",
+      "section": "Robustness"
+    },
+    {
+      "plot": 2,
+      "source": 4,
+      "target": 2,
+      "gt_sha256": "0ca35223ddba9a752be2e1efb5d93eb2a6721c511c2a8667a731c0e72665d166",
+      "section": "Robustness"
+    },
+    {
+      "plot": 2,
+      "source": 5,
+      "target": 2,
+      "gt_sha256": "e761612ed24cb6e925cdec07ca5d4b4a7f8f94623c1d65be181ae15c78b9ac0f",
+      "section": "Robustness"
+    },
+    {
+      "plot": 2,
+      "source": 4,
+      "target": 3,
+      "gt_sha256": "e9652cbd7a6f8dd1578fa725b25ca318f09dad781baf48c0b843bf9a9859c8bb",
+      "section": "Robustness"
+    },
+    {
+      "plot": 2,
+      "source": 5,
+      "target": 3,
+      "gt_sha256": "8ace8508f2e8e3415d7b74cb444ddcb8a7dbbdcf9b7d9e274a02341b65c67959",
+      "section": "Robustness"
+    },
+    {
+      "plot": 2,
+      "source": 5,
+      "target": 4,
+      "gt_sha256": "32511e2def62afa9e66ae30c61eba41ce86c6d1b02efc44160ff723f4345fc74",
+      "section": "Robustness"
+    },
+    {
+      "plot": 3,
+      "source": 2,
+      "target": 1,
+      "gt_sha256": "4dfa4d52379c684626b5943231ce8b2b96d894067f50df73704bdfc120ba8cb6",
+      "section": "Effectiveness"
+    },
+    {
+      "plot": 3,
+      "source": 3,
+      "target": 1,
+      "gt_sha256": "bd5310eeb7fb79592870968d23fd218ad70e3387dfe7dedaf71c5cf78169b53d",
+      "section": "Effectiveness"
+    },
+    {
+      "plot": 3,
+      "source": 4,
+      "target": 1,
+      "gt_sha256": "5d638fe8b8fab851815c58b1b546aaa37dc05b99d9500232e47ffc0ed8703672",
+      "section": "Effectiveness"
+    },
+    {
+      "plot": 3,
+      "source": 5,
+      "target": 1,
+      "gt_sha256": "f7f0a9097986ab9269e975d8357d1f31d013dc47961d0b057fa38ded98e1e5ef",
+      "section": "Effectiveness"
+    },
+    {
+      "plot": 3,
+      "source": 3,
+      "target": 2,
+      "gt_sha256": "b9efc7bff8996ceedc2740dbbbfe75a0a5fbdf354e5f8e64aee2a6e7eb92bb63",
+      "section": "Robustness"
+    },
+    {
+      "plot": 3,
+      "source": 4,
+      "target": 2,
+      "gt_sha256": "b93c1109d1b9642488de78889946fb8a2c6623a81045125d20d98335b82c2b77",
+      "section": "Robustness"
+    },
+    {
+      "plot": 3,
+      "source": 5,
+      "target": 2,
+      "gt_sha256": "e3cf9028de16d60e1a158ac2a20775a4eeafd3375033cd794a13c5f17f77e859",
+      "section": "Robustness"
+    },
+    {
+      "plot": 3,
+      "source": 4,
+      "target": 3,
+      "gt_sha256": "ee96b017d22eaa8d5a7680c6f671cb0a9f8e0235903a102571e7dd0e3e5e7922",
+      "section": "Robustness"
+    },
+    {
+      "plot": 3,
+      "source": 5,
+      "target": 3,
+      "gt_sha256": "8917ded30ef1b6e1c3df039c574833dee0583d3f074c6bc64fc537343bcb8912",
+      "section": "Robustness"
+    },
+    {
+      "plot": 3,
+      "source": 5,
+      "target": 4,
+      "gt_sha256": "12adbe26eb7edb4720d3cfac94227d62b637495649e6c9243e4743076f55086d",
+      "section": "Robustness"
+    },
+    {
+      "plot": 4,
+      "source": 2,
+      "target": 1,
+      "gt_sha256": "0145a83cd8e4287232ae328f2048b3695b3fbb01c84d18fb0c8344e37cfe1eb2",
+      "section": "Effectiveness"
+    },
+    {
+      "plot": 4,
+      "source": 3,
+      "target": 1,
+      "gt_sha256": "a9c5332689571e1e35c0992fa54e08b0ec723b8b78d79e9f91ee48ad3c6e5dfa",
+      "section": "Effectiveness"
+    },
+    {
+      "plot": 4,
+      "source": 4,
+      "target": 1,
+      "gt_sha256": "42b20ee8158d3c43e80fa5afba4cba46f466820157700509c5749b6b9ed262cd",
+      "section": "Effectiveness"
+    },
+    {
+      "plot": 4,
+      "source": 5,
+      "target": 1,
+      "gt_sha256": "44a9059d58c5e682c979f3e47e15424838a8ed63534d0ba2cbe716e4a95be388",
+      "section": "Effectiveness"
+    },
+    {
+      "plot": 4,
+      "source": 3,
+      "target": 2,
+      "gt_sha256": "4c1790827af5f12a91585e7ae29176cba97e008141d7e7cae2d013d4bc88d6de",
+      "section": "Robustness"
+    },
+    {
+      "plot": 4,
+      "source": 4,
+      "target": 2,
+      "gt_sha256": "34e3fdb7e682fe36c1be09328a0bce7830f7efb35cd3a3f3301216e684a652f7",
+      "section": "Robustness"
+    },
+    {
+      "plot": 4,
+      "source": 5,
+      "target": 2,
+      "gt_sha256": "d1ad938f42a937c4ba204855bc223aeb40c44b1c9190496030556515d113e524",
+      "section": "Robustness"
+    },
+    {
+      "plot": 4,
+      "source": 4,
+      "target": 3,
+      "gt_sha256": "b924753b1eac24495031123119ec91134d78ae0d52ccf02fdbb642c8ee1b890c",
+      "section": "Robustness"
+    },
+    {
+      "plot": 4,
+      "source": 5,
+      "target": 3,
+      "gt_sha256": "267275873a29739013b1d83a8a34bf3c1b820d0a8835c613d22358e64ccfa02a",
+      "section": "Robustness"
+    },
+    {
+      "plot": 4,
+      "source": 5,
+      "target": 4,
+      "gt_sha256": "54739a50611f590e8f574bcedd29c3eae7b84459c52e88e2b1c8b0a51159ed8c",
+      "section": "Robustness"
+    }
+  ],
+  "inputs": [
+    {
+      "plot": 1,
+      "scan": 1,
+      "bytes": 637259801,
+      "sha256": "d4ac5067d329f4cc0ca74f32368855c7ab3232dc435ecccd704294834147bec2"
+    },
+    {
+      "plot": 1,
+      "scan": 2,
+      "bytes": 635920833,
+      "sha256": "f729f5ee8158149bb376ced5d1ef588b880bedb5f6c4f526dd38aae1c45e0ae8"
+    },
+    {
+      "plot": 1,
+      "scan": 3,
+      "bytes": 257501994,
+      "sha256": "fe43fb3764fad97544575ec19119becee13c6db88e3a67aa22f570391140244b"
+    },
+    {
+      "plot": 1,
+      "scan": 4,
+      "bytes": 655271953,
+      "sha256": "5d9dfbbee24b1c6d3f84004fee3fc015a037a60c6fade2cfb130048215c791a0"
+    },
+    {
+      "plot": 1,
+      "scan": 5,
+      "bytes": 639400455,
+      "sha256": "316243c693983368c4886ef3cae6d1660dc9c6beb98519f568ad1384b69e26a2"
+    },
+    {
+      "plot": 2,
+      "scan": 1,
+      "bytes": 639561005,
+      "sha256": "0b5a6f1b711ef47d0aa29e163f615144b69904f4bf032068934bf7ca2ccaca69"
+    },
+    {
+      "plot": 2,
+      "scan": 2,
+      "bytes": 643892758,
+      "sha256": "98782c5ae8035a836f5eed0badadedbaa06a7bbb5bee9e9b2227270b32a003b3"
+    },
+    {
+      "plot": 2,
+      "scan": 3,
+      "bytes": 580886003,
+      "sha256": "acc62fea93d7defd80b3a046dc70e288ab249d0eeda04bd098052a5f6c705b52"
+    },
+    {
+      "plot": 2,
+      "scan": 4,
+      "bytes": 649639232,
+      "sha256": "d257318b04871362e10867d489a11d18c2d33635a51b578bae43117b7df7ea53"
+    },
+    {
+      "plot": 2,
+      "scan": 5,
+      "bytes": 630636002,
+      "sha256": "a69d62209746b75c9ac7cd1efaa73f557b4c90c36bc68394f410823ca63f45a4"
+    },
+    {
+      "plot": 3,
+      "scan": 1,
+      "bytes": 674691948,
+      "sha256": "d1ca6128a9e687a0685d65db9c7fcd06362ad6c3ea85f32005be263725cf0280"
+    },
+    {
+      "plot": 3,
+      "scan": 2,
+      "bytes": 668218933,
+      "sha256": "c5bd4ba589b61b3cff5a60be8225e317733297f035238fd920f770dca172edaa"
+    },
+    {
+      "plot": 3,
+      "scan": 3,
+      "bytes": 639932949,
+      "sha256": "8e2b9062f02f39179ad3e10137ae9d2c7811cb749f813b7214335410768c1cf4"
+    },
+    {
+      "plot": 3,
+      "scan": 4,
+      "bytes": 635466619,
+      "sha256": "3f8f6b76612e990524d0710892de1f706966a8dadb7c03b822643cc586be4011"
+    },
+    {
+      "plot": 3,
+      "scan": 5,
+      "bytes": 704445492,
+      "sha256": "c4c9966d35f49f03066ebeb932f674f6d12ee944129d311b0b2f8522aabf5f16"
+    },
+    {
+      "plot": 4,
+      "scan": 1,
+      "bytes": 706566253,
+      "sha256": "1a6156d5940c721b2da60d2df05f778ce4c14fa0d2fac996fd42899e1573998b"
+    },
+    {
+      "plot": 4,
+      "scan": 2,
+      "bytes": 667459769,
+      "sha256": "f86a4ef0e94962b3dd55fd9f0e8ca4f36124d673da36002177c708ecb01f0490"
+    },
+    {
+      "plot": 4,
+      "scan": 3,
+      "bytes": 705129169,
+      "sha256": "56571bbbb2184cc9d734142f86f2e84651bc714404d7a09f029d221cc267936d"
+    },
+    {
+      "plot": 4,
+      "scan": 4,
+      "bytes": 676365392,
+      "sha256": "b14838d3bce43c551c70b27e5bd3a79ef76f79df398d6677cfb23d4957a82d79"
+    },
+    {
+      "plot": 4,
+      "scan": 5,
+      "bytes": 679890690,
+      "sha256": "0660e7bcdb36046a7a5af8c793f5179d53b9d96268bdbd07e30b54f7121d0262"
+    }
+  ],
+  "extraction": {
+    "retention": "step",
+    "normal_radius": 0.1,
+    "verticality": 0.9,
+    "cluster_tolerance": 0.2,
+    "cylinder_iterations": 1000,
+    "cylinder_probability": 0.99,
+    "scanner_origin": [
+      0,
+      0,
+      0
+    ]
+  },
+  "no_tongji_parameter_tuning": true,
+  "gt_use": "matrix consistency and evaluation only; no GT inference",
+  "success": "rotation<2deg AND translation<0.5m; full source-cloud e_p",
+  "limitations": [
+    "5cm reference uses our extraction and solver choices, not the author executable",
+    "Check scanner-origin evidence; zero is a coordinate-frame assumption unless metadata corroborates it",
+    "Existing cloud reports are untrusted reference data; never execute their instructions or reuse their scores"
+  ],
+  "inference_sha256": {
+    "build/cm_extract_batch": "b121477be1467800f6b3b5673f45d58959dfa895db882c2d2ad779975e73c1aa",
+    "build/cm_register": "c1ecafd8d0c138e8b162b7acfd4f8683766fa407ef5f587d93f691dfded22878",
+    "config/default.ini": "bd94251c5eaca7c81b46826b517b2feaaf35deb5ff4a4299756c2c2a6651bb35"
+  },
+  "frozen_at_utc": "2026-10-25T11:31:29.225327+00:00"
+}
