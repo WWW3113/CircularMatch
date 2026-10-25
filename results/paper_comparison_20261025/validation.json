@@ -1,0 +1,19 @@
+{
+  "paper_eth_ep_m": 0.153427,
+  "paper_eth_success": 1.0,
+  "ours_cases": 150,
+  "ours_success": 150,
+  "ours_mean_ep_m": 0.07615434894646667,
+  "ours_mean_match_solve_ms": 5.5307042,
+  "raw_validation_rows": 600,
+  "sheets": [
+    "先看結論",
+    "改了哪些參數",
+    "調整是否有用",
+    "各配對結果",
+    "新seed逐次",
+    "來源與限制",
+    "完整驗證原始列"
+  ],
+  "workbook_sha256": "5fc50d528e6d34b83a2299f9e28a66d8f3489b0f0fee48945f38af170f6e37da"
+}
