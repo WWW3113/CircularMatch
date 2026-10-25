@@ -1,0 +1,8 @@
+{
+  "commit": "dce8cc0856a1cb6ca99c42bb5519faf320e4d1c4",
+  "verified_downloads": {
+    "comparison_simple.xlsx": "https://raw.githubusercontent.com/WWW3113/CircularMatch/dce8cc0856a1cb6ca99c42bb5519faf320e4d1c4/results/unified_20261025/comparison_simple.xlsx",
+    "comparison_full.xlsx": "https://raw.githubusercontent.com/WWW3113/CircularMatch/dce8cc0856a1cb6ca99c42bb5519faf320e4d1c4/results/unified_20261025/comparison_full.xlsx"
+  },
+  "workbook_validation_sha256": "ee99223d2f0bda1af8828ce6e7e6d1043fadb172ec37198cf4d4f447b3399682"
+}
