@@ -1,5 +1,5 @@
 {
-  "saved_at_utc": "2026-10-25T14:07:17.331058+00:00",
+  "saved_at_utc": "2026-10-25T14:19:59.970051+00:00",
   "counts": {
     "final": {
       "pair_files": 55,
@@ -9,19 +9,27 @@
       "pair_files": 55,
       "rows": 550
     },
+    "v3": {
+      "pair_files": 0,
+      "rows": 0
+    },
     "final_evaluation": {
       "pair_files": 55,
       "rows": 2750
     },
     "v2_evaluation": {
-      "pair_files": 25,
-      "rows": 250
+      "pair_files": 55,
+      "rows": 550
+    },
+    "v3_evaluation": {
+      "pair_files": 0,
+      "rows": 0
     }
   },
   "files": {
     "completed_predictions.csv": "11fc5b377dcb5929d34297beab0c7499e87daf720f7485b62e942637a98f22fc",
-    "completed_scores.csv": "f353f334158d2dadce357ac52cb68d8bdfd23edae853719e7a2370c601b3056e",
-    "resources.jsonl": "33235c74e471f51e2724aa410e38b363115402d87d52eb82699a1726c2466f43"
+    "completed_scores.csv": "488f57aa4e16bc30d5ba6442ec13374421a0a2c137866a8fb3c6d958b548287a",
+    "resources.jsonl": "b22f5e1ef9fe03975f7bec5209a42ca697f945e1f9497db3b2901a6dde2c240b"
   },
   "raw_clouds_uploaded": false,
   "tree_coordinates_uploaded": false,
