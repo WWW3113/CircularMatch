@@ -1,0 +1,12 @@
+{
+  "code_commit": "e0c573c42433b65588d0a6158c0f7ae3ea09ec99",
+  "frozen_at_utc": "2026-10-25T16:31:03.255576+00:00",
+  "protocol_sha256": "be08dccd16de183c557f67115f3bc078146ab89e391fe0dda0bde00bd03b6b66",
+  "sha256": {
+    "apps/cm_geometry_register_v3.cpp": "e8428c89198a41c88ba6b39777024211e297918bc5e29405e895f9d30ff85234",
+    "apps/geometry_refinement_structural.cpp": "e3b24aa787a30df9df89234ad53ae02ebfa76e94a032a17c2094c89525a660f3",
+    "build/cm_geometry_register_v3": "9d3800bb75a2396782521983390c75d67f042163127318bd3901ccfc25f9b73c",
+    "include/cm/geometry_refinement.hpp": "7c53d4b1c60296a5962423096318e8072a96463f90d6fd32c93da8978c3ef27d"
+  },
+  "status": "one globally fixed structure-verification revision, no scene-specific choices"
+}
