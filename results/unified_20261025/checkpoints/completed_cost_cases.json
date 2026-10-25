@@ -456,6 +456,88 @@
     }
   },
   {
+    "marker": "feature_benchmark/Plot1/S4/complete.json",
+    "record": {
+      "label": "feature_benchmark_Plot1_S4",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/tongji_trees/received/Tongji-Trees/Plot1/S4.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/feature_benchmark/Plot1/S4",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 727.640699132,
+      "cpu_s": 744.180706,
+      "peak_rss_kib": 2067964,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "scan": "S4",
+      "seed": 31,
+      "concurrent_jobs": 4,
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 71.15597,
+        "2": 39.00066,
+        "3": 442.86496999999997,
+        "4": 1.46352,
+        "5": 0.06963,
+        "6": 90.80616,
+        "7": 22.37776,
+        "8": 0.03514
+      }
+    }
+  },
+  {
+    "marker": "feature_benchmark/Plot1/S5/complete.json",
+    "record": {
+      "label": "feature_benchmark_Plot1_S5",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/tongji_trees/received/Tongji-Trees/Plot1/S5.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/feature_benchmark/Plot1/S5",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 617.2950109489993,
+      "cpu_s": 702.939168,
+      "peak_rss_kib": 2002792,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "scan": "S5",
+      "seed": 31,
+      "concurrent_jobs": 4,
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 57.40511,
+        "2": 23.388740000000002,
+        "3": 406.90599,
+        "4": 0.68169,
+        "5": 0.01042,
+        "6": 88.86523,
+        "7": 4.89817,
+        "8": 0.02026
+      }
+    }
+  },
+  {
     "marker": "feature_benchmark/Plot2/S1/complete.json",
     "record": {
       "label": "feature_benchmark_Plot2_S1",
