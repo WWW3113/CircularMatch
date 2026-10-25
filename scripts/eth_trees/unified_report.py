@@ -91,6 +91,12 @@ def summaries(rows):
 
 def costs():
     resources=[json.loads(line) for line in (RUNS/'resources.jsonl').read_text().splitlines()];last={r['label']:r for r in resources};station=[]
+    legacy=OUT/'legacy_tongji_extraction_cost.json'
+    commands=ROOT/'results/tongji_trees/fixed_eth_20261025/runs/commands.jsonl'
+    if not legacy.exists() and commands.exists():
+        attempts=[json.loads(line) for line in commands.read_text().splitlines()]
+        attempts=[{k:r[k] for k in ['label','exit_code','seconds']} for r in attempts if r['label'].startswith('extract_')]
+        legacy.write_text(json.dumps(dict(scope='Historical Tongji 10-seed feature acquisition, including recorded interrupted attempts; wall only, CPU and maxRSS were not measured; not a current-epoch speed comparison',attempts=attempts),indent=2)+'\n')
     for scan in study.manifest()['scans']:
         label='geometry_'+scan['scene']+'_'+scan['scan'];job=last[label]
         timing=read_csv(RUNS/'geometry'/scan['scene']/(scan['scan']+'.bin.timing.csv'))
@@ -198,9 +204,13 @@ def make_books(rows,summary,datasets,seeds,paired,goals,station,cold,resources):
             for name,key in [('提取DTM及高度切片','dtm_height_s'),('提取體素','voxel_s'),('提取法向量','normal_s'),('提取垂直度','verticality_s'),('距離抽樣','retention_s'),('分群','clustering_s'),('圓柱擬合','cylinder_s'),('地面交點','position_s'),('讀檔及未細分開銷','io_and_other_residual_s'),('單站完整提取seed31','wall_s')]:costrows.append([r['dataset'],r['scene'],r['scan'],name,float(r[key]),float(r['peak_process_mib']) if key=='wall_s' else None,f'全26站seed31實測；最多{r["concurrent_jobs"]}工作並行／每程序4threads；重用相同cold提取={r["reused_cold_extraction"]}；其他seed另加抽樣至交點成本'])
     table(full,'時間與記憶體',['資料集','場景','站或方法','階段','秒','峰值子程序MiB','成本範圍'],costrows,[20,18,48,32,24,30,125])
     budget=[]
-    for title,prefix in [('幾何快取','geometry_'),('v1準確度採集','final_'),('v2準確度採集','v2_'),('v3準確度採集','v3_'),('GT評分','evaluate_'),('冷啟動對照','cold_'),('26站提取成本','feature_benchmark_')]:
+    for title,prefix in [('原始ETH十seed提取','extract_ETH_'),('小規模診斷','diagnose'),('幾何快取','geometry_'),('v1準確度採集','final_'),('v2準確度採集','v2_'),('v3準確度採集','v3_'),('GT評分','evaluate_'),('冷啟動對照','cold_'),('22站新增提取成本','feature_benchmark_')]:
         rr=[r for r in resources if r['label'].startswith(prefix)]
         if rr:budget.append([title,len(rr),sum(r['wall_s'] for r in rr),sum(r['cpu_s'] for r in rr),max(r['peak_process_mib'] for r in rr),'已取得wait4的程序紀錄加總，含實際重複執行；環境殺死而未返回者成本未知。並行wall加總不等於整輪經過時間，不增加準確度樣本數。'])
+    legacy=OUT/'legacy_tongji_extraction_cost.json'
+    if legacy.exists():
+        attempts=json.loads(legacy.read_text())['attempts']
+        budget.append(['Tongji原始十seed提取（歷史）',len(attempts),sum(x['seconds'] for x in attempts),None,None,'原始20站，含已記錄的中斷／重跑；只量wall，CPU及峰值RSS未知。舊環境、最多4工作並行，非當前epoch獨占速度。'])
     table(full,'本輪計算預算',['階段','程序次數','程序wall加總秒','CPU加總秒','最大子程序MiB','解讀'],budget,[30,20,30,26,28,135])
     table(full,'一般化證據與限制',['證據','解讀'],evidence,[32,145])
     official=read_csv(OUT/'eth_official10_summary.csv')
