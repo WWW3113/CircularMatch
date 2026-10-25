@@ -413,5 +413,46 @@
         "8": 0.00376
       }
     }
+  },
+  {
+    "marker": "feature_benchmark/Plot1/S3/complete.json",
+    "record": {
+      "label": "feature_benchmark_Plot1_S3",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/tongji_trees/received/Tongji-Trees/Plot1/S3.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/feature_benchmark/Plot1/S3",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 234.70171341099922,
+      "cpu_s": 284.51640599999996,
+      "peak_rss_kib": 852404,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "scan": "S3",
+      "seed": 31,
+      "concurrent_jobs": 4,
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 9.48838,
+        "2": 5.98374,
+        "3": 88.44245,
+        "4": 1.4046500000000002,
+        "5": 0.0252,
+        "6": 99.25146000000001,
+        "7": 10.74287,
+        "8": 0.01858
+      }
+    }
   }
 ]
