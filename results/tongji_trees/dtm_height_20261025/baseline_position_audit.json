@@ -1,0 +1,7 @@
+{
+  "scans": 20,
+  "seed_files_checked": 200,
+  "baseline_coordinate_rows_identical": true,
+  "tree_rows": 22375,
+  "max_abs_dtm_residual_m": 0.00208770217352
+}

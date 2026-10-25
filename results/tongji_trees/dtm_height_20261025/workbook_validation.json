@@ -1,0 +1,131 @@
+{
+  "workbooks": [
+    {
+      "file": "comparison_simple.xlsx",
+      "bytes": 13288,
+      "sha256": "c745e68194ec99e370abf5af0b39acd719a424876c394fffa9bd654fca5c0536",
+      "sheets": [
+        {
+          "name": "完整流程Plot2",
+          "rows": 10,
+          "columns": 6
+        },
+        {
+          "name": "完整流程改善",
+          "rows": 7,
+          "columns": 6
+        },
+        {
+          "name": "定位階段結果",
+          "rows": 17,
+          "columns": 6
+        },
+        {
+          "name": "改了什麼",
+          "rows": 16,
+          "columns": 2
+        },
+        {
+          "name": "改善與退步",
+          "rows": 9,
+          "columns": 5
+        },
+        {
+          "name": "候選怎麼選",
+          "rows": 9,
+          "columns": 4
+        }
+      ]
+    },
+    {
+      "file": "comparison_full.xlsx",
+      "bytes": 695828,
+      "sha256": "59f9dd52d2703e15c0a6cb50de62cc437b2ca320309c75f0fd49ffb034726184",
+      "sheets": [
+        {
+          "name": "完整流程Plot2",
+          "rows": 10,
+          "columns": 6
+        },
+        {
+          "name": "完整流程改善",
+          "rows": 7,
+          "columns": 6
+        },
+        {
+          "name": "定位階段結果",
+          "rows": 17,
+          "columns": 6
+        },
+        {
+          "name": "改了什麼",
+          "rows": 16,
+          "columns": 2
+        },
+        {
+          "name": "改善與退步",
+          "rows": 9,
+          "columns": 5
+        },
+        {
+          "name": "候選怎麼選",
+          "rows": 9,
+          "columns": 4
+        },
+        {
+          "name": "欄位說明",
+          "rows": 13,
+          "columns": 2
+        },
+        {
+          "name": "兩種solver摘要",
+          "rows": 33,
+          "columns": 8
+        },
+        {
+          "name": "逐次配準結果",
+          "rows": 1601,
+          "columns": 53
+        },
+        {
+          "name": "地形交點變動",
+          "rows": 501,
+          "columns": 8
+        },
+        {
+          "name": "開發逐次結果",
+          "rows": 401,
+          "columns": 50
+        },
+        {
+          "name": "完整流程逐次",
+          "rows": 201,
+          "columns": 52
+        },
+        {
+          "name": "完整流程兩solver",
+          "rows": 19,
+          "columns": 7
+        },
+        {
+          "name": "完整提取樹位數",
+          "rows": 51,
+          "columns": 5
+        },
+        {
+          "name": "固定配對高度診斷",
+          "rows": 101,
+          "columns": 9
+        }
+      ]
+    }
+  ],
+  "final_rows_checked": 1800,
+  "development_rows_checked": 400,
+  "all_50_full_extractions_completed": true,
+  "original_control_rows_unchanged": true,
+  "development_selected_inference_matches_full_point_evaluation": true,
+  "native_jobs": 62,
+  "native_failures": 0,
+  "private_ids_absent": true
+}

@@ -1,0 +1,24 @@
+{
+  "final_rows": 1600,
+  "full_pipeline_rows": 200,
+  "development_rows": 400,
+  "selected_profile": "smooth",
+  "original_native_binaries_and_defaults_unchanged": true,
+  "analysis_script_sha256": "81baf605a5f94863ec7fd407f728f775f091cc06ed2ab055aeafcd6cf699075d",
+  "files": {
+    "comparison_simple.xlsx": "c745e68194ec99e370abf5af0b39acd719a424876c394fffa9bd654fca5c0536",
+    "comparison_full.xlsx": "59f9dd52d2703e15c0a6cb50de62cc437b2ca320309c75f0fd49ffb034726184",
+    "registration_rows.csv": "80c8930e55bc9f5f6c073354e4b60a8d7d0a6cb9b2ad342195c4a15469413d66",
+    "summary.csv": "97eb75a9c896afcd8ab2268cf35c50d57674097f7d7191612302b734f6945b14",
+    "paired_comparison.csv": "c4b4263cd16f2a84d02b61a7aeeae08576a4a0dea22dbec3d592c4044fe3f7e5",
+    "position_audit.csv": "273f944b49b0c038bcb94bccec1cfde378b314592545feaf314fffe3898ec781",
+    "full_pipeline_rows.csv": "4ed7505096912548773bef1fa3dee2a18e94e4e1e6ed1e552a29f839c78de688",
+    "full_pipeline_summary.csv": "f66fae29945a9bf50a5e9856e4b16bbb2a1433479c12143705b59f55926a8744",
+    "full_pipeline_paired.csv": "4dc7fa68eed0a2fd3a05b1f76436db225d78b7582396acd63bb702a7a29920a0",
+    "full_extraction_summary.csv": "8c54b5054ace2baab4756e32e644a93308d206b111dca28643d6a56168e0a4d4",
+    "fixed_pair_height_diagnostic.csv": "2ffb0ddcc77fd21d8c2c1ce8b4041228972a04bdd23b01faa5d8e5649163de6d",
+    "input_axes_audit.json": "b6a265dea7fe7133f175dd4560faecff62a995494cbda74bd4b1fe988f6383f1",
+    "baseline_position_audit.json": "2027172a1b006afe8911bcac41c21c7099462417fbf4c5c2bbeff4926803ac29",
+    "gt_tilt_diagnostic.csv": "9ad1888c17ee4ddbe097ca51d03caa5dee9600dcd52940ca41c1d7fb48234a05"
+  }
+}
