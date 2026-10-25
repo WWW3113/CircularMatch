@@ -1,0 +1,152 @@
+{
+  "profile": {
+    "name": "loose_support",
+    "arc": "occupied",
+    "args": [
+      "--sparse_normal_weight=0.02",
+      "--sparse_dist_threshold=0.05",
+      "--sparse_min_arc=60",
+      "--sparse_min_normal_ratio=0.50"
+    ]
+  },
+  "development_summary": [
+    {
+      "profile": "baseline",
+      "cases": 75,
+      "success": 0,
+      "transforms_found": 0,
+      "mean_matches": 0.0
+    },
+    {
+      "profile": "normal_soft",
+      "cases": 75,
+      "success": 0,
+      "transforms_found": 0,
+      "mean_matches": 0.0
+    },
+    {
+      "profile": "geometry_soft",
+      "cases": 75,
+      "success": 1,
+      "transforms_found": 3,
+      "mean_matches": 0.16
+    },
+    {
+      "profile": "arc60",
+      "cases": 75,
+      "success": 0,
+      "transforms_found": 1,
+      "mean_matches": 0.05333333333333334
+    },
+    {
+      "profile": "loose_support",
+      "cases": 75,
+      "success": 12,
+      "transforms_found": 19,
+      "mean_matches": 1.6266666666666667
+    },
+    {
+      "profile": "trimmed90",
+      "cases": 75,
+      "success": 0,
+      "transforms_found": 1,
+      "mean_matches": 0.12
+    },
+    {
+      "profile": "trimmed90_soft",
+      "cases": 75,
+      "success": 0,
+      "transforms_found": 2,
+      "mean_matches": 0.24
+    }
+  ],
+  "inference_sha256": {
+    "apps/cm_sparse_extract.cpp": "1077faa3f81f094d2a6fea99417ffa7e8eaec1fffae289799ec63d1b7a29f94c",
+    "include/cm/sparse_arc.hpp": "b5dfda79c98ecf00141d2bb30a83519a331428d86f562fe7b1f20ea530e57c0b",
+    "build/cm_sparse_extract": "cbe41c4d997adc51f7cb3047adedb4d27321c3872a6dd1d4048be3b7674ffb6f",
+    "build/cm_register": "c1ecafd8d0c138e8b162b7acfd4f8683766fa407ef5f587d93f691dfded22878",
+    "build/cm_extract_batch": "b121477be1467800f6b3b5673f45d58959dfa895db882c2d2ad779975e73c1aa",
+    "config/default.ini": "bd94251c5eaca7c81b46826b517b2feaaf35deb5ff4a4299756c2c2a6651bb35"
+  },
+  "validation_scans": [
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31
+  ],
+  "validation_pairs": [
+    [
+      23,
+      24
+    ],
+    [
+      22,
+      24
+    ],
+    [
+      27,
+      26
+    ],
+    [
+      21,
+      16
+    ],
+    [
+      26,
+      29
+    ],
+    [
+      28,
+      27
+    ],
+    [
+      24,
+      25
+    ],
+    [
+      29,
+      30
+    ],
+    [
+      20,
+      19
+    ],
+    [
+      25,
+      27
+    ],
+    [
+      30,
+      31
+    ],
+    [
+      19,
+      18
+    ]
+  ],
+  "validation_seeds": [
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40
+  ],
+  "frozen_at_utc": "2026-10-25T09:45:10.538171+00:00"
+}
