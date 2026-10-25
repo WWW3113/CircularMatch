@@ -17,7 +17,7 @@
 
 ## 先檢查是否仍在運算
 
-目前可能有v2推論／評分／冷啟動benchmark控制器，以及等待其結束後跑26站單seed成本測量的控制器。若本地 `data/unified/live_jobs.json` 存在，先核對PID、父程序與日誌；**不要在既有控制器還運作時啟動第二份同階段工作**。
+目前可能有v2冷啟動benchmark控制器，以及v3後續控制器。v3會等待v2冷啟動完成，再建置與測試結構驗證修正、重跑全部55配對的三個公平版本、評分、補v3冷啟動、最後跑26站成本。若本地 `data/unified/live_jobs.json` 存在，先核對PID、父程序與日誌；**不要在既有控制器還運作時啟動第二份同階段工作**。
 
 日誌：`data/unified/v2-study.log`、`feature-benchmark-controller.log`。主要工作依序為v2全55配對推論→v2全點評分→8個冷啟動benchmark→26站seed31完整提取成本重測。
 
@@ -59,9 +59,13 @@ python scripts/eth_trees/unified_study.py checkpoint
 
 ## 完成前尚需核對
 
-1. 六版本合計3300列（v1五版本2750＋v2版本550），保留所有失敗；完整e_p使用全部來源點。
+1. v3若完成，九版本合計4950列（v1五版本2750＋v2版本550＋v3三版本1650），保留所有失敗；完整e_p使用全部來源點。
 2. 逐場景成功率、平均／中位／P90；Tongji場景等權與配對加權，ETH單列。
 3. baseline加相同refinement的公平消融；v1→v2改善／退步與計算代價。
 4. 8個冷啟動benchmark與26站成本重測；不要把快取成本當作0，也不把online時間當總時間。
 5. 驗證完整及精簡XLSX數字、私人識別碼未外洩，再推送GitHub與檢查下載連結。
 6. 最終區分「低於論文報告值」「優於參考實作」「嚴格原作baseline（尚缺程式）」「未見森林一般化（尚無資料）」；不能宣布全專案已完成。
+
+## 新增v3續跑
+
+完整來源凍結規則見v3_protocol.json；原地面overlap會選錯位置，因此另測垂直結構驗證。原優化器仍用所有方向並解完整6DOF。v3也對5cm參考及ETH固定版套相同refinement，不能省略公平控制。若既有v3控制器不在執行，先建置cm_geometry_register_v3及cm_geometry_structural_tests並執行測試，再freeze_v3、infer_v3、evaluate("v3")；最後補cold_benchmark及feature_benchmark。phase publish_checkpoint會核驗並推送小型結果；不會上傳點雲或樹位。

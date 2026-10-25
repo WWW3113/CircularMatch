@@ -120,7 +120,7 @@ def infer_pair(pair,seeds=SEEDS,methods=None,tag='final',version='v1'):
     if marker.exists() and len(existing)==len(expected):return
     scans={s['scan']:s for s in manifest()['scans'] if s['scene']==pair['scene']};src=feature_dir(scans[pair['source']]);tgt=feature_dir(scans[pair['target']])
     batch.write_text(''.join(f'{method} {src}/step_seed{seed}_trees.csv {tgt}/step_seed{seed}_trees.csv {seed}\n' for seed in seeds for method in methods if (str(seed),method) not in existing))
-    binary='cm_geometry_register_v2' if version=='v2' else 'cm_geometry_register'
+    binary={'v1':'cm_geometry_register','v2':'cm_geometry_register_v2','v3':'cm_geometry_register_v3'}[version]
     if len(existing)<len(expected):
         pending=out.with_suffix('.pending.csv')
         execute(tag+'_'+pair['scene']+'_'+name,[ROOT/'build'/binary,f'--src_cache={RUNS}/geometry/{pair["scene"]}/{pair["source"]}.bin',f'--tgt_cache={RUNS}/geometry/{pair["scene"]}/{pair["target"]}.bin',f'--batch={batch}',f'--out={pending}'])
@@ -148,6 +148,18 @@ def infer_v2():
     for path,digest in record['sha256'].items():assert sha(ROOT/path)==digest
     for pair in manifest()['pairs']:infer_pair(pair,methods=['multi_v2_refined'],tag='v2',version='v2')
 
+def freeze_v3():
+    paths=['apps/cm_geometry_register_v3.cpp','apps/geometry_refinement_structural.cpp','build/cm_geometry_register_v3','include/cm/geometry_refinement.hpp']
+    record=dict(code_commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),frozen_at_utc=datetime.now(timezone.utc).isoformat(),protocol_sha256=sha(OUT/'v3_protocol.json'),sha256={p:sha(ROOT/p) for p in paths},status='one globally fixed structure-verification revision, no scene-specific choices')
+    path=OUT/'method_v3_frozen.json'
+    if path.exists():assert {k:v for k,v in json.loads(path.read_text()).items() if k not in ['frozen_at_utc','code_commit']}=={k:v for k,v in record.items() if k not in ['frozen_at_utc','code_commit']}
+    else:path.write_text(json.dumps(record,indent=2)+'\n')
+
+def infer_v3():
+    record=json.loads((OUT/'method_v3_frozen.json').read_text())
+    for path,digest in record['sha256'].items():assert sha(ROOT/path)==digest
+    for pair in manifest()['pairs']:infer_pair(pair,methods=['reference5_refined_v3','eth10_refined_v3','multi_v3_refined'],tag='v3',version='v3')
+
 def evaluate(tag='final'):
     def one(pair):
         name=f'{pair["source"]}-{pair["target"]}';est=RUNS/tag/pair['scene']/(name+'.csv')
@@ -162,11 +174,11 @@ def evaluate(tag='final'):
 def cold_benchmark():
     """Application caches are rebuilt from raw inputs for each version, serially."""
     chosen=[next(p for p in manifest()['pairs'] if p['scene']==scene) for scene in ['ETH','Plot1']]
-    protocol=dict(pairs=chosen,seed=31,methods=['reference5_raw','reference5_refined','multi_refined','multi_v2_refined'],order='ETH forward; Tongji reverse (counterbalanced)',application_cache='cold: re-extract both stations and rebuild geometry if needed',filesystem_cache='uncontrolled/warm; no OS cache reset',threads=4,workers=1)
+    protocol=dict(pairs=chosen,seed=31,methods=['reference5_raw','reference5_refined','multi_refined','multi_v2_refined','reference5_refined_v3','multi_v3_refined'],order='ETH forward; Tongji reverse (counterbalanced)',application_cache='cold: re-extract both stations and rebuild geometry if needed',filesystem_cache='uncontrolled/warm; no OS cache reset',threads=4,workers=1)
     (OUT/'cold_benchmark_protocol.json').write_text(json.dumps(protocol,indent=2)+'\n')
     results=[]
     for pair in chosen:
-        methods=['reference5_raw','reference5_refined','multi_refined','multi_v2_refined']
+        methods=protocol['methods'][:]
         if pair['dataset']=='Tongji':methods.reverse()
         for method in methods:
             dest=RUNS/'cold_benchmark'/pair['scene']/method;dest.mkdir(parents=True,exist_ok=True);marker=dest/'complete.json'
@@ -185,7 +197,7 @@ def cold_benchmark():
                         f.write(b'CMGEO001')
                         for h in [.5,.2,.1]:f.write(struct.pack('<dQ',h,0))
             batch=dest/'jobs.txt';batch.write_text(f'{method} {features[0]} {features[1]} 31\n')
-            binary='cm_geometry_register_v2' if method=='multi_v2_refined' else 'cm_geometry_register'
+            binary='cm_geometry_register_v3' if method.endswith('_v3') or method=='multi_v3_refined' else ('cm_geometry_register_v2' if method=='multi_v2_refined' else 'cm_geometry_register')
             resources.append(execute('cold_pair_'+pair['scene']+'_'+method,[ROOT/'build'/binary,f'--src_cache={caches[0]}',f'--tgt_cache={caches[1]}',f'--batch={batch}',f'--out={dest}/pose.csv']))
             result=dict(dataset=pair['dataset'],scene=pair['scene'],pair=f'{pair["source"]}-{pair["target"]}',method=method,wall_s=time.monotonic()-start,cpu_s=sum(r['cpu_s'] for r in resources),peak_child_rss_kib=max(r['peak_rss_kib'] for r in resources),peak_scope='largest native child RSS, excludes OS page cache and Python parent; processes run serially',resources=[r['label'] for r in resources])
             marker.write_text(json.dumps(result,indent=2)+'\n');results.append(result)
@@ -206,7 +218,7 @@ def checkpoint():
     """Publishable poses/scores only; raw clouds and derived tree locations stay local."""
     import shutil
     destination=OUT/'checkpoints';destination.mkdir(exist_ok=True);counts={};files=[]
-    for kind,tags in [('predictions',['final','v2']),('scores',['final_evaluation','v2_evaluation'])]:
+    for kind,tags in [('predictions',['final','v2','v3']),('scores',['final_evaluation','v2_evaluation','v3_evaluation'])]:
         gathered=[]
         for tag in tags:
             groups=0
@@ -246,10 +258,22 @@ def restore_checkpoint(destination=None):
             existing={(r['label'],r['method']):r for r in read_csv(out)} if out.exists() else {}
             for r in rows:existing.setdefault((r['label'],r['method']),r)
             write_csv(out,list(existing.values()))
-            expected=50 if run.startswith('final') else 10
+            expected=50 if run.startswith('final') else (30 if run.startswith('v3') else 10)
             if len(existing)==expected:marker.write_text('restored complete\n')
     if not (target/'resources.jsonl').exists() and (source/'resources.jsonl').exists():target.mkdir(parents=True,exist_ok=True);shutil.copyfile(source/'resources.jsonl',target/'resources.jsonl')
     print('CHECKPOINT RESTORED',target,flush=True)
 
+def publish_checkpoint():
+    import fcntl
+    RUNS.mkdir(parents=True,exist_ok=True)
+    with (RUNS/'checkpoint-git.lock').open('a') as lock:
+        fcntl.flock(lock,fcntl.LOCK_EX);checkpoint()
+        paths=[str((OUT/'checkpoints').relative_to(ROOT))]
+        paths.extend(str((OUT/name).relative_to(ROOT)) for name in ['cold_benchmark.json','cold_benchmark_protocol.json','feature_benchmark.json','method_v3_frozen.json'] if (OUT/name).exists())
+        subprocess.run(['git','add','--',*paths],cwd=ROOT,check=True)
+        changed=subprocess.run(['git','diff','--cached','--quiet','--',*paths],cwd=ROOT).returncode
+        if changed:subprocess.run(['git','commit','--only','-m','Save resumable unified experiment checkpoint','--',*paths],cwd=ROOT,check=True)
+        subprocess.run(['git','push','origin','HEAD'],cwd=ROOT,check=True)
+
 if __name__=='__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('phase',choices=['audit','extract_eth','geometry','freeze_method','diagnose','infer','freeze_v2','infer_v2','evaluate','cold_benchmark','feature_benchmark','checkpoint','restore_checkpoint']);args=parser.parse_args();globals()[args.phase]()
+    parser=argparse.ArgumentParser();parser.add_argument('phase',choices=['audit','extract_eth','geometry','freeze_method','diagnose','infer','freeze_v2','infer_v2','freeze_v3','infer_v3','evaluate','cold_benchmark','feature_benchmark','checkpoint','restore_checkpoint','publish_checkpoint']);args=parser.parse_args();globals()[args.phase]()
