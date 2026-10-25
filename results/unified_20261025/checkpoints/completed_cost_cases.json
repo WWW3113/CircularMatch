@@ -1,0 +1,142 @@
+[
+  {
+    "marker": "cold_benchmark/ETH/multi_refined/complete.json",
+    "record": {
+      "dataset": "ETH",
+      "scene": "ETH",
+      "pair": "s1-s2",
+      "method": "multi_refined",
+      "wall_s": 94.87642116299958,
+      "cpu_s": 250.070822,
+      "peak_child_rss_kib": 1456852,
+      "peak_scope": "largest native child RSS, excludes OS page cache and Python parent; processes run serially",
+      "resources": [
+        "cold_extract_ETH_multi_refined_s1",
+        "cold_geometry_ETH_multi_refined_s1",
+        "cold_extract_ETH_multi_refined_s2",
+        "cold_geometry_ETH_multi_refined_s2",
+        "cold_pair_ETH_multi_refined"
+      ]
+    }
+  },
+  {
+    "marker": "cold_benchmark/ETH/multi_v2_refined/complete.json",
+    "record": {
+      "dataset": "ETH",
+      "scene": "ETH",
+      "pair": "s1-s2",
+      "method": "multi_v2_refined",
+      "wall_s": 94.96492677100014,
+      "cpu_s": 249.109524,
+      "peak_child_rss_kib": 1456856,
+      "peak_scope": "largest native child RSS, excludes OS page cache and Python parent; processes run serially",
+      "resources": [
+        "cold_extract_ETH_multi_v2_refined_s1",
+        "cold_geometry_ETH_multi_v2_refined_s1",
+        "cold_extract_ETH_multi_v2_refined_s2",
+        "cold_geometry_ETH_multi_v2_refined_s2",
+        "cold_pair_ETH_multi_v2_refined"
+      ]
+    }
+  },
+  {
+    "marker": "cold_benchmark/ETH/multi_v3_refined/complete.json",
+    "record": {
+      "dataset": "ETH",
+      "scene": "ETH",
+      "pair": "s1-s2",
+      "method": "multi_v3_refined",
+      "wall_s": 369.0621386269995,
+      "cpu_s": 937.9055500000001,
+      "peak_child_rss_kib": 1456496,
+      "peak_scope": "largest native child RSS, excludes OS page cache and Python parent; processes run serially",
+      "resources": [
+        "cold_extract_ETH_multi_v3_refined_s1",
+        "cold_geometry_ETH_multi_v3_refined_s1",
+        "cold_extract_ETH_multi_v3_refined_s2",
+        "cold_geometry_ETH_multi_v3_refined_s2",
+        "cold_pair_ETH_multi_v3_refined"
+      ],
+      "runtime_epoch": "20261025T162801Z"
+    }
+  },
+  {
+    "marker": "cold_benchmark/ETH/reference5_raw/complete.json",
+    "record": {
+      "dataset": "ETH",
+      "scene": "ETH",
+      "pair": "s1-s2",
+      "method": "reference5_raw",
+      "wall_s": 86.21890307300055,
+      "cpu_s": 236.78046999999998,
+      "peak_child_rss_kib": 1456856,
+      "peak_scope": "largest native child RSS, excludes OS page cache and Python parent; processes run serially",
+      "resources": [
+        "cold_extract_ETH_reference5_raw_s1",
+        "cold_extract_ETH_reference5_raw_s2",
+        "cold_pair_ETH_reference5_raw"
+      ]
+    }
+  },
+  {
+    "marker": "cold_benchmark/ETH/reference5_refined/complete.json",
+    "record": {
+      "dataset": "ETH",
+      "scene": "ETH",
+      "pair": "s1-s2",
+      "method": "reference5_refined",
+      "wall_s": 95.72410623700034,
+      "cpu_s": 252.828008,
+      "peak_child_rss_kib": 1456860,
+      "peak_scope": "largest native child RSS, excludes OS page cache and Python parent; processes run serially",
+      "resources": [
+        "cold_extract_ETH_reference5_refined_s1",
+        "cold_geometry_ETH_reference5_refined_s1",
+        "cold_extract_ETH_reference5_refined_s2",
+        "cold_geometry_ETH_reference5_refined_s2",
+        "cold_pair_ETH_reference5_refined"
+      ]
+    }
+  },
+  {
+    "marker": "cold_benchmark/ETH/reference5_refined_v3/complete.json",
+    "record": {
+      "dataset": "ETH",
+      "scene": "ETH",
+      "pair": "s1-s2",
+      "method": "reference5_refined_v3",
+      "wall_s": 344.30971392599895,
+      "cpu_s": 958.1163700000001,
+      "peak_child_rss_kib": 1456624,
+      "peak_scope": "largest native child RSS, excludes OS page cache and Python parent; processes run serially",
+      "resources": [
+        "cold_extract_ETH_reference5_refined_v3_s1",
+        "cold_geometry_ETH_reference5_refined_v3_s1",
+        "cold_extract_ETH_reference5_refined_v3_s2",
+        "cold_geometry_ETH_reference5_refined_v3_s2",
+        "cold_pair_ETH_reference5_refined_v3"
+      ],
+      "runtime_epoch": "20261025T162801Z"
+    }
+  },
+  {
+    "marker": "cold_benchmark/Plot1/multi_v2_refined/complete.json",
+    "record": {
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "pair": "S2-S1",
+      "method": "multi_v2_refined",
+      "wall_s": 201.20603823200054,
+      "cpu_s": 547.824163,
+      "peak_child_rss_kib": 2057324,
+      "peak_scope": "largest native child RSS, excludes OS page cache and Python parent; processes run serially",
+      "resources": [
+        "cold_extract_Plot1_multi_v2_refined_S2",
+        "cold_geometry_Plot1_multi_v2_refined_S2",
+        "cold_extract_Plot1_multi_v2_refined_S1",
+        "cold_geometry_Plot1_multi_v2_refined_S1",
+        "cold_pair_Plot1_multi_v2_refined"
+      ]
+    }
+  }
+]
