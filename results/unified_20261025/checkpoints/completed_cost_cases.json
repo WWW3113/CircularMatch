@@ -411,6 +411,88 @@
     }
   },
   {
+    "marker": "feature_benchmark/ETH/s5/complete.json",
+    "record": {
+      "label": "feature_benchmark_ETH_s5",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/eth_trees/raw/trees/s5.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/feature_benchmark/ETH/s5",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 446.97371207299875,
+      "cpu_s": 503.003876,
+      "peak_rss_kib": 1495340,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "ETH",
+      "scene": "ETH",
+      "scan": "s5",
+      "seed": 31,
+      "concurrent_jobs": 4,
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 79.76586999999999,
+        "2": 38.68593,
+        "3": 195.56288,
+        "4": 1.29624,
+        "5": 0.01274,
+        "6": 47.65128,
+        "7": 4.0812,
+        "8": 0.00708
+      }
+    }
+  },
+  {
+    "marker": "feature_benchmark/ETH/s6/complete.json",
+    "record": {
+      "label": "feature_benchmark_ETH_s6",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/eth_trees/raw/trees/s6.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/feature_benchmark/ETH/s6",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 288.9912177820006,
+      "cpu_s": 454.8535,
+      "peak_rss_kib": 1571280,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "ETH",
+      "scene": "ETH",
+      "scan": "s6",
+      "seed": 31,
+      "concurrent_jobs": 4,
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 37.51383,
+        "2": 54.39882,
+        "3": 124.90413000000001,
+        "4": 0.69384,
+        "5": 0.01031,
+        "6": 35.04472,
+        "7": 4.83124,
+        "8": 0.00651
+      }
+    }
+  },
+  {
     "marker": "feature_benchmark/Plot1/S1/complete.json",
     "record": {
       "label": "cold_extract_Plot1_multi_v3_refined_S1",
