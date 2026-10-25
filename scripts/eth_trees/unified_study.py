@@ -222,17 +222,21 @@ def checkpoint():
     import shutil
     destination=OUT/'checkpoints';destination.mkdir(exist_ok=True);counts={};files=[]
     for kind,tags in [('predictions',['final','v2','v3']),('scores',['final_evaluation','v2_evaluation','v3_evaluation'])]:
-        gathered=[]
+        gathered_map={}
         for tag in tags:
-            groups=0
+            groups=set()
             for path in sorted((RUNS/tag).glob('*/*.csv')):
-                if path.name.endswith('.pending.csv'):continue
+                if path.name.endswith('.merged.csv'):continue
                 if kind=='scores' and not Path(str(path)+'.complete').exists():continue
+                pair=path.stem.removesuffix('.pending')
                 valid=[]
                 for r in complete_csv_rows(path):
                     if None not in r and all(v is not None for v in r.values()) and r.get('label','').isdigit() and r.get('pose_ok') in ['0','1']:valid.append(r)
-                if valid:groups+=1;gathered.extend(dict(run=tag,scene=path.parent.name,pair=path.stem,**r) for r in valid)
-            counts[tag]=dict(pair_files=groups,rows=sum(r['run']==tag for r in gathered))
+                if valid:
+                    groups.add((path.parent.name,pair))
+                    for r in valid:gathered_map.setdefault((tag,path.parent.name,pair,r['label'],r['method']),dict(run=tag,scene=path.parent.name,pair=pair,**r))
+            counts[tag]=dict(pair_files=len(groups),rows=sum(r['run']==tag for r in gathered_map.values()))
+        gathered=list(gathered_map.values())
         if gathered:
             keys=list(dict.fromkeys(k for r in gathered for k in r));target=destination/f'completed_{kind}.csv';temp=target.with_suffix('.tmp')
             write_csv(temp,[{k:r.get(k,'') for k in keys} for r in gathered]);temp.replace(target);files.append(target.name)
