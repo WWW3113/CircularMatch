@@ -1,0 +1,18 @@
+{
+  "frozen_at_utc": "2026-10-25T13:25:18.465009+00:00",
+  "protocol_sha256": "6b3ea0830ee54e7940d725a89add5fd752157f5c87f8e541405b9eb3c8c8a56a",
+  "sha256": {
+    "apps/cm_geometry_register.cpp": "7cb02386fd30165414aa2ab5928aca4927ea72e6fce445ccd1469b0afba632ea",
+    "apps/geometry_refinement.cpp": "b634d90de1e542f96042ce61a6f18107127dfacf7da7fee4ea5321504db24dce",
+    "include/cm/geometry_refinement.hpp": "7c53d4b1c60296a5962423096318e8072a96463f90d6fd32c93da8978c3ef27d",
+    "build/cm_geometry_register": "9d9ccf73a5726d46ae89965e4ef8032536cc5b1f68dc9eac1d903f4b04113df6",
+    "build/cm_extract_batch": "b121477be1467800f6b3b5673f45d58959dfa895db882c2d2ad779975e73c1aa",
+    "config/default.ini": "bd94251c5eaca7c81b46826b517b2feaaf35deb5ff4a4299756c2c2a6651bb35"
+  },
+  "normal_min_neighbors": 6,
+  "normal_max_curvature": 0.1,
+  "hypothesis_limit": 10000,
+  "pose_cluster_angle_deg": 5,
+  "pose_cluster_translation_m": 0.5,
+  "geometry_selection": "bidirectional overlap/(0.03+NN_RMSE) times log1p(CN XY support); GT never enters inference"
+}

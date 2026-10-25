@@ -1,0 +1,16 @@
+{
+  "repository": "https://github.com/MercerSU/CircularMatch",
+  "commit": "1e9623fd8893633770b689baf8bda66f7f36f307",
+  "tracked_files": [
+    "README.md"
+  ],
+  "readme": "# CircularMatch\nEfficient Registration of Forest Terrestrial Point Clouds using Circular Neighborhood Descriptor\n\n\n\nThe code will be released after the article is published\n",
+  "branches_checked": [
+    "main"
+  ],
+  "tags": [],
+  "releases": [],
+  "author_executable_available": false,
+  "strict_author_baseline_comparison": "blocked: author repository has README only; reference implementation must be labeled separately",
+  "checked_at_utc": "2026-10-25T13:17:46.568705+00:00"
+}
