@@ -1,0 +1,60 @@
+{
+  "commit": "b2be1210e63e85546aa63eb89d4b6226a2a2d737",
+  "verified_downloads": {
+    "professor_reports_20261026.zip": {
+      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/b2be1210e63e85546aa63eb89d4b6226a2a2d737/results/professor_reports_20261026/professor_reports_20261026.zip",
+      "sha256": "e1b02fc1a4f1cf6a5d6c8f67905b92c7d69fc7c109f51dfcb712be4f4082a910",
+      "bytes": 993968
+    },
+    "報告安排總覽.txt": {
+      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/b2be1210e63e85546aa63eb89d4b6226a2a2d737/results/professor_reports_20261026/%E5%A0%B1%E5%91%8A%E5%AE%89%E6%8E%92%E7%B8%BD%E8%A6%BD.txt",
+      "sha256": "7ab76d7a797384d8bbf6fee558c1cb0ccad7898e5b649f8522d6978866057d6d",
+      "bytes": 4529
+    },
+    "report_01_匹配容差與弱配對補救.txt": {
+      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/b2be1210e63e85546aa63eb89d4b6226a2a2d737/results/professor_reports_20261026/report_01_%E5%8C%B9%E9%85%8D%E5%AE%B9%E5%B7%AE%E8%88%87%E5%BC%B1%E9%85%8D%E5%B0%8D%E8%A3%9C%E6%95%91.txt",
+      "sha256": "76fe2ca399ae81f0199e1faa8d4b3e1ffa0311b96e8de6394c88b3c0bea82cb9",
+      "bytes": 11390
+    },
+    "report_02_DTM平滑的局部改善與代價.txt": {
+      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/b2be1210e63e85546aa63eb89d4b6226a2a2d737/results/professor_reports_20261026/report_02_DTM%E5%B9%B3%E6%BB%91%E7%9A%84%E5%B1%80%E9%83%A8%E6%94%B9%E5%96%84%E8%88%87%E4%BB%A3%E5%83%B9.txt",
+      "sha256": "6388ef732659cd23ea89f7b1249cc1e1d9bf5980491dc954d032f920b9e29a1f",
+      "bytes": 10791
+    },
+    "report_03_加入多尺度幾何微調.txt": {
+      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/b2be1210e63e85546aa63eb89d4b6226a2a2d737/results/professor_reports_20261026/report_03_%E5%8A%A0%E5%85%A5%E5%A4%9A%E5%B0%BA%E5%BA%A6%E5%B9%BE%E4%BD%95%E5%BE%AE%E8%AA%BF.txt",
+      "sha256": "2c750a3ab9d8a8458a1e784d3ae30c39320cbe5743ca416cc6b8fbf32604ecbb",
+      "bytes": 10523
+    },
+    "report_04_多候選與垂直結構驗證.txt": {
+      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/b2be1210e63e85546aa63eb89d4b6226a2a2d737/results/professor_reports_20261026/report_04_%E5%A4%9A%E5%80%99%E9%81%B8%E8%88%87%E5%9E%82%E7%9B%B4%E7%B5%90%E6%A7%8B%E9%A9%97%E8%AD%89.txt",
+      "sha256": "889ac4990724ff2dd0a31cb946494022f8e73af3e737a2176a8fefdc292ff34e",
+      "bytes": 10887
+    },
+    "report_01_匹配容差與弱配對補救.xlsx": {
+      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/b2be1210e63e85546aa63eb89d4b6226a2a2d737/results/professor_reports_20261026/report_01_%E5%8C%B9%E9%85%8D%E5%AE%B9%E5%B7%AE%E8%88%87%E5%BC%B1%E9%85%8D%E5%B0%8D%E8%A3%9C%E6%95%91.xlsx",
+      "sha256": "ac373bf1aca224620c941397f383a494792bc821b63608f3b487f03dd615efe8",
+      "bytes": 25960
+    },
+    "report_02_DTM平滑的局部改善與代價.xlsx": {
+      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/b2be1210e63e85546aa63eb89d4b6226a2a2d737/results/professor_reports_20261026/report_02_DTM%E5%B9%B3%E6%BB%91%E7%9A%84%E5%B1%80%E9%83%A8%E6%94%B9%E5%96%84%E8%88%87%E4%BB%A3%E5%83%B9.xlsx",
+      "sha256": "d5c0273dfd7c3124147816d2e7a3d155c8f8a547fcbfdf8186743245412a5a87",
+      "bytes": 26018
+    },
+    "report_03_加入多尺度幾何微調.xlsx": {
+      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/b2be1210e63e85546aa63eb89d4b6226a2a2d737/results/professor_reports_20261026/report_03_%E5%8A%A0%E5%85%A5%E5%A4%9A%E5%B0%BA%E5%BA%A6%E5%B9%BE%E4%BD%95%E5%BE%AE%E8%AA%BF.xlsx",
+      "sha256": "a223b386307e3b1799c5a0fdc1411df226c3d57f19279195389086763be0eb91",
+      "bytes": 29295
+    },
+    "report_04_多候選與垂直結構驗證.xlsx": {
+      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/b2be1210e63e85546aa63eb89d4b6226a2a2d737/results/professor_reports_20261026/report_04_%E5%A4%9A%E5%80%99%E9%81%B8%E8%88%87%E5%9E%82%E7%9B%B4%E7%B5%90%E6%A7%8B%E9%A9%97%E8%AD%89.xlsx",
+      "sha256": "f3229cbf47c567dc01b17d9f3624bb8200ab3208b75d3cccc2711a3e5d22983e",
+      "bytes": 30117
+    },
+    "F_fresh_rows.csv": {
+      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/b2be1210e63e85546aa63eb89d4b6226a2a2d737/results/professor_reports_20261026/evidence/F_fresh_rows.csv",
+      "sha256": "b73cafe4af6c29e65881e8fa481474ab1c304aaa273ba2c7185fbddbf90098bb",
+      "bytes": 596705
+    }
+  }
+}
