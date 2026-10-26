@@ -1,0 +1,175 @@
+{
+  "generated_at": "2026-10-26T12:37:37.565481+08:00",
+  "file": "CircularMatch_實作理解與報告問答完整交接.txt",
+  "bytes": 273544,
+  "sha256": "d82465798d5f2bc81f33f0da641223acaa96a783ff01b696dba0cd7856edfa5b",
+  "lines": 3827,
+  "main_case_rows_reaggregated": 4950,
+  "main_scene_method_groups_verified": 45,
+  "case_versions_embedded": 9,
+  "spreadsheets_read_only": 4,
+  "key_source_files_embedded": 22,
+  "private_drive_identifiers_present": false,
+  "source_files": [
+    {
+      "path": "results/unified_20261025/scene_summary.csv",
+      "sha256": "ecfce53105e724b880aebe54dd6a6ea9b227b92199617b1e643f855c85109305",
+      "bytes": 15111
+    },
+    {
+      "path": "results/professor_reports_20261026/實驗盤點與數據口徑.txt",
+      "sha256": "67e53b97ee367dba4ac6ae1e2ddb1a691ab8d4e177a154b5a569c2c2e516928d",
+      "bytes": 10858
+    },
+    {
+      "path": "results/professor_reports_20261026/report_01_匹配容差與弱配對補救.xlsx",
+      "sha256": "ac373bf1aca224620c941397f383a494792bc821b63608f3b487f03dd615efe8",
+      "bytes": 25960
+    },
+    {
+      "path": "results/professor_reports_20261026/report_02_DTM平滑的局部改善與代價.xlsx",
+      "sha256": "d5c0273dfd7c3124147816d2e7a3d155c8f8a547fcbfdf8186743245412a5a87",
+      "bytes": 26018
+    },
+    {
+      "path": "results/professor_reports_20261026/report_03_加入多尺度幾何微調.xlsx",
+      "sha256": "a223b386307e3b1799c5a0fdc1411df226c3d57f19279195389086763be0eb91",
+      "bytes": 29295
+    },
+    {
+      "path": "results/professor_reports_20261026/report_04_多候選與垂直結構驗證.xlsx",
+      "sha256": "f3229cbf47c567dc01b17d9f3624bb8200ab3208b75d3cccc2711a3e5d22983e",
+      "bytes": 30117
+    },
+    {
+      "path": "results/unified_20261025/unified_config.json",
+      "sha256": "c69ccaff14cd7d1410093acbb108771bcbf32517f3f7eb6817449a49110e3b48",
+      "bytes": 2973
+    },
+    {
+      "path": "include/cm/cn_descriptor.hpp",
+      "sha256": "4871a49292802c72987447f434b0fa72b088853c52856f2e6ed65942d6dbfeaf",
+      "bytes": 3377
+    },
+    {
+      "path": "include/cm/cn_matching.hpp",
+      "sha256": "16097744e3b0fdd95d34dcd33823eb1f94cc31af8e97560b14603ea7f886c561",
+      "bytes": 3555
+    },
+    {
+      "path": "src/cn_descriptor.cpp",
+      "sha256": "e5d9e1854ec573eebe117252f74c959299f63cd00842b28dede668388082c755",
+      "bytes": 4152
+    },
+    {
+      "path": "src/cn_matching.cpp",
+      "sha256": "5abe78ce4afd0d90909bed40e76ff746247c8246488031d92e925f88734ae122",
+      "bytes": 6633
+    },
+    {
+      "path": "docs/cn_ambiguities.md",
+      "sha256": "6a67611c0b410aef92b55184cd93cab84aba7e0842b89c73a1effd9ff9a814b0",
+      "bytes": 5251
+    },
+    {
+      "path": "include/cm/registration.hpp",
+      "sha256": "4db97fc1d51698103524d3af679168d279a1e4c85f9a7947c9091d64347e97d1",
+      "bytes": 2278
+    },
+    {
+      "path": "src/registration.cpp",
+      "sha256": "9a9f33d15f20ff8191baf3544dbac20af0926c5897bd280803ccaf931c690970",
+      "bytes": 3443
+    },
+    {
+      "path": "include/cm/cn_recovery.hpp",
+      "sha256": "db38c3000ae7f1605672d368b19ee0d710e0157495114c9552613895a52d3424",
+      "bytes": 1164
+    },
+    {
+      "path": "src/cn_recovery.cpp",
+      "sha256": "2d496347627b077ddccd409d91f4fbe8f5c186044be91f3fe990328bb183a428",
+      "bytes": 4991
+    },
+    {
+      "path": "src/pipeline.cpp",
+      "sha256": "cbc79aeb89f6232f925035141267051887dc4e9ae64898ad5a46120fdf5d7d6c",
+      "bytes": 4803
+    },
+    {
+      "path": "src/voxel.cpp",
+      "sha256": "4d5d33bb369881dd71af32898a174b5ac027db2f31f37818f07a89a6e339af10",
+      "bytes": 2066
+    },
+    {
+      "path": "src/normals.cpp",
+      "sha256": "3b3841400fed1bbffe013a0e758da9a9c655bd6db8e41f47452c529d0763d8e4",
+      "bytes": 2412
+    },
+    {
+      "path": "src/retention.cpp",
+      "sha256": "baeccc15e39b985958476032c2f066dba3fd9b870d47f830c4bdc44ecfc00db0",
+      "bytes": 3548
+    },
+    {
+      "path": "src/dtm.cpp",
+      "sha256": "22efcd2db669ec49fe16c866ac629a616ff83fcefa2a701b553c889ed82b0975",
+      "bytes": 9278
+    },
+    {
+      "path": "src/cylinder.cpp",
+      "sha256": "ebcee951175e8e1b10d44c7721bbfe723606c9065252ebc754cf1ce49acc12da",
+      "bytes": 8005
+    },
+    {
+      "path": "src/tree_position.cpp",
+      "sha256": "40847accbcecec4a57b37074082df8ba85a95fb2801281d9d5321c9b9e908e80",
+      "bytes": 2130
+    },
+    {
+      "path": "config/default.ini",
+      "sha256": "bd94251c5eaca7c81b46826b517b2feaaf35deb5ff4a4299756c2c2a6651bb35",
+      "bytes": 5587
+    },
+    {
+      "path": "apps/cm_dtm_reposition.cpp",
+      "sha256": "db24f232ef70994c943b4aaa6b014cd21ea96edf9a39f4b658cfbdae79fa487a",
+      "bytes": 6301
+    },
+    {
+      "path": "include/cm/geometry_refinement.hpp",
+      "sha256": "7c53d4b1c60296a5962423096318e8072a96463f90d6fd32c93da8978c3ef27d",
+      "bytes": 661
+    },
+    {
+      "path": "apps/cm_geometry_register_v3.cpp",
+      "sha256": "e8428c89198a41c88ba6b39777024211e297918bc5e29405e895f9d30ff85234",
+      "bytes": 14262
+    },
+    {
+      "path": "apps/geometry_refinement_structural.cpp",
+      "sha256": "e3b24aa787a30df9df89234ad53ae02ebfa76e94a032a17c2094c89525a660f3",
+      "bytes": 6333
+    },
+    {
+      "path": "apps/cm_evaluate_transforms.cpp",
+      "sha256": "06b361e1b31a637037f57ca5f0c62ea281cbfaf011742d722f397841fa33a68f",
+      "bytes": 3837
+    },
+    {
+      "path": "apps/cm_geometry_register.cpp",
+      "sha256": "7cb02386fd30165414aa2ab5928aca4927ea72e6fce445ccd1469b0afba632ea",
+      "bytes": 11648
+    },
+    {
+      "path": "apps/cm_geometry_register_v2.cpp",
+      "sha256": "9a570d42c65563e8560f9c6c56b957d20977947e0e86a9b209bbbbede4bca3da",
+      "bytes": 14226
+    },
+    {
+      "path": "apps/geometry_refinement.cpp",
+      "sha256": "b634d90de1e542f96042ce61a6f18107127dfacf7da7fee4ea5321504db24dce",
+      "bytes": 5597
+    }
+  ]
+}
