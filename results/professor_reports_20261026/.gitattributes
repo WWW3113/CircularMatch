@@ -1,0 +1,4 @@
+evidence/** -text whitespace=cr-at-eol
+*.xlsx binary
+*.zip binary
+*.txt text eol=lf

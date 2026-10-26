@@ -1,0 +1,792 @@
+{
+  "datasets": [
+    "Tongji",
+    "ETH"
+  ],
+  "scans": [
+    {
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "scan": "S1",
+      "path": "data/tongji_trees/received/Tongji-Trees/Plot1/S1.ply",
+      "bytes": 637259801,
+      "sha256": "d4ac5067d329f4cc0ca74f32368855c7ab3232dc435ecccd704294834147bec2",
+      "units": "m",
+      "development_exposure": "ETH developed earlier; all Tongji baseline results reviewed; Plot2 used for DTM development"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "scan": "S2",
+      "path": "data/tongji_trees/received/Tongji-Trees/Plot1/S2.ply",
+      "bytes": 635920833,
+      "sha256": "f729f5ee8158149bb376ced5d1ef588b880bedb5f6c4f526dd38aae1c45e0ae8",
+      "units": "m",
+      "development_exposure": "ETH developed earlier; all Tongji baseline results reviewed; Plot2 used for DTM development"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "scan": "S3",
+      "path": "data/tongji_trees/received/Tongji-Trees/Plot1/S3.ply",
+      "bytes": 257501994,
+      "sha256": "fe43fb3764fad97544575ec19119becee13c6db88e3a67aa22f570391140244b",
+      "units": "m",
+      "development_exposure": "ETH developed earlier; all Tongji baseline results reviewed; Plot2 used for DTM development"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "scan": "S4",
+      "path": "data/tongji_trees/received/Tongji-Trees/Plot1/S4.ply",
+      "bytes": 655271953,
+      "sha256": "5d9dfbbee24b1c6d3f84004fee3fc015a037a60c6fade2cfb130048215c791a0",
+      "units": "m",
+      "development_exposure": "ETH developed earlier; all Tongji baseline results reviewed; Plot2 used for DTM development"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "scan": "S5",
+      "path": "data/tongji_trees/received/Tongji-Trees/Plot1/S5.ply",
+      "bytes": 639400455,
+      "sha256": "316243c693983368c4886ef3cae6d1660dc9c6beb98519f568ad1384b69e26a2",
+      "units": "m",
+      "development_exposure": "ETH developed earlier; all Tongji baseline results reviewed; Plot2 used for DTM development"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot2",
+      "scan": "S1",
+      "path": "data/tongji_trees/received/Tongji-Trees/Plot2/S1.ply",
+      "bytes": 639561005,
+      "sha256": "0b5a6f1b711ef47d0aa29e163f615144b69904f4bf032068934bf7ca2ccaca69",
+      "units": "m",
+      "development_exposure": "ETH developed earlier; all Tongji baseline results reviewed; Plot2 used for DTM development"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot2",
+      "scan": "S2",
+      "path": "data/tongji_trees/received/Tongji-Trees/Plot2/S2.ply",
+      "bytes": 643892758,
+      "sha256": "98782c5ae8035a836f5eed0badadedbaa06a7bbb5bee9e9b2227270b32a003b3",
+      "units": "m",
+      "development_exposure": "ETH developed earlier; all Tongji baseline results reviewed; Plot2 used for DTM development"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot2",
+      "scan": "S3",
+      "path": "data/tongji_trees/received/Tongji-Trees/Plot2/S3.ply",
+      "bytes": 580886003,
+      "sha256": "acc62fea93d7defd80b3a046dc70e288ab249d0eeda04bd098052a5f6c705b52",
+      "units": "m",
+      "development_exposure": "ETH developed earlier; all Tongji baseline results reviewed; Plot2 used for DTM development"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot2",
+      "scan": "S4",
+      "path": "data/tongji_trees/received/Tongji-Trees/Plot2/S4.ply",
+      "bytes": 649639232,
+      "sha256": "d257318b04871362e10867d489a11d18c2d33635a51b578bae43117b7df7ea53",
+      "units": "m",
+      "development_exposure": "ETH developed earlier; all Tongji baseline results reviewed; Plot2 used for DTM development"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot2",
+      "scan": "S5",
+      "path": "data/tongji_trees/received/Tongji-Trees/Plot2/S5.ply",
+      "bytes": 630636002,
+      "sha256": "a69d62209746b75c9ac7cd1efaa73f557b4c90c36bc68394f410823ca63f45a4",
+      "units": "m",
+      "development_exposure": "ETH developed earlier; all Tongji baseline results reviewed; Plot2 used for DTM development"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot3",
+      "scan": "S1",
+      "path": "data/tongji_trees/received/Tongji-Trees/Plot3/S1.ply",
+      "bytes": 674691948,
+      "sha256": "d1ca6128a9e687a0685d65db9c7fcd06362ad6c3ea85f32005be263725cf0280",
+      "units": "m",
+      "development_exposure": "ETH developed earlier; all Tongji baseline results reviewed; Plot2 used for DTM development"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot3",
+      "scan": "S2",
+      "path": "data/tongji_trees/received/Tongji-Trees/Plot3/S2.ply",
+      "bytes": 668218933,
+      "sha256": "c5bd4ba589b61b3cff5a60be8225e317733297f035238fd920f770dca172edaa",
+      "units": "m",
+      "development_exposure": "ETH developed earlier; all Tongji baseline results reviewed; Plot2 used for DTM development"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot3",
+      "scan": "S3",
+      "path": "data/tongji_trees/received/Tongji-Trees/Plot3/S3.ply",
+      "bytes": 639932949,
+      "sha256": "8e2b9062f02f39179ad3e10137ae9d2c7811cb749f813b7214335410768c1cf4",
+      "units": "m",
+      "development_exposure": "ETH developed earlier; all Tongji baseline results reviewed; Plot2 used for DTM development"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot3",
+      "scan": "S4",
+      "path": "data/tongji_trees/received/Tongji-Trees/Plot3/S4.ply",
+      "bytes": 635466619,
+      "sha256": "3f8f6b76612e990524d0710892de1f706966a8dadb7c03b822643cc586be4011",
+      "units": "m",
+      "development_exposure": "ETH developed earlier; all Tongji baseline results reviewed; Plot2 used for DTM development"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot3",
+      "scan": "S5",
+      "path": "data/tongji_trees/received/Tongji-Trees/Plot3/S5.ply",
+      "bytes": 704445492,
+      "sha256": "c4c9966d35f49f03066ebeb932f674f6d12ee944129d311b0b2f8522aabf5f16",
+      "units": "m",
+      "development_exposure": "ETH developed earlier; all Tongji baseline results reviewed; Plot2 used for DTM development"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot4",
+      "scan": "S1",
+      "path": "data/tongji_trees/received/Tongji-Trees/Plot4/S1.ply",
+      "bytes": 706566253,
+      "sha256": "1a6156d5940c721b2da60d2df05f778ce4c14fa0d2fac996fd42899e1573998b",
+      "units": "m",
+      "development_exposure": "ETH developed earlier; all Tongji baseline results reviewed; Plot2 used for DTM development"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot4",
+      "scan": "S2",
+      "path": "data/tongji_trees/received/Tongji-Trees/Plot4/S2.ply",
+      "bytes": 667459769,
+      "sha256": "f86a4ef0e94962b3dd55fd9f0e8ca4f36124d673da36002177c708ecb01f0490",
+      "units": "m",
+      "development_exposure": "ETH developed earlier; all Tongji baseline results reviewed; Plot2 used for DTM development"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot4",
+      "scan": "S3",
+      "path": "data/tongji_trees/received/Tongji-Trees/Plot4/S3.ply",
+      "bytes": 705129169,
+      "sha256": "56571bbbb2184cc9d734142f86f2e84651bc714404d7a09f029d221cc267936d",
+      "units": "m",
+      "development_exposure": "ETH developed earlier; all Tongji baseline results reviewed; Plot2 used for DTM development"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot4",
+      "scan": "S4",
+      "path": "data/tongji_trees/received/Tongji-Trees/Plot4/S4.ply",
+      "bytes": 676365392,
+      "sha256": "b14838d3bce43c551c70b27e5bd3a79ef76f79df398d6677cfb23d4957a82d79",
+      "units": "m",
+      "development_exposure": "ETH developed earlier; all Tongji baseline results reviewed; Plot2 used for DTM development"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot4",
+      "scan": "S5",
+      "path": "data/tongji_trees/received/Tongji-Trees/Plot4/S5.ply",
+      "bytes": 679890690,
+      "sha256": "0660e7bcdb36046a7a5af8c793f5179d53b9d96268bdbd07e30b54f7121d0262",
+      "units": "m",
+      "development_exposure": "ETH developed earlier; all Tongji baseline results reviewed; Plot2 used for DTM development"
+    },
+    {
+      "dataset": "ETH",
+      "scene": "ETH",
+      "scan": "s1",
+      "path": "data/eth_trees/raw/trees/s1.ply",
+      "bytes": 314133078,
+      "sha256": "f9740acd1520dcf5285216379d7e48a2b329659f510686085c4eb5717a4937b3",
+      "units": "m",
+      "development_exposure": "ETH developed earlier; all Tongji baseline results reviewed; Plot2 used for DTM development"
+    },
+    {
+      "dataset": "ETH",
+      "scene": "ETH",
+      "scan": "s2",
+      "path": "data/eth_trees/raw/trees/s2.ply",
+      "bytes": 313639766,
+      "sha256": "eb20ec19669273333cc4b787c689438d2929a0f5096b0c3ae76a7c6883ac9740",
+      "units": "m",
+      "development_exposure": "ETH developed earlier; all Tongji baseline results reviewed; Plot2 used for DTM development"
+    },
+    {
+      "dataset": "ETH",
+      "scene": "ETH",
+      "scan": "s3",
+      "path": "data/eth_trees/raw/trees/s3.ply",
+      "bytes": 316286054,
+      "sha256": "774ca4c6bf422b988c4ad98a3ef6f4e77c6b67835cf02b22c747b471b8dfecf2",
+      "units": "m",
+      "development_exposure": "ETH developed earlier; all Tongji baseline results reviewed; Plot2 used for DTM development"
+    },
+    {
+      "dataset": "ETH",
+      "scene": "ETH",
+      "scan": "s4",
+      "path": "data/eth_trees/raw/trees/s4.ply",
+      "bytes": 326287782,
+      "sha256": "56aae680b9abdb879fdc09b9103d8d57a224f36df805a5ce0b635b1ca96264db",
+      "units": "m",
+      "development_exposure": "ETH developed earlier; all Tongji baseline results reviewed; Plot2 used for DTM development"
+    },
+    {
+      "dataset": "ETH",
+      "scene": "ETH",
+      "scan": "s5",
+      "path": "data/eth_trees/raw/trees/s5.ply",
+      "bytes": 327701318,
+      "sha256": "88aab27f2fdcc0f2798c0bd8bfeb0ef3e2e1fa4aaedc0b1c21e4cd4031e381d9",
+      "units": "m",
+      "development_exposure": "ETH developed earlier; all Tongji baseline results reviewed; Plot2 used for DTM development"
+    },
+    {
+      "dataset": "ETH",
+      "scene": "ETH",
+      "scan": "s6",
+      "path": "data/eth_trees/raw/trees/s6.ply",
+      "bytes": 345795046,
+      "sha256": "1c03e8aa1e864aad81f511572c5e0245eb5b3dbc7611fedc1a1557a3084fe5fd",
+      "units": "m",
+      "development_exposure": "ETH developed earlier; all Tongji baseline results reviewed; Plot2 used for DTM development"
+    }
+  ],
+  "pairs": [
+    {
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "source": "S2",
+      "target": "S1",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot1/S2_S1.txt",
+      "gt_sha256": "e153d1d472e8953359a0b73ca7eae8087636f8568869cfdc148d941622e684fa",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "source": "S3",
+      "target": "S1",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot1/S3_S1.txt",
+      "gt_sha256": "325606662ebc7f6b5a95de469b78099b9fd8c16ae390a2b23cec7cdc22b21450",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "source": "S4",
+      "target": "S1",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot1/S4_S1.txt",
+      "gt_sha256": "cf74cc83e6a0d54011b02b6b536d492cf72930a650da5406fe89e163135c0bd9",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "source": "S5",
+      "target": "S1",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot1/S5_S1.txt",
+      "gt_sha256": "68ca5bb9e2ac63d95d0b07623f7bfa5dd41babe886efbbab2d78613ef3ebe740",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "source": "S3",
+      "target": "S2",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot1/S3_S2.txt",
+      "gt_sha256": "b9699e7ad5b86b455376e4d281592aa8f670d296f23845ed91d8e70f4d5afb8c",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "source": "S4",
+      "target": "S2",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot1/S4_S2.txt",
+      "gt_sha256": "2a20dcbbd3a19f97042aafcec1e278f2304c0bd561121d3cc00055d42cdd1c5b",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "source": "S5",
+      "target": "S2",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot1/S5_S2.txt",
+      "gt_sha256": "7ef178957a1b4cea5b3325385fca3ec99cf86bbd774403ce63066475d2a89829",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "source": "S4",
+      "target": "S3",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot1/S4_S3.txt",
+      "gt_sha256": "ac1bae6c17f2b7326da150de87aac2c4d86459252d8e8e48dd0e18a866901422",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "source": "S5",
+      "target": "S3",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot1/S5_S3.txt",
+      "gt_sha256": "d68b3183d529becbba0cdf833c87e74ce47a573ead473e8e27ea1c35c5ce664b",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "source": "S5",
+      "target": "S4",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot1/S5_S4.txt",
+      "gt_sha256": "e26371213c9c1f7f6a2117a7ba031dd1cdff95984c9d9c0b9147a85ec10ec84f",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot2",
+      "source": "S2",
+      "target": "S1",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot2/S2_S1.txt",
+      "gt_sha256": "a02e2c982755e3d430ce999a2d8df6f6efd479cd00986ac93a2a38cfa0937adf",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot2",
+      "source": "S3",
+      "target": "S1",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot2/S3_S1.txt",
+      "gt_sha256": "af0cb1e6dfac47331146fa7e677ea4aeea5515106040150b78bf0855628a8108",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot2",
+      "source": "S4",
+      "target": "S1",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot2/S4_S1.txt",
+      "gt_sha256": "90e94fb8dfe997910f7e3861120f383d7ed8c99362f04e420ad41d2820602921",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot2",
+      "source": "S5",
+      "target": "S1",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot2/S5_S1.txt",
+      "gt_sha256": "20549cf969b4502057e611efdb519345b94f035752bf8a29ecf1a9449f7cc84d",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot2",
+      "source": "S3",
+      "target": "S2",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot2/S3_S2.txt",
+      "gt_sha256": "4f80bfbc22b402c688906ff2ebfb7f6bd4f932a7015739fc9228eddfe06933a8",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot2",
+      "source": "S4",
+      "target": "S2",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot2/S4_S2.txt",
+      "gt_sha256": "0ca35223ddba9a752be2e1efb5d93eb2a6721c511c2a8667a731c0e72665d166",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot2",
+      "source": "S5",
+      "target": "S2",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot2/S5_S2.txt",
+      "gt_sha256": "e761612ed24cb6e925cdec07ca5d4b4a7f8f94623c1d65be181ae15c78b9ac0f",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot2",
+      "source": "S4",
+      "target": "S3",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot2/S4_S3.txt",
+      "gt_sha256": "e9652cbd7a6f8dd1578fa725b25ca318f09dad781baf48c0b843bf9a9859c8bb",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot2",
+      "source": "S5",
+      "target": "S3",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot2/S5_S3.txt",
+      "gt_sha256": "8ace8508f2e8e3415d7b74cb444ddcb8a7dbbdcf9b7d9e274a02341b65c67959",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot2",
+      "source": "S5",
+      "target": "S4",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot2/S5_S4.txt",
+      "gt_sha256": "32511e2def62afa9e66ae30c61eba41ce86c6d1b02efc44160ff723f4345fc74",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot3",
+      "source": "S2",
+      "target": "S1",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot3/S2_S1.txt",
+      "gt_sha256": "4dfa4d52379c684626b5943231ce8b2b96d894067f50df73704bdfc120ba8cb6",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot3",
+      "source": "S3",
+      "target": "S1",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot3/S3_S1.txt",
+      "gt_sha256": "bd5310eeb7fb79592870968d23fd218ad70e3387dfe7dedaf71c5cf78169b53d",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot3",
+      "source": "S4",
+      "target": "S1",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot3/S4_S1.txt",
+      "gt_sha256": "5d638fe8b8fab851815c58b1b546aaa37dc05b99d9500232e47ffc0ed8703672",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot3",
+      "source": "S5",
+      "target": "S1",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot3/S5_S1.txt",
+      "gt_sha256": "f7f0a9097986ab9269e975d8357d1f31d013dc47961d0b057fa38ded98e1e5ef",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot3",
+      "source": "S3",
+      "target": "S2",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot3/S3_S2.txt",
+      "gt_sha256": "b9efc7bff8996ceedc2740dbbbfe75a0a5fbdf354e5f8e64aee2a6e7eb92bb63",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot3",
+      "source": "S4",
+      "target": "S2",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot3/S4_S2.txt",
+      "gt_sha256": "b93c1109d1b9642488de78889946fb8a2c6623a81045125d20d98335b82c2b77",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot3",
+      "source": "S5",
+      "target": "S2",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot3/S5_S2.txt",
+      "gt_sha256": "e3cf9028de16d60e1a158ac2a20775a4eeafd3375033cd794a13c5f17f77e859",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot3",
+      "source": "S4",
+      "target": "S3",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot3/S4_S3.txt",
+      "gt_sha256": "ee96b017d22eaa8d5a7680c6f671cb0a9f8e0235903a102571e7dd0e3e5e7922",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot3",
+      "source": "S5",
+      "target": "S3",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot3/S5_S3.txt",
+      "gt_sha256": "8917ded30ef1b6e1c3df039c574833dee0583d3f074c6bc64fc537343bcb8912",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot3",
+      "source": "S5",
+      "target": "S4",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot3/S5_S4.txt",
+      "gt_sha256": "12adbe26eb7edb4720d3cfac94227d62b637495649e6c9243e4743076f55086d",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot4",
+      "source": "S2",
+      "target": "S1",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot4/S2_S1.txt",
+      "gt_sha256": "0145a83cd8e4287232ae328f2048b3695b3fbb01c84d18fb0c8344e37cfe1eb2",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot4",
+      "source": "S3",
+      "target": "S1",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot4/S3_S1.txt",
+      "gt_sha256": "a9c5332689571e1e35c0992fa54e08b0ec723b8b78d79e9f91ee48ad3c6e5dfa",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot4",
+      "source": "S4",
+      "target": "S1",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot4/S4_S1.txt",
+      "gt_sha256": "42b20ee8158d3c43e80fa5afba4cba46f466820157700509c5749b6b9ed262cd",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot4",
+      "source": "S5",
+      "target": "S1",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot4/S5_S1.txt",
+      "gt_sha256": "44a9059d58c5e682c979f3e47e15424838a8ed63534d0ba2cbe716e4a95be388",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot4",
+      "source": "S3",
+      "target": "S2",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot4/S3_S2.txt",
+      "gt_sha256": "4c1790827af5f12a91585e7ae29176cba97e008141d7e7cae2d013d4bc88d6de",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot4",
+      "source": "S4",
+      "target": "S2",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot4/S4_S2.txt",
+      "gt_sha256": "34e3fdb7e682fe36c1be09328a0bce7830f7efb35cd3a3f3301216e684a652f7",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot4",
+      "source": "S5",
+      "target": "S2",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot4/S5_S2.txt",
+      "gt_sha256": "d1ad938f42a937c4ba204855bc223aeb40c44b1c9190496030556515d113e524",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot4",
+      "source": "S4",
+      "target": "S3",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot4/S4_S3.txt",
+      "gt_sha256": "b924753b1eac24495031123119ec91134d78ae0d52ccf02fdbb642c8ee1b890c",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot4",
+      "source": "S5",
+      "target": "S3",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot4/S5_S3.txt",
+      "gt_sha256": "267275873a29739013b1d83a8a34bf3c1b820d0a8835c613d22358e64ccfa02a",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot4",
+      "source": "S5",
+      "target": "S4",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot4/S5_S4.txt",
+      "gt_sha256": "54739a50611f590e8f574bcedd29c3eae7b84459c52e88e2b1c8b0a51159ed8c",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "ETH",
+      "scene": "ETH",
+      "source": "s1",
+      "target": "s2",
+      "gt": "data/eth_trees/raw/trees/groundtruth/s1-s2.tfm",
+      "gt_sha256": "7ec1581ed7f3f4cdabd8619b5a1e1be00a103ed37b0ef20e6b907d717a551b92",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "ETH",
+      "scene": "ETH",
+      "source": "s1",
+      "target": "s3",
+      "gt": "data/eth_trees/raw/trees/groundtruth/s1-s3.tfm",
+      "gt_sha256": "ffada5ecf979b779390a580f052561f26391a509bfcd39949cfb5d07e8c53da1",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "ETH",
+      "scene": "ETH",
+      "source": "s1",
+      "target": "s4",
+      "gt": "data/eth_trees/raw/trees/groundtruth/s1-s4.tfm",
+      "gt_sha256": "36676c9430ddbc4b338fb549db26fbac5654d1ebbc556c59ca9915648c441bc7",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "ETH",
+      "scene": "ETH",
+      "source": "s1",
+      "target": "s5",
+      "gt": "data/eth_trees/raw/trees/groundtruth/s1-s5.tfm",
+      "gt_sha256": "11ccbe551ef5c14e157a52c4d5c349d0208286e1d6d5f7a7c50edd31895beb30",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "ETH",
+      "scene": "ETH",
+      "source": "s1",
+      "target": "s6",
+      "gt": "data/eth_trees/raw/trees/groundtruth/s1-s6.tfm",
+      "gt_sha256": "cadbb2d933b651291f167eab023b0590049258b39b088519b80ba181a705c90c",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "ETH",
+      "scene": "ETH",
+      "source": "s2",
+      "target": "s3",
+      "gt": "data/eth_trees/raw/trees/groundtruth/s2-s3.tfm",
+      "gt_sha256": "e9cd41932a1277f93a2d858205afaa08065fa60249d8667832d208e952ea98ea",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "ETH",
+      "scene": "ETH",
+      "source": "s2",
+      "target": "s4",
+      "gt": "data/eth_trees/raw/trees/groundtruth/s2-s4.tfm",
+      "gt_sha256": "596822c9a8c656d8cdb03a412b281e20975e025f6b44cce9646962c0f91a41e1",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "ETH",
+      "scene": "ETH",
+      "source": "s2",
+      "target": "s5",
+      "gt": "data/eth_trees/raw/trees/groundtruth/s2-s5.tfm",
+      "gt_sha256": "a949e7e66437208855b35ec414d1a18a6f81804ef8701f96b0b64531ac98aa4d",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "ETH",
+      "scene": "ETH",
+      "source": "s2",
+      "target": "s6",
+      "gt": "data/eth_trees/raw/trees/groundtruth/s2-s6.tfm",
+      "gt_sha256": "b76c722015d5f1522f1c40c4bcc53067844d9fce11d54a7930482cb7fad39c49",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "ETH",
+      "scene": "ETH",
+      "source": "s3",
+      "target": "s4",
+      "gt": "data/eth_trees/raw/trees/groundtruth/s3-s4.tfm",
+      "gt_sha256": "07633c82a3837a31c9e61feb10d483781bad38fc6584a68b87b9973a34e76d7b",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "ETH",
+      "scene": "ETH",
+      "source": "s3",
+      "target": "s5",
+      "gt": "data/eth_trees/raw/trees/groundtruth/s3-s5.tfm",
+      "gt_sha256": "f0e7bce5990c7024d7a1cb14a9f2f1cd1997e0e1c85e2d04e8fc812460105803",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "ETH",
+      "scene": "ETH",
+      "source": "s3",
+      "target": "s6",
+      "gt": "data/eth_trees/raw/trees/groundtruth/s3-s6.tfm",
+      "gt_sha256": "375487f2e8e02778ab880b459d8fd485f35f24753e27aaccd9df78a3b9fe7986",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "ETH",
+      "scene": "ETH",
+      "source": "s4",
+      "target": "s5",
+      "gt": "data/eth_trees/raw/trees/groundtruth/s4-s5.tfm",
+      "gt_sha256": "5bc6a570a14e75f5903f8ae138f588d49e9e8d2423463e06f007b6bda9a6e596",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "ETH",
+      "scene": "ETH",
+      "source": "s4",
+      "target": "s6",
+      "gt": "data/eth_trees/raw/trees/groundtruth/s4-s6.tfm",
+      "gt_sha256": "bee3bc24fc2afb2967e4734739f4999c5b9ab4226329aef7a6b5b995e7d1315a",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "ETH",
+      "scene": "ETH",
+      "source": "s5",
+      "target": "s6",
+      "gt": "data/eth_trees/raw/trees/groundtruth/s5-s6.tfm",
+      "gt_sha256": "d50510027bf65fa426bffb21b74a30ec1e579be7bf7ec412e7e9085b064fba49",
+      "direction": "source to target"
+    }
+  ],
+  "seed_list": [
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40
+  ],
+  "independent_unseen_scenes": [],
+  "raw_drive_ids_not_published": true,
+  "sources": {
+    "Tongji": "User-provided authorized folder only; private sharing URL kept outside Git",
+    "ETH": "https://prs.igp.ethz.ch/research/completed_projects/automatic_registration_of_point_clouds.html; original Trees ZIP; original SHA documented in results/eth_trees/download_record.txt"
+  },
+  "exposure_history": {
+    "ETH": "All6 stations used to design/tune CN recovery before first Tongji transfer; no unseen ETH forest remains",
+    "Plot1": "Fixed transfer and DTM position-only outcomes reviewed; no longer unseen for architecture design",
+    "Plot2": "Failure analysis and DTM development on seeds31-35; seed36-40 shares same stations; full DTM follow-up done",
+    "Plot3": "Fixed transfer and DTM position-only outcomes reviewed; no longer unseen",
+    "Plot4": "Fixed transfer and DTM position-only outcomes and weak-correspondence failures reviewed; no longer unseen"
+  },
+  "pair_list_comparability": "All40 supplied Tongji pairs, all15 unordered ETH pairs; exact paper lists not independently established; official ETH10 subset additionally reported",
+  "project_success_threshold": "rotation<2deg and translation<0.5m; paper success threshold not found in supplied text"
+}

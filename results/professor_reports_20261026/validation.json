@@ -1,0 +1,97 @@
+{
+  "validated_at": "2026-10-26T11:47:04+08:00",
+  "reports": [
+    {
+      "file": "report_01_匹配容差與弱配對補救.xlsx",
+      "sha256": "ac373bf1aca224620c941397f383a494792bc821b63608f3b487f03dd615efe8",
+      "bytes": 25960,
+      "sheets": [
+        "結果比較",
+        "參數方法改動",
+        "證據與圖表"
+      ],
+      "formulas": 46,
+      "charts": 2,
+      "checks": 181,
+      "txt": "report_01_匹配容差與弱配對補救.txt",
+      "txt_sha256": "76fe2ca399ae81f0199e1faa8d4b3e1ffa0311b96e8de6394c88b3c0bea82cb9",
+      "spoken_cjk_characters": 2286
+    },
+    {
+      "file": "report_02_DTM平滑的局部改善與代價.xlsx",
+      "sha256": "d5c0273dfd7c3124147816d2e7a3d155c8f8a547fcbfdf8186743245412a5a87",
+      "bytes": 26018,
+      "sheets": [
+        "結果比較",
+        "參數方法改動",
+        "證據與圖表"
+      ],
+      "formulas": 45,
+      "charts": 2,
+      "checks": 174,
+      "txt": "report_02_DTM平滑的局部改善與代價.txt",
+      "txt_sha256": "6388ef732659cd23ea89f7b1249cc1e1d9bf5980491dc954d032f920b9e29a1f",
+      "spoken_cjk_characters": 2147
+    },
+    {
+      "file": "report_03_加入多尺度幾何微調.xlsx",
+      "sha256": "a223b386307e3b1799c5a0fdc1411df226c3d57f19279195389086763be0eb91",
+      "bytes": 29295,
+      "sheets": [
+        "結果比較",
+        "參數方法改動",
+        "證據與圖表"
+      ],
+      "formulas": 44,
+      "charts": 3,
+      "checks": 185,
+      "txt": "report_03_加入多尺度幾何微調.txt",
+      "txt_sha256": "2c750a3ab9d8a8458a1e784d3ae30c39320cbe5743ca416cc6b8fbf32604ecbb",
+      "spoken_cjk_characters": 2235
+    },
+    {
+      "file": "report_04_多候選與垂直結構驗證.xlsx",
+      "sha256": "f3229cbf47c567dc01b17d9f3624bb8200ab3208b75d3cccc2711a3e5d22983e",
+      "bytes": 30117,
+      "sheets": [
+        "結果比較",
+        "參數方法改動",
+        "證據與圖表"
+      ],
+      "formulas": 40,
+      "charts": 3,
+      "checks": 194,
+      "txt": "report_04_多候選與垂直結構驗證.txt",
+      "txt_sha256": "889ac4990724ff2dd0a31cb946494022f8e73af3e737a2176a8fefdc292ff34e",
+      "spoken_cjk_characters": 2186
+    }
+  ],
+  "independently_reaggregated_groups": 63,
+  "literal_and_formula_checks": 734,
+  "formula_count": 175,
+  "charts": 10,
+  "formula_caches_present": true,
+  "no_excel_error_cells": true,
+  "missing_not_plotted_as_zero": true,
+  "private_ids_checked": 72,
+  "private_ids_absent": true,
+  "raw_clouds_distributed": false,
+  "source_manifest_sha256": "b11b1f79a0a7a866324eff1574e064cbf54c24d2691c9fd0853255ab7fe14f8f",
+  "note": "No new registration experiment; all report data derive from completed runs. Original author baseline and untested branches remain marked 待補.",
+  "visual_review": {
+    "all_four_workbooks_rendered": true,
+    "sampled_tables_and_charts_inspected": true,
+    "issues_fixed": [
+      "chart category/series label crowding",
+      "parameter columns and word wrapping",
+      "logical result-table print breaks"
+    ],
+    "internal_render_artifacts_distributed": false
+  },
+  "generator_sha256": {
+    "make_professor_reports.py": "9af810f5f9e0fc7cc5ff99f9337ccd4ae3b898bef1726db90197c0fc10494b7a",
+    "write_professor_talks.py": "4a1935d8f16aba6042ce83f9f0967dc7ee03163b8e655ac5641769ef4afe07b4",
+    "professor_inventory.py": "52c630421d46ef0ea87675c2d445829f28a50dd7eb0d159b14771ef238f766d7",
+    "validate_professor_reports.py": "36740f35cd36f9d7235c9498c783243c5cfd1dcff710a1d2bba68c55146e7fc3"
+  }
+}
