@@ -55,12 +55,19 @@ optimizer沒有改成只用垂直點，仍用全方向、3h及同一6DOF point-t
 v3的raw overlap與v2點集合和gate不同，不可直接比誰數字大。共同定義的GT e_p與成功門檻才用來比較最終輸出。NN距離、point-to-plane loss、GT e_p是不同量。
 公平控制讓5cm參考與固定10cm方法也加同一v3 backend。全體成功數依序507、546與550；完整候選相對同backend固定10cm只多救4次，全部Plot4。不能把從最早423到550的所有增益都叫作multistart的功勞。'''}[i]
  more=results(extra) if extra else ''
+ gain=[name(s) for s,a,z in entries if z['ok']>a['ok']];loss=[name(s) for s,a,z in entries if z['ok']<a['ok']];same=[name(s) for s,a,z in entries if z['ok']==a['ok']]
+ tongji=[x for x in entries if x[0]!='ETH'];eth=next(x for x in entries if x[0]=='ETH')
+ pattern='成功數增加的場景：'+('、'.join(gain) or '沒有')+'；減少的場景：'+('、'.join(loss) or '沒有')+'；持平：'+('、'.join(same) or '沒有')+'。'
+ pattern+=f"只累計同dataset的成功數，Tongji為{sum(a['ok'] for _,a,z in tongji)}/400→{sum(z['ok'] for _,a,z in tongji)}/400；ETH為{eth[1]['ok']}/150→{eth[2]['ok']}/150。這不是混算兩來源誤差平均。"
+ better=[name(s) for s,a,z in entries if a['ep'] is not None and z['ep'] is not None and z['ep']<a['ep']];worse=[name(s) for s,a,z in entries if a['ep'] is not None and z['ep'] is not None and z['ep']>a['ep']]
+ pattern+='有限mean e_p下降：'+('、'.join(better) or '沒有')+'；上升：'+('、'.join(worse) or '沒有')+'。平均值集合改變時，這只描述有輸出的子集，不能代替同案例比較。'
  extra_title={2:'本週主比較僅新增補救，其他條件固定。先前seed21～30的142→150是另一批歷史檢查，不能與本次144→150混算。',3:'以下固定軸線定位對照，與主表完整重提取分開：',4:'以下同原DTM的raw→refined控制，用來隔離新增精化整組：',5:'以下v1→v2對照，用來說明擴大搜尋的退步：',6:'另看必要對照頁的相同backend控制；各場景成功數與誤差分開列出。'}[i]
  causes={2:'支持這個模組能回收部分可用對應；不代表新增配對每一條都是真實樹，也不代表6、top3、60條邊各自已是最佳值。原配對已達6時不觸發，正確線索不在pool也救不回來。',3:'完整重提取會連保留點與擬合樹集合一起改變，改善可能來自多個傳遞步驟。沒有獨立地面GT，無法把配準變化直接等同DTM對真實地面的準確度變化；不以局部坡面教學假例當實測因果。',4:'相同原DTM對照支持新增幾何後端的效果；但跨週主比較另含DTM回復，必須保留這個區別。Plot4局部微調仍有缺姿態與錯姿態，說明更多迭代不是全域正確性的保證。',5:'有限mean保留大錯，median則可能仍很好。v2 Plot4 mean約864.762cm、median約0.903cm，兩者可同時正確。只報median會藏掉災難錯配，不能因數字難看就刪掉這些案例。',6:'Plot4相對v2新增22次成功、沒有新增失敗；但共同成功78例mean e_p仍增加約0.733mm。Plot3較v2也增加約0.127mm。穩健性改善與部分原本好案例的輕微精度退步可以同時存在。'}[i]
  qa={2:[('這是你發明的演算法嗎？','專案新增的是CN證據補救流程；採用既有Kabsch、幾何相容與共識觀念。沒有文獻完整查核，不稱首創。'),('為何還要最後的RANSAC？','補救回傳較一致的對應，最後RANSAC再正式估姿態；兩層用途不同，尚未獨立證明後一層可省。'),('6對是不是6站？','不是，6是對應支持數，推論仍當前兩站。')],3:[('smooth是用GT選的嗎？','是，曾按Plot2開發組GT成功數選profile；但推論不讀GT，本次不重選dataset-specific profile。'),('fill5變6獨立有效嗎？','沒有單獨實驗；原始碼fit loop上限max(fit,fill)，fit6時fill5→6在該loop可能冗餘，不能給它獨立功勞。'),('為何定位與full數字不能混？','前者固定軸線與樹清單，後者重新提取，估計輸入與成功案例集合可能不同。')],4:[('這次是不是只改ICP？','跨週不是，主表還回復原DTM；另有原DTM raw/refined控制才可隔離精化整組。'),('0.6cm是否小於10cm voxel不合理？','pose是連續估計，e_p相對GT可小於voxel；不代表每個原始點的物理測量精度達6mm。'),('Hessian可解就一定正確？','只代表局部約束不缺秩，不保證全域姿態正確。')],5:[('候選越多怎麼反而更差？','若驗證分數有歧義，更多候選也增加錯候選勝出的機會。'),('保留初值為何不保住結果？','進beam只是參與精化，最後仍可輸給幾何分數較高的錯候選。'),('所以top20不好？','不能單獨這樣歸因，yaw、support、beam等一起變。')],6:[('已嚴格超越原作者嗎？','僅目前benchmark數值低於論文報告值；作者程式同協定重跑、分母與門檻未齊。'),('是否證明垂直表面單獨救22次？','沒有，表面與gate及接受判斷整組變更，尚缺單因素消融。'),('是不是所有場景都更精？','不是，Plot3與Plot4共同成功子集有小幅退步，已保留。')]}[i]
  qa += [('全部新seed能算盲測嗎？','不能，兩dataset均已接觸，seed重跑只評同資料隨機敏感度。'),('沒有變換的e_p填多少？','缺值，不填0；仍算success失敗，finite mean標N。'),('可以和論文比較時間嗎？','可列數值與範圍，但CPU、threads與計時範圍不同，不能直接宣稱速度提升。')]
  nexts={2:'下一次改看DTM與樹位高度，並把固定軸線與完整提取分開。',3:'下一次回到原DTM加入幾何精化，並用控制實驗交代兩個跨週變更。',4:'下一次處理初始化與候選驗證，先保留擴大搜尋反而退步的結果。',5:'下一次保留相同候選引擎，修改結構驗證與距離gate，檢查是否改善錯選。',6:'後續最重要的是固定版本測真正未參與開發的森林、作者同環境baseline，以及固定候選的表面×gate消融；尚未做的不當成成果。'}[i]
  source='\n'.join(k+'：'+v['path']+'\nSHA256：'+v['sha256'] for k,v in e.sources.items())
+ cold_note='第6週另列同一舊epoch串行cold代表配對：ETH約344.3→369.1秒、Tongji Plot1約703.9→651.8秒，包含提取與cache重建。每法僅一次，OS cache未清，RSS是最大native子程序；因此只能說這次觀測一快一慢，不能宣稱穩定速度排名。' if i==6 else ''
  return f'''第{i}次報告：{titles[i]}
 主稿配合逐表說明、圖表停頓與問題確認，預設10～15分鐘；最後備答按需要使用。
 搭配 report_{i:02d}_{titles[i]}.xlsx。三頁為「結果比較」「設定與說明」「必要對照」。
@@ -76,6 +83,7 @@ Tongji-trees包含Plot1到Plot4，是同一dataset的不同場景；ETH-tree是�
 【4:30～8:00｜先看成功率與全部有限誤差】
 請看「結果比較」上半部的成功數，及下半部以cm列出的e_p；不要把兩張圖的單位混在一起。
 {results(entries)}
+{pattern}
 這裡mean保留有輸出的失敗，沒有只選成功案例。若有限N比總N少，沒有輸出仍算失敗，e_p只是無法計算，不是零。前後有限案例集合不同時，表格不計算vs前一次下降率；這個空缺是不可比的統計，不是再把同一失敗反覆重跑就能補成成功。
 接著看「必要對照」同pair與seed的成對比較：
 {paired(entries)}
@@ -88,6 +96,7 @@ Tongji-trees包含Plot1到Plot4，是同一dataset的不同場景；ETH-tree是�
 本次說的「效果」是固定這些方法條件、在既定案例上的實驗差異；多個參數同改就只說整組效果。若提出地形、法向或幾何可辨識度的機制，是程式與觀察相容的解釋，沒有對應消融或中間診斷時，不能再升格成排除其他因素的因果證明。
 e_p計算全部來源點在估計變換與GT變換下的位置差，與ICP最近鄰距離或point-to-plane loss不同。它也不是單看translation：小角度旋轉在遠處可造成較大點位移。原始GT的不確定度尚未建模，所以很小e_p不能等同世界座標物理精度完全達同數值。
 時間表列本地online與論文matching/total，但不把它們直接相除。原論文i7-9700F、OpenMP實際threads未齊；本地舊批次與本次補跑在不同時段，online還排除提取、geometry cache與GT評分。使用共用cache可以攤銷，不能把一次性成本視為免費。速度下降率未填時，要說明是範圍或硬體不一致，不是忘記計算。
+{cold_note}
 
 【10:00～12:00｜論文比較、結論與下一步】
 論文Table I在五場景報100%與e_p；我們每次都列它作參考。可是作者可執行程式在既有稽核時未公開，paper逐場景分母、成功門檻也未完全確認。本地5cm/SVD是參考實作，提取中另有本地DTM、分群與圓柱檢查，不能把它冒稱作者原程式。

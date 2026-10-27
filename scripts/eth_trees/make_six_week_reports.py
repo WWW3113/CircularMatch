@@ -275,9 +275,10 @@ def later(i):
  e,entries,extra,settings=setup_later(i);b=Book(i,e,['結果比較','設定與說明','必要對照']);s='結果比較'
  versions={2:('第1次：10cm/RANSAC，補救關閉','第2次：相同coarse＋weak recovery'),3:('第2次：原DTM＋weak recovery','第3次：smooth完整重提取＋相同coarse'),4:('第3次：smooth完整提取、無refinement','第4次：原DTM＋surface refinement'),5:('第4次：原DTM單初值refinement','第5次：多初值v2＋舊驗證'),6:('第5次：多初值v2＋舊驗證','第6次：多初值v2＋v3驗證')}
  before,after=versions[i];b.note(s,3,'修改前＝'+before+'；修改後＝'+after,height=42)
- data=[[label(ss),1,f"{e.u(ss,'reference5_raw')['ok']}/{a['n']}",f"{a['ok']}/{a['n']}",f"{z['ok']}/{z['n']}",None,f"{len({r['pair'] for r in a['rows']})}對×10seed",'seed31–40'] for ss,a,z in entries]
- row=b.table(s,5,'每次均列原論文、本地5cm參考、前一次、本次',['場景','論文成功率\n分母待補','本地5cm/SVD','前一次成功／總數','本次成功／總數','差：後−前 pp','案例組成','批次'],data,'success',{1:'pct'})
- for r,(_,a,z) in enumerate(entries,b.ranges['success']['start']):b.formula(s,r,5,f'=({z["ok"]}/{z["n"]}-{a["ok"]}/{a["n"]})*100',pp(a,z),'pp')
+ data=[[label(ss),1,f"{e.u(ss,'reference5_raw')['ok']}/{a['n']}",f"{a['ok']}/{a['n']}",f"{z['ok']}/{z['n']}",None,None,f"{len({r['pair'] for r in a['rows']})}對×10seed；31–40"] for ss,a,z in entries]
+ row=b.table(s,5,'每次均列原論文、本地5cm參考、前一次、本次',['場景','論文成功率\n分母待補','本地5cm/SVD','前一次成功／總數','本次成功／總數','vs前一次 pp','vs論文 pp','案例組成'],data,'success',{1:'pct'})
+ for r,(_,a,z) in enumerate(entries,b.ranges['success']['start']):
+  b.formula(s,r,5,f'=({z["ok"]}/{z["n"]}-{a["ok"]}/{a["n"]})*100',pp(a,z),'pp');rr=r+1;b.formula(s,r,6,f'=({z["ok"]}/{z["n"]}-B{rr})*100',(z['rate']-1)*100,'pp')
  b.note(s,row,'Tongji四Plot屬同一dataset，ETH屬另一dataset；兩者不混算誤差平均。前後均同配對與seed，失敗與缺輸出都保留。原論文門檻與分母未確認一致，100%只能作報告值參考。',height=44);row+=2
  data=[]
  for ss,a,z in entries:
@@ -306,7 +307,14 @@ def later(i):
   row=b.table(s,row,'同一失敗反例：Plot4 S4-S2 seed31，舊分數定義相同',['版本','成功?','geometry overlap','e_p m','解讀'],[[r['method'],int(r['success']),float(r['geo_overlap']),float(r['e_p_m']),'分數較大不代表GT下更準'] for r in case],'case')
  if i==6:
   row=b.table(s,row,'公平控制：三者使用同一v3 backend',['場景','5cm/SVD＋v3','10cm/recovery＋v3','完整multi_v3','5cm e_p cm','10cm e_p cm','multi e_p cm','限制'],[[label(ss),*[f"{e.u(ss,m)['ok']}/{e.u(ss,m)['n']}" for m in ['reference5_refined_v3','eth10_refined_v3','multi_v3_refined']],*[cm(e.u(ss,m)['ep']) for m in ['reference5_refined_v3','eth10_refined_v3','multi_v3_refined']],'不把全部增益歸給multistart'] for ss in SCENES],'fair')
-  b.note(s,row,'全體成功數507/550、546/550、550/550，只累計成功數、不混算兩來源誤差。完整候選相對同backend的10cm方法額外救4次，均Plot4。Plot3較v2誤差增加約0.127mm；Plot4共同成功78例增加約0.733mm。',height=48)
+  b.note(s,row,'全體成功數507/550、546/550、550/550，只累計成功數、不混算兩來源誤差。完整候選相對同backend的10cm方法額外救4次，均Plot4。Plot3較v2誤差增加約0.127mm；Plot4共同成功78例增加約0.733mm。',height=48);row+=2
+  coldpath=OLD/'evidence/C_cold_benchmark.json';cold=json.loads(coldpath.read_text());data=[]
+  for ss in ['ETH','Plot1']:
+   a=next(x for x in cold if x['scene']==ss and x['method']=='reference5_refined_v3');z=next(x for x in cold if x['scene']==ss and x['method']=='multi_v3_refined')
+   data.append([label(ss)+' '+a['pair'],a['wall_s'],z['wall_s'],None,a['peak_child_rss_kib']/1024,z['peak_child_rss_kib']/1024,1,'固定seed31單次；只作當次觀測'])
+  row=b.table(s,row,'額外cold代表配對：同epoch與同backend，含提取＋cache',['場景／配對','5cm參考＋v3 秒','完整multi_v3 秒','時間下降率','參考child RSS MiB','本次child RSS MiB','每法N','限制'],data,'cold')
+  for rr0,record in enumerate(data,b.ranges['cold']['start']):rr=rr0+1;b.formula(s,rr0,3,f'=IF(AND(ISNUMBER(B{rr}),ISNUMBER(C{rr}),B{rr}<>0),(B{rr}-C{rr})/B{rr},"待補")',(record[1]-record[2])/record[1],'pct')
+  b.note(s,row,'來源 '+str(coldpath.relative_to(ROOT))+'；SHA256 '+sha(coldpath)+'。epoch20261025T162801Z，Xeon8573C、quota4、OMP4、native串行；OS cache未清。RSS為最大native子程序，不含Python與page cache。每法每dataset僅1次，不能宣稱穩定速度排名。',height=64)
  return b.save(later_talk(i,e,entries,extra,settings,versions[i]))
 
 def main():
