@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """Six compact professor reports. Only completed scalar experiments are read."""
 from __future__ import annotations
-import argparse,csv,hashlib,json,math,statistics as st,re
+import argparse,csv,hashlib,json,math,statistics as st,re,unicodedata
 from pathlib import Path
 from datetime import datetime
 from zoneinfo import ZoneInfo
 import xlsxwriter
 from openpyxl import load_workbook
 from make_parameter_detail_reports import stats,finite,key,scene
+from six_week_talks import later_talk
 
 ROOT=Path(__file__).resolve().parents[2]
 OLD=ROOT/'results/professor_reports_20261026'
@@ -61,7 +62,9 @@ class Book:
   self.sheets={};self.ends={}
   for title in sheets:
    ws=self.wb.add_worksheet(title);self.sheets[title]=ws;ws.hide_gridlines(2);ws.set_zoom(95);ws.freeze_panes(5,1)
-   for c,w in enumerate([27,21,20,20,18,20,20,30]):ws.set_column(c,c,w)
+   widths=[26,28,35,72,5,5,5,5] if i>1 and title=='設定與說明' else [27,21,20,20,18,20,20,30]
+   for c,w in enumerate(widths):ws.set_column(c,c,w)
+   self.ranges['_widths_'+title]=widths
    ws.set_landscape();ws.set_paper(8);ws.fit_to_pages(1,0);ws.set_margins(.25,.25,.4,.4);ws.repeat_rows(0,2)
    ws.set_header('&C第'+str(i)+'次｜'+TITLES[i]);ws.set_footer('&L單位依欄名；pp為百分點&R&P / &N')
    self.note(title,0,f'第{i}次｜{TITLES[i]}','title',34)
@@ -78,7 +81,10 @@ class Book:
   self.sheets[s].set_row(row,40);start=row+1
   for r,record in enumerate(data,start):
    for c,v in enumerate(record):self.write(s,r,c,v,(types or {}).get(c,'num' if isinstance(v,float) else 'text'))
-   self.sheets[s].set_row(r,45)
+   widths=self.ranges['_widths_'+s];lines=1
+   for col,v in enumerate(record):
+    if isinstance(v,str):lines=max(lines,sum(max(1,math.ceil(sum(2 if unicodedata.east_asian_width(ch) in 'WF' else 1 for ch in segment)/max(5,widths[col]-2)*13/11)) for segment in v.split('\n')))
+   self.sheets[s].set_row(r,min(300,max(45,lines*18+6)))
   self.ranges[keyname]=dict(sheet=s,header=row,start=start,end=start+len(data)-1,columns=len(headers))
   return start+len(data)+2
  def chart(self,s,keyname,cols,title,unit,anchor,percent=False):
@@ -234,9 +240,79 @@ SHA256：{e.sources['T']['sha256']}
 原論文：DOI 10.1109/LGRS.2025.3650098；PDF p2、p3 Algorithm1、p4 TableI/II與Eq8。
 '''
 
+def setup_later(i):
+ e=Evidence();e.load('U','U_registration_rows.csv');e.load_path('C','results/report_experiments_20261028/eth_coarse_rows.csv');e.load_path('T','results/tongji_trees/fixed_eth_20261025/registration_rows.csv')
+ entries=[];extra=[]
+ if i==2:
+  for s in SCENES:
+   a=e.group('C:10R','C',threshold='0.1',solver='svd+ransac') if s=='ETH' else e.group('T:'+s+':10R','T',scene=s,method='baseline10cm',solver='svd+ransac')
+   entries.append((s,a,e.u(s,'eth10_raw')))
+  settings=[['CN容差／Solver','0.10m／RANSAC','相同','固定第一週選定的共用配置，不為各Plot挑不同版本'],['弱配對補救','關閉','evidence模式；原CN<6對啟動','本週唯一新增方法，內部常數作為整組'],['補救證據與採用','無新增模組','前三候選證據、最多60邊、至少6個3D支持','只列整組定義，不將改善分配給各常數'],['地形／提取／精化','原DTM、step、無ICP','相同','固定其他處理，推論僅當前兩站']]
+ elif i==3:
+  e.load_path('FULL','results/report_experiments_20261028/full_dtm_smooth_rows.csv');e.load_path('EP','results/report_experiments_20261028/eth_dtm_position_rows.csv');e.load('D','D_registration_rows.csv')
+  for s in SCENES:
+   entries.append((s,e.u(s,'eth10_raw'),e.group('FULL:'+s,'FULL',scene=s,solver='svd+ransac')))
+   pos=e.group('EP:R','EP',solver='svd+ransac') if s=='ETH' else e.group('D:'+s+':smooth','D',scene=s,method='selected',solver='svd+ransac')
+   extra.append((s,e.u(s,'eth10_raw'),pos))
+  settings=[['DTM cell','0.50m','0.50m','網格大小固定'],['DTM fit_radius／fill_max_radius','2格／5格','6格／6格','同時修改；fit_radius亦影響鄰近平面剔除，不拆單參數歸因'],['前次coarse方法','10cm＋RANSAC＋weak recovery','相同','只改DTM profile；不為ETH重新選參'],['主比較輸入','原DTM完整提取','smooth完整重提取','每站重新height/voxel/normal/cluster/cylinder/intersection'],['定位階段控制','固定既有圓柱軸線','僅重算axis×DTM交點','另列兩dataset定位測試；不與完整提取混稱']]
+ elif i==4:
+  e.load_path('FULL','results/report_experiments_20261028/full_dtm_smooth_rows.csv')
+  for s in SCENES:
+   entries.append((s,e.group('FULL:'+s,'FULL',scene=s,solver='svd+ransac'),e.u(s,'eth10_refined')))
+   extra.append((s,e.u(s,'eth10_raw'),e.u(s,'eth10_refined')))
+  settings=[['跨週DTM設定','前次smooth完整提取','回到原DTM','跨週同時回復DTM與新增精化，只能說整組效果'],['surface refinement','無','新增完整6DOF point-to-plane','另列原DTM raw→refined控制，隔離新增後端整組'],['表面尺度／迭代預算','無新階段','0.50→0.20→0.10m；30/25/20次','新增階段，提取voxel仍1cm'],['robust與回退','無新階段','normal gate、唯一target、trimming、Huber、幾何接受','整組啟用，沒有每個內部常數單獨消融'],['前次coarse方法','10cm＋RANSAC＋weak recovery','相同','固定CN與solver；不使用多站圖或GT選輸出']]
+ elif i==5:
+  for s in SCENES:
+   entries.append((s,e.u(s,'eth10_refined'),e.u(s,'multi_v2_refined')));extra.append((s,e.u(s,'multi_refined'),e.u(s,'multi_v2_refined')))
+  settings=[['前次方法','單初值＋surface refinement','多初值v2＋相同舊refinement','主表直接比較第4次，不跳過前一版本'],['候選證據範圍 v1→v2','top5／最多60邊','top20／最多120邊','與其他搜尋／評分同改，不稱top-k獨立效果'],['姿態提案與精化預算 v1→v2','最多16替代姿態／精化3個','最多256替代姿態／精化8個','加上既有初值後proposal_count可為257；beam8含初值'],['初值與支持 v1→v2','3D三元組、證據池支持','另加水平雙點yaw、當前兩站全部樹位支持','最終仍完整6DOF；global不是跨站地圖'],['既有初值 v1→v2','不保證進精化beam','保留進beam','保留參與不保證最後選回它'],['驗證規則','全方向、gate=3h','相同','本週先保留錯誤分數造成退步的反例']]
+ else:
+  for s in SCENES:
+   entries.append((s,e.u(s,'multi_v2_refined'),e.u(s,'multi_v3_refined')))
+  settings=[['多候選引擎','v2','相同v2引擎','候選產生規則固定'],['驗證表面','全方向','優先|normal.z|<0.30','兩站各至少30點，不足退回全方向'],['驗證NN gate','3h：1.50/0.60/0.30m','min(h,0.20)：0.20/0.20/0.10m','與表面篩選一起改；缺單項消融'],['optimizer與使用位置','全方向6DOF point-to-plane','optimizer相同；新分數用於排序、接受與最終選擇','不是只換最後sort；地面仍可參與優化'],['原DTM與提取verticality','原DTM；verticality>0.9','相同','不是把提取0.9改成驗證0.3']]
+ return e,entries,extra,settings
+
+def later(i):
+ e,entries,extra,settings=setup_later(i);b=Book(i,e,['結果比較','設定與說明','必要對照']);s='結果比較'
+ versions={2:('第1次：10cm/RANSAC，補救關閉','第2次：相同coarse＋weak recovery'),3:('第2次：原DTM＋weak recovery','第3次：smooth完整重提取＋相同coarse'),4:('第3次：smooth完整提取、無refinement','第4次：原DTM＋surface refinement'),5:('第4次：原DTM單初值refinement','第5次：多初值v2＋舊驗證'),6:('第5次：多初值v2＋舊驗證','第6次：多初值v2＋v3驗證')}
+ before,after=versions[i];b.note(s,3,'修改前＝'+before+'；修改後＝'+after,height=42)
+ data=[[label(ss),1,f"{e.u(ss,'reference5_raw')['ok']}/{a['n']}",f"{a['ok']}/{a['n']}",f"{z['ok']}/{z['n']}",None,f"{len({r['pair'] for r in a['rows']})}對×10seed",'seed31–40'] for ss,a,z in entries]
+ row=b.table(s,5,'每次均列原論文、本地5cm參考、前一次、本次',['場景','論文成功率\n分母待補','本地5cm/SVD','前一次成功／總數','本次成功／總數','差：後−前 pp','案例組成','批次'],data,'success',{1:'pct'})
+ for r,(_,a,z) in enumerate(entries,b.ranges['success']['start']):b.formula(s,r,5,f'=({z["ok"]}/{z["n"]}-{a["ok"]}/{a["n"]})*100',pp(a,z),'pp')
+ b.note(s,row,'Tongji四Plot屬同一dataset，ETH屬另一dataset；兩者不混算誤差平均。前後均同配對與seed，失敗與缺輸出都保留。原論文門檻與分母未確認一致，100%只能作報告值參考。',height=44);row+=2
+ data=[]
+ for ss,a,z in entries:
+  ref=e.u(ss,'reference5_raw');data.append([label(ss),cm(PAPER[ss]),cm(ref['ep']),cm(a['ep']),cm(z['ep']),None,None,f"{ref['finite']}／{a['finite']}／{z['finite']}（總N{a['n']}）"])
+ row=b.table(s,row,'全來源點Eq8後再跨有限案例mean；單位cm',['場景','論文e_p','本地5cm e_p','前一次e_p','本次e_p','vs前一次下降率','vs論文下降率','finite N：參考／前／後'],data,'errors')
+ for r,(ss,a,z) in enumerate(entries,b.ranges['errors']['start']):
+  rr=r+1;j=e.pair(a,z)
+  if j['same_finite']:b.formula(s,r,5,f'=IF(AND(ISNUMBER(D{rr}),ISNUMBER(E{rr}),D{rr}<>0),(D{rr}-E{rr})/D{rr},"待補")',(a['ep']-z['ep'])/a['ep'] if a['ep'] not in [None,0] and z['ep'] is not None else None,'pct')
+  if z['finite']==z['n']:b.formula(s,r,6,f'=IF(AND(ISNUMBER(B{rr}),ISNUMBER(E{rr}),B{rr}<>0),(B{rr}-E{rr})/B{rr},"待補")',(PAPER[ss]-z['ep'])/PAPER[ss],'pct')
+ b.note(s,row,'下降率=(基準−本次)/基準。有限案例集合不同不算vs前下降率；本次仍缺變換不算完整vs論文下降率。這是不可比的統計，不能靠補跑把缺輸出填0；共同成功另列。',height=44);row+=2
+ # Clean chart sources: rates and finite means, all populated on every scene.
+ row=b.table(s,row,'圖表使用相同場景的前後值',['場景','前成功率','後成功率','前finite mean cm','後finite mean cm'],[[label(ss),a['rate'],z['rate'],cm(a['ep']),cm(z['ep'])] for ss,a,z in entries],'plot',{1:'pct',2:'pct'})
+ b.chart(s,'plot',[1,2],'成功率：前一次與本次','成功率','A35',True);b.chart(s,'plot',[3,4],'有限mean e_p：含有限失敗','cm','A54');b.ends[s]=73
+ s='設定與說明';row=b.table(s,4,'當週重要變數與組合，不列全部內部常數',['項目','前一次／修改前','本次／修改後','作用與歸因限制'],settings,'settings')
+ b.note(s,row,'主表比較的是上一週方法與本次方法。第3週分開列定位與完整重提取；第4週明列回復DTM＋加refinement兩項變更，另有相同DTM的精化控制；第5週另保留v1→v2負面結果。',height=46);row+=2
+ times=dict(zip(SCENES,[(20.718,11.657),(30.699,16.712),(4.5596,8.3584),(19.522,9.4516),(3.0405,8.6992)]))
+ row=b.table(s,row,'原論文時間只作範圍參考；不計跨硬體速度提升',['場景','論文matching ms','論文total s','硬體／範圍限制'],[[label(ss),*times[ss],'i7-9700F 3GHz；thread數待補。本地online不含提取/cache/GT，範圍不同。'] for ss in SCENES],'paper_time')
+ b.sources(s,row)
+ s='必要對照';row=format_pair_table(b,e,s,4,[(label(ss),a,z) for ss,a,z in entries])
+ row=b.table(s,row,'旋轉、平移與本地逐配對時間',['場景','前e_R °','後e_R °','前e_t cm','後e_t cm','前online ms','後online ms','計時限制'],[[label(ss),a['rot'],z['rot'],cm(a['trans']),cm(z['trans']),a['time'],z['time'],'跨批次／epoch或範圍差；不算速度下降率'] for ss,a,z in entries],'pose_time')
+ if extra:
+  caption={3:'固定舊軸線：只重算DTM交點，與完整重提取分開',4:'相同原DTM：raw→refined，隔離新增幾何後端整組',5:'v1→v2：搜尋與評分整組改動的負面結果'}[i]
+  row=b.table(s,row,caption,['場景','修改前成功','修改後成功','前finite e_p cm','後finite e_p cm','前finite N','後finite N','限制'],[[label(ss),f"{a['ok']}/{a['n']}",f"{z['ok']}/{z['n']}",cm(a['ep']),cm(z['ep']),a['finite'],z['finite'],'同pair/seed；整組對照，非每個內部參數消融'] for ss,a,z in extra],'extra')
+ if i==5:
+  rr=e.tables['U'];case=[r for r in rr if r['scene']=='Plot4' and r['pair']=='S4-S2' and r['seed']=='31' and r['method'] in ['multi_refined','multi_v2_refined']]
+  row=b.table(s,row,'同一失敗反例：Plot4 S4-S2 seed31，舊分數定義相同',['版本','成功?','geometry overlap','e_p m','解讀'],[[r['method'],int(r['success']),float(r['geo_overlap']),float(r['e_p_m']),'分數較大不代表GT下更準'] for r in case],'case')
+ if i==6:
+  row=b.table(s,row,'公平控制：三者使用同一v3 backend',['場景','5cm/SVD＋v3','10cm/recovery＋v3','完整multi_v3','5cm e_p cm','10cm e_p cm','multi e_p cm','限制'],[[label(ss),*[f"{e.u(ss,m)['ok']}/{e.u(ss,m)['n']}" for m in ['reference5_refined_v3','eth10_refined_v3','multi_v3_refined']],*[cm(e.u(ss,m)['ep']) for m in ['reference5_refined_v3','eth10_refined_v3','multi_v3_refined']],'不把全部增益歸給multistart'] for ss in SCENES],'fair')
+  b.note(s,row,'全體成功數507/550、546/550、550/550，只累計成功數、不混算兩來源誤差。完整候選相對同backend的10cm方法額外救4次，均Plot4。Plot3較v2誤差增加約0.127mm；Plot4共同成功78例增加約0.733mm。',height=48)
+ return b.save(later_talk(i,e,entries,extra,settings,versions[i]))
+
 def main():
  OUT.mkdir(parents=True,exist_ok=True)
  ap=argparse.ArgumentParser();ap.add_argument('--report',type=int,default=1);a=ap.parse_args()
  if a.report==1:report1()
- else:raise ValueError('Report not implemented yet')
+ elif 2<=a.report<=6:later(a.report)
+ else:raise ValueError('Report index must be 1–6')
 if __name__=='__main__':main()
