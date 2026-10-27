@@ -68,6 +68,7 @@ v3的raw overlap與v2點集合和gate不同，不可直接比誰數字大。共�
  nexts={2:'下一次改看DTM與樹位高度，並把固定軸線與完整提取分開。',3:'下一次回到原DTM加入幾何精化，並用控制實驗交代兩個跨週變更。',4:'下一次處理初始化與候選驗證，先保留擴大搜尋反而退步的結果。',5:'下一次保留相同候選引擎，修改結構驗證與距離gate，檢查是否改善錯選。',6:'後續最重要的是固定版本測真正未參與開發的森林、作者同環境baseline，以及固定候選的表面×gate消融；尚未做的不當成成果。'}[i]
  source='\n'.join(k+'：'+v['path']+'\nSHA256：'+v['sha256'] for k,v in e.sources.items())
  cold_note='第6週另列同一舊epoch串行cold代表配對：ETH約344.3→369.1秒、Tongji Plot1約703.9→651.8秒，包含提取與cache重建。每法僅一次，OS cache未清，RSS是最大native子程序；因此只能說這次觀測一快一慢，不能宣稱穩定速度排名。' if i==6 else ''
+ refs='元件經典來源：Kabsch (1976), A solution for the best rotation to relate two sets of vectors, DOI 10.1107/S0567739476001873；Fischler與Bolles (1981), Random sample consensus, DOI 10.1145/358669.358692。這些是演算法元件的來源，現有紀錄不足以宣稱當時逐篇依照這兩篇改編整個補救流程。' if i==2 else ''
  return f'''第{i}次報告：{titles[i]}
 主稿配合逐表說明、圖表停頓與問題確認，預設10～15分鐘；最後備答按需要使用。
 搭配 report_{i:02d}_{titles[i]}.xlsx。三頁為「結果比較」「設定與說明」「必要對照」。
@@ -108,6 +109,7 @@ e_p計算全部來源點在估計變換與GT變換下的位置差，與ICP最近
 {chr(10).join('問：'+q+chr(10)+'答：'+a for q,a in qa)}
 
 【資料追溯】
+{refs}
 {source}
 精確CSV行號、group selector、配對統計與公式期望值另存report_{i:02d}_manifest.json；報告只需讀本稿與XLSX。
 原論文：DOI 10.1109/LGRS.2025.3650098；PDF p2方法、p3 Algorithm1、p4 TableI/II與Eq8、p5 TableIII。

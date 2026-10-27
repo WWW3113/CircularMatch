@@ -46,6 +46,16 @@ e_p用全部來源點Eq8，再跨案例取mean；finite mean包含可計算失�
 def main():
  OUT.mkdir(exist_ok=True,parents=True)
  assert (ROOT/'results/report_experiments_20261028/full_dtm_smooth_rows.csv').exists(),'Resume missing experiments first'
+ # Count features without exporting any private tree coordinates.
+ feature_rows=[];manifest=json.loads((ROOT/'results/unified_20261025/dataset_manifest.json').read_text())
+ for scan in manifest['scans']:
+  base=ROOT/('results/unified_20261025/runs/extraction/ETH/'+scan['scan'] if scan['dataset']=='ETH' else 'results/tongji_trees/fixed_eth_20261025/runs/extraction/'+scan['scene']+'/'+scan['scan'])
+  full=ROOT/('results/tongji_trees/dtm_height_20261025/runs/full_extraction/Plot2/'+scan['scan'] if scan['scene']=='Plot2' else 'results/report_experiments_20261028/runs/full_extraction/'+scan['scene']+'/'+scan['scan'])
+  for seed in range(31,41):
+   before=base/f'step_seed{seed}_trees.csv';after=full/f'step_seed{seed}_trees.csv'
+   feature_rows.append(dict(scene=scan['scene'],scan=scan['scan'],seed=seed,before_trees=len(list(csv.DictReader(before.open()))),after_trees=len(list(csv.DictReader(after.open()))),before_sha256=hashlib.sha256(before.read_bytes()).hexdigest(),after_sha256=hashlib.sha256(after.read_bytes()).hexdigest()))
+ f=ROOT/'results/report_experiments_20261028/feature_count_rows.csv'
+ with f.open('w',newline='') as stream:w=csv.DictWriter(stream,fieldnames=list(feature_rows[0]));w.writeheader();w.writerows(feature_rows)
  report1()
  for i in range(2,7):later(i)
  overview=OUT/'報告安排總覽.txt';overview.write_text(OVERVIEW,encoding='utf-8')

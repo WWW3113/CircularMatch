@@ -58,6 +58,7 @@ class Book:
   self.i=i;self.e=e;self.path=OUT/f'report_{i:02d}_{TITLES[i]}.xlsx';self.wb=xlsxwriter.Workbook(self.path);self.checks=[];self.ranges={};self.chart_count=0
   self.formats={}
   for name,extra in {'title':{'bold':True,'font_size':18,'font_color':'243E52'},'head':{'bold':True,'bg_color':'E8EDF1'},'text':{},'num':{'num_format':'0.000'},'int':{'num_format':'0'},'pct':{'num_format':'0.0%'},'pp':{'num_format':'0.0" pp"'},'note':{'font_size':10,'font_color':'444444'}}.items():
+   if name in ['num','int','pct','pp']:extra['align']='center'
    self.formats[name]=self.wb.add_format(dict(font_name='Microsoft JhengHei',font_size=13,text_wrap=True,valign='vcenter')|extra)
   self.sheets={};self.ends={}
   for title in sheets:
@@ -249,7 +250,7 @@ def setup_later(i):
    entries.append((s,a,e.u(s,'eth10_raw')))
   settings=[['CN容差／Solver','0.10m／RANSAC','相同','固定第一週選定的共用配置，不為各Plot挑不同版本'],['弱配對補救','關閉','evidence模式；原CN<6對啟動','本週唯一新增方法，內部常數作為整組'],['補救證據與採用','無新增模組','前三候選證據、最多60邊、至少6個3D支持','只列整組定義，不將改善分配給各常數'],['地形／提取／精化','原DTM、step、無ICP','相同','固定其他處理，推論僅當前兩站']]
  elif i==3:
-  e.load_path('FULL','results/report_experiments_20261028/full_dtm_smooth_rows.csv');e.load_path('EP','results/report_experiments_20261028/eth_dtm_position_rows.csv');e.load('D','D_registration_rows.csv')
+  e.load_path('FULL','results/report_experiments_20261028/full_dtm_smooth_rows.csv');e.load_path('EP','results/report_experiments_20261028/eth_dtm_position_rows.csv');e.load('D','D_registration_rows.csv');e.load_path('FC','results/report_experiments_20261028/feature_count_rows.csv')
   for s in SCENES:
    entries.append((s,e.u(s,'eth10_raw'),e.group('FULL:'+s,'FULL',scene=s,solver='svd+ransac')))
    pos=e.group('EP:R','EP',solver='svd+ransac') if s=='ETH' else e.group('D:'+s+':smooth','D',scene=s,method='selected',solver='svd+ransac')
@@ -304,7 +305,14 @@ def later(i):
   row=b.table(s,row,caption,['場景','修改前成功','修改後成功','前finite e_p cm','後finite e_p cm','前finite N','後finite N','限制'],[[label(ss),f"{a['ok']}/{a['n']}",f"{z['ok']}/{z['n']}",cm(a['ep']),cm(z['ep']),a['finite'],z['finite'],'同pair/seed；整組對照，非每個內部參數消融'] for ss,a,z in extra],'extra')
  if i==5:
   rr=e.tables['U'];case=[r for r in rr if r['scene']=='Plot4' and r['pair']=='S4-S2' and r['seed']=='31' and r['method'] in ['multi_refined','multi_v2_refined']]
-  row=b.table(s,row,'同一失敗反例：Plot4 S4-S2 seed31，舊分數定義相同',['版本','成功?','geometry overlap','e_p m','解讀'],[[r['method'],int(r['success']),float(r['geo_overlap']),float(r['e_p_m']),'分數較大不代表GT下更準'] for r in case],'case')
+  row=b.table(s,row,'同一失敗反例：Plot4 S4-S2 seed31，舊分數定義相同',['版本','候選pose數','精化數','成功?','geometry overlap','e_p m','解讀'],[[r['method'],int(r['proposal_count']),int(r['refined_candidates']),int(r['success']),float(r['geo_overlap']),float(r['e_p_m']),'分數較大不代表GT下更準'] for r in case],'case')
+ if i==3:
+  data=[]
+  for ss in SCENES:
+   rr=[r for r in e.tables['FC'] if r['scene']==ss];a=sum(int(r['before_trees']) for r in rr)/len(rr);z=sum(int(r['after_trees']) for r in rr)/len(rr)
+   data.append([label(ss),len({r['scan'] for r in rr}),len(rr),a,z,z-a,'每站每seed平均；不是registration成功率'])
+  row=b.table(s,row,'中間證據：完整重提取實際改變的樹位數',['場景','站數','站×seed檔數','原平均樹位數','smooth平均樹位數','後−前','解讀'],data,'features')
+  b.note(s,row,'FC保存每站每seed的樹數與前後CSV雜湊，不公開樹位座標。樹數改變支持DTM影響提取集合；沒有單獨實驗證明「樹數更多」就是誤差改善原因。',height=42)
  if i==6:
   row=b.table(s,row,'公平控制：三者使用同一v3 backend',['場景','5cm/SVD＋v3','10cm/recovery＋v3','完整multi_v3','5cm e_p cm','10cm e_p cm','multi e_p cm','限制'],[[label(ss),*[f"{e.u(ss,m)['ok']}/{e.u(ss,m)['n']}" for m in ['reference5_refined_v3','eth10_refined_v3','multi_v3_refined']],*[cm(e.u(ss,m)['ep']) for m in ['reference5_refined_v3','eth10_refined_v3','multi_v3_refined']],'不把全部增益歸給multistart'] for ss in SCENES],'fair')
   b.note(s,row,'全體成功數507/550、546/550、550/550，只累計成功數、不混算兩來源誤差。完整候選相對同backend的10cm方法額外救4次，均Plot4。Plot3較v2誤差增加約0.127mm；Plot4共同成功78例增加約0.733mm。',height=48);row+=2
