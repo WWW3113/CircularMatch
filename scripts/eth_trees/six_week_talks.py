@@ -39,7 +39,7 @@ smooth曾以Plot2 seed31～35的50次開發結果選出：原設定18次成功�
 為避免遮擋、植被與不同可見面干擾，加入固定的距離與normal gate、唯一target、距離trimming及Huber權重。它們同時組成一個robust後端；沒有逐項消融，因此不能說某個70%常數獨立造成全部進步。
 求解仍是完整6DOF，沒有把roll、pitch或z鎖住。若Hessian缺約束就停當層；若幾何分數惡化則回退該初值。這些保護降低部分不穩定更新，卻不保證GT e_p一定下降。
 只有水平地面時，point-to-plane對XY平移與yaw約束弱；不同方向表面可提供更多局部約束。但森林排列重複時，錯誤位置也可能有看似相近的表面。ICP能修正附近殘差，不等於全域找到正確位置；沒有可用初值時，這版也不會自行創造姿態。
-主表跨週比較含兩個改動：回到原DTM、加入精化。因此第三頁另列相同原DTM的raw→refined對照，才能把精化整組的效果與DTM回復區分。5cm參考也有相同refinement分支，避免只給候選方法額外能力後全部稱為CN優勢。''',
+主表跨週比較含兩個改動：回到原DTM、加入精化。因此第三頁同時補齊原DTM／smooth×raw／refined四組，並列同smooth的raw→refined對照；這才直接隔離在前一週地形設定下新增精化的效果。5cm參考也有相同refinement分支，避免只給候選方法額外能力後全部稱為CN優勢。後續主線仍用原DTM共同基準，不代表已證明smooth搭所有多候選版本都較差。''',
  5:'''多初值的動機是：如果單一粗姿態落在錯誤盆地，局部微調可能只會把錯位位置修得更像另一片表面。多提出幾個幾何相容初值，有機會包含正確收斂區，但也增加錯誤候選參與評分的機會。
 先看v1到v2的整組變更。CN證據從top5、最多60條邊，擴成top20、最多120條。替代姿態上限從16變256，精化候選從3變8；另加近直立假設的雙點yaw初值，並把支持評分擴到當前兩站全部抽出樹位，而不只原證據池。
 globalSupport的global只指這兩站全部樹位，不是跨六站地圖。yaw是初始值設計，最終精化仍解6DOF。最多256替代姿態再插入原初值，所以proposal_count可257；beam8包含既有初值，不是再加一個變9。
@@ -55,6 +55,8 @@ optimizer沒有改成只用垂直點，仍用全方向、3h及同一6DOF point-t
 v3的raw overlap與v2點集合和gate不同，不可直接比誰數字大。共同定義的GT e_p與成功門檻才用來比較最終輸出。NN距離、point-to-plane loss、GT e_p是不同量。
 公平控制讓5cm參考與固定10cm方法也加同一v3 backend。全體成功數依序507、546與550；完整候選相對同backend固定10cm只多救4次，全部Plot4。不能把從最早423到550的所有增益都叫作multistart的功勞。'''}[i]
  more=results(extra) if extra else ''
+ if i==3:more+='\n完整smooth新退步的ETH例子是s1-s6、seed37：8對matching全部通過GT-XY檢查、RANSAC也有8個3D模型內點，但GT旋轉誤差為2.289°、平移約22.772cm、e_p約25.903cm，因此仍未通過rotation<2°。這直接顯示XY正確與模型共識不保證GT姿態正確；不能僅據此說高度是唯一成因。'
+ if i==4:more+='\n本次新增同smooth控制（前次完整smooth、只加refinement）：\n'+results([(s,a,e.group('SREF:'+s,'SREF',scene=s)) for s,a,z in entries])
  gain=[name(s) for s,a,z in entries if z['ok']>a['ok']];loss=[name(s) for s,a,z in entries if z['ok']<a['ok']];same=[name(s) for s,a,z in entries if z['ok']==a['ok']]
  tongji=[x for x in entries if x[0]!='ETH'];eth=next(x for x in entries if x[0]=='ETH')
  pattern='成功數增加的場景：'+('、'.join(gain) or '沒有')+'；減少的場景：'+('、'.join(loss) or '沒有')+'；持平：'+('、'.join(same) or '沒有')+'。'

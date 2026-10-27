@@ -9,6 +9,7 @@ from make_six_week_reports import ROOT,OUT,TITLES,validate,report1,later
 
 OVERVIEW='''六次教授報告安排總覽
 每次預設10～15分鐘：主稿配合表格、圖表停頓與備答。每次各一份TXT與XLSX，共12份，另加本總覽＝13份；ZIP只放這13份。
+本六次版取代先前四次排程；舊檔保留作歷史紀錄，跨週比較以本包統一seed與版本定義為準。
 
 統一資料口徑
 Tongji-trees的Plot1～4是同一dataset四個場景，每場景五站、10個固定兩站配對。ETH-tree是另一dataset，六站、15個固定配對。每組使用seed31～40，前後同pair同seed；兩dataset不混算誤差平均。不是六站一起推論，也不是550片森林。
@@ -25,7 +26,7 @@ Tongji-trees的Plot1～4是同一dataset四個場景，每場景五站、10個�
 前一次原DTM＋10cm/RANSAC/recovery，對照凍結smooth profile。主表使用兩dataset完整重提取，另列固定軸線只重算交點的控制，避免混稱。profile曾以Plot2開發GT選出；本次不為各場景重選，改善與退步全列。
 
 第4次｜加入幾何微調
-主表直接列第3次smooth完整流程，對照回復原DTM＋新增surface refinement。跨週同時改兩項，不把全部差異歸給ICP；另外列同一原DTM的raw/refined控制隔離後端整組。方法仍完整6DOF，原提取1cm與新表面0.5/0.2/0.1m分開。
+主表直接列第3次smooth完整流程，對照回復原DTM＋新增surface refinement。跨週同時改兩項，不把全部差異歸給ICP；補齊原DTM/smooth×raw/refined四組，另列同smooth raw/refined，直接隔離前次設定下新增後端的效果。方法仍完整6DOF，原提取1cm與新表面0.5/0.2/0.1m分開。後續用原DTM共同基準，不宣稱已驗過smooth搭全部多候選版本。
 
 第5次｜擴大候選搜尋的退步
 主表承接第4次單初值refinement，對照多候選v2；另展開v1→v2。Plot4 v1 96→v2 78/100，保留這個負面結果。搜尋範圍、yaw初值、支持分數與beam一起改，不將效果獨立歸給top-k。
@@ -46,6 +47,7 @@ e_p用全部來源點Eq8，再跨案例取mean；finite mean包含可計算失�
 def main():
  OUT.mkdir(exist_ok=True,parents=True)
  assert (ROOT/'results/report_experiments_20261028/full_dtm_smooth_rows.csv').exists(),'Resume missing experiments first'
+ subprocess.run([sys.executable,'scripts/eth_trees/supplement_smooth_refinement.py'],cwd=ROOT,check=True)
  # Count features without exporting any private tree coordinates.
  feature_rows=[];manifest=json.loads((ROOT/'results/unified_20261025/dataset_manifest.json').read_text())
  for scan in manifest['scans']:

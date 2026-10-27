@@ -1,15 +1,7 @@
 {
-  "updated_utc": "2026-10-27T20:39:01.127150+00:00",
-  "completed_full_stations": [
-    "full_Plot1_S2",
-    "full_Plot1_S1",
-    "full_Plot1_S3",
-    "full_Plot1_S5",
-    "full_Plot1_S4"
-  ],
-  "remaining_new_station_count": 16,
-  "coarse_rows": 600,
+  "full_smooth_rows": 1100,
+  "eth_coarse_rows": 600,
   "eth_position_rows": 300,
-  "next": "Complete full smooth extraction, run final registration, finalize_six_week_reports.py, push and verify ZIP.",
-  "live_session": 75696
+  "smooth_refinement_scored_trials": 110,
+  "next": "Wait session6945, then rerun finalizer fresh to use latest templates; no native reruns because per-pair outputs are reused; inspect/report/publish."
 }

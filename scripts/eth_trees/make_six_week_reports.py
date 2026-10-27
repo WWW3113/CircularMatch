@@ -257,7 +257,7 @@ def setup_later(i):
    extra.append((s,e.u(s,'eth10_raw'),pos))
   settings=[['DTM cell','0.50m','0.50m','網格大小固定'],['DTM fit_radius／fill_max_radius','2格／5格','6格／6格','同時修改；fit_radius亦影響鄰近平面剔除，不拆單參數歸因'],['前次coarse方法','10cm＋RANSAC＋weak recovery','相同','只改DTM profile；不為ETH重新選參'],['主比較輸入','原DTM完整提取','smooth完整重提取','每站重新height/voxel/normal/cluster/cylinder/intersection'],['定位階段控制','固定既有圓柱軸線','僅重算axis×DTM交點','另列兩dataset定位測試；不與完整提取混稱']]
  elif i==4:
-  e.load_path('FULL','results/report_experiments_20261028/full_dtm_smooth_rows.csv')
+  e.load_path('FULL','results/report_experiments_20261028/full_dtm_smooth_rows.csv');e.load_path('SREF','results/report_experiments_20261028/smooth_refined_rows.csv')
   for s in SCENES:
    entries.append((s,e.group('FULL:'+s,'FULL',scene=s,solver='svd+ransac'),e.u(s,'eth10_refined')))
    extra.append((s,e.u(s,'eth10_raw'),e.u(s,'eth10_refined')))
@@ -312,7 +312,20 @@ def later(i):
    rr=[r for r in e.tables['FC'] if r['scene']==ss];a=sum(int(r['before_trees']) for r in rr)/len(rr);z=sum(int(r['after_trees']) for r in rr)/len(rr)
    data.append([label(ss),len({r['scan'] for r in rr}),len(rr),a,z,z-a,'每站每seed平均；不是registration成功率'])
   row=b.table(s,row,'中間證據：完整重提取實際改變的樹位數',['場景','站數','站×seed檔數','原平均樹位數','smooth平均樹位數','後−前','解讀'],data,'features')
-  b.note(s,row,'FC保存每站每seed的樹數與前後CSV雜湊，不公開樹位座標。樹數改變支持DTM影響提取集合；沒有單獨實驗證明「樹數更多」就是誤差改善原因。',height=42)
+  b.note(s,row,'FC保存每站每seed的樹數與前後CSV雜湊，不公開樹位座標。樹數改變支持DTM影響提取集合；沒有單獨實驗證明「樹數更多」就是誤差改善原因。',height=42);row+=2
+  cases=[]
+  before={key(r):r for ss,a,z in entries for r in a['rows']}
+  for r in e.tables['FULL']:
+   if r['scene']=='ETH' and r['solver']=='svd+ransac' and r['success']=='0' and before[key(r)]['success']=='1':
+    prev=before[key(r)];cases.append([r['pair']+' seed'+r['seed'],r['n_correct_matches']+'/'+r['n_matches'],int(r['ransac_inliers']),float(prev['rot_err_deg']),float(r['rot_err_deg']),100*float(r['trans_err_m']),100*float(r['e_p_m']),'GT-XY正確與模型內點，不保證GT姿態通過'])
+  if cases:row=b.table(s,row,'保留新退步的實例：ETH完整smooth失敗',['配對／seed','GT-XY正確／匹配','3D模型內點','原e_R °','smooth e_R °','smooth e_t cm','smooth e_p cm','解讀'],cases,'dtm_failure')
+ if i==4:
+  data=[]
+  for ss,a,z in entries:
+   refined=e.group('SREF:'+ss,'SREF',scene=ss);original=e.u(ss,'eth10_raw');old_refined=e.u(ss,'eth10_refined')
+   data.append([label(ss),f"{original['ok']}/{original['n']}",f"{old_refined['ok']}/{old_refined['n']}",f"{a['ok']}/{a['n']}",f"{refined['ok']}/{refined['n']}",cm(a['ep']),cm(refined['ep']),'smooth前後只新增同一精化backend'])
+  row=b.table(s,row,'補齊DTM×refinement四組；另直接控制前一週smooth',['場景','原DTM raw','原DTM refined','smooth raw','smooth refined','smooth前e_p cm','smooth後e_p cm','限制'],data,'dtm_refine_grid')
+  format_pair_table(b,e,s,row,[(label(ss)+'；smooth raw→refined',a,e.group('SREF:'+ss,'SREF',scene=ss)) for ss,a,z in entries],keyname='smooth_pair')
  if i==6:
   row=b.table(s,row,'公平控制：三者使用同一v3 backend',['場景','5cm/SVD＋v3','10cm/recovery＋v3','完整multi_v3','5cm e_p cm','10cm e_p cm','multi e_p cm','限制'],[[label(ss),*[f"{e.u(ss,m)['ok']}/{e.u(ss,m)['n']}" for m in ['reference5_refined_v3','eth10_refined_v3','multi_v3_refined']],*[cm(e.u(ss,m)['ep']) for m in ['reference5_refined_v3','eth10_refined_v3','multi_v3_refined']],'不把全部增益歸給multistart'] for ss in SCENES],'fair')
   b.note(s,row,'全體成功數507/550、546/550、550/550，只累計成功數、不混算兩來源誤差。完整候選相對同backend的10cm方法額外救4次，均Plot4。Plot3較v2誤差增加約0.127mm；Plot4共同成功78例增加約0.733mm。',height=48);row+=2
