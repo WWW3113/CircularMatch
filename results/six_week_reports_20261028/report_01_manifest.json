@@ -1,0 +1,1676 @@
+{
+  "report": 1,
+  "title": "CN距離容差與Solver",
+  "generated_at": "2026-10-28T04:16:08.733358+08:00",
+  "xlsx": "report_01_CN距離容差與Solver.xlsx",
+  "txt": "report_01_CN距離容差與Solver.txt",
+  "xlsx_sha256": "6a084681d811f07c4ed326284e95cb6d487dfc27e222ec6c7c655bed2e42dae5",
+  "txt_sha256": "253611123a7b5f5c5bae596b52dc06caaa4f273dfb285475c4c14d5db1ca6185",
+  "sources": {
+    "F": {
+      "path": "results/professor_reports_20261026/evidence/F_fresh_rows.csv",
+      "sha256": "b73cafe4af6c29e65881e8fa481474ab1c304aaa273ba2c7185fbddbf90098bb"
+    }
+  },
+  "groups": {
+    "F:fresh_control:svd": {
+      "id": "F:fresh_control:svd",
+      "source": "F",
+      "selector": {
+        "method": "fresh_control",
+        "solver": "svd"
+      },
+      "csv_lines": [
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        16,
+        18,
+        20,
+        22,
+        24,
+        26,
+        28,
+        30,
+        32,
+        34,
+        36,
+        38,
+        40,
+        42,
+        44,
+        46,
+        48,
+        50,
+        52,
+        54,
+        56,
+        58,
+        60,
+        62,
+        64,
+        66,
+        68,
+        70,
+        72,
+        74,
+        76,
+        78,
+        80,
+        82,
+        84,
+        86,
+        88,
+        90,
+        92,
+        94,
+        96,
+        98,
+        100,
+        102,
+        104,
+        106,
+        108,
+        110,
+        112,
+        114,
+        116,
+        118,
+        120,
+        122,
+        124,
+        126,
+        128,
+        130,
+        132,
+        134,
+        136,
+        138,
+        140,
+        142,
+        144,
+        146,
+        148,
+        150,
+        152,
+        154,
+        156,
+        158,
+        160,
+        162,
+        164,
+        166,
+        168,
+        170,
+        172,
+        174,
+        176,
+        178,
+        180,
+        182,
+        184,
+        186,
+        188,
+        190,
+        192,
+        194,
+        196,
+        198,
+        200,
+        202,
+        204,
+        206,
+        208,
+        210,
+        212,
+        214,
+        216,
+        218,
+        220,
+        222,
+        224,
+        226,
+        228,
+        230,
+        232,
+        234,
+        236,
+        238,
+        240,
+        242,
+        244,
+        246,
+        248,
+        250,
+        252,
+        254,
+        256,
+        258,
+        260,
+        262,
+        264,
+        266,
+        268,
+        270,
+        272,
+        274,
+        276,
+        278,
+        280,
+        282,
+        284,
+        286,
+        288,
+        290,
+        292,
+        294,
+        296,
+        298,
+        300
+      ],
+      "n": 150,
+      "ok": 118,
+      "rate": 0.7866666666666666,
+      "finite": 130,
+      "missing": 20,
+      "ep": 0.1501120221933077,
+      "ep_success": 0.09806986151381356,
+      "ep_median": 0.079200014525,
+      "rot": 0.8333489008797692,
+      "trans": 0.13549111377964615,
+      "time": 4.097461013333334,
+      "n_matches": 6.426666666666667,
+      "n_correct_matches": 6.426666666666667,
+      "ransac_inliers": null,
+      "recovery_triggered": null,
+      "recovery_accepted": null,
+      "recovery_hypotheses": null,
+      "recovery_support": null,
+      "proposal_count": null,
+      "refined_candidates": null,
+      "refine_ms": null,
+      "descriptor_ms": null,
+      "matching_ms": null,
+      "solve_ms": null,
+      "recovery_triggered_total": null,
+      "recovery_accepted_total": null
+    },
+    "F:fresh_control:svd+ransac": {
+      "id": "F:fresh_control:svd+ransac",
+      "source": "F",
+      "selector": {
+        "method": "fresh_control",
+        "solver": "svd+ransac"
+      },
+      "csv_lines": [
+        3,
+        5,
+        7,
+        9,
+        11,
+        13,
+        15,
+        17,
+        19,
+        21,
+        23,
+        25,
+        27,
+        29,
+        31,
+        33,
+        35,
+        37,
+        39,
+        41,
+        43,
+        45,
+        47,
+        49,
+        51,
+        53,
+        55,
+        57,
+        59,
+        61,
+        63,
+        65,
+        67,
+        69,
+        71,
+        73,
+        75,
+        77,
+        79,
+        81,
+        83,
+        85,
+        87,
+        89,
+        91,
+        93,
+        95,
+        97,
+        99,
+        101,
+        103,
+        105,
+        107,
+        109,
+        111,
+        113,
+        115,
+        117,
+        119,
+        121,
+        123,
+        125,
+        127,
+        129,
+        131,
+        133,
+        135,
+        137,
+        139,
+        141,
+        143,
+        145,
+        147,
+        149,
+        151,
+        153,
+        155,
+        157,
+        159,
+        161,
+        163,
+        165,
+        167,
+        169,
+        171,
+        173,
+        175,
+        177,
+        179,
+        181,
+        183,
+        185,
+        187,
+        189,
+        191,
+        193,
+        195,
+        197,
+        199,
+        201,
+        203,
+        205,
+        207,
+        209,
+        211,
+        213,
+        215,
+        217,
+        219,
+        221,
+        223,
+        225,
+        227,
+        229,
+        231,
+        233,
+        235,
+        237,
+        239,
+        241,
+        243,
+        245,
+        247,
+        249,
+        251,
+        253,
+        255,
+        257,
+        259,
+        261,
+        263,
+        265,
+        267,
+        269,
+        271,
+        273,
+        275,
+        277,
+        279,
+        281,
+        283,
+        285,
+        287,
+        289,
+        291,
+        293,
+        295,
+        297,
+        299,
+        301
+      ],
+      "n": 150,
+      "ok": 123,
+      "rate": 0.82,
+      "finite": 130,
+      "missing": 20,
+      "ep": 0.1506397582643077,
+      "ep_success": 0.09673352669642277,
+      "ep_median": 0.07682540709999999,
+      "rot": 0.8415891027882307,
+      "trans": 0.1367159712948,
+      "time": 5.245315986666666,
+      "n_matches": 6.426666666666667,
+      "n_correct_matches": 6.426666666666667,
+      "ransac_inliers": 6.14,
+      "recovery_triggered": null,
+      "recovery_accepted": null,
+      "recovery_hypotheses": null,
+      "recovery_support": null,
+      "proposal_count": null,
+      "refined_candidates": null,
+      "refine_ms": null,
+      "descriptor_ms": null,
+      "matching_ms": null,
+      "solve_ms": null,
+      "recovery_triggered_total": null,
+      "recovery_accepted_total": null
+    },
+    "F:fresh_matching:svd": {
+      "id": "F:fresh_matching:svd",
+      "source": "F",
+      "selector": {
+        "method": "fresh_matching",
+        "solver": "svd"
+      },
+      "csv_lines": [
+        302,
+        304,
+        306,
+        308,
+        310,
+        312,
+        314,
+        316,
+        318,
+        320,
+        322,
+        324,
+        326,
+        328,
+        330,
+        332,
+        334,
+        336,
+        338,
+        340,
+        342,
+        344,
+        346,
+        348,
+        350,
+        352,
+        354,
+        356,
+        358,
+        360,
+        362,
+        364,
+        366,
+        368,
+        370,
+        372,
+        374,
+        376,
+        378,
+        380,
+        382,
+        384,
+        386,
+        388,
+        390,
+        392,
+        394,
+        396,
+        398,
+        400,
+        402,
+        404,
+        406,
+        408,
+        410,
+        412,
+        414,
+        416,
+        418,
+        420,
+        422,
+        424,
+        426,
+        428,
+        430,
+        432,
+        434,
+        436,
+        438,
+        440,
+        442,
+        444,
+        446,
+        448,
+        450,
+        452,
+        454,
+        456,
+        458,
+        460,
+        462,
+        464,
+        466,
+        468,
+        470,
+        472,
+        474,
+        476,
+        478,
+        480,
+        482,
+        484,
+        486,
+        488,
+        490,
+        492,
+        494,
+        496,
+        498,
+        500,
+        502,
+        504,
+        506,
+        508,
+        510,
+        512,
+        514,
+        516,
+        518,
+        520,
+        522,
+        524,
+        526,
+        528,
+        530,
+        532,
+        534,
+        536,
+        538,
+        540,
+        542,
+        544,
+        546,
+        548,
+        550,
+        552,
+        554,
+        556,
+        558,
+        560,
+        562,
+        564,
+        566,
+        568,
+        570,
+        572,
+        574,
+        576,
+        578,
+        580,
+        582,
+        584,
+        586,
+        588,
+        590,
+        592,
+        594,
+        596,
+        598,
+        600
+      ],
+      "n": 150,
+      "ok": 135,
+      "rate": 0.9,
+      "finite": 143,
+      "missing": 7,
+      "ep": 0.11223102075363636,
+      "ep_success": 0.09859923063903704,
+      "ep_median": 0.08666904932,
+      "rot": 0.7024714967154545,
+      "trans": 0.09952239008971328,
+      "time": 5.1152653133333335,
+      "n_matches": 9.013333333333334,
+      "n_correct_matches": 9.013333333333334,
+      "ransac_inliers": null,
+      "recovery_triggered": null,
+      "recovery_accepted": null,
+      "recovery_hypotheses": null,
+      "recovery_support": null,
+      "proposal_count": null,
+      "refined_candidates": null,
+      "refine_ms": null,
+      "descriptor_ms": null,
+      "matching_ms": null,
+      "solve_ms": null,
+      "recovery_triggered_total": null,
+      "recovery_accepted_total": null
+    },
+    "F:fresh_matching:svd+ransac": {
+      "id": "F:fresh_matching:svd+ransac",
+      "source": "F",
+      "selector": {
+        "method": "fresh_matching",
+        "solver": "svd+ransac"
+      },
+      "csv_lines": [
+        303,
+        305,
+        307,
+        309,
+        311,
+        313,
+        315,
+        317,
+        319,
+        321,
+        323,
+        325,
+        327,
+        329,
+        331,
+        333,
+        335,
+        337,
+        339,
+        341,
+        343,
+        345,
+        347,
+        349,
+        351,
+        353,
+        355,
+        357,
+        359,
+        361,
+        363,
+        365,
+        367,
+        369,
+        371,
+        373,
+        375,
+        377,
+        379,
+        381,
+        383,
+        385,
+        387,
+        389,
+        391,
+        393,
+        395,
+        397,
+        399,
+        401,
+        403,
+        405,
+        407,
+        409,
+        411,
+        413,
+        415,
+        417,
+        419,
+        421,
+        423,
+        425,
+        427,
+        429,
+        431,
+        433,
+        435,
+        437,
+        439,
+        441,
+        443,
+        445,
+        447,
+        449,
+        451,
+        453,
+        455,
+        457,
+        459,
+        461,
+        463,
+        465,
+        467,
+        469,
+        471,
+        473,
+        475,
+        477,
+        479,
+        481,
+        483,
+        485,
+        487,
+        489,
+        491,
+        493,
+        495,
+        497,
+        499,
+        501,
+        503,
+        505,
+        507,
+        509,
+        511,
+        513,
+        515,
+        517,
+        519,
+        521,
+        523,
+        525,
+        527,
+        529,
+        531,
+        533,
+        535,
+        537,
+        539,
+        541,
+        543,
+        545,
+        547,
+        549,
+        551,
+        553,
+        555,
+        557,
+        559,
+        561,
+        563,
+        565,
+        567,
+        569,
+        571,
+        573,
+        575,
+        577,
+        579,
+        581,
+        583,
+        585,
+        587,
+        589,
+        591,
+        593,
+        595,
+        597,
+        599,
+        601
+      ],
+      "n": 150,
+      "ok": 142,
+      "rate": 0.9466666666666667,
+      "finite": 143,
+      "missing": 7,
+      "ep": 0.09774054196055944,
+      "ep_success": 0.09031564288985916,
+      "ep_median": 0.07112085512,
+      "rot": 0.558572264859021,
+      "trans": 0.08813310262670629,
+      "time": 6.842217106666666,
+      "n_matches": 9.013333333333334,
+      "n_correct_matches": 9.013333333333334,
+      "ransac_inliers": 8.726666666666667,
+      "recovery_triggered": null,
+      "recovery_accepted": null,
+      "recovery_hypotheses": null,
+      "recovery_support": null,
+      "proposal_count": null,
+      "refined_candidates": null,
+      "refine_ms": null,
+      "descriptor_ms": null,
+      "matching_ms": null,
+      "solve_ms": null,
+      "recovery_triggered_total": null,
+      "recovery_accepted_total": null
+    }
+  },
+  "paired": {
+    "F:fresh_control:svd -> F:fresh_matching:svd": {
+      "gained": 25,
+      "lost": 8,
+      "common": 110,
+      "before": 0.09236036107445454,
+      "after": 0.09154550424772727,
+      "same_finite": false
+    },
+    "F:fresh_control:svd+ransac -> F:fresh_matching:svd+ransac": {
+      "gained": 26,
+      "lost": 7,
+      "common": 116,
+      "before": 0.09375305286482759,
+      "after": 0.08491122205905172,
+      "same_finite": false
+    },
+    "F:fresh_control:svd -> F:fresh_control:svd+ransac": {
+      "gained": 5,
+      "lost": 0,
+      "common": 118,
+      "before": 0.09806986151381356,
+      "after": 0.09638276207067796,
+      "same_finite": true
+    },
+    "F:fresh_matching:svd -> F:fresh_matching:svd+ransac": {
+      "gained": 7,
+      "lost": 0,
+      "common": 135,
+      "before": 0.09859923063903704,
+      "after": 0.09151532390274074,
+      "same_finite": true
+    }
+  },
+  "checks": [
+    {
+      "sheet": "四組結果比較",
+      "row": 5,
+      "col": 0,
+      "expected": "CN／Solver"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 5,
+      "col": 1,
+      "expected": "成功／總數"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 5,
+      "col": 2,
+      "expected": "成功率"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 5,
+      "col": 3,
+      "expected": "有限mean e_p cm"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 5,
+      "col": 4,
+      "expected": "有限N"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 5,
+      "col": 5,
+      "expected": "mean e_R °"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 5,
+      "col": 6,
+      "expected": "mean e_t cm"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 5,
+      "col": 7,
+      "expected": "平均time_ms"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 6,
+      "col": 0,
+      "expected": "5cm／SVD"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 6,
+      "col": 1,
+      "expected": "118/150"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 6,
+      "col": 2,
+      "expected": 0.7866666666666666
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 6,
+      "col": 3,
+      "expected": 15.01120221933077
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 6,
+      "col": 4,
+      "expected": 130
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 6,
+      "col": 5,
+      "expected": 0.8333489008797692
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 6,
+      "col": 6,
+      "expected": 13.549111377964614
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 6,
+      "col": 7,
+      "expected": 4.097461013333334
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 7,
+      "col": 0,
+      "expected": "5cm／RANSAC"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 7,
+      "col": 1,
+      "expected": "123/150"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 7,
+      "col": 2,
+      "expected": 0.82
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 7,
+      "col": 3,
+      "expected": 15.06397582643077
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 7,
+      "col": 4,
+      "expected": 130
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 7,
+      "col": 5,
+      "expected": 0.8415891027882307
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 7,
+      "col": 6,
+      "expected": 13.67159712948
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 7,
+      "col": 7,
+      "expected": 5.245315986666666
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 8,
+      "col": 0,
+      "expected": "10cm／SVD"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 8,
+      "col": 1,
+      "expected": "135/150"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 8,
+      "col": 2,
+      "expected": 0.9
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 8,
+      "col": 3,
+      "expected": 11.223102075363636
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 8,
+      "col": 4,
+      "expected": 143
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 8,
+      "col": 5,
+      "expected": 0.7024714967154545
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 8,
+      "col": 6,
+      "expected": 9.952239008971327
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 8,
+      "col": 7,
+      "expected": 5.1152653133333335
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 9,
+      "col": 0,
+      "expected": "10cm／RANSAC"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 9,
+      "col": 1,
+      "expected": "142/150"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 9,
+      "col": 2,
+      "expected": 0.9466666666666667
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 9,
+      "col": 3,
+      "expected": 9.774054196055944
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 9,
+      "col": 4,
+      "expected": 143
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 9,
+      "col": 5,
+      "expected": 0.558572264859021
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 9,
+      "col": 6,
+      "expected": 8.81331026267063
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 9,
+      "col": 7,
+      "expected": 6.842217106666666
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 15,
+      "col": 0,
+      "expected": "固定條件"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 15,
+      "col": 1,
+      "expected": "唯一改動"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 15,
+      "col": 2,
+      "expected": "前成功數"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 15,
+      "col": 3,
+      "expected": "後成功數"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 15,
+      "col": 4,
+      "expected": "前成功率"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 15,
+      "col": 5,
+      "expected": "後成功率"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 15,
+      "col": 6,
+      "expected": "差：後−前 pp"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 15,
+      "col": 7,
+      "expected": "成功數淨增加"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 16,
+      "col": 0,
+      "expected": "SVD固定"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 16,
+      "col": 1,
+      "expected": "5→10cm"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 16,
+      "col": 2,
+      "expected": "118/150"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 16,
+      "col": 3,
+      "expected": "135/150"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 16,
+      "col": 4,
+      "expected": 0.7866666666666666
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 16,
+      "col": 5,
+      "expected": 0.9
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 16,
+      "col": 6,
+      "expected": 11.33333333333334,
+      "formula": "=(F17-E17)*100"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 16,
+      "col": 7,
+      "expected": 17
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 17,
+      "col": 0,
+      "expected": "RANSAC固定"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 17,
+      "col": 1,
+      "expected": "5→10cm"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 17,
+      "col": 2,
+      "expected": "123/150"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 17,
+      "col": 3,
+      "expected": "142/150"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 17,
+      "col": 4,
+      "expected": 0.82
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 17,
+      "col": 5,
+      "expected": 0.9466666666666667
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 17,
+      "col": 6,
+      "expected": 12.666666666666671,
+      "formula": "=(F18-E18)*100"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 17,
+      "col": 7,
+      "expected": 19
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 18,
+      "col": 0,
+      "expected": "5cm固定"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 18,
+      "col": 1,
+      "expected": "SVD→RANSAC"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 18,
+      "col": 2,
+      "expected": "118/150"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 18,
+      "col": 3,
+      "expected": "123/150"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 18,
+      "col": 4,
+      "expected": 0.7866666666666666
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 18,
+      "col": 5,
+      "expected": 0.82
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 18,
+      "col": 6,
+      "expected": 3.3333333333333326,
+      "formula": "=(F19-E19)*100"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 18,
+      "col": 7,
+      "expected": 5
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 19,
+      "col": 0,
+      "expected": "10cm固定"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 19,
+      "col": 1,
+      "expected": "SVD→RANSAC"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 19,
+      "col": 2,
+      "expected": "135/150"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 19,
+      "col": 3,
+      "expected": "142/150"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 19,
+      "col": 4,
+      "expected": 0.9
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 19,
+      "col": 5,
+      "expected": 0.9466666666666667
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 19,
+      "col": 6,
+      "expected": 4.666666666666663,
+      "formula": "=(F20-E20)*100"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 19,
+      "col": 7,
+      "expected": 7
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 5,
+      "col": 0,
+      "expected": "項目"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 5,
+      "col": 1,
+      "expected": "前／設定A"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 5,
+      "col": 2,
+      "expected": "後／設定B"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 5,
+      "col": 3,
+      "expected": "作用與固定條件"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 6,
+      "col": 0,
+      "expected": "CN距離容差"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 6,
+      "col": 1,
+      "expected": "0.05m"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 6,
+      "col": 2,
+      "expected": "0.10m"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 6,
+      "col": 3,
+      "expected": "允許descriptor距離差更大；也可能增加錯配"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 7,
+      "col": 0,
+      "expected": "Solver"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 7,
+      "col": 1,
+      "expected": "Kabsch／SVD"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 7,
+      "col": 2,
+      "expected": "Kabsch＋RANSAC"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 7,
+      "col": 3,
+      "expected": "先尋找3D一致群，再估剛體變換"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 8,
+      "col": 0,
+      "expected": "弱配對補救"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 8,
+      "col": 1,
+      "expected": "關閉"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 8,
+      "col": 2,
+      "expected": "關閉"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 8,
+      "col": 3,
+      "expected": "第一週固定，不介紹或歸因此模組"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 9,
+      "col": 0,
+      "expected": "提取與descriptor"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 9,
+      "col": 1,
+      "expected": "同一批樹位"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 9,
+      "col": 2,
+      "expected": "同前"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 9,
+      "col": 3,
+      "expected": "step、分群0.20m、verticality>0.9；N183/w10/Thscore40固定"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 13,
+      "col": 0,
+      "expected": "比較"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 13,
+      "col": 1,
+      "expected": "新增成功"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 13,
+      "col": 2,
+      "expected": "退步失敗"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 13,
+      "col": 3,
+      "expected": "共同成功N"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 13,
+      "col": 4,
+      "expected": "前e_p cm"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 13,
+      "col": 5,
+      "expected": "後e_p cm"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 13,
+      "col": 6,
+      "expected": "下降率"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 13,
+      "col": 7,
+      "expected": "限制"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 14,
+      "col": 0,
+      "expected": "SVD固定：5→10cm"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 14,
+      "col": 1,
+      "expected": 25
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 14,
+      "col": 2,
+      "expected": 8
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 14,
+      "col": 3,
+      "expected": 110
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 14,
+      "col": 4,
+      "expected": 9.236036107445454
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 14,
+      "col": 5,
+      "expected": 9.154550424772728
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 14,
+      "col": 6,
+      "expected": 0.008822581649181637,
+      "formula": "=IF(AND(ISNUMBER(E15),ISNUMBER(F15),E15<>0),(E15-F15)/E15,\"待補\")"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 14,
+      "col": 7,
+      "expected": "僅共同成功；不取代全體成功率"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 15,
+      "col": 0,
+      "expected": "RANSAC固定：5→10cm"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 15,
+      "col": 1,
+      "expected": 26
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 15,
+      "col": 2,
+      "expected": 7
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 15,
+      "col": 3,
+      "expected": 116
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 15,
+      "col": 4,
+      "expected": 9.375305286482758
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 15,
+      "col": 5,
+      "expected": 8.491122205905171
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 15,
+      "col": 6,
+      "expected": 0.09430979083448038,
+      "formula": "=IF(AND(ISNUMBER(E16),ISNUMBER(F16),E16<>0),(E16-F16)/E16,\"待補\")"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 15,
+      "col": 7,
+      "expected": "僅共同成功；不取代全體成功率"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 16,
+      "col": 0,
+      "expected": "5cm固定：SVD→RANSAC"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 16,
+      "col": 1,
+      "expected": 5
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 16,
+      "col": 2,
+      "expected": 0
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 16,
+      "col": 3,
+      "expected": 118
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 16,
+      "col": 4,
+      "expected": 9.806986151381356
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 16,
+      "col": 5,
+      "expected": 9.638276207067795
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 16,
+      "col": 6,
+      "expected": 0.017203036866713227,
+      "formula": "=IF(AND(ISNUMBER(E17),ISNUMBER(F17),E17<>0),(E17-F17)/E17,\"待補\")"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 16,
+      "col": 7,
+      "expected": "僅共同成功；不取代全體成功率"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 17,
+      "col": 0,
+      "expected": "10cm固定：SVD→RANSAC"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 17,
+      "col": 1,
+      "expected": 7
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 17,
+      "col": 2,
+      "expected": 0
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 17,
+      "col": 3,
+      "expected": 135
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 17,
+      "col": 4,
+      "expected": 9.859923063903704
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 17,
+      "col": 5,
+      "expected": 9.151532390274074
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 17,
+      "col": 6,
+      "expected": 0.07184545650492803,
+      "formula": "=IF(AND(ISNUMBER(E18),ISNUMBER(F18),E18<>0),(E18-F18)/E18,\"待補\")"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 17,
+      "col": 7,
+      "expected": "僅共同成功；不取代全體成功率"
+    }
+  ],
+  "tables": {
+    "main": {
+      "sheet": "四組結果比較",
+      "header": 5,
+      "start": 6,
+      "end": 9,
+      "columns": 8
+    },
+    "effects": {
+      "sheet": "四組結果比較",
+      "header": 15,
+      "start": 16,
+      "end": 19,
+      "columns": 8
+    },
+    "settings": {
+      "sheet": "設定與說明",
+      "header": 5,
+      "start": 6,
+      "end": 9,
+      "columns": 4
+    },
+    "paired": {
+      "sheet": "設定與說明",
+      "header": 13,
+      "start": 14,
+      "end": 17,
+      "columns": 8
+    }
+  },
+  "charts": 2
+}
