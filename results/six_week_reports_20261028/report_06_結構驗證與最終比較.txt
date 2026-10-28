@@ -23,6 +23,7 @@ Tongji-trees／Plot2：100/100→100/100，成功率差+0.00pp；有限mean e_p 
 Tongji-trees／Plot3：100/100→100/100，成功率差+0.00pp；有限mean e_p 1.106→1.118cm；有限N 100→100。
 Tongji-trees／Plot4：78/100→100/100，成功率差+22.00pp；有限mean e_p 864.762→3.392cm；有限N 100→100。
 ETH-tree：150/150→150/150，成功率差+0.00pp；有限mean e_p 0.604→0.604cm；有限N 150→150。
+成功數增加的場景：Tongji-trees／Plot4；減少的場景：沒有；持平：Tongji-trees／Plot1、Tongji-trees／Plot2、Tongji-trees／Plot3、ETH-tree。只累計同dataset的成功數，Tongji為378/400→400/400；ETH為150/150→150/150。這不是混算兩來源誤差平均。有限mean e_p下降：Tongji-trees／Plot4、ETH-tree；上升：Tongji-trees／Plot3。平均值集合改變時，這只描述有輸出的子集，不能代替同案例比較。
 這裡mean保留有輸出的失敗，沒有只選成功案例。若有限N比總N少，沒有輸出仍算失敗，e_p只是無法計算，不是零。前後有限案例集合不同時，表格不計算vs前一次下降率；這個空缺是不可比的統計，不是再把同一失敗反覆重跑就能補成成功。
 接著看「必要對照」同pair與seed的成對比較：
 Tongji-trees／Plot1：新增成功0次、退步失敗0次，共同成功100次；共同成功mean e_p 2.887→2.887cm。
@@ -39,6 +40,7 @@ Plot4相對v2新增22次成功、沒有新增失敗；但共同成功78例mean e
 本次說的「效果」是固定這些方法條件、在既定案例上的實驗差異；多個參數同改就只說整組效果。若提出地形、法向或幾何可辨識度的機制，是程式與觀察相容的解釋，沒有對應消融或中間診斷時，不能再升格成排除其他因素的因果證明。
 e_p計算全部來源點在估計變換與GT變換下的位置差，與ICP最近鄰距離或point-to-plane loss不同。它也不是單看translation：小角度旋轉在遠處可造成較大點位移。原始GT的不確定度尚未建模，所以很小e_p不能等同世界座標物理精度完全達同數值。
 時間表列本地online與論文matching/total，但不把它們直接相除。原論文i7-9700F、OpenMP實際threads未齊；本地舊批次與本次補跑在不同時段，online還排除提取、geometry cache與GT評分。使用共用cache可以攤銷，不能把一次性成本視為免費。速度下降率未填時，要說明是範圍或硬體不一致，不是忘記計算。
+第6週另列同一舊epoch串行cold代表配對：ETH約344.3→369.1秒、Tongji Plot1約703.9→651.8秒，包含提取與cache重建。每法僅一次，OS cache未清，RSS是最大native子程序；因此只能說這次觀測一快一慢，不能宣稱穩定速度排名。
 
 【10:00～12:00｜論文比較、結論與下一步】
 論文Table I在五場景報100%與e_p；我們每次都列它作參考。可是作者可執行程式在既有稽核時未公開，paper逐場景分母、成功門檻也未完全確認。本地5cm/SVD是參考實作，提取中另有本地DTM、分群與圓柱檢查，不能把它冒稱作者原程式。
@@ -61,6 +63,7 @@ e_p計算全部來源點在估計變換與GT變換下的位置差，與ICP最近
 答：可列數值與範圍，但CPU、threads與計時範圍不同，不能直接宣稱速度提升。
 
 【資料追溯】
+
 U：results/professor_reports_20261026/evidence/U_registration_rows.csv
 SHA256：e111ef1216ceff2ca3a11b16f38fcfa56c2d16fc599cc8570340c6ba6c1304a0
 C：results/six_week_reports_20261028/evidence/C_eth_coarse_rows.csv

@@ -1,11 +1,11 @@
 {
   "report": 1,
   "title": "CN距離容差與Solver",
-  "generated_at": "2026-10-28T04:25:22.582496+08:00",
+  "generated_at": "2026-10-28T10:41:03.625666+08:00",
   "xlsx": "report_01_CN距離容差與Solver.xlsx",
   "txt": "report_01_CN距離容差與Solver.txt",
-  "xlsx_sha256": "33c3586f403beb8004a02180874e5074d21addade9de9b766932706dac4b3ad2",
-  "txt_sha256": "4e623607d68d61998b0cf31e5042d18e4dfaf4562047e70397f03f2194fc8977",
+  "xlsx_sha256": "232664b4cdfd35efb4e8b082f87505529932d2826f214ef91dc8b1dc6987f9c5",
+  "txt_sha256": "80bc5956f4f6349a8b66de70c7c3e5785d53ff74576f2fa90f3a558299bc5eb9",
   "sources": {
     "F": {
       "path": "results/six_week_reports_20261028/evidence/F_eth_coarse_rows.csv",
@@ -3114,6 +3114,86 @@
       "before": 0.09746082000043478,
       "after": 0.0896531325555797,
       "same_finite": true
+    },
+    "T:Plot1:reference5cm:svd -> T:Plot1:reference5cm:svd": {
+      "gained": 0,
+      "lost": 0,
+      "common": 100,
+      "before": 0.1681264811113,
+      "after": 0.1681264811113,
+      "same_finite": true
+    },
+    "T:Plot1:reference5cm:svd -> T:Plot1:baseline10cm:svd+ransac": {
+      "gained": 0,
+      "lost": 0,
+      "common": 100,
+      "before": 0.1681264811113,
+      "after": 0.17423531105600001,
+      "same_finite": true
+    },
+    "T:Plot2:reference5cm:svd -> T:Plot2:reference5cm:svd": {
+      "gained": 0,
+      "lost": 0,
+      "common": 33,
+      "before": 0.24459190838818182,
+      "after": 0.24459190838818182,
+      "same_finite": true
+    },
+    "T:Plot2:reference5cm:svd -> T:Plot2:baseline10cm:svd+ransac": {
+      "gained": 12,
+      "lost": 11,
+      "common": 22,
+      "before": 0.2246681117640909,
+      "after": 0.19960971896954546,
+      "same_finite": true
+    },
+    "T:Plot3:reference5cm:svd -> T:Plot3:reference5cm:svd": {
+      "gained": 0,
+      "lost": 0,
+      "common": 100,
+      "before": 0.05376450884124,
+      "after": 0.05376450884124,
+      "same_finite": true
+    },
+    "T:Plot3:reference5cm:svd -> T:Plot3:baseline10cm:svd+ransac": {
+      "gained": 0,
+      "lost": 0,
+      "common": 100,
+      "before": 0.05376450884124,
+      "after": 0.04901756139286,
+      "same_finite": true
+    },
+    "T:Plot4:reference5cm:svd -> T:Plot4:reference5cm:svd": {
+      "gained": 0,
+      "lost": 0,
+      "common": 76,
+      "before": 0.08705992042526316,
+      "after": 0.08705992042526316,
+      "same_finite": true
+    },
+    "T:Plot4:reference5cm:svd -> T:Plot4:baseline10cm:svd+ransac": {
+      "gained": 6,
+      "lost": 12,
+      "common": 64,
+      "before": 0.07010373222453126,
+      "after": 0.0711722529434375,
+      "same_finite": false
+    },
+    "F:0.05:svd -> F:0.05:svd": {
+      "gained": 0,
+      "lost": 0,
+      "common": 114,
+      "before": 0.09559662507815789,
+      "after": 0.09559662507815789,
+      "same_finite": true
+    },
+    "F:0.05:svd -> F:0.1:svd+ransac": {
+      "gained": 32,
+      "lost": 2,
+      "common": 112,
+      "before": 0.09435337118580357,
+      "after": 0.081151508385625,
+      "same_finite": false
     }
   },
   "checks": [
@@ -4968,6 +5048,372 @@
       "row": 33,
       "col": 7,
       "expected": "只在同場景、同seed內比較"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 43,
+      "col": 0,
+      "expected": "項目"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 43,
+      "col": 1,
+      "expected": "原論文"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 43,
+      "col": 2,
+      "expected": "本地修改前"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 43,
+      "col": 3,
+      "expected": "本地修改後"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 43,
+      "col": 4,
+      "expected": "比較限制"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 44,
+      "col": 0,
+      "expected": "CN距離容差"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 44,
+      "col": 1,
+      "expected": "0.05m"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 44,
+      "col": 2,
+      "expected": "0.05m"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 44,
+      "col": 3,
+      "expected": "0.10m"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 44,
+      "col": 4,
+      "expected": "不是成功門檻或voxel尺寸"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 45,
+      "col": 0,
+      "expected": "剛體Solver"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 45,
+      "col": 1,
+      "expected": "Euclidean transform；細節未交代"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 45,
+      "col": 2,
+      "expected": "Kabsch／SVD"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 45,
+      "col": 3,
+      "expected": "Kabsch＋RANSAC"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 45,
+      "col": 4,
+      "expected": "論文未說明，不把SVD稱作作者原始實作"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 46,
+      "col": 0,
+      "expected": "新增弱配對補救"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 46,
+      "col": 1,
+      "expected": "未描述本地evidence recovery"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 46,
+      "col": 2,
+      "expected": "關閉"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 46,
+      "col": 3,
+      "expected": "關閉"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 46,
+      "col": 4,
+      "expected": "論文本身的triangle fallback仍在；與新增補救不同"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 47,
+      "col": 0,
+      "expected": "N／w／Thscore"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 47,
+      "col": 1,
+      "expected": "183／10／40"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 47,
+      "col": 2,
+      "expected": "183／10／40"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 47,
+      "col": 3,
+      "expected": "183／10／40"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 47,
+      "col": 4,
+      "expected": "三項固定；沒有新增第三個實驗變數"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 51,
+      "col": 0,
+      "expected": "場景"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 51,
+      "col": 1,
+      "expected": "論文matching ms"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 51,
+      "col": 2,
+      "expected": "論文total s"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 51,
+      "col": 3,
+      "expected": "論文e_R／e_t"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 51,
+      "col": 4,
+      "expected": "論文成功分母／門檻"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 51,
+      "col": 5,
+      "expected": "時間可比性"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 52,
+      "col": 0,
+      "expected": "Tongji／Plot1"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 52,
+      "col": 1,
+      "expected": 20.718
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 52,
+      "col": 2,
+      "expected": 11.657
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 52,
+      "col": 3,
+      "expected": "未單獨報告；Table I用e_p"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 52,
+      "col": 4,
+      "expected": "待補：本文未明確交代"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 52,
+      "col": 5,
+      "expected": "i7-9700F 3GHz；實際threads未交代；本地計時範圍不同，不算加速比"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 53,
+      "col": 0,
+      "expected": "Tongji／Plot2"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 53,
+      "col": 1,
+      "expected": 30.699
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 53,
+      "col": 2,
+      "expected": 16.712
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 53,
+      "col": 3,
+      "expected": "未單獨報告；Table I用e_p"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 53,
+      "col": 4,
+      "expected": "待補：本文未明確交代"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 53,
+      "col": 5,
+      "expected": "i7-9700F 3GHz；實際threads未交代；本地計時範圍不同，不算加速比"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 54,
+      "col": 0,
+      "expected": "Tongji／Plot3"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 54,
+      "col": 1,
+      "expected": 4.5596
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 54,
+      "col": 2,
+      "expected": 8.3584
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 54,
+      "col": 3,
+      "expected": "未單獨報告；Table I用e_p"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 54,
+      "col": 4,
+      "expected": "待補：本文未明確交代"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 54,
+      "col": 5,
+      "expected": "i7-9700F 3GHz；實際threads未交代；本地計時範圍不同，不算加速比"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 55,
+      "col": 0,
+      "expected": "Tongji／Plot4"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 55,
+      "col": 1,
+      "expected": 19.522
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 55,
+      "col": 2,
+      "expected": 9.4516
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 55,
+      "col": 3,
+      "expected": "未單獨報告；Table I用e_p"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 55,
+      "col": 4,
+      "expected": "待補：本文未明確交代"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 55,
+      "col": 5,
+      "expected": "i7-9700F 3GHz；實際threads未交代；本地計時範圍不同，不算加速比"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 56,
+      "col": 0,
+      "expected": "ETH-tree"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 56,
+      "col": 1,
+      "expected": 3.0405
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 56,
+      "col": 2,
+      "expected": 8.6992
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 56,
+      "col": 3,
+      "expected": "未單獨報告；Table I用e_p"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 56,
+      "col": 4,
+      "expected": "待補：本文未明確交代"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 56,
+      "col": 5,
+      "expected": "i7-9700F 3GHz；實際threads未交代；本地計時範圍不同，不算加速比"
     },
     {
       "sheet": "精度時間與成對比較",
@@ -7004,9 +7450,1115 @@
       "row": 51,
       "col": 7,
       "expected": "僅共同成功；不取代全體成功率"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 55,
+      "col": 0,
+      "expected": "場景"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 55,
+      "col": 1,
+      "expected": "組合"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 55,
+      "col": 2,
+      "expected": "論文e_p cm"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 55,
+      "col": 3,
+      "expected": "本地e_p cm"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 55,
+      "col": 4,
+      "expected": "vs論文誤差下降率"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 55,
+      "col": 5,
+      "expected": "vs修改前誤差下降率"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 55,
+      "col": 6,
+      "expected": "vs論文成功率 pp"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 55,
+      "col": 7,
+      "expected": "vs修改前成功率 pp"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 56,
+      "col": 0,
+      "expected": "Tongji／Plot1"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 56,
+      "col": 1,
+      "expected": "5cm／SVD"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 56,
+      "col": 2,
+      "expected": 5.2558
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 56,
+      "col": 3,
+      "expected": 16.81264811113
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 56,
+      "col": 4,
+      "expected": -2.198875168600403,
+      "formula": "=IF(AND(ISNUMBER(C57),ISNUMBER(D57),C57<>0),(C57-D57)/C57,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 56,
+      "col": 5,
+      "expected": 0.0,
+      "formula": "=IF(AND(ISNUMBER(D57),16.81264811113<>0),(16.81264811113-D57)/16.81264811113,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 56,
+      "col": 6,
+      "expected": 0.0,
+      "formula": "=(100/100-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 56,
+      "col": 7,
+      "expected": 0.0,
+      "formula": "=(100/100-100/100)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 57,
+      "col": 0,
+      "expected": "Tongji／Plot1"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 57,
+      "col": 1,
+      "expected": "5cm／RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 57,
+      "col": 2,
+      "expected": 5.2558
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 57,
+      "col": 3,
+      "expected": 17.2083674392
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 57,
+      "col": 4,
+      "expected": -2.274167099052476,
+      "formula": "=IF(AND(ISNUMBER(C58),ISNUMBER(D58),C58<>0),(C58-D58)/C58,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 57,
+      "col": 5,
+      "expected": -0.02353700175334276,
+      "formula": "=IF(AND(ISNUMBER(D58),16.81264811113<>0),(16.81264811113-D58)/16.81264811113,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 57,
+      "col": 6,
+      "expected": 0.0,
+      "formula": "=(100/100-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 57,
+      "col": 7,
+      "expected": 0.0,
+      "formula": "=(100/100-100/100)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 58,
+      "col": 0,
+      "expected": "Tongji／Plot1"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 58,
+      "col": 1,
+      "expected": "10cm／SVD"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 58,
+      "col": 2,
+      "expected": 5.2558
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 58,
+      "col": 3,
+      "expected": 17.666832733830002
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 58,
+      "col": 4,
+      "expected": -2.361397453067088,
+      "formula": "=IF(AND(ISNUMBER(C59),ISNUMBER(D59),C59<>0),(C59-D59)/C59,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 58,
+      "col": 5,
+      "expected": -0.050806072728931416,
+      "formula": "=IF(AND(ISNUMBER(D59),16.81264811113<>0),(16.81264811113-D59)/16.81264811113,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 58,
+      "col": 6,
+      "expected": 0.0,
+      "formula": "=(100/100-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 58,
+      "col": 7,
+      "expected": 0.0,
+      "formula": "=(100/100-100/100)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 59,
+      "col": 0,
+      "expected": "Tongji／Plot1"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 59,
+      "col": 1,
+      "expected": "10cm／RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 59,
+      "col": 2,
+      "expected": 5.2558
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 59,
+      "col": 3,
+      "expected": 17.423531105600002
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 59,
+      "col": 4,
+      "expected": -2.3151054274515777,
+      "formula": "=IF(AND(ISNUMBER(C60),ISNUMBER(D60),C60<>0),(C60-D60)/C60,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 59,
+      "col": 5,
+      "expected": -0.03633472790438032,
+      "formula": "=IF(AND(ISNUMBER(D60),16.81264811113<>0),(16.81264811113-D60)/16.81264811113,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 59,
+      "col": 6,
+      "expected": 0.0,
+      "formula": "=(100/100-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 59,
+      "col": 7,
+      "expected": 0.0,
+      "formula": "=(100/100-100/100)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 60,
+      "col": 0,
+      "expected": "Tongji／Plot2"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 60,
+      "col": 1,
+      "expected": "5cm／SVD"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 60,
+      "col": 2,
+      "expected": 11.480799999999999
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 60,
+      "col": 3,
+      "expected": 54.50497163930999
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 60,
+      "col": 4,
+      "expected": -3.7474889937382407,
+      "formula": "=IF(AND(ISNUMBER(C61),ISNUMBER(D61),C61<>0),(C61-D61)/C61,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 60,
+      "col": 5,
+      "expected": 0.0,
+      "formula": "=IF(AND(ISNUMBER(D61),54.50497163930999<>0),(54.50497163930999-D61)/54.50497163930999,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 60,
+      "col": 6,
+      "expected": -67.0,
+      "formula": "=(33/100-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 60,
+      "col": 7,
+      "expected": 0.0,
+      "formula": "=(33/100-33/100)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 61,
+      "col": 0,
+      "expected": "Tongji／Plot2"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 61,
+      "col": 1,
+      "expected": "5cm／RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 61,
+      "col": 2,
+      "expected": 11.480799999999999
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 61,
+      "col": 3,
+      "expected": 58.201283144
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 61,
+      "col": 4,
+      "expected": -4.069444911852833,
+      "formula": "=IF(AND(ISNUMBER(C62),ISNUMBER(D62),C62<>0),(C62-D62)/C62,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 61,
+      "col": 5,
+      "expected": -0.06781604307861266,
+      "formula": "=IF(AND(ISNUMBER(D62),54.50497163930999<>0),(54.50497163930999-D62)/54.50497163930999,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 61,
+      "col": 6,
+      "expected": -72.0,
+      "formula": "=(28/100-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 61,
+      "col": 7,
+      "expected": -4.999999999999999,
+      "formula": "=(28/100-33/100)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 62,
+      "col": 0,
+      "expected": "Tongji／Plot2"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 62,
+      "col": 1,
+      "expected": "10cm／SVD"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 62,
+      "col": 2,
+      "expected": 11.480799999999999
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 62,
+      "col": 3,
+      "expected": 47.25469538884
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 62,
+      "col": 4,
+      "expected": -3.115975836948645,
+      "formula": "=IF(AND(ISNUMBER(C63),ISNUMBER(D63),C63<>0),(C63-D63)/C63,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 62,
+      "col": 5,
+      "expected": 0.13302045726120443,
+      "formula": "=IF(AND(ISNUMBER(D63),54.50497163930999<>0),(54.50497163930999-D63)/54.50497163930999,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 62,
+      "col": 6,
+      "expected": -63.0,
+      "formula": "=(37/100-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 62,
+      "col": 7,
+      "expected": 3.9999999999999982,
+      "formula": "=(37/100-33/100)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 63,
+      "col": 0,
+      "expected": "Tongji／Plot2"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 63,
+      "col": 1,
+      "expected": "10cm／RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 63,
+      "col": 2,
+      "expected": 11.480799999999999
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 63,
+      "col": 3,
+      "expected": 50.900681144829996
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 63,
+      "col": 4,
+      "expected": -3.433548284512403,
+      "formula": "=IF(AND(ISNUMBER(C64),ISNUMBER(D64),C64<>0),(C64-D64)/C64,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 63,
+      "col": 5,
+      "expected": 0.06612773818747425,
+      "formula": "=IF(AND(ISNUMBER(D64),54.50497163930999<>0),(54.50497163930999-D64)/54.50497163930999,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 63,
+      "col": 6,
+      "expected": -65.99999999999999,
+      "formula": "=(34/100-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 63,
+      "col": 7,
+      "expected": 1.0000000000000009,
+      "formula": "=(34/100-33/100)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 64,
+      "col": 0,
+      "expected": "Tongji／Plot3"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 64,
+      "col": 1,
+      "expected": "5cm／SVD"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 64,
+      "col": 2,
+      "expected": 4.8756
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 64,
+      "col": 3,
+      "expected": 5.376450884124
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 64,
+      "col": 4,
+      "expected": -0.10272599969726795,
+      "formula": "=IF(AND(ISNUMBER(C65),ISNUMBER(D65),C65<>0),(C65-D65)/C65,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 64,
+      "col": 5,
+      "expected": 0.0,
+      "formula": "=IF(AND(ISNUMBER(D65),5.376450884124<>0),(5.376450884124-D65)/5.376450884124,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 64,
+      "col": 6,
+      "expected": 0.0,
+      "formula": "=(100/100-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 64,
+      "col": 7,
+      "expected": 0.0,
+      "formula": "=(100/100-100/100)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 65,
+      "col": 0,
+      "expected": "Tongji／Plot3"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 65,
+      "col": 1,
+      "expected": "5cm／RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 65,
+      "col": 2,
+      "expected": 4.8756
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 65,
+      "col": 3,
+      "expected": 5.291779501674
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 65,
+      "col": 4,
+      "expected": -0.08535964838666013,
+      "formula": "=IF(AND(ISNUMBER(C66),ISNUMBER(D66),C66<>0),(C66-D66)/C66,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 65,
+      "col": 5,
+      "expected": 0.015748564299178053,
+      "formula": "=IF(AND(ISNUMBER(D66),5.376450884124<>0),(5.376450884124-D66)/5.376450884124,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 65,
+      "col": 6,
+      "expected": 0.0,
+      "formula": "=(100/100-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 65,
+      "col": 7,
+      "expected": 0.0,
+      "formula": "=(100/100-100/100)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 66,
+      "col": 0,
+      "expected": "Tongji／Plot3"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 66,
+      "col": 1,
+      "expected": "10cm／SVD"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 66,
+      "col": 2,
+      "expected": 4.8756
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 66,
+      "col": 3,
+      "expected": 4.993702343056
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 66,
+      "col": 4,
+      "expected": -0.024223140342932166,
+      "formula": "=IF(AND(ISNUMBER(C67),ISNUMBER(D67),C67<>0),(C67-D67)/C67,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 66,
+      "col": 5,
+      "expected": 0.07118981449234645,
+      "formula": "=IF(AND(ISNUMBER(D67),5.376450884124<>0),(5.376450884124-D67)/5.376450884124,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 66,
+      "col": 6,
+      "expected": 0.0,
+      "formula": "=(100/100-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 66,
+      "col": 7,
+      "expected": 0.0,
+      "formula": "=(100/100-100/100)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 67,
+      "col": 0,
+      "expected": "Tongji／Plot3"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 67,
+      "col": 1,
+      "expected": "10cm／RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 67,
+      "col": 2,
+      "expected": 4.8756
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 67,
+      "col": 3,
+      "expected": 4.901756139286
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 67,
+      "col": 4,
+      "expected": -0.005364701633850232,
+      "formula": "=IF(AND(ISNUMBER(C68),ISNUMBER(D68),C68<>0),(C68-D68)/C68,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 67,
+      "col": 5,
+      "expected": 0.08829146867866212,
+      "formula": "=IF(AND(ISNUMBER(D68),5.376450884124<>0),(5.376450884124-D68)/5.376450884124,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 67,
+      "col": 6,
+      "expected": 0.0,
+      "formula": "=(100/100-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 67,
+      "col": 7,
+      "expected": 0.0,
+      "formula": "=(100/100-100/100)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 68,
+      "col": 0,
+      "expected": "Tongji／Plot4"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 68,
+      "col": 1,
+      "expected": "5cm／SVD"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 68,
+      "col": 2,
+      "expected": 4.356
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 68,
+      "col": 3,
+      "expected": 123.23467892978313
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 68,
+      "col": 4,
+      "expected": "不可比：本地缺變換；有限N見前表"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 68,
+      "col": 5,
+      "expected": 0.0,
+      "formula": "=IF(AND(ISNUMBER(D69),123.23467892978313<>0),(123.23467892978313-D69)/123.23467892978313,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 68,
+      "col": 6,
+      "expected": -24.0,
+      "formula": "=(76/100-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 68,
+      "col": 7,
+      "expected": 0.0,
+      "formula": "=(76/100-76/100)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 69,
+      "col": 0,
+      "expected": "Tongji／Plot4"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 69,
+      "col": 1,
+      "expected": "5cm／RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 69,
+      "col": 2,
+      "expected": 4.356
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 69,
+      "col": 3,
+      "expected": 123.23467892978313
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 69,
+      "col": 4,
+      "expected": "不可比：本地缺變換；有限N見前表"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 69,
+      "col": 5,
+      "expected": 0.0,
+      "formula": "=IF(AND(ISNUMBER(D70),123.23467892978313<>0),(123.23467892978313-D70)/123.23467892978313,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 69,
+      "col": 6,
+      "expected": -24.0,
+      "formula": "=(76/100-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 69,
+      "col": 7,
+      "expected": 0.0,
+      "formula": "=(76/100-76/100)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 70,
+      "col": 0,
+      "expected": "Tongji／Plot4"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 70,
+      "col": 1,
+      "expected": "10cm／SVD"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 70,
+      "col": 2,
+      "expected": 4.356
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 70,
+      "col": 3,
+      "expected": 299.49175990329627
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 70,
+      "col": 4,
+      "expected": "不可比：本地缺變換；有限N見前表"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 70,
+      "col": 5,
+      "expected": "不可比：前後有限案例集合不同"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 70,
+      "col": 6,
+      "expected": -31.000000000000007,
+      "formula": "=(69/100-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 70,
+      "col": 7,
+      "expected": -7.000000000000006,
+      "formula": "=(69/100-76/100)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 71,
+      "col": 0,
+      "expected": "Tongji／Plot4"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 71,
+      "col": 1,
+      "expected": "10cm／RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 71,
+      "col": 2,
+      "expected": 4.356
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 71,
+      "col": 3,
+      "expected": 252.16805173230864
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 71,
+      "col": 4,
+      "expected": "不可比：本地缺變換；有限N見前表"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 71,
+      "col": 5,
+      "expected": "不可比：前後有限案例集合不同"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 71,
+      "col": 6,
+      "expected": -30.000000000000004,
+      "formula": "=(70/100-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 71,
+      "col": 7,
+      "expected": -6.000000000000005,
+      "formula": "=(70/100-76/100)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 72,
+      "col": 0,
+      "expected": "ETH-tree"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 72,
+      "col": 1,
+      "expected": "5cm／SVD"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 72,
+      "col": 2,
+      "expected": 15.3427
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 72,
+      "col": 3,
+      "expected": 12.620930210716535
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 72,
+      "col": 4,
+      "expected": "不可比：本地缺變換；有限N見前表"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 72,
+      "col": 5,
+      "expected": 0.0,
+      "formula": "=IF(AND(ISNUMBER(D73),12.620930210716535<>0),(12.620930210716535-D73)/12.620930210716535,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 72,
+      "col": 6,
+      "expected": -24.0,
+      "formula": "=(114/150-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 72,
+      "col": 7,
+      "expected": 0.0,
+      "formula": "=(114/150-114/150)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 73,
+      "col": 0,
+      "expected": "ETH-tree"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 73,
+      "col": 1,
+      "expected": "5cm／RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 73,
+      "col": 2,
+      "expected": 15.3427
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 73,
+      "col": 3,
+      "expected": 10.970508682716536
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 73,
+      "col": 4,
+      "expected": "不可比：本地缺變換；有限N見前表"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 73,
+      "col": 5,
+      "expected": 0.13076861217397537,
+      "formula": "=IF(AND(ISNUMBER(D74),12.620930210716535<>0),(12.620930210716535-D74)/12.620930210716535,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 73,
+      "col": 6,
+      "expected": -19.333333333333336,
+      "formula": "=(121/150-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 73,
+      "col": 7,
+      "expected": 4.666666666666663,
+      "formula": "=(121/150-114/150)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 74,
+      "col": 0,
+      "expected": "ETH-tree"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 74,
+      "col": 1,
+      "expected": "10cm／SVD"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 74,
+      "col": 2,
+      "expected": 15.3427
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 74,
+      "col": 3,
+      "expected": 10.729408964524138
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 74,
+      "col": 4,
+      "expected": "不可比：本地缺變換；有限N見前表"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 74,
+      "col": 5,
+      "expected": "不可比：前後有限案例集合不同"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 74,
+      "col": 6,
+      "expected": -7.9999999999999964,
+      "formula": "=(138/150-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 74,
+      "col": 7,
+      "expected": 16.000000000000004,
+      "formula": "=(138/150-114/150)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 75,
+      "col": 0,
+      "expected": "ETH-tree"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 75,
+      "col": 1,
+      "expected": "10cm／RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 75,
+      "col": 2,
+      "expected": 15.3427
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 75,
+      "col": 3,
+      "expected": 9.095719413689656
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 75,
+      "col": 4,
+      "expected": "不可比：本地缺變換；有限N見前表"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 75,
+      "col": 5,
+      "expected": "不可比：前後有限案例集合不同"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 75,
+      "col": 6,
+      "expected": -4.0000000000000036,
+      "formula": "=(144/150-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 75,
+      "col": 7,
+      "expected": 19.999999999999996,
+      "formula": "=(144/150-114/150)*100"
     }
   ],
   "tables": {
+    "_widths_四組結果比較": [
+      27,
+      22,
+      24,
+      24,
+      24,
+      24,
+      24,
+      24
+    ],
+    "_widths_設定與說明": [
+      27,
+      21,
+      20,
+      20,
+      18,
+      20,
+      20,
+      30
+    ],
+    "_widths_精度時間與成對比較": [
+      27,
+      21,
+      20,
+      20,
+      18,
+      20,
+      20,
+      30
+    ],
     "main": {
       "sheet": "四組結果比較",
       "header": 5,
@@ -7042,6 +8594,20 @@
       "end": 33,
       "columns": 8
     },
+    "paper_settings": {
+      "sheet": "設定與說明",
+      "header": 43,
+      "start": 44,
+      "end": 47,
+      "columns": 5
+    },
+    "paper_time": {
+      "sheet": "設定與說明",
+      "header": 51,
+      "start": 52,
+      "end": 56,
+      "columns": 6
+    },
     "detail": {
       "sheet": "精度時間與成對比較",
       "header": 5,
@@ -7054,6 +8620,13 @@
       "header": 31,
       "start": 32,
       "end": 51,
+      "columns": 8
+    },
+    "direct_differences": {
+      "sheet": "精度時間與成對比較",
+      "header": 55,
+      "start": 56,
+      "end": 75,
       "columns": 8
     }
   },

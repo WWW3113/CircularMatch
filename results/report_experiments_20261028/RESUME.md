@@ -1,5 +1,7 @@
-Missing comparisons for six reports. Resume with:
+Experiments COMPLETE (2026-10-28 Asia/Taipei).
 
-python scripts/eth_trees/complete_report_experiments.py all
-
-Completed per-case CSVs and per-station .complete markers are reused. Never rerun based on GT failure. Raw clouds/tree coordinates remain local and are not published. protocol.json is frozen. Scalar aggregate outputs and resources are separate.
+Scalar row counts and SHA256: COMPLETE.json. Native runs need no restart.
+2550 new registration trials: ETH coarse600 + ETH fixed-axis300 + full smooth1100 + smooth refinement550.
+Feature count audit260 is separate, no coordinates. Frozen protocol.json and smooth_refinement_protocol.json retained.
+To rebuild/validate/package reports: python scripts/eth_trees/finalize_six_week_reports.py
+Completed scalar CSVs are reused; do not rerun based on GT failures. Private runs/clouds/tree coordinates remain local.

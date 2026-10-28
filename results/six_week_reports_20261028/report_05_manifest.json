@@ -1,11 +1,11 @@
 {
   "report": 5,
   "title": "擴大候選搜尋的退步",
-  "generated_at": "2026-10-28T04:33:41.624540+08:00",
+  "generated_at": "2026-10-28T10:41:04.939460+08:00",
   "xlsx": "report_05_擴大候選搜尋的退步.xlsx",
   "txt": "report_05_擴大候選搜尋的退步.txt",
-  "xlsx_sha256": "af6859fd61b8df806927f3987181c759f8404ac3c33e1cbf5d8f157544ffab5b",
-  "txt_sha256": "499b0a3c8dc00f7870ac66da6c3858c88adddf2d84699aa9f27492d8f9a8e832",
+  "xlsx_sha256": "a53a107c428c64b81393e6c437f0e81396814d02a2408a1e72495265177122e8",
+  "txt_sha256": "afafe39588624e972a6317136833c4a9cea9a8aa6a8d3e86d256dc3188da734a",
   "sources": {
     "U": {
       "path": "results/professor_reports_20261026/evidence/U_registration_rows.csv",
@@ -3019,19 +3019,19 @@
       "sheet": "結果比較",
       "row": 6,
       "col": 5,
-      "expected": "差：後−前 pp"
+      "expected": "vs前一次 pp"
     },
     {
       "sheet": "結果比較",
       "row": 6,
       "col": 6,
-      "expected": "案例組成"
+      "expected": "vs論文 pp"
     },
     {
       "sheet": "結果比較",
       "row": 6,
       "col": 7,
-      "expected": "批次"
+      "expected": "案例組成"
     },
     {
       "sheet": "結果比較",
@@ -3074,13 +3074,14 @@
       "sheet": "結果比較",
       "row": 7,
       "col": 6,
-      "expected": "10對×10seed"
+      "expected": 0.0,
+      "formula": "=(100/100-B8)*100"
     },
     {
       "sheet": "結果比較",
       "row": 7,
       "col": 7,
-      "expected": "seed31–40"
+      "expected": "10對×10seed；31–40"
     },
     {
       "sheet": "結果比較",
@@ -3123,13 +3124,14 @@
       "sheet": "結果比較",
       "row": 8,
       "col": 6,
-      "expected": "10對×10seed"
+      "expected": 0.0,
+      "formula": "=(100/100-B9)*100"
     },
     {
       "sheet": "結果比較",
       "row": 8,
       "col": 7,
-      "expected": "seed31–40"
+      "expected": "10對×10seed；31–40"
     },
     {
       "sheet": "結果比較",
@@ -3172,13 +3174,14 @@
       "sheet": "結果比較",
       "row": 9,
       "col": 6,
-      "expected": "10對×10seed"
+      "expected": 0.0,
+      "formula": "=(100/100-B10)*100"
     },
     {
       "sheet": "結果比較",
       "row": 9,
       "col": 7,
-      "expected": "seed31–40"
+      "expected": "10對×10seed；31–40"
     },
     {
       "sheet": "結果比較",
@@ -3221,13 +3224,14 @@
       "sheet": "結果比較",
       "row": 10,
       "col": 6,
-      "expected": "10對×10seed"
+      "expected": -21.999999999999996,
+      "formula": "=(78/100-B11)*100"
     },
     {
       "sheet": "結果比較",
       "row": 10,
       "col": 7,
-      "expected": "seed31–40"
+      "expected": "10對×10seed；31–40"
     },
     {
       "sheet": "結果比較",
@@ -3270,13 +3274,14 @@
       "sheet": "結果比較",
       "row": 11,
       "col": 6,
-      "expected": "15對×10seed"
+      "expected": 0.0,
+      "formula": "=(150/150-B12)*100"
     },
     {
       "sheet": "結果比較",
       "row": 11,
       "col": 7,
-      "expected": "seed31–40"
+      "expected": "15對×10seed；31–40"
     },
     {
       "sheet": "結果比較",
@@ -4946,24 +4951,36 @@
       "sheet": "必要對照",
       "row": 32,
       "col": 1,
-      "expected": "成功?"
+      "expected": "候選pose數"
     },
     {
       "sheet": "必要對照",
       "row": 32,
       "col": 2,
-      "expected": "geometry overlap"
+      "expected": "精化數"
     },
     {
       "sheet": "必要對照",
       "row": 32,
       "col": 3,
-      "expected": "e_p m"
+      "expected": "成功?"
     },
     {
       "sheet": "必要對照",
       "row": 32,
       "col": 4,
+      "expected": "geometry overlap"
+    },
+    {
+      "sheet": "必要對照",
+      "row": 32,
+      "col": 5,
+      "expected": "e_p m"
+    },
+    {
+      "sheet": "必要對照",
+      "row": 32,
+      "col": 6,
       "expected": "解讀"
     },
     {
@@ -4976,24 +4993,36 @@
       "sheet": "必要對照",
       "row": 33,
       "col": 1,
-      "expected": 1
+      "expected": 17
     },
     {
       "sheet": "必要對照",
       "row": 33,
       "col": 2,
-      "expected": 0.16697782412643902
+      "expected": 3
     },
     {
       "sheet": "必要對照",
       "row": 33,
       "col": 3,
-      "expected": 0.0856039352913584
+      "expected": 1
     },
     {
       "sheet": "必要對照",
       "row": 33,
       "col": 4,
+      "expected": 0.16697782412643902
+    },
+    {
+      "sheet": "必要對照",
+      "row": 33,
+      "col": 5,
+      "expected": 0.0856039352913584
+    },
+    {
+      "sheet": "必要對照",
+      "row": 33,
+      "col": 6,
       "expected": "分數較大不代表GT下更準"
     },
     {
@@ -5006,24 +5035,36 @@
       "sheet": "必要對照",
       "row": 34,
       "col": 1,
-      "expected": 0
+      "expected": 134
     },
     {
       "sheet": "必要對照",
       "row": 34,
       "col": 2,
-      "expected": 0.3377234445518996
+      "expected": 8
     },
     {
       "sheet": "必要對照",
       "row": 34,
       "col": 3,
-      "expected": 45.93514000954847
+      "expected": 0
     },
     {
       "sheet": "必要對照",
       "row": 34,
       "col": 4,
+      "expected": 0.3377234445518996
+    },
+    {
+      "sheet": "必要對照",
+      "row": 34,
+      "col": 5,
+      "expected": 45.93514000954847
+    },
+    {
+      "sheet": "必要對照",
+      "row": 34,
+      "col": 6,
       "expected": "分數較大不代表GT下更準"
     }
   ],
@@ -5119,7 +5160,7 @@
       "header": 32,
       "start": 33,
       "end": 34,
-      "columns": 5
+      "columns": 7
     }
   },
   "charts": 2

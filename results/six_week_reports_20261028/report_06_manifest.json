@@ -1,11 +1,11 @@
 {
   "report": 6,
   "title": "結構驗證與最終比較",
-  "generated_at": "2026-10-28T04:33:42.838080+08:00",
+  "generated_at": "2026-10-28T10:41:05.368961+08:00",
   "xlsx": "report_06_結構驗證與最終比較.xlsx",
   "txt": "report_06_結構驗證與最終比較.txt",
-  "xlsx_sha256": "4a27050e935bf037723ca1a2446c92be4072f03fd9790992648e83791647dbb0",
-  "txt_sha256": "27d76babe33fe6ed9908f567cafb8f8f5debd2d8cbde06441c6c1d58df2f5a2b",
+  "xlsx_sha256": "ecbd29343b61f2c5763112f62f09a7e948c02f188c5eeddb376772574927fc4b",
+  "txt_sha256": "a28b79077bc53fba1806b5d64841386dd2182254f0eff6d5cf91c87a18cea89b",
   "sources": {
     "U": {
       "path": "results/professor_reports_20261026/evidence/U_registration_rows.csv",
@@ -3749,19 +3749,19 @@
       "sheet": "結果比較",
       "row": 6,
       "col": 5,
-      "expected": "差：後−前 pp"
+      "expected": "vs前一次 pp"
     },
     {
       "sheet": "結果比較",
       "row": 6,
       "col": 6,
-      "expected": "案例組成"
+      "expected": "vs論文 pp"
     },
     {
       "sheet": "結果比較",
       "row": 6,
       "col": 7,
-      "expected": "批次"
+      "expected": "案例組成"
     },
     {
       "sheet": "結果比較",
@@ -3804,13 +3804,14 @@
       "sheet": "結果比較",
       "row": 7,
       "col": 6,
-      "expected": "10對×10seed"
+      "expected": 0.0,
+      "formula": "=(100/100-B8)*100"
     },
     {
       "sheet": "結果比較",
       "row": 7,
       "col": 7,
-      "expected": "seed31–40"
+      "expected": "10對×10seed；31–40"
     },
     {
       "sheet": "結果比較",
@@ -3853,13 +3854,14 @@
       "sheet": "結果比較",
       "row": 8,
       "col": 6,
-      "expected": "10對×10seed"
+      "expected": 0.0,
+      "formula": "=(100/100-B9)*100"
     },
     {
       "sheet": "結果比較",
       "row": 8,
       "col": 7,
-      "expected": "seed31–40"
+      "expected": "10對×10seed；31–40"
     },
     {
       "sheet": "結果比較",
@@ -3902,13 +3904,14 @@
       "sheet": "結果比較",
       "row": 9,
       "col": 6,
-      "expected": "10對×10seed"
+      "expected": 0.0,
+      "formula": "=(100/100-B10)*100"
     },
     {
       "sheet": "結果比較",
       "row": 9,
       "col": 7,
-      "expected": "seed31–40"
+      "expected": "10對×10seed；31–40"
     },
     {
       "sheet": "結果比較",
@@ -3951,13 +3954,14 @@
       "sheet": "結果比較",
       "row": 10,
       "col": 6,
-      "expected": "10對×10seed"
+      "expected": 0.0,
+      "formula": "=(100/100-B11)*100"
     },
     {
       "sheet": "結果比較",
       "row": 10,
       "col": 7,
-      "expected": "seed31–40"
+      "expected": "10對×10seed；31–40"
     },
     {
       "sheet": "結果比較",
@@ -4000,13 +4004,14 @@
       "sheet": "結果比較",
       "row": 11,
       "col": 6,
-      "expected": "15對×10seed"
+      "expected": 0.0,
+      "formula": "=(150/150-B12)*100"
     },
     {
       "sheet": "結果比較",
       "row": 11,
       "col": 7,
-      "expected": "seed31–40"
+      "expected": "15對×10seed；31–40"
     },
     {
       "sheet": "結果比較",
@@ -5642,6 +5647,152 @@
       "row": 28,
       "col": 7,
       "expected": "不把全部增益歸給multistart"
+    },
+    {
+      "sheet": "必要對照",
+      "row": 34,
+      "col": 0,
+      "expected": "場景／配對"
+    },
+    {
+      "sheet": "必要對照",
+      "row": 34,
+      "col": 1,
+      "expected": "5cm參考＋v3 秒"
+    },
+    {
+      "sheet": "必要對照",
+      "row": 34,
+      "col": 2,
+      "expected": "完整multi_v3 秒"
+    },
+    {
+      "sheet": "必要對照",
+      "row": 34,
+      "col": 3,
+      "expected": "時間下降率"
+    },
+    {
+      "sheet": "必要對照",
+      "row": 34,
+      "col": 4,
+      "expected": "參考child RSS MiB"
+    },
+    {
+      "sheet": "必要對照",
+      "row": 34,
+      "col": 5,
+      "expected": "本次child RSS MiB"
+    },
+    {
+      "sheet": "必要對照",
+      "row": 34,
+      "col": 6,
+      "expected": "每法N"
+    },
+    {
+      "sheet": "必要對照",
+      "row": 34,
+      "col": 7,
+      "expected": "限制"
+    },
+    {
+      "sheet": "必要對照",
+      "row": 35,
+      "col": 0,
+      "expected": "ETH-tree s1-s2"
+    },
+    {
+      "sheet": "必要對照",
+      "row": 35,
+      "col": 1,
+      "expected": 344.30971392599895
+    },
+    {
+      "sheet": "必要對照",
+      "row": 35,
+      "col": 2,
+      "expected": 369.0621386269995
+    },
+    {
+      "sheet": "必要對照",
+      "row": 35,
+      "col": 3,
+      "expected": -0.07188999816113378,
+      "formula": "=IF(AND(ISNUMBER(B36),ISNUMBER(C36),B36<>0),(B36-C36)/B36,\"待補\")"
+    },
+    {
+      "sheet": "必要對照",
+      "row": 35,
+      "col": 4,
+      "expected": 1422.484375
+    },
+    {
+      "sheet": "必要對照",
+      "row": 35,
+      "col": 5,
+      "expected": 1422.359375
+    },
+    {
+      "sheet": "必要對照",
+      "row": 35,
+      "col": 6,
+      "expected": 1
+    },
+    {
+      "sheet": "必要對照",
+      "row": 35,
+      "col": 7,
+      "expected": "固定seed31單次；只作當次觀測"
+    },
+    {
+      "sheet": "必要對照",
+      "row": 36,
+      "col": 0,
+      "expected": "Tongji／Plot1 S2-S1"
+    },
+    {
+      "sheet": "必要對照",
+      "row": 36,
+      "col": 1,
+      "expected": 703.8726905160001
+    },
+    {
+      "sheet": "必要對照",
+      "row": 36,
+      "col": 2,
+      "expected": 651.7896377920006
+    },
+    {
+      "sheet": "必要對照",
+      "row": 36,
+      "col": 3,
+      "expected": 0.07399499003977288,
+      "formula": "=IF(AND(ISNUMBER(B37),ISNUMBER(C37),B37<>0),(B37-C37)/B37,\"待補\")"
+    },
+    {
+      "sheet": "必要對照",
+      "row": 36,
+      "col": 4,
+      "expected": 2008.78125
+    },
+    {
+      "sheet": "必要對照",
+      "row": 36,
+      "col": 5,
+      "expected": 2009.05859375
+    },
+    {
+      "sheet": "必要對照",
+      "row": 36,
+      "col": 6,
+      "expected": 1
+    },
+    {
+      "sheet": "必要對照",
+      "row": 36,
+      "col": 7,
+      "expected": "固定seed31單次；只作當次觀測"
     }
   ],
   "tables": {
@@ -5729,6 +5880,13 @@
       "header": 23,
       "start": 24,
       "end": 28,
+      "columns": 8
+    },
+    "cold": {
+      "sheet": "必要對照",
+      "header": 34,
+      "start": 35,
+      "end": 36,
       "columns": 8
     }
   },

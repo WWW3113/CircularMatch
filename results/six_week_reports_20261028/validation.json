@@ -1,0 +1,79 @@
+{
+  "validated_at": "2026-10-28T10:43:32.236691+08:00",
+  "reports": [
+    {
+      "report": 1,
+      "xlsx": "report_01_CN距離容差與Solver.xlsx",
+      "txt": "report_01_CN距離容差與Solver.txt",
+      "xlsx_sha256": "232664b4cdfd35efb4e8b082f87505529932d2826f214ef91dc8b1dc6987f9c5",
+      "txt_sha256": "80bc5956f4f6349a8b66de70c7c3e5785d53ff74576f2fa90f3a558299bc5eb9",
+      "checks": 867,
+      "formulas": 128,
+      "charts": 2,
+      "spoken_cjk": 2187
+    },
+    {
+      "report": 2,
+      "xlsx": "report_02_弱配對補救.xlsx",
+      "txt": "report_02_弱配對補救.txt",
+      "xlsx_sha256": "d38a14ce9b4fdd585d09de3ea3fb5f14dd90943e41ca1e6b0f6783918e7e5c11",
+      "txt_sha256": "bb41088a68fde391884e36ef75774cca19ca10ce35529e07dfa842ac6eeed511",
+      "checks": 266,
+      "formulas": 22,
+      "charts": 2,
+      "spoken_cjk": 1911
+    },
+    {
+      "report": 3,
+      "xlsx": "report_03_DTM平滑與樹位高度.xlsx",
+      "txt": "report_03_DTM平滑與樹位高度.txt",
+      "xlsx_sha256": "c04e1b54486d108ad3ddfbd106771ac412a77deb2d859067e9a78147c6bbb419",
+      "txt_sha256": "4319ab358aefba25e8f6446a924a691cf1b6b388d7e32ba3d708cfae84f7cb79",
+      "checks": 376,
+      "formulas": 23,
+      "charts": 2,
+      "spoken_cjk": 1934
+    },
+    {
+      "report": 4,
+      "xlsx": "report_04_加入幾何微調.xlsx",
+      "txt": "report_04_加入幾何微調.txt",
+      "xlsx_sha256": "63b8335f19cc45a5f9917fd4cfadb2b8181b20f58b0cef25d5a73330702abde7",
+      "txt_sha256": "b350778a2e96ac75fec279e8204edde70bcd5f9851d1a303edb7171132a3f6bf",
+      "checks": 430,
+      "formulas": 28,
+      "charts": 2,
+      "spoken_cjk": 2041
+    },
+    {
+      "report": 5,
+      "xlsx": "report_05_擴大候選搜尋的退步.xlsx",
+      "txt": "report_05_擴大候選搜尋的退步.txt",
+      "xlsx_sha256": "a53a107c428c64b81393e6c437f0e81396814d02a2408a1e72495265177122e8",
+      "txt_sha256": "afafe39588624e972a6317136833c4a9cea9a8aa6a8d3e86d256dc3188da734a",
+      "checks": 343,
+      "formulas": 24,
+      "charts": 2,
+      "spoken_cjk": 1817
+    },
+    {
+      "report": 6,
+      "xlsx": "report_06_結構驗證與最終比較.xlsx",
+      "txt": "report_06_結構驗證與最終比較.txt",
+      "xlsx_sha256": "ecbd29343b61f2c5763112f62f09a7e948c02f188c5eeddb376772574927fc4b",
+      "txt_sha256": "a28b79077bc53fba1806b5d64841386dd2182254f0eff6d5cf91c87a18cea89b",
+      "checks": 342,
+      "formulas": 27,
+      "charts": 2,
+      "spoken_cjk": 1801
+    }
+  ],
+  "distributed_files": 13,
+  "zip_sha256": "318e68cfe35271265521a99b8e2ebf3f6d1fec4dfd898c929d135b4a23847d45",
+  "zip_bytes": 144147,
+  "independent_groups_reaggregated": 125,
+  "cell_checks": 2624,
+  "libreoffice_independent_recalculation_passed": true,
+  "no_excel_error_cells": true,
+  "no_raw_private_clouds_in_bundle": true
+}

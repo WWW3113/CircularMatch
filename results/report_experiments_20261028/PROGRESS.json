@@ -1,7 +1,10 @@
 {
+  "status": "complete_and_validated",
   "full_smooth_rows": 1100,
   "eth_coarse_rows": 600,
   "eth_position_rows": 300,
-  "smooth_refinement_scored_trials": 110,
-  "next": "Wait session6945, then rerun finalizer fresh to use latest templates; no native reruns because per-pair outputs are reused; inspect/report/publish."
+  "smooth_refinement_scored_trials": 550,
+  "feature_count_rows": 260,
+  "active_native_experiments": false,
+  "next": "Publish verified artifact revision; see six_week_reports_20261028/DELIVERY.json after upload."
 }

@@ -1,11 +1,11 @@
 {
   "report": 2,
   "title": "弱配對補救",
-  "generated_at": "2026-10-28T04:33:40.477799+08:00",
+  "generated_at": "2026-10-28T10:41:03.862271+08:00",
   "xlsx": "report_02_弱配對補救.xlsx",
   "txt": "report_02_弱配對補救.txt",
-  "xlsx_sha256": "6a92b7ed8d718db72b56de1a5124a58cbdd29f1169ab4a23ff39a0263c0d0155",
-  "txt_sha256": "394288223bc2d17f91c90cfc1455f479bc4913b94029ea733a75bab611fe4e91",
+  "xlsx_sha256": "d38a14ce9b4fdd585d09de3ea3fb5f14dd90943e41ca1e6b0f6783918e7e5c11",
+  "txt_sha256": "bb41088a68fde391884e36ef75774cca19ca10ce35529e07dfa842ac6eeed511",
   "sources": {
     "U": {
       "path": "results/professor_reports_20261026/evidence/U_registration_rows.csv",
@@ -2293,19 +2293,19 @@
       "sheet": "結果比較",
       "row": 6,
       "col": 5,
-      "expected": "差：後−前 pp"
+      "expected": "vs前一次 pp"
     },
     {
       "sheet": "結果比較",
       "row": 6,
       "col": 6,
-      "expected": "案例組成"
+      "expected": "vs論文 pp"
     },
     {
       "sheet": "結果比較",
       "row": 6,
       "col": 7,
-      "expected": "批次"
+      "expected": "案例組成"
     },
     {
       "sheet": "結果比較",
@@ -2348,13 +2348,14 @@
       "sheet": "結果比較",
       "row": 7,
       "col": 6,
-      "expected": "10對×10seed"
+      "expected": 0.0,
+      "formula": "=(100/100-B8)*100"
     },
     {
       "sheet": "結果比較",
       "row": 7,
       "col": 7,
-      "expected": "seed31–40"
+      "expected": "10對×10seed；31–40"
     },
     {
       "sheet": "結果比較",
@@ -2397,13 +2398,14 @@
       "sheet": "結果比較",
       "row": 8,
       "col": 6,
-      "expected": "10對×10seed"
+      "expected": -65.99999999999999,
+      "formula": "=(34/100-B9)*100"
     },
     {
       "sheet": "結果比較",
       "row": 8,
       "col": 7,
-      "expected": "seed31–40"
+      "expected": "10對×10seed；31–40"
     },
     {
       "sheet": "結果比較",
@@ -2446,13 +2448,14 @@
       "sheet": "結果比較",
       "row": 9,
       "col": 6,
-      "expected": "10對×10seed"
+      "expected": 0.0,
+      "formula": "=(100/100-B10)*100"
     },
     {
       "sheet": "結果比較",
       "row": 9,
       "col": 7,
-      "expected": "seed31–40"
+      "expected": "10對×10seed；31–40"
     },
     {
       "sheet": "結果比較",
@@ -2495,13 +2498,14 @@
       "sheet": "結果比較",
       "row": 10,
       "col": 6,
-      "expected": "10對×10seed"
+      "expected": -5.000000000000004,
+      "formula": "=(95/100-B11)*100"
     },
     {
       "sheet": "結果比較",
       "row": 10,
       "col": 7,
-      "expected": "seed31–40"
+      "expected": "10對×10seed；31–40"
     },
     {
       "sheet": "結果比較",
@@ -2544,13 +2548,14 @@
       "sheet": "結果比較",
       "row": 11,
       "col": 6,
-      "expected": "15對×10seed"
+      "expected": 0.0,
+      "formula": "=(150/150-B12)*100"
     },
     {
       "sheet": "結果比較",
       "row": 11,
       "col": 7,
-      "expected": "seed31–40"
+      "expected": "15對×10seed；31–40"
     },
     {
       "sheet": "結果比較",

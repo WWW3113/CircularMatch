@@ -56,7 +56,9 @@ v3的raw overlap與v2點集合和gate不同，不可直接比誰數字大。共�
 公平控制讓5cm參考與固定10cm方法也加同一v3 backend。全體成功數依序507、546與550；完整候選相對同backend固定10cm只多救4次，全部Plot4。不能把從最早423到550的所有增益都叫作multistart的功勞。'''}[i]
  more=results(extra) if extra else ''
  if i==3:more+='\n完整smooth新退步的ETH例子是s1-s6、seed37：8對matching全部通過GT-XY檢查、RANSAC也有8個3D模型內點，但GT旋轉誤差為2.289°、平移約22.772cm、e_p約25.903cm，因此仍未通過rotation<2°。這直接顯示XY正確與模型共識不保證GT姿態正確；不能僅據此說高度是唯一成因。'
- if i==4:more+='\n本次新增同smooth控制（前次完整smooth、只加refinement）：\n'+results([(s,a,e.group('SREF:'+s,'SREF',scene=s)) for s,a,z in entries])
+ if i==4:
+  more+='\n本次新增同smooth控制（前次完整smooth、只加refinement）：\n'+results([(s,a,e.group('SREF:'+s,'SREF',scene=s)) for s,a,z in entries])
+  more+='\n本次補跑的smooth加精化合計547/550，比原DTM加精化546/550多1次，差異在Plot4，其餘場景精度幾乎相同。因此不能說原DTM較好；完整四組全部保留。後續候選研究沿用原DTM共同基準，是為保持原有v1/v2/v3比較條件，不代表已驗證所有DTM與候選組合，也不宣稱每週都在挑各場景最佳輸出。'
  gain=[name(s) for s,a,z in entries if z['ok']>a['ok']];loss=[name(s) for s,a,z in entries if z['ok']<a['ok']];same=[name(s) for s,a,z in entries if z['ok']==a['ok']]
  tongji=[x for x in entries if x[0]!='ETH'];eth=next(x for x in entries if x[0]=='ETH')
  pattern='成功數增加的場景：'+('、'.join(gain) or '沒有')+'；減少的場景：'+('、'.join(loss) or '沒有')+'；持平：'+('、'.join(same) or '沒有')+'。'

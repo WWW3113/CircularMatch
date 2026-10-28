@@ -1,0 +1,29 @@
+{
+  "status": "experiments_complete",
+  "checked_at": "2026-10-28T10:36:53.934618+08:00",
+  "files": {
+    "eth_coarse_rows.csv": {
+      "rows": 600,
+      "sha256": "7d650dccaae06db5a5425d39e9b7844210caaca64422f3b7240e5adb18e8a876"
+    },
+    "eth_dtm_position_rows.csv": {
+      "rows": 300,
+      "sha256": "4c3cd9096b1883087d13b89dd2813293dc0dc7c2da6f7adb77980e9410f547b8"
+    },
+    "full_dtm_smooth_rows.csv": {
+      "rows": 1100,
+      "sha256": "450b6fbc7152d3a574369716d0df5e5a7179718a3d48a850c46c36a2dc9beb78"
+    },
+    "smooth_refined_rows.csv": {
+      "rows": 550,
+      "sha256": "a050bca00e75951071c317632cbea43394636e24670f7a71e656a773ec0c2122"
+    },
+    "feature_count_rows.csv": {
+      "rows": 260,
+      "sha256": "ea8421eed369eb2d11c0e0d9f8b2b8c2b8f4b2b480285e82ac09ed2cfb9e19fd"
+    }
+  },
+  "new_registration_trials": 2550,
+  "active_native_experiments": false,
+  "note": "Feature rows are count/hash audit only, not additional registration trials. Interrupted resource costs are unknown, never zero."
+}

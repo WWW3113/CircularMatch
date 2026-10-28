@@ -16,6 +16,7 @@ OUT=ROOT/'results/six_week_reports_20261028'
 TITLES={1:'CN距離容差與Solver',2:'弱配對補救',3:'DTM平滑與樹位高度',4:'加入幾何微調',5:'擴大候選搜尋的退步',6:'結構驗證與最終比較'}
 SCENES=['Plot1','Plot2','Plot3','Plot4','ETH']
 PAPER=dict(zip(SCENES,[.052558,.114808,.048756,.04356,.153427]))
+PAPER_TIMES=dict(zip(SCENES,[(20.718,11.657),(30.699,16.712),(4.5596,8.3584),(19.522,9.4516),(3.0405,8.6992)]))
 NA='待補'
 COMMON='成功門檻：e_R<2°且e_t<0.5m。e_p為Eq8全來源點變換誤差；finite mean包含可計算失敗，無變換仍算失敗、誤差不填0。'
 HISTORY='GT不參與當次配準輸出選擇；開發期間曾以GT評分選設定。相同掃描站換seed只測隨機敏感度，不是未見森林。'
@@ -57,13 +58,14 @@ class Book:
  def __init__(self,i,e,sheets):
   self.i=i;self.e=e;self.path=OUT/f'report_{i:02d}_{TITLES[i]}.xlsx';self.wb=xlsxwriter.Workbook(self.path);self.checks=[];self.ranges={};self.chart_count=0
   self.formats={}
-  for name,extra in {'title':{'bold':True,'font_size':18,'font_color':'243E52'},'head':{'bold':True,'bg_color':'E8EDF1'},'text':{},'num':{'num_format':'0.000'},'int':{'num_format':'0'},'pct':{'num_format':'0.0%'},'pp':{'num_format':'0.0" pp"'},'note':{'font_size':10,'font_color':'444444'}}.items():
+  for name,extra in {'title':{'bold':True,'font_size':18,'font_color':'243E52'},'head':{'bold':True,'bg_color':'E8EDF1'},'text':{},'count':{'align':'center'},'num':{'num_format':'0.000'},'int':{'num_format':'0'},'pct':{'num_format':'0.0%'},'pp':{'num_format':'0.0" pp"'},'note':{'font_size':10,'font_color':'444444'}}.items():
    if name in ['num','int','pct','pp']:extra['align']='center'
    self.formats[name]=self.wb.add_format(dict(font_name='Microsoft JhengHei',font_size=13,text_wrap=True,valign='vcenter')|extra)
   self.sheets={};self.ends={}
   for title in sheets:
    ws=self.wb.add_worksheet(title);self.sheets[title]=ws;ws.hide_gridlines(2);ws.set_zoom(95);ws.freeze_panes(5,1)
    widths=[26,28,35,72,5,5,5,5] if i>1 and title=='設定與說明' else [27,21,20,20,18,20,20,30]
+   if i==1 and title=='四組結果比較':widths=[27,22,24,24,24,24,24,24]
    for c,w in enumerate(widths):ws.set_column(c,c,w)
    self.ranges['_widths_'+title]=widths
    ws.set_landscape();ws.set_paper(8);ws.fit_to_pages(1,0);ws.set_margins(.25,.25,.4,.4);ws.repeat_rows(0,2)
@@ -81,7 +83,7 @@ class Book:
   for c,h in enumerate(headers):self.write(s,row,c,h,'head')
   self.sheets[s].set_row(row,40);start=row+1
   for r,record in enumerate(data,start):
-   for c,v in enumerate(record):self.write(s,r,c,v,(types or {}).get(c,'num' if isinstance(v,float) else 'text'))
+   for c,v in enumerate(record):self.write(s,r,c,v,(types or {}).get(c,'num' if isinstance(v,float) else 'count' if isinstance(v,str) and re.fullmatch(r'\d+/\d+',v) else 'text'))
    widths=self.ranges['_widths_'+s];lines=1
    for col,v in enumerate(record):
     if isinstance(v,str):lines=max(lines,sum(max(1,math.ceil(sum(2 if unicodedata.east_asian_width(ch) in 'WF' else 1 for ch in segment)/max(5,widths[col]-2)*13/11)) for segment in v.split('\n')))
@@ -137,13 +139,14 @@ def report1():
  data=[[label(ss),'10配對×10seed' if ss!='ETH' else '15配對×10seed',*[x['rate'] for x in by_scene[ss]],1,PAPER[ss]*100] for ss in SCENES]
  row=b.table(s,4,'兩組dataset；每個場景都比較相同四組，補救全部關閉',['dataset／場景','案例組成',*names,'論文成功率\n分母待補','論文e_p cm'],data,'main',{2:'pct',3:'pct',4:'pct',5:'pct',6:'pct'})
  for r,ss in enumerate(SCENES,b.ranges['main']['start']):
-  for col,x in enumerate(by_scene[ss],2):b.formula(s,r,col,f"={x['ok']}/{x['n']}",x['rate'],'pct');b.sheets[s].write_formula(r,col,f"={x['ok']}/{x['n']}",b.wb.add_format({'font_name':'Microsoft JhengHei','font_size':13,'num_format':f'"{x["ok"]}/{x["n"]} ("0.0%")"','valign':'vcenter'}),x['rate'])
+  for col,x in enumerate(by_scene[ss],2):b.formula(s,r,col,f"={x['ok']}/{x['n']}",x['rate'],'pct');b.sheets[s].write_formula(r,col,f"={x['ok']}/{x['n']}",b.wb.add_format({'font_name':'Microsoft JhengHei','font_size':13,'num_format':f'"{x["ok"]}/{x["n"]} ("0.0%")"','align':'center','shrink':True,'valign':'vcenter'}),x['rate'])
  b.note(s,row,'統一seed31–40：Tongji每Plot五站、10對×10seed；ETH六站、15對×10seed。ETH四組為本次補跑，先前118/123/135/142屬seed11–20，保留為歷史資料。Tongji四Plot是同一dataset。',height=48);row+=2
  data=[[label(ss),*[cm(x['ep']) for x in by_scene[ss]],PAPER[ss]*100] for ss in SCENES]
  row=b.table(s,row,'有限mean e_p（cm），包含可計算失敗；樣本數另列',['dataset／場景',*names,'論文e_p cm'],data,'errors')
  row=b.table(s,row,'有限誤差樣本數：缺變換是失敗，e_p不填0',['dataset／場景',*names],[[label(ss),*[x['finite'] for x in by_scene[ss]]] for ss in SCENES],'finite')
  b.note(s,row,'ETH改善不能直接外推Tongji。Plot2部分改善、Plot4退步；有限案例集合不同時不直接算誤差下降率。完整e_R/e_t、時間及共同成功見第三頁。',height=42)
- b.chart(s,'main',[2,3,4,5],'四組成功率：各場景分開','成功率','A34',True);b.chart(s,'errors',[1,2,3,4],'四組有限mean e_p','cm','A53');b.ends[s]=72
+ first_chart=row+2
+ b.chart(s,'main',[2,3,4,5],'四組成功率：各場景分開','成功率','A'+str(first_chart+1),True);b.chart(s,'errors',[1,2,3,4],'四組有限mean e_p','cm','A'+str(first_chart+20));b.ends[s]=first_chart+40
  comparisons=[('SVD固定','5→10cm',g[0],g[2]),('RANSAC固定','5→10cm',g[1],g[3]),('5cm固定','SVD→RANSAC',g[0],g[1]),('10cm固定','SVD→RANSAC',g[2],g[3])]
  s='設定與說明'
  data=[['CN距離容差','0.05m','0.10m','允許descriptor距離差更大；也可能增加錯配'],['Solver','Kabsch／SVD','Kabsch＋RANSAC','先尋找3D一致群，再估剛體變換'],['弱配對補救','關閉','關閉','第一週固定，不介紹或歸因此模組'],['提取與descriptor','同一批樹位','同前','step、分群0.20m、verticality>0.9；N183/w10/Thscore40固定']]
@@ -158,13 +161,40 @@ def report1():
  b.note(s,row,'RANSAC固定設定為最多1000次抽樣嘗試、3D inlier<0.30m、seed1；它們是solver定義，這週沒有各常數消融。GT正確matching欄只檢查XY<0.30m，因此XY正確也可能存在z不一致。',height=46);row+=2
  b.note(s,row,'時間為descriptor＋matching＋solver，不含樹位提取、原始點雲讀取及GT誤差評估。舊批次OpenMP4，CPU型號與並行干擾未完整控制，只作本批描述性代價；不能與論文matching／total時間直接算速度提升。',height=46);row+=2
  b.note(s,row,'論文TableI的ETH e_p=15.3427cm，Tongji Plot1～4=5.2558/11.4808/4.8756/4.3560cm，各報100%；分母與成功門檻待補。四組本地控制實驗不是作者程式重跑；目前結果不支持「這兩項改動在所有場景都改善」。',height=46);row+=2
+ row=b.table(s,row,'原論文與本地四組：只列本週重要設定',['項目','原論文','本地修改前','本地修改後','比較限制'],[
+  ['CN距離容差','0.05m','0.05m','0.10m','不是成功門檻或voxel尺寸'],
+  ['剛體Solver','Euclidean transform；細節未交代','Kabsch／SVD','Kabsch＋RANSAC','論文未說明，不把SVD稱作作者原始實作'],
+  ['新增弱配對補救','未描述本地evidence recovery','關閉','關閉','論文本身的triangle fallback仍在；與新增補救不同'],
+  ['N／w／Thscore','183／10／40','183／10／40','183／10／40','三項固定；沒有新增第三個實驗變數']
+ ],'paper_settings')
+ row=b.table(s,row,'論文時間與缺值原因：只作報告值參考',['場景','論文matching ms','論文total s','論文e_R／e_t','論文成功分母／門檻','時間可比性'],[
+  [label(ss),*PAPER_TIMES[ss],'未單獨報告；Table I用e_p','待補：本文未明確交代','i7-9700F 3GHz；實際threads未交代；本地計時範圍不同，不算加速比'] for ss in SCENES
+ ],'paper_time')
  b.sources(s,row)
  s='精度時間與成對比較';data=[]
  for ss in SCENES:
   for name,x in zip(names,by_scene[ss]):data.append([label(ss),name,cm(x['ep']),x['finite'],x['rot'],cm(x['trans']),x['time'],f"{x['ok']}/{x['n']}"])
  row=b.table(s,4,'四組×五場景：精度與時間，未混算兩來源平均',['場景','組合','finite mean e_p cm','有限N','mean e_R °','mean e_t cm','平均time_ms','成功／總數'],data,'detail')
  b.note(s,row,'e_R/e_t亦平均可計算值、包含有限失敗。time_ms只含descriptor＋matching＋solver；不同來源批次不作跨dataset速度排名。沒有變換的案例仍算成功率失敗。',height=42);row+=2
- format_pair_table(b,e,s,row,[(label(ss)+'；'+fixed+'；'+change,a,z) for ss,fixed,change,a,z in all_comparisons])
+ row=format_pair_table(b,e,s,row,[(label(ss)+'；'+fixed+'；'+change,a,z) for ss,fixed,change,a,z in all_comparisons])
+ data=[]
+ for ss in SCENES:
+  for name,x in zip(names,by_scene[ss]):data.append([label(ss),name,cm(PAPER[ss]),cm(x['ep']),None,None,None,None])
+ row=b.table(s,row,'四組直接對照論文與修改前5cm/SVD；誤差下降率正值為降低、負值為變大',['場景','組合','論文e_p cm','本地e_p cm','vs論文誤差下降率','vs修改前誤差下降率','vs論文成功率 pp','vs修改前成功率 pp'],data,'direct_differences')
+ r=b.ranges['direct_differences']['start']
+ for ss in SCENES:
+  base=by_scene[ss][0]
+  for x in by_scene[ss]:
+   rr=r+1
+   if x['finite']==x['n']:
+    b.formula(s,r,4,f'=IF(AND(ISNUMBER(C{rr}),ISNUMBER(D{rr}),C{rr}<>0),(C{rr}-D{rr})/C{rr},"不可比")',(PAPER[ss]-x['ep'])/PAPER[ss],'pct')
+   else:b.write(s,r,4,'不可比：本地缺變換；有限N見前表')
+   if e.pair(base,x)['same_finite']:
+    b.formula(s,r,5,f'=IF(AND(ISNUMBER(D{rr}),{base["ep"]*100}<>0),({base["ep"]*100}-D{rr})/{base["ep"]*100},"不可比")',(base['ep']-x['ep'])/base['ep'],'pct')
+   else:b.write(s,r,5,'不可比：前後有限案例集合不同')
+   b.formula(s,r,6,f'=({x["ok"]}/{x["n"]}-1)*100',(x['rate']-1)*100,'pp')
+   b.formula(s,r,7,f'=({x["ok"]}/{x["n"]}-{base["ok"]}/{base["n"]})*100',pp(base,x),'pp');r+=1
+ b.note(s,row,'vs論文是報告值的算術差異，並非同門檻／同配對的公平重跑。論文e_R/e_t未單獨報告、成功分母與門檻待補；不能由e_p推算。缺變換不是漏做實驗，也不能填0；前後有限集合不同請看共同成功對照。時間範圍不同不列下降率。',height=66)
  talk=talk1(g,e,comparisons,by_scene)
  return b.save(talk)
 
@@ -206,10 +236,12 @@ Plot1與Plot3四組都100%，成功率沒有再提升，但誤差仍需分開看
 若只對Tongji四Plot累計成功數，四組是309/400、304/400、306/400、304/400。這只是同dataset試驗數相加，不是把四Plot誤當四dataset；我們沒有將它再與ETH混成一個不明權重的平均。5cm/SVD到10cm/RANSAC在Tongji是309到304，並未改善。主表完整列出這些退步，沒有為各Plot挑不同最佳參數。
 
 【8:00～10:00｜精度與時間怎麼解讀】
-第一頁同時保留e_p、旋轉和平移誤差。e_p是把全部來源點分別用估計變換與GT變換搬動後，比較兩個位置的距離，再取平均；不是兩片點雲的最近鄰fitness。
+第一頁保留e_p，第三頁列旋轉和平移誤差。e_p是把全部來源點分別用估計變換與GT變換搬動後，比較兩個位置的距離，再取平均；不是兩片點雲的最近鄰fitness。
 有限mean包含有輸出的失敗，不會只留下成功案例。但5cm兩組只有{g[0]['finite']}個finite誤差，10cm兩組有{g[2]['finite']}個，所以不同容差的平均值還受輸出案例集合改變影響。圖可以呈現這些平均值，但我不把它們直接算成同一批案例的精度下降率。缺的輸出仍是成功率的失敗，誤差不填0。
 若要回答原本就能成功的案例是否更準，第三頁的共同成功平均比較有幫助；它仍有存活者偏差，因此不能取代全體成功率。這兩個統計回答的問題不同。Tongji也須按各組有限N檢查，不能只挑成功案例的平均值聲稱全體改善。
 時間方面，ETH四組大約是{'、'.join(fmt(x['time']) for x in g)}ms。新增計算有代價，不能只報成功率。這些是descriptor、matching與Solver的內部時間，不包含提取或GT評分；本次ETH補跑採兩worker、每程序OMP4，共享CPU quota4。Tongji時間來自舊批次，不做跨批次速度排名，也不宣稱與論文公平速度排名。
+第二頁補列論文各場景的matching與total時間，兩種單位及範圍分開。第三頁另列四組相對論文與本地修改前5cm/SVD的差異；成功率用百分點，誤差下降率用(基準−本地)/基準。論文100%與本地的差只是報告值比較，因為論文的成功門檻與分母沒有交代清楚，不能稱為同條件超越。ETH的10cm/RANSAC為96%，相對論文是−4pp；Tongji Plot2為34%，相對論文是−66pp，Plot4為70%，是−30pp，退步也照列。Plot1與Plot3成功率同為100%，仍需另看誤差，不能只看成功率宣稱精度相同。
+誤差欄寫「不可比」時有明確理由：ETH與Plot4部分組合沒有輸出完整變換，finite樣本不齊；前後不同集合就不算整體誤差下降率，仍提供有限平均與共同成功控制。論文沒有單獨報告e_R/e_t，不用e_p反推。這些是資訊或統計界線，不是漏跑四組實驗。
 
 【10:00～11:30｜本次結論與下一個問題】
 本次已支持的結論是：相同ETH樹位與配對下，10cm比5cm有較多成功，RANSAC比直接SVD也有較多成功；但Tongji的控制結果證明效果不一致，Plot4放寬容差退步、Plot2換Solver也有退步。這不只是一句抽象的「不能外推」，而是已有另一來源的反例。現有材料不足以把Tongji所有退步指定為同一個高度或錯配原因，後續需分別診斷。
@@ -231,6 +263,8 @@ ETH本地較好的這組是{g[3]['ok']}/150，仍有{150-g[3]['ok']}次失敗；
 答：不代表；要看有限N、配對差異及共同成功。沒有變換不能以零誤差填入。
 問：是否完全不用GT？
 答：推論不靠GT選輸出，但離線開發用GT評分比較過設定，不能說完全無真值選參或盲測。
+問：表中的待補或不可比，是不是還沒做實驗？
+答：本週五場景乘四種組合共20組都已完成。成功率分母含失敗，誤差缺變換不填0。論文成功門檻、分母與Solver細節仍待補；作者公開repo只有README，不能自行補出作者原始執行結果。時間範圍不同，故不算跨論文加速比。
 
 【資料追溯】
 F：{e.sources['F']['path']}
@@ -292,7 +326,11 @@ def later(i):
  b.note(s,row,'下降率=(基準−本次)/基準。有限案例集合不同不算vs前下降率；本次仍缺變換不算完整vs論文下降率。這是不可比的統計，不能靠補跑把缺輸出填0；共同成功另列。',height=44);row+=2
  # Clean chart sources: rates and finite means, all populated on every scene.
  row=b.table(s,row,'圖表使用相同場景的前後值',['場景','前成功率','後成功率','前finite mean cm','後finite mean cm'],[[label(ss),a['rate'],z['rate'],cm(a['ep']),cm(z['ep'])] for ss,a,z in entries],'plot',{1:'pct',2:'pct'})
- b.chart(s,'plot',[1,2],'成功率：前一次與本次','成功率','A35',True);b.chart(s,'plot',[3,4],'有限mean e_p：含有限失敗','cm','A54');b.ends[s]=73
+ first_chart=row+1
+ if i==4:
+  smooth_ok=sum(e.group('SREF:'+ss,'SREF',scene=ss)['ok'] for ss,a,z in entries);original_ok=sum(z['ok'] for ss,a,z in entries)
+  b.note(s,row,f'補跑的同smooth精化控制為{smooth_ok}/550；原DTM精化為{original_ok}/550。兩條完整列出，不能稱原DTM較好；本主表沿用後續候選研究的原DTM共同基準。四組完整對照與同smooth成對比較見第三頁。',height=52);first_chart=row+3
+ b.chart(s,'plot',[1,2],'成功率：前一次與本次','成功率','A'+str(first_chart+1),True);b.chart(s,'plot',[3,4],'有限mean e_p：含有限失敗','cm','A'+str(first_chart+20));b.ends[s]=first_chart+40
  s='設定與說明';row=b.table(s,4,'當週重要變數與組合，不列全部內部常數',['項目','前一次／修改前','本次／修改後','作用與歸因限制'],settings,'settings')
  b.note(s,row,'主表比較的是上一週方法與本次方法。第3週分開列定位與完整重提取；第4週明列回復DTM＋加refinement兩項變更，另有相同DTM的精化控制；第5週另保留v1→v2負面結果。',height=46);row+=2
  times=dict(zip(SCENES,[(20.718,11.657),(30.699,16.712),(4.5596,8.3584),(19.522,9.4516),(3.0405,8.6992)]))
@@ -325,7 +363,10 @@ def later(i):
    refined=e.group('SREF:'+ss,'SREF',scene=ss);original=e.u(ss,'eth10_raw');old_refined=e.u(ss,'eth10_refined')
    data.append([label(ss),f"{original['ok']}/{original['n']}",f"{old_refined['ok']}/{old_refined['n']}",f"{a['ok']}/{a['n']}",f"{refined['ok']}/{refined['n']}",cm(a['ep']),cm(refined['ep']),'smooth前後只新增同一精化backend'])
   row=b.table(s,row,'補齊DTM×refinement四組；另直接控制前一週smooth',['場景','原DTM raw','原DTM refined','smooth raw','smooth refined','smooth前e_p cm','smooth後e_p cm','限制'],data,'dtm_refine_grid')
-  format_pair_table(b,e,s,row,[(label(ss)+'；smooth raw→refined',a,e.group('SREF:'+ss,'SREF',scene=ss)) for ss,a,z in entries],keyname='smooth_pair')
+  row=format_pair_table(b,e,s,row,[(label(ss)+'；smooth raw→refined',a,e.group('SREF:'+ss,'SREF',scene=ss)) for ss,a,z in entries],keyname='smooth_pair')
+  old_eth=next(a for ss,a,z in entries if ss=='ETH');new_eth=e.group('SREF:ETH','SREF',scene='ETH');target=('ETH','s1-s6',37)
+  a=next(r for r in old_eth['rows'] if key(r)==target);z=next(r for r in new_eth['rows'] if key(r)==target)
+  b.table(s,row,'承接第3週的同一ETH退步案例：固定smooth，只加入後端',['配對／seed','前成功?','後成功?','前e_R °','後e_R °','前e_p cm','後e_p cm','解讀'],[['s1-s6 seed37',int(a['success']),int(z['success']),float(a['rot_err_deg']),float(z['rot_err_deg']),100*float(a['e_p_m']),100*float(z['e_p_m']),'同輸入組合控制；不外推每例都改善']],'same_case')
  if i==6:
   row=b.table(s,row,'公平控制：三者使用同一v3 backend',['場景','5cm/SVD＋v3','10cm/recovery＋v3','完整multi_v3','5cm e_p cm','10cm e_p cm','multi e_p cm','限制'],[[label(ss),*[f"{e.u(ss,m)['ok']}/{e.u(ss,m)['n']}" for m in ['reference5_refined_v3','eth10_refined_v3','multi_v3_refined']],*[cm(e.u(ss,m)['ep']) for m in ['reference5_refined_v3','eth10_refined_v3','multi_v3_refined']],'不把全部增益歸給multistart'] for ss in SCENES],'fair')
   b.note(s,row,'全體成功數507/550、546/550、550/550，只累計成功數、不混算兩來源誤差。完整候選相對同backend的10cm方法額外救4次，均Plot4。Plot3較v2誤差增加約0.127mm；Plot4共同成功78例增加約0.733mm。',height=48);row+=2

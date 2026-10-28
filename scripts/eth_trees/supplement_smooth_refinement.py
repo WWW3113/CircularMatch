@@ -18,16 +18,17 @@ def main():
    base=ROOT/'results/tongji_trees/dtm_height_20261025/runs/full_extraction/Plot2' if scene=='Plot2' else RUNS/'full_extraction'/scene
    infer=dest/(name+'.poses.csv');batch=dest/(name+'.jobs.txt')
    if not valid(infer,10):
-    prior={}
-    if infer.exists():
-     import io
-     text=infer.read_text();text=text if text.endswith('\n') else text.rsplit('\n',1)[0]+'\n'
-     for r in csv.DictReader(io.StringIO(text)):
-      if None not in r and r.get('label') in set(map(str,SEEDS)):prior[r['label']]=r
+    prior={};pending=dest/(name+'.pending.csv')
+    for saved in [infer,pending]:
+     if saved.exists():
+      import io
+      text=saved.read_text();text=text if text.endswith('\n') else text.rsplit('\n',1)[0]+'\n'
+      for r in csv.DictReader(io.StringIO(text)):
+       if None not in r and r.get('label') in set(map(str,SEEDS)) and r['label'] not in prior:prior[r['label']]=r
+    if prior:write(infer,[prior[str(s)] for s in SEEDS if str(s) in prior])
     missing=[s for s in SEEDS if str(s) not in prior]
     batch.write_text(''.join(f'eth10_refined {base}/{pair["source"]}/step_seed{s}_trees.csv {base}/{pair["target"]}/step_seed{s}_trees.csv {s}\n' for s in missing))
     caches=ROOT/'results/unified_20261025/runs/geometry'/scene
-    pending=dest/(name+'.pending.csv')
     if missing:
      run('smooth_refine_'+scene+'_'+name,[ROOT/'build/cm_geometry_register',f'--src_cache={caches}/{pair["source"]}.bin',f'--tgt_cache={caches}/{pair["target"]}.bin',f'--batch={batch}',f'--out={pending}'])
      for r in read(pending):

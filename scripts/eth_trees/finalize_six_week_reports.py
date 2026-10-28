@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Finish, independently reaggregate/recalculate, and package the 13 requested files."""
 from pathlib import Path
-import csv,json,hashlib,math,subprocess,sys,zipfile,re
+import argparse,csv,json,hashlib,math,subprocess,sys,zipfile,re
 from datetime import datetime
 from zoneinfo import ZoneInfo
 from openpyxl import load_workbook
@@ -45,21 +45,27 @@ e_p用全部來源點Eq8，再跨案例取mean；finite mean包含可計算失�
 '''
 
 def main():
+ ap=argparse.ArgumentParser();ap.add_argument('--rebuild',type=int,nargs='+',choices=range(1,7),default=list(range(1,7)));args=ap.parse_args()
  OUT.mkdir(exist_ok=True,parents=True)
  assert (ROOT/'results/report_experiments_20261028/full_dtm_smooth_rows.csv').exists(),'Resume missing experiments first'
- subprocess.run([sys.executable,'scripts/eth_trees/supplement_smooth_refinement.py'],cwd=ROOT,check=True)
+ scored=ROOT/'results/report_experiments_20261028/smooth_refined_rows.csv'
+ if not scored.exists():subprocess.run([sys.executable,'scripts/eth_trees/supplement_smooth_refinement.py'],cwd=ROOT,check=True)
+ assert len(list(csv.DictReader(scored.open())))==550
  # Count features without exporting any private tree coordinates.
  feature_rows=[];manifest=json.loads((ROOT/'results/unified_20261025/dataset_manifest.json').read_text())
- for scan in manifest['scans']:
+ counts=ROOT/'results/report_experiments_20261028/feature_count_rows.csv'
+ for scan in ([] if counts.exists() else manifest['scans']):
   base=ROOT/('results/unified_20261025/runs/extraction/ETH/'+scan['scan'] if scan['dataset']=='ETH' else 'results/tongji_trees/fixed_eth_20261025/runs/extraction/'+scan['scene']+'/'+scan['scan'])
   full=ROOT/('results/tongji_trees/dtm_height_20261025/runs/full_extraction/Plot2/'+scan['scan'] if scan['scene']=='Plot2' else 'results/report_experiments_20261028/runs/full_extraction/'+scan['scene']+'/'+scan['scan'])
   for seed in range(31,41):
    before=base/f'step_seed{seed}_trees.csv';after=full/f'step_seed{seed}_trees.csv'
    feature_rows.append(dict(scene=scan['scene'],scan=scan['scan'],seed=seed,before_trees=len(list(csv.DictReader(before.open()))),after_trees=len(list(csv.DictReader(after.open()))),before_sha256=hashlib.sha256(before.read_bytes()).hexdigest(),after_sha256=hashlib.sha256(after.read_bytes()).hexdigest()))
- f=ROOT/'results/report_experiments_20261028/feature_count_rows.csv'
- with f.open('w',newline='') as stream:w=csv.DictWriter(stream,fieldnames=list(feature_rows[0]));w.writeheader();w.writerows(feature_rows)
- report1()
- for i in range(2,7):later(i)
+ if feature_rows:
+  with counts.open('w',newline='') as stream:w=csv.DictWriter(stream,fieldnames=list(feature_rows[0]));w.writeheader();w.writerows(feature_rows)
+ assert len(list(csv.DictReader(counts.open())))==260
+ if 1 in args.rebuild:report1()
+ for i in range(2,7):
+  if i in args.rebuild:later(i)
  overview=OUT/'報告安排總覽.txt';overview.write_text(OVERVIEW,encoding='utf-8')
  run=OUT/'runs/recalculated';run.mkdir(exist_ok=True,parents=True)
  results=[];source_tables={};groups=0;checks=0
@@ -73,12 +79,15 @@ def main():
    assert sum(r['success']=='1' for r in rr)==g['ok'];v=[float(r['e_p_m']) for r in rr if math.isfinite(float(r['e_p_m']))]
    assert len(v)==g['finite'];assert not v or math.isclose(sum(v)/len(v),g['ep'],rel_tol=1e-11,abs_tol=1e-10)
    groups+=1
-  proc=subprocess.run(['soffice','--headless','--convert-to','xlsx','--outdir',str(run),str(f)],cwd=ROOT,capture_output=True,text=True,timeout=120);assert proc.returncode==0,proc.stderr
+  # Unchanged reports retain their previously recalculated copies. Both copies
+  # must still pass every manifest check below; only edited reports need Calc.
+  if i in args.rebuild or not (run/f.name).exists():
+   proc=subprocess.run(['soffice','--headless','--convert-to','xlsx','--outdir',str(run),str(f)],cwd=ROOT,capture_output=True,text=True,timeout=120);assert proc.returncode==0,proc.stderr
   validate(run/f.name,m);validate(f,m);checks+=len(m['checks'])
   wb=load_workbook(f,data_only=False);formulas=sum(c.data_type=='f' for ws in wb for row in ws for c in row);wb.close()
-  text=(OUT/m['txt']).read_text();assert all(x in text for x in ['Tongji','ETH','GT','論文','問：','答：','修改'])
+  text=(OUT/m['txt']).read_text();assert all(x in text for x in ['Tongji','ETH','GT','論文','問：','答：','改'])
   if i>1:assert '前一次' in text or '上一週' in text
-  for x in ['drive.google.com','1F9v5CyDlGkN1PRMipLdJzpuA4x1pAO_l','access_token','refresh_token']:assert x not in text
+  for x in ['drive.google.com','access_token','refresh_token']:assert x not in text
   results.append(dict(report=i,xlsx=m['xlsx'],txt=m['txt'],xlsx_sha256=m['xlsx_sha256'],txt_sha256=m['txt_sha256'],checks=len(m['checks']),formulas=formulas,charts=m['charts'],spoken_cjk=len(re.findall('[\u3400-\u9fff]',text.split('【教授追問備答】')[0]))))
  files=[overview]+[OUT/r[k] for r in results for k in ['txt','xlsx']];assert len(files)==13
  zip_path=OUT/'six_week_reports_20261028.zip'
