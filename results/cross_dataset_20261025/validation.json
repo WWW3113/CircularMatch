@@ -1,0 +1,14 @@
+{
+  "workbook": "comparison.xlsx",
+  "sha256": "dc78f091f80a077f2773e2ade19f116cb176128d67d2a83e9e69be80690373c0",
+  "sheets": 17,
+  "registration_cases": 1950,
+  "external_extraction_cases": 180,
+  "checked_registration_summaries": 13,
+  "checked_external_summaries": 18,
+  "excel_error_cells": [],
+  "all_sheets_have_filters_and_frozen_headers": true,
+  "unavailable_registration_datasets_are_text_not_zero": true,
+  "charts_and_images": 0,
+  "formula_recalculation": "LibreOffice Calc; cached values checked independently against raw CSV"
+}

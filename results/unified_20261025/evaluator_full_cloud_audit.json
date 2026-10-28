@@ -1,0 +1,10 @@
+{
+  "scene": "ETH",
+  "pair": "s1-s2",
+  "seed": 31,
+  "method": "multi_refined",
+  "points": 19633280,
+  "native_ep_m": 0.006989566414892994,
+  "independent_ep_m": 0.006989566414892969,
+  "absolute_difference_m": 2.5153490401663703e-17
+}

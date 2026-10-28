@@ -1,0 +1,46 @@
+{
+  "method": {
+    "name": "evidence_weak",
+    "mode": "evidence",
+    "trigger": 6
+  },
+  "discovery_cases": 150,
+  "discovery_success": 150,
+  "discovery_seeds": [
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "validation_seeds": [
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30
+  ],
+  "inference_sha256": {
+    "src/cn_recovery.cpp": "2d496347627b077ddccd409d91f4fbe8f5c186044be91f3fe990328bb183a428",
+    "include/cm/cn_recovery.hpp": "db38c3000ae7f1605672d368b19ee0d710e0157495114c9552613895a52d3424",
+    "src/cn_matching.cpp": "5abe78ce4afd0d90909bed40e76ff746247c8246488031d92e925f88734ae122",
+    "include/cm/cn_matching.hpp": "16097744e3b0fdd95d34dcd33823eb1f94cc31af8e97560b14603ea7f886c561",
+    "src/cn_descriptor.cpp": "e5d9e1854ec573eebe117252f74c959299f63cd00842b28dede668388082c755",
+    "src/registration.cpp": "9a9f33d15f20ff8191baf3544dbac20af0926c5897bd280803ccaf931c690970",
+    "apps/cm_register.cpp": "4b1f915a1889003c22882a601a315bc8371080e9740d2652989d5b5fa4fb2f9d",
+    "config/default.ini": "bd94251c5eaca7c81b46826b517b2feaaf35deb5ff4a4299756c2c2a6651bb35",
+    "build/cm_register": "c1ecafd8d0c138e8b162b7acfd4f8683766fa407ef5f587d93f691dfded22878",
+    "build/cm_extract_batch": "b121477be1467800f6b3b5673f45d58959dfa895db882c2d2ad779975e73c1aa"
+  },
+  "frozen_at_utc": "2026-10-25T08:14:47.725369+00:00"
+}

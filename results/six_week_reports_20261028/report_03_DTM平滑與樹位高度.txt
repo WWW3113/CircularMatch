@@ -1,0 +1,87 @@
+第3次報告：DTM平滑與樹位高度
+主稿配合逐表說明、圖表停頓與問題確認，預設10～15分鐘；最後備答按需要使用。
+搭配 report_03_DTM平滑與樹位高度.xlsx。三頁為「結果比較」「設定與說明」「必要對照」。
+
+【0:00～1:30｜接續前一次的問題】
+老師好，上一週加入補救能增加可用對應，但樹位本身仍可能有高度偏差。本週檢查DTM：同一個樹幹軸線與不同地面估計相交，是否會改變3D姿態？我們同時做固定軸線控制與完整重提取，兩者不能混成同一個結果。
+本次修改前是「第2次：原DTM＋weak recovery」，修改後是「第3次：smooth完整重提取＋相同coarse」。主表另外列原論文報告值與本地5cm/SVD參考，所以不是只拿一個方便的中間版本比較。
+Tongji-trees包含Plot1到Plot4，是同一dataset的不同場景；ETH-tree是另一dataset。主表統一seed31到40，Tongji各Plot100次，ETH150次，來源目標方向、配對清單與成功門檻固定。每次推論只用當前兩站。
+
+【1:30～4:30｜改了什麼，演算法如何改變行為】
+DTM估計地面z=f(x,y)。樹位是圓柱軸線與DTM的交點，所以DTM不只負責把地面點排掉，也決定交點的高度。高度進入3D Kabsch；若兩站交點高度不一致，solver可能用平移或roll/pitch去折衷，這是可解釋的機制，不是每個失敗已確認的唯一原因。
+原profile的cell為0.50m、fit_radius2格、fill_max_radius5格；smooth保持cell0.50m，改fit6格與fill6格。半徑單位是格，fit2大約涵蓋±1m，fit6大約±3m；不是把地形解析度直接從0.5m換成3m。
+fit_radius也影響鄰近平面剔除與局部平面擬合。較大鄰域可能減少孤立噪聲與稀疏支撐的起伏，也可能跨越真實坡折，把局部地形抹掉。因此平滑不等於正確，兩個欄位同改也不能分別領取效果。
+smooth曾以Plot2 seed31～35的50次開發結果選出：原設定18次成功、smooth24、coarse21、quantile1 15。本次沿用這個已凍結profile補測缺項，沒有再依ETH或其他Plot挑最好profile。這明確是看過GT的離線開發，不是完全無真值選參。
+固定軸線測試重用舊圓柱與樹清單，只改交點，回答定位這一環的影響。完整測試則從原始scan重做height、voxel、normal、保留、cluster、cylinder與交點；地面改變會讓另一批點或群集入選，因此連樹位數與matching都可能改變。
+即使定位與全流程最後成功數碰巧相同，也不能說成功的是同一批案例。要同時看pair與seed的新增、退步和共同成功，不能把329→344的舊定位結果直接當成完整流程成功率。
+本次把之前缺少的ETH定位對照，以及ETH與其他Tongji Plot完整smooth提取補跑。所有掃描站使用同一個smooth設定，固定原10cm、RANSAC與weak recovery；沒有為改善結果而換回個別Plot原設定。這才能如實回答效果是否跨來源成立。
+
+【4:30～8:00｜先看成功率與全部有限誤差】
+請看「結果比較」上半部的成功數，及下半部以cm列出的e_p；不要把兩張圖的單位混在一起。
+Tongji-trees／Plot1：100/100→100/100，成功率差+0.00pp；有限mean e_p 17.424→17.104cm；有限N 100→100。
+Tongji-trees／Plot2：34/100→48/100，成功率差+14.00pp；有限mean e_p 50.901→47.435cm；有限N 100→100。
+Tongji-trees／Plot3：100/100→100/100，成功率差+0.00pp；有限mean e_p 4.902→5.987cm；有限N 100→100。
+Tongji-trees／Plot4：95/100→97/100，成功率差+2.00pp；有限mean e_p 109.373→55.701cm；有限N 99→99。
+ETH-tree：150/150→149/150，成功率差-0.67pp；有限mean e_p 8.190→7.907cm；有限N 150→150。
+成功數增加的場景：Tongji-trees／Plot2、Tongji-trees／Plot4；減少的場景：ETH-tree；持平：Tongji-trees／Plot1、Tongji-trees／Plot3。只累計同dataset的成功數，Tongji為329/400→345/400；ETH為150/150→149/150。這不是混算兩來源誤差平均。有限mean e_p下降：Tongji-trees／Plot1、Tongji-trees／Plot2、Tongji-trees／Plot4、ETH-tree；上升：Tongji-trees／Plot3。平均值集合改變時，這只描述有輸出的子集，不能代替同案例比較。
+這裡mean保留有輸出的失敗，沒有只選成功案例。若有限N比總N少，沒有輸出仍算失敗，e_p只是無法計算，不是零。前後有限案例集合不同時，表格不計算vs前一次下降率；這個空缺是不可比的統計，不是再把同一失敗反覆重跑就能補成成功。
+接著看「必要對照」同pair與seed的成對比較：
+Tongji-trees／Plot1：新增成功0次、退步失敗0次，共同成功100次；共同成功mean e_p 17.424→17.104cm。
+Tongji-trees／Plot2：新增成功23次、退步失敗9次，共同成功25次；共同成功mean e_p 22.886→19.523cm。
+Tongji-trees／Plot3：新增成功0次、退步失敗0次，共同成功100次；共同成功mean e_p 4.902→5.987cm。
+Tongji-trees／Plot4：新增成功5次、退步失敗3次，共同成功92次；共同成功mean e_p 9.091→6.964cm。
+ETH-tree：新增成功0次、退步失敗1次，共同成功149次；共同成功mean e_p 8.195→7.786cm。
+新增成功與退步應同時報；淨增加不能解讀成完全沒有案例變差。共同成功mean回答原本能通過時是否更精，但它排除了未成功案例，有存活者偏差，不能取代整體成功率。
+以下固定軸線定位對照，與主表完整重提取分開：
+Tongji-trees／Plot1：100/100→100/100，成功率差+0.00pp；有限mean e_p 17.424→17.306cm；有限N 100→100。
+Tongji-trees／Plot2：34/100→48/100，成功率差+14.00pp；有限mean e_p 50.901→47.601cm；有限N 100→100。
+Tongji-trees／Plot3：100/100→100/100，成功率差+0.00pp；有限mean e_p 4.902→5.891cm；有限N 100→100。
+Tongji-trees／Plot4：95/100→96/100，成功率差+1.00pp；有限mean e_p 109.373→138.312cm；有限N 99→100。
+ETH-tree：150/150→149/150，成功率差-0.67pp；有限mean e_p 8.190→8.244cm；有限N 150→150。
+完整smooth新退步的ETH例子是s1-s6、seed37：8對matching全部通過GT-XY檢查、RANSAC也有8個3D模型內點，但GT旋轉誤差為2.289°、平移約22.772cm、e_p約25.903cm，因此仍未通過rotation<2°。這直接顯示XY正確與模型共識不保證GT姿態正確；不能僅據此說高度是唯一成因。
+
+【8:00～10:00｜原因、代價與可支持範圍】
+完整重提取會連保留點與擬合樹集合一起改變，改善可能來自多個傳遞步驟。沒有獨立地面GT，無法把配準變化直接等同DTM對真實地面的準確度變化；不以局部坡面教學假例當實測因果。
+本次說的「效果」是固定這些方法條件、在既定案例上的實驗差異；多個參數同改就只說整組效果。若提出地形、法向或幾何可辨識度的機制，是程式與觀察相容的解釋，沒有對應消融或中間診斷時，不能再升格成排除其他因素的因果證明。
+e_p計算全部來源點在估計變換與GT變換下的位置差，與ICP最近鄰距離或point-to-plane loss不同。它也不是單看translation：小角度旋轉在遠處可造成較大點位移。原始GT的不確定度尚未建模，所以很小e_p不能等同世界座標物理精度完全達同數值。
+時間表列本地online與論文matching/total，但不把它們直接相除。原論文i7-9700F、OpenMP實際threads未齊；本地舊批次與本次補跑在不同時段，online還排除提取、geometry cache與GT評分。使用共用cache可以攤銷，不能把一次性成本視為免費。速度下降率未填時，要說明是範圍或硬體不一致，不是忘記計算。
+
+
+【10:00～12:00｜論文比較、結論與下一步】
+論文Table I在五場景報100%與e_p；我們每次都列它作參考。可是作者可執行程式在既有稽核時未公開，paper逐場景分母、成功門檻也未完全確認。本地5cm/SVD是參考實作，提取中另有本地DTM、分群與圓柱檢查，不能把它冒稱作者原程式。
+本地成功定義是rotation<2°且translation<0.5m，e_p不直接進這個門檻。因此成功率相同時，誤差仍可能改善或退步；finite mean很差時，也不能只拿成功子集或median代替整體結果。下降率為基準減本次再除基準，負值就是退步，成功率差則用pp。
+兩組dataset都參與過開發。GT不進當次候選選擇，不代表人類開發完全沒用GT看結果選設定；尤其DTM profile有明確GT開發選擇。這是已知資料上的可追溯比較，不稱未見森林盲測。
+本週先把方法作用、完整成功與失敗，以及跨來源差異交代清楚。下一次回到原DTM加入幾何精化，並用控制實驗交代兩個跨週變更。
+
+【教授追問備答】
+問：smooth是用GT選的嗎？
+答：是，曾按Plot2開發組GT成功數選profile；但推論不讀GT，本次不重選dataset-specific profile。
+問：fill5變6獨立有效嗎？
+答：沒有單獨實驗；原始碼fit loop上限max(fit,fill)，fit6時fill5→6在該loop可能冗餘，不能給它獨立功勞。
+問：為何定位與full數字不能混？
+答：前者固定軸線與樹清單，後者重新提取，估計輸入與成功案例集合可能不同。
+問：全部新seed能算盲測嗎？
+答：不能，兩dataset均已接觸，seed重跑只評同資料隨機敏感度。
+問：沒有變換的e_p填多少？
+答：缺值，不填0；仍算success失敗，finite mean標N。
+問：可以和論文比較時間嗎？
+答：可列數值與範圍，但CPU、threads與計時範圍不同，不能直接宣稱速度提升。
+
+【資料追溯】
+
+U：results/professor_reports_20261026/evidence/U_registration_rows.csv
+SHA256：e111ef1216ceff2ca3a11b16f38fcfa56c2d16fc599cc8570340c6ba6c1304a0
+C：results/six_week_reports_20261028/evidence/C_eth_coarse_rows.csv
+SHA256：7d650dccaae06db5a5425d39e9b7844210caaca64422f3b7240e5adb18e8a876
+T：results/six_week_reports_20261028/evidence/T_registration_rows.csv
+SHA256：be80ea133faf080bae060279ab9401346bb3263f319589450ec998822f1913a1
+FULL：results/six_week_reports_20261028/evidence/FULL_full_dtm_smooth_rows.csv
+SHA256：450b6fbc7152d3a574369716d0df5e5a7179718a3d48a850c46c36a2dc9beb78
+EP：results/six_week_reports_20261028/evidence/EP_eth_dtm_position_rows.csv
+SHA256：4c3cd9096b1883087d13b89dd2813293dc0dc7c2da6f7adb77980e9410f547b8
+D：results/professor_reports_20261026/evidence/D_registration_rows.csv
+SHA256：80c8930e55bc9f5f6c073354e4b60a8d7d0a6cb9b2ad342195c4a15469413d66
+FC：results/six_week_reports_20261028/evidence/FC_feature_count_rows.csv
+SHA256：ea8421eed369eb2d11c0e0d9f8b2b8c2b8f4b2b480285e82ac09ed2cfb9e19fd
+精確CSV行號、group selector、配對統計與公式期望值另存report_03_manifest.json；報告只需讀本稿與XLSX。
+原論文：DOI 10.1109/LGRS.2025.3650098；PDF p2方法、p3 Algorithm1、p4 TableI/II與Eq8、p5 TableIII。

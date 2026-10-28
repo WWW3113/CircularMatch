@@ -1,0 +1,38 @@
+{
+  "all_cluster_counts_and_centroids_match_prior": true,
+  "cases": [
+    {
+      "scan": 0,
+      "cluster_id": 18,
+      "status": "arc_coverage_low",
+      "n_points": 34,
+      "radius": 0.2202,
+      "arc_deg": 75.0
+    },
+    {
+      "scan": 0,
+      "cluster_id": 20,
+      "status": "arc_coverage_low",
+      "n_points": 63,
+      "radius": 0.2577,
+      "arc_deg": 65.0
+    },
+    {
+      "scan": 7,
+      "cluster_id": 54,
+      "status": "arc_coverage_low",
+      "n_points": 55,
+      "radius": 0.233,
+      "arc_deg": 60.0
+    },
+    {
+      "scan": 7,
+      "cluster_id": 57,
+      "status": "ok",
+      "n_points": 86,
+      "radius": 0.1849,
+      "arc_deg": 120.0
+    }
+  ],
+  "limitation": "Geometric inspection only; no semantic tree ground truth. Narrow curved strips may be tree fragments or non-tree objects."
+}

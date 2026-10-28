@@ -1,0 +1,132 @@
+{
+  "final_trials": 4950,
+  "unique_pair_seed_methods": true,
+  "full_workbook_rows_verified": 4950,
+  "scenes": 5,
+  "datasets": 2,
+  "private_identifiers_checked": 72,
+  "private_ids_absent": true,
+  "workbooks": [
+    {
+      "file": "comparison_full.xlsx",
+      "bytes": 1212595,
+      "sha256": "371fd733e6dd213f683a500672a067e7cf949d573c6642598151b3e8d7dcc523",
+      "sheets": [
+        {
+          "name": "先看結論",
+          "rows": 14,
+          "columns": 2
+        },
+        {
+          "name": "逐場景比較",
+          "rows": 46,
+          "columns": 16
+        },
+        {
+          "name": "論文報告值並列",
+          "rows": 6,
+          "columns": 10
+        },
+        {
+          "name": "改了哪些參數",
+          "rows": 17,
+          "columns": 2
+        },
+        {
+          "name": "固定設定明細",
+          "rows": 68,
+          "columns": 2
+        },
+        {
+          "name": "Tongji與ETH彙整",
+          "rows": 37,
+          "columns": 9
+        },
+        {
+          "name": "消融實驗",
+          "rows": 71,
+          "columns": 7
+        },
+        {
+          "name": "時間與記憶體",
+          "rows": 814,
+          "columns": 7
+        },
+        {
+          "name": "本輪計算預算",
+          "rows": 11,
+          "columns": 6
+        },
+        {
+          "name": "一般化證據與限制",
+          "rows": 11,
+          "columns": 2
+        },
+        {
+          "name": "ETH官方10補充",
+          "rows": 10,
+          "columns": 9
+        },
+        {
+          "name": "失敗分析",
+          "rows": 4,
+          "columns": 2
+        },
+        {
+          "name": "全部逐次結果",
+          "rows": 4951,
+          "columns": 35
+        },
+        {
+          "name": "每seed變異",
+          "rows": 451,
+          "columns": 6
+        },
+        {
+          "name": "資源原始紀錄",
+          "rows": 448,
+          "columns": 7
+        },
+        {
+          "name": "固定配對清單",
+          "rows": 56,
+          "columns": 7
+        },
+        {
+          "name": "欄位說明",
+          "rows": 9,
+          "columns": 2
+        }
+      ]
+    },
+    {
+      "file": "comparison_simple.xlsx",
+      "bytes": 10672,
+      "sha256": "7469844a06f271737e3f4bd502841f63d76a6f74861a3c5210103a7327b41448",
+      "sheets": [
+        {
+          "name": "先看結論",
+          "rows": 10,
+          "columns": 2
+        },
+        {
+          "name": "逐場景比較",
+          "rows": 6,
+          "columns": 8
+        },
+        {
+          "name": "論文報告值並列",
+          "rows": 6,
+          "columns": 6
+        },
+        {
+          "name": "改了哪些參數",
+          "rows": 11,
+          "columns": 2
+        }
+      ]
+    }
+  ],
+  "cold_benchmarks": 12,
+  "station_cost_cases": 26
+}

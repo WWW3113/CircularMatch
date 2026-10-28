@@ -1,0 +1,7 @@
+group,profile,solver,cases,success,rate,transforms_found,mean_ep_success_m,mean_match_solve_ms
+Park保留站點,baseline,svd,120,0,0.0,0,,0.004545375
+Park保留站點,baseline,svd+ransac,120,0,0.0,0,,0.0046993
+Park保留站點,selected,svd,120,2,0.016666666666666666,4,0.4257441088,0.543330875
+Park保留站點,selected,svd+ransac,120,2,0.016666666666666666,4,0.4257441088,0.6500108166666666
+ETH回歸,selected,svd,150,147,0.98,150,0.08294339606646259,3.0433692666666667
+ETH回歸,selected,svd+ransac,150,150,1.0,150,0.07615434894646667,3.6718565333333335

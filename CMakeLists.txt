@@ -38,6 +38,7 @@ add_library(cm_core
   src/synth.cpp
   src/cn_descriptor.cpp
   src/cn_matching.cpp
+  src/cn_recovery.cpp
   src/registration.cpp
 )
 target_include_directories(cm_core PUBLIC include ${PCL_INCLUDE_DIRS})
@@ -48,15 +49,32 @@ if(OpenMP_CXX_FOUND)
 endif()
 target_compile_options(cm_core PRIVATE -Wall -Wextra)
 
-foreach(app cm_extract cm_compare cm_synth cm_inspect cm_register)
+foreach(app cm_extract cm_extract_batch cm_compare cm_synth cm_inspect cm_register cm_candidate_export cm_sparse_extract cm_dtm_reposition)
   add_executable(${app} apps/${app}.cpp apps/app_common.cpp)
   target_link_libraries(${app} PRIVATE cm_core)
 endforeach()
 
+add_executable(cm_geometry_register apps/cm_geometry_register.cpp apps/geometry_refinement.cpp apps/app_common.cpp)
+target_link_libraries(cm_geometry_register PRIVATE cm_core)
+add_executable(cm_geometry_register_v2 apps/cm_geometry_register_v2.cpp apps/geometry_refinement.cpp apps/app_common.cpp)
+target_link_libraries(cm_geometry_register_v2 PRIVATE cm_core)
+add_executable(cm_geometry_register_v3 apps/cm_geometry_register_v3.cpp apps/geometry_refinement_structural.cpp apps/app_common.cpp)
+target_link_libraries(cm_geometry_register_v3 PRIVATE cm_core)
+add_executable(cm_evaluate_transforms apps/cm_evaluate_transforms.cpp apps/app_common.cpp)
+target_link_libraries(cm_evaluate_transforms PRIVATE cm_core)
+target_compile_options(cm_evaluate_transforms PRIVATE -O3 -fno-math-errno)
+
 option(CM_BUILD_TESTS "Build tests" ON)
 if(CM_BUILD_TESTS)
   enable_testing()
+  add_executable(cm_geometry_tests tests/test_geometry_refinement.cpp apps/geometry_refinement.cpp)
+  target_link_libraries(cm_geometry_tests PRIVATE cm_core GTest::gtest_main)
+  add_executable(cm_geometry_structural_tests tests/test_geometry_refinement.cpp apps/geometry_refinement_structural.cpp)
+  target_link_libraries(cm_geometry_structural_tests PRIVATE cm_core GTest::gtest_main)
   find_package(GTest REQUIRED)
+  add_executable(cm_sparse_arc_tests tests/test_sparse_arc.cpp)
+  target_include_directories(cm_sparse_arc_tests PRIVATE include)
+  target_link_libraries(cm_sparse_arc_tests PRIVATE GTest::gtest_main)
   add_executable(cm_tests
     tests/test_retention.cpp
     tests/test_crn.cpp
@@ -70,8 +88,12 @@ if(CM_BUILD_TESTS)
     tests/test_synthetic.cpp
     tests/test_reproducibility.cpp
     tests/test_cn.cpp
+    tests/test_cn_recovery.cpp
   )
   target_link_libraries(cm_tests PRIVATE cm_core GTest::gtest GTest::gtest_main)
   include(GoogleTest)
   gtest_discover_tests(cm_tests DISCOVERY_TIMEOUT 60)
+  gtest_discover_tests(cm_sparse_arc_tests DISCOVERY_TIMEOUT 60)
+  gtest_discover_tests(cm_geometry_tests TEST_PREFIX GeometryBaseline. DISCOVERY_TIMEOUT 60)
+  gtest_discover_tests(cm_geometry_structural_tests TEST_PREFIX GeometryStructural. DISCOVERY_TIMEOUT 60)
 endif()

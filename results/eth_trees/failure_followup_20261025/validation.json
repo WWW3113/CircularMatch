@@ -1,0 +1,11 @@
+{
+  "validation_rows": 600,
+  "primary_cases_per_method": 150,
+  "validation_extractions_checked": 60,
+  "extraction_settings_unchanged_except_seed": true,
+  "full_source_cloud_ep": true,
+  "success_threshold_unchanged": true,
+  "inference_sha256_unchanged_since_freeze": true,
+  "cpp_tests": 81,
+  "workbook_sha256": "9077cc62f6574696460e43e70f8b9edf2704d72c76de94885c4a72ad5d2a76b5"
+}

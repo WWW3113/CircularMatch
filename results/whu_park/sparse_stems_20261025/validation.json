@@ -1,0 +1,33 @@
+{
+  "development_cases_per_profile": 75,
+  "profiles": 7,
+  "holdout_cases_per_method": 120,
+  "holdout_baseline_success": 0,
+  "holdout_selected_success": 2,
+  "rescued_cases": [
+    {
+      "seed": 32,
+      "pair": "19-18"
+    },
+    {
+      "seed": 35,
+      "pair": "19-18"
+    }
+  ],
+  "regressed_cases": [],
+  "eth_success": 150,
+  "eth_extraction_files_identical": 180,
+  "eth_registration_rows_unchanged": 300,
+  "park_input_sha256_matches_previous_transfer": true,
+  "sparse_arc_unit_tests": 4,
+  "files": {
+    "comparison_full.xlsx": {
+      "sha256": "a0570d5b4a9e0576728740365486004dda3681e50152d59d958ee8a749d5ef32",
+      "bytes": 370204
+    },
+    "comparison_simple.xlsx": {
+      "sha256": "6dc545395836eb88cdf03aef0cd12e873530519f6cb7fe61df564796fbbf2d00",
+      "bytes": 9004
+    }
+  }
+}

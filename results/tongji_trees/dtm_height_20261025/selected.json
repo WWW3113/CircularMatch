@@ -1,0 +1,12 @@
+{
+  "selected": "smooth",
+  "scores": {
+    "baseline": 18,
+    "smooth": 24,
+    "coarse": 21,
+    "quantile1": 15
+  },
+  "development_rows_sha256": "23ea54abeb2fd173d915085c80feb0de86e23b0a791a03b4b9d1b28133646714",
+  "frozen_at_utc": "2026-10-25T12:47:23.036567+00:00",
+  "validation_results_not_used": true
+}

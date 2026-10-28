@@ -1,0 +1,22 @@
+{
+  "status": "source specified before tests; build/test after current isolated benchmark",
+  "hypothesis": "Horizontal ground overlap biased v1/v2 selection toward wrong offsets; verify vertical structure while keeping full6DOF solver",
+  "changes": {
+    "verification_vertical_abs_normal_z_lt": 0.3,
+    "minimum_vertical_points": 30,
+    "verification_gate": "min(voxel,0.2m)",
+    "fallback": "all orientations if either station has <30 vertical points",
+    "optimizer": "unchanged point-to-plane with all normals; full6DOF"
+  },
+  "controls": [
+    "reference5_refined_v3",
+    "eth10_refined_v3",
+    "multi_v3_refined"
+  ],
+  "validation": "all55 pairs, same seeds31-40; no scene-specific selection",
+  "source_sha256": {
+    "apps/cm_geometry_register_v3.cpp": "e8428c89198a41c88ba6b39777024211e297918bc5e29405e895f9d30ff85234",
+    "apps/geometry_refinement_structural.cpp": "e3b24aa787a30df9df89234ad53ae02ebfa76e94a032a17c2094c89525a660f3",
+    "include/cm/geometry_refinement.hpp": "7c53d4b1c60296a5962423096318e8072a96463f90d6fd32c93da8978c3ef27d"
+  }
+}

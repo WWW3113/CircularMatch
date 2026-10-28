@@ -1,0 +1,11 @@
+{
+  "status": "complete_delivered",
+  "full_smooth_rows": 1100,
+  "eth_coarse_rows": 600,
+  "eth_position_rows": 300,
+  "smooth_refinement_scored_trials": 550,
+  "feature_count_rows": 260,
+  "active_native_experiments": false,
+  "next": "No pending experiment/report work. Delivery verified; see six_week_reports_20261028/DELIVERY.json.",
+  "artifact_commit": "b839f64ecc9385321168771847f1efea4b00d8ad"
+}

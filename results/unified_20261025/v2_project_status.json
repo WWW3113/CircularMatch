@@ -1,0 +1,80 @@
+{
+  "primary": "multi_v2_refined",
+  "goals": [
+    {
+      "scene": "Plot1",
+      "trials": 100,
+      "success": 100,
+      "strict_pairs": 10,
+      "pairs": 10,
+      "finite_cases": 100,
+      "mean_ep_m": 0.02886600508789238,
+      "paper_ep_m": 0.052558,
+      "relative_decrease": 0.45077809110140454,
+      "success_goal": true,
+      "error_goal": true,
+      "ten_percent_goal": true,
+      "comparison": "paper values only; exact pair list/success definition not independently established"
+    },
+    {
+      "scene": "Plot2",
+      "trials": 100,
+      "success": 100,
+      "strict_pairs": 10,
+      "pairs": 10,
+      "finite_cases": 100,
+      "mean_ep_m": 0.011854158585288406,
+      "paper_ep_m": 0.114808,
+      "relative_decrease": 0.8967479741369208,
+      "success_goal": true,
+      "error_goal": true,
+      "ten_percent_goal": true,
+      "comparison": "paper values only; exact pair list/success definition not independently established"
+    },
+    {
+      "scene": "Plot3",
+      "trials": 100,
+      "success": 100,
+      "strict_pairs": 10,
+      "pairs": 10,
+      "finite_cases": 100,
+      "mean_ep_m": 0.011056593589684945,
+      "paper_ep_m": 0.048756,
+      "relative_decrease": 0.7732259908588698,
+      "success_goal": true,
+      "error_goal": true,
+      "ten_percent_goal": true,
+      "comparison": "paper values only; exact pair list/success definition not independently established"
+    },
+    {
+      "scene": "Plot4",
+      "trials": 100,
+      "success": 78,
+      "strict_pairs": 6,
+      "pairs": 10,
+      "finite_cases": 100,
+      "mean_ep_m": 8.647622010386872,
+      "paper_ep_m": 0.04356,
+      "relative_decrease": -197.52208471962516,
+      "success_goal": false,
+      "error_goal": false,
+      "ten_percent_goal": false,
+      "comparison": "paper values only; exact pair list/success definition not independently established"
+    },
+    {
+      "scene": "ETH",
+      "trials": 150,
+      "success": 150,
+      "strict_pairs": 15,
+      "pairs": 15,
+      "finite_cases": 150,
+      "mean_ep_m": 0.006038135171016774,
+      "paper_ep_m": 0.153427,
+      "relative_decrease": 0.9606448984141202,
+      "success_goal": true,
+      "error_goal": true,
+      "ten_percent_goal": true,
+      "comparison": "paper values only; exact pair list/success definition not independently established"
+    }
+  ]
+}

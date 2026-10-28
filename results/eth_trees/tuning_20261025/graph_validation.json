@@ -1,0 +1,7 @@
+{
+  "full_source_cloud_ep": true,
+  "cpp_ep_reference_error": 3.17064582922022e-10,
+  "inference_uses_ground_truth": false,
+  "cpp_transform_independent_of_evaluation_gt": true,
+  "gt_perturbation_translation_m": 100
+}

@@ -1,0 +1,122 @@
+{
+  "workbooks": [
+    {
+      "file": "comparison_full.xlsx",
+      "bytes": 699488,
+      "sha256": "a46a58980621d8cf88322f4dd15cc79d1569cc95fcd4be3893c6cfbd97c5774e",
+      "sheets": [
+        {
+          "name": "設定與限制",
+          "rows": 15,
+          "columns": 2
+        },
+        {
+          "name": "改善與退步",
+          "rows": 16,
+          "columns": 10
+        },
+        {
+          "name": "與論文報告值並列",
+          "rows": 5,
+          "columns": 8
+        },
+        {
+          "name": "跨資料集比較",
+          "rows": 9,
+          "columns": 11
+        },
+        {
+          "name": "欄位怎麼讀",
+          "rows": 18,
+          "columns": 2
+        },
+        {
+          "name": "全部方法摘要",
+          "rows": 31,
+          "columns": 8
+        },
+        {
+          "name": "原資料分組摘要",
+          "rows": 25,
+          "columns": 6
+        },
+        {
+          "name": "逐對結果",
+          "rows": 121,
+          "columns": 7
+        },
+        {
+          "name": "逐站格式核驗",
+          "rows": 21,
+          "columns": 7
+        },
+        {
+          "name": "逐站逐次樹位數",
+          "rows": 201,
+          "columns": 5
+        },
+        {
+          "name": "全點誤差獨立抽查",
+          "rows": 5,
+          "columns": 9
+        },
+        {
+          "name": "事後高度診斷",
+          "rows": 3,
+          "columns": 7
+        },
+        {
+          "name": "完整逐次結果",
+          "rows": 2401,
+          "columns": 51
+        },
+        {
+          "name": "輸入檔案雜湊",
+          "rows": 21,
+          "columns": 4
+        }
+      ]
+    },
+    {
+      "file": "comparison_simple.xlsx",
+      "bytes": 14874,
+      "sha256": "91f063b0b3f7b2f85a6d0a1dc933fea32df9575756f69a8b755b83fbb09ac78c",
+      "sheets": [
+        {
+          "name": "先看結果",
+          "rows": 16,
+          "columns": 6
+        },
+        {
+          "name": "用什麼設定",
+          "rows": 15,
+          "columns": 2
+        },
+        {
+          "name": "改善與退步",
+          "rows": 16,
+          "columns": 10
+        },
+        {
+          "name": "跨資料集比較",
+          "rows": 9,
+          "columns": 11
+        },
+        {
+          "name": "與論文報告值並列",
+          "rows": 5,
+          "columns": 8
+        },
+        {
+          "name": "原資料兩組配對",
+          "rows": 25,
+          "columns": 6
+        }
+      ]
+    }
+  ],
+  "all_2400_rows_checked": true,
+  "summary_checked": true,
+  "no_excel_errors_or_formulas": true,
+  "private_drive_ids_absent": true
+}

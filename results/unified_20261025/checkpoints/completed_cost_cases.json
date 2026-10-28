@@ -1,0 +1,1319 @@
+[
+  {
+    "marker": "cold_benchmark/ETH/multi_refined/complete.json",
+    "record": {
+      "dataset": "ETH",
+      "scene": "ETH",
+      "pair": "s1-s2",
+      "method": "multi_refined",
+      "wall_s": 94.87642116299958,
+      "cpu_s": 250.070822,
+      "peak_child_rss_kib": 1456852,
+      "peak_scope": "largest native child RSS, excludes OS page cache and Python parent; processes run serially",
+      "resources": [
+        "cold_extract_ETH_multi_refined_s1",
+        "cold_geometry_ETH_multi_refined_s1",
+        "cold_extract_ETH_multi_refined_s2",
+        "cold_geometry_ETH_multi_refined_s2",
+        "cold_pair_ETH_multi_refined"
+      ]
+    }
+  },
+  {
+    "marker": "cold_benchmark/ETH/multi_v2_refined/complete.json",
+    "record": {
+      "dataset": "ETH",
+      "scene": "ETH",
+      "pair": "s1-s2",
+      "method": "multi_v2_refined",
+      "wall_s": 94.96492677100014,
+      "cpu_s": 249.109524,
+      "peak_child_rss_kib": 1456856,
+      "peak_scope": "largest native child RSS, excludes OS page cache and Python parent; processes run serially",
+      "resources": [
+        "cold_extract_ETH_multi_v2_refined_s1",
+        "cold_geometry_ETH_multi_v2_refined_s1",
+        "cold_extract_ETH_multi_v2_refined_s2",
+        "cold_geometry_ETH_multi_v2_refined_s2",
+        "cold_pair_ETH_multi_v2_refined"
+      ]
+    }
+  },
+  {
+    "marker": "cold_benchmark/ETH/multi_v3_refined/complete.json",
+    "record": {
+      "dataset": "ETH",
+      "scene": "ETH",
+      "pair": "s1-s2",
+      "method": "multi_v3_refined",
+      "wall_s": 369.0621386269995,
+      "cpu_s": 937.9055500000001,
+      "peak_child_rss_kib": 1456496,
+      "peak_scope": "largest native child RSS, excludes OS page cache and Python parent; processes run serially",
+      "resources": [
+        "cold_extract_ETH_multi_v3_refined_s1",
+        "cold_geometry_ETH_multi_v3_refined_s1",
+        "cold_extract_ETH_multi_v3_refined_s2",
+        "cold_geometry_ETH_multi_v3_refined_s2",
+        "cold_pair_ETH_multi_v3_refined"
+      ],
+      "runtime_epoch": "20261025T162801Z"
+    }
+  },
+  {
+    "marker": "cold_benchmark/ETH/reference5_raw/complete.json",
+    "record": {
+      "dataset": "ETH",
+      "scene": "ETH",
+      "pair": "s1-s2",
+      "method": "reference5_raw",
+      "wall_s": 86.21890307300055,
+      "cpu_s": 236.78046999999998,
+      "peak_child_rss_kib": 1456856,
+      "peak_scope": "largest native child RSS, excludes OS page cache and Python parent; processes run serially",
+      "resources": [
+        "cold_extract_ETH_reference5_raw_s1",
+        "cold_extract_ETH_reference5_raw_s2",
+        "cold_pair_ETH_reference5_raw"
+      ]
+    }
+  },
+  {
+    "marker": "cold_benchmark/ETH/reference5_refined/complete.json",
+    "record": {
+      "dataset": "ETH",
+      "scene": "ETH",
+      "pair": "s1-s2",
+      "method": "reference5_refined",
+      "wall_s": 95.72410623700034,
+      "cpu_s": 252.828008,
+      "peak_child_rss_kib": 1456860,
+      "peak_scope": "largest native child RSS, excludes OS page cache and Python parent; processes run serially",
+      "resources": [
+        "cold_extract_ETH_reference5_refined_s1",
+        "cold_geometry_ETH_reference5_refined_s1",
+        "cold_extract_ETH_reference5_refined_s2",
+        "cold_geometry_ETH_reference5_refined_s2",
+        "cold_pair_ETH_reference5_refined"
+      ]
+    }
+  },
+  {
+    "marker": "cold_benchmark/ETH/reference5_refined_v3/complete.json",
+    "record": {
+      "dataset": "ETH",
+      "scene": "ETH",
+      "pair": "s1-s2",
+      "method": "reference5_refined_v3",
+      "wall_s": 344.30971392599895,
+      "cpu_s": 958.1163700000001,
+      "peak_child_rss_kib": 1456624,
+      "peak_scope": "largest native child RSS, excludes OS page cache and Python parent; processes run serially",
+      "resources": [
+        "cold_extract_ETH_reference5_refined_v3_s1",
+        "cold_geometry_ETH_reference5_refined_v3_s1",
+        "cold_extract_ETH_reference5_refined_v3_s2",
+        "cold_geometry_ETH_reference5_refined_v3_s2",
+        "cold_pair_ETH_reference5_refined_v3"
+      ],
+      "runtime_epoch": "20261025T162801Z"
+    }
+  },
+  {
+    "marker": "cold_benchmark/Plot1/multi_refined/complete.json",
+    "record": {
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "pair": "S2-S1",
+      "method": "multi_refined",
+      "wall_s": 744.287508165,
+      "cpu_s": 1804.23452,
+      "peak_child_rss_kib": 2057184,
+      "peak_scope": "largest native child RSS, excludes OS page cache and Python parent; processes run serially",
+      "resources": [
+        "cold_extract_Plot1_multi_refined_S2",
+        "cold_geometry_Plot1_multi_refined_S2",
+        "cold_extract_Plot1_multi_refined_S1",
+        "cold_geometry_Plot1_multi_refined_S1",
+        "cold_pair_Plot1_multi_refined"
+      ],
+      "runtime_epoch": "20261025T162801Z"
+    }
+  },
+  {
+    "marker": "cold_benchmark/Plot1/multi_v2_refined/complete.json",
+    "record": {
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "pair": "S2-S1",
+      "method": "multi_v2_refined",
+      "wall_s": 201.20603823200054,
+      "cpu_s": 547.824163,
+      "peak_child_rss_kib": 2057324,
+      "peak_scope": "largest native child RSS, excludes OS page cache and Python parent; processes run serially",
+      "resources": [
+        "cold_extract_Plot1_multi_v2_refined_S2",
+        "cold_geometry_Plot1_multi_v2_refined_S2",
+        "cold_extract_Plot1_multi_v2_refined_S1",
+        "cold_geometry_Plot1_multi_v2_refined_S1",
+        "cold_pair_Plot1_multi_v2_refined"
+      ]
+    }
+  },
+  {
+    "marker": "cold_benchmark/Plot1/multi_v3_refined/complete.json",
+    "record": {
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "pair": "S2-S1",
+      "method": "multi_v3_refined",
+      "wall_s": 651.7896377920006,
+      "cpu_s": 1658.6250989999999,
+      "peak_child_rss_kib": 2057276,
+      "peak_scope": "largest native child RSS, excludes OS page cache and Python parent; processes run serially",
+      "resources": [
+        "cold_extract_Plot1_multi_v3_refined_S2",
+        "cold_geometry_Plot1_multi_v3_refined_S2",
+        "cold_extract_Plot1_multi_v3_refined_S1",
+        "cold_geometry_Plot1_multi_v3_refined_S1",
+        "cold_pair_Plot1_multi_v3_refined"
+      ],
+      "runtime_epoch": "20261025T162801Z"
+    }
+  },
+  {
+    "marker": "cold_benchmark/Plot1/reference5_raw/complete.json",
+    "record": {
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "pair": "S2-S1",
+      "method": "reference5_raw",
+      "wall_s": 564.4756133690007,
+      "cpu_s": 1647.259944,
+      "peak_child_rss_kib": 2057244,
+      "peak_scope": "largest native child RSS, excludes OS page cache and Python parent; processes run serially",
+      "resources": [
+        "cold_extract_Plot1_reference5_raw_S2",
+        "cold_extract_Plot1_reference5_raw_S1",
+        "cold_pair_Plot1_reference5_raw"
+      ],
+      "runtime_epoch": "20261025T162801Z"
+    }
+  },
+  {
+    "marker": "cold_benchmark/Plot1/reference5_refined/complete.json",
+    "record": {
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "pair": "S2-S1",
+      "method": "reference5_refined",
+      "wall_s": 676.7391581839984,
+      "cpu_s": 1892.383192,
+      "peak_child_rss_kib": 2057072,
+      "peak_scope": "largest native child RSS, excludes OS page cache and Python parent; processes run serially",
+      "resources": [
+        "cold_extract_Plot1_reference5_refined_S2",
+        "cold_geometry_Plot1_reference5_refined_S2",
+        "cold_extract_Plot1_reference5_refined_S1",
+        "cold_geometry_Plot1_reference5_refined_S1",
+        "cold_pair_Plot1_reference5_refined"
+      ],
+      "runtime_epoch": "20261025T162801Z"
+    }
+  },
+  {
+    "marker": "cold_benchmark/Plot1/reference5_refined_v3/complete.json",
+    "record": {
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "pair": "S2-S1",
+      "method": "reference5_refined_v3",
+      "wall_s": 703.8726905160001,
+      "cpu_s": 1861.969057,
+      "peak_child_rss_kib": 2056992,
+      "peak_scope": "largest native child RSS, excludes OS page cache and Python parent; processes run serially",
+      "resources": [
+        "cold_extract_Plot1_reference5_refined_v3_S2",
+        "cold_geometry_Plot1_reference5_refined_v3_S2",
+        "cold_extract_Plot1_reference5_refined_v3_S1",
+        "cold_geometry_Plot1_reference5_refined_v3_S1",
+        "cold_pair_Plot1_reference5_refined_v3"
+      ],
+      "runtime_epoch": "20261025T162801Z"
+    }
+  },
+  {
+    "marker": "feature_benchmark/ETH/s1/complete.json",
+    "record": {
+      "label": "cold_extract_ETH_reference5_refined_v3_s1",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/eth_trees/raw/trees/s1.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/cold_benchmark/ETH/reference5_refined_v3/s1",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 135.10166183699948,
+      "cpu_s": 382.446375,
+      "peak_rss_kib": 1456624,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "ETH",
+      "scene": "ETH",
+      "scan": "s1",
+      "seed": 31,
+      "concurrent_jobs": 1,
+      "reused_cold_extraction": true,
+      "reuse_policy": "first completed exact-config seed31 extraction in current runtime epoch; tree values already checked against canonical input; no timing-based selection",
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 10.38475,
+        "2": 7.38711,
+        "3": 92.16894,
+        "4": 0.28757,
+        "5": 0.005,
+        "6": 15.159559999999999,
+        "7": 1.75982,
+        "8": 0.0010500000000000002
+      }
+    }
+  },
+  {
+    "marker": "feature_benchmark/ETH/s2/complete.json",
+    "record": {
+      "label": "cold_extract_ETH_reference5_refined_v3_s2",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/eth_trees/raw/trees/s2.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/cold_benchmark/ETH/reference5_refined_v3/s2",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 178.43574154899943,
+      "cpu_s": 526.032224,
+      "peak_rss_kib": 1452676,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "ETH",
+      "scene": "ETH",
+      "scan": "s2",
+      "seed": 31,
+      "concurrent_jobs": 1,
+      "reused_cold_extraction": true,
+      "reuse_policy": "first completed exact-config seed31 extraction in current runtime epoch; tree values already checked against canonical input; no timing-based selection",
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 10.342450000000001,
+        "2": 9.24953,
+        "3": 124.63695,
+        "4": 0.23526,
+        "5": 0.00364,
+        "6": 25.75916,
+        "7": 2.15219,
+        "8": 0.01759
+      }
+    }
+  },
+  {
+    "marker": "feature_benchmark/ETH/s3/complete.json",
+    "record": {
+      "label": "feature_benchmark_ETH_s3",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/eth_trees/raw/trees/s3.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/feature_benchmark/ETH/s3",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 547.706757437998,
+      "cpu_s": 581.087525,
+      "peak_rss_kib": 1466312,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "ETH",
+      "scene": "ETH",
+      "scan": "s3",
+      "seed": 31,
+      "concurrent_jobs": 4,
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 34.42607,
+        "2": 29.60836,
+        "3": 389.5333,
+        "4": 1.26721,
+        "5": 0.04929,
+        "6": 61.53094,
+        "7": 8.09163,
+        "8": 0.02092
+      }
+    }
+  },
+  {
+    "marker": "feature_benchmark/ETH/s4/complete.json",
+    "record": {
+      "label": "feature_benchmark_ETH_s4",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/eth_trees/raw/trees/s4.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/feature_benchmark/ETH/s4",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 584.4461661169989,
+      "cpu_s": 515.33158,
+      "peak_rss_kib": 1500264,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "ETH",
+      "scene": "ETH",
+      "scan": "s4",
+      "seed": 31,
+      "concurrent_jobs": 4,
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 105.37095,
+        "2": 110.737,
+        "3": 278.06089000000003,
+        "4": 1.26185,
+        "5": 0.00817,
+        "6": 49.11048,
+        "7": 5.70172,
+        "8": 0.01222
+      }
+    }
+  },
+  {
+    "marker": "feature_benchmark/ETH/s5/complete.json",
+    "record": {
+      "label": "feature_benchmark_ETH_s5",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/eth_trees/raw/trees/s5.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/feature_benchmark/ETH/s5",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 446.97371207299875,
+      "cpu_s": 503.003876,
+      "peak_rss_kib": 1495340,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "ETH",
+      "scene": "ETH",
+      "scan": "s5",
+      "seed": 31,
+      "concurrent_jobs": 4,
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 79.76586999999999,
+        "2": 38.68593,
+        "3": 195.56288,
+        "4": 1.29624,
+        "5": 0.01274,
+        "6": 47.65128,
+        "7": 4.0812,
+        "8": 0.00708
+      }
+    }
+  },
+  {
+    "marker": "feature_benchmark/ETH/s6/complete.json",
+    "record": {
+      "label": "feature_benchmark_ETH_s6",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/eth_trees/raw/trees/s6.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/feature_benchmark/ETH/s6",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 288.9912177820006,
+      "cpu_s": 454.8535,
+      "peak_rss_kib": 1571280,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "ETH",
+      "scene": "ETH",
+      "scan": "s6",
+      "seed": 31,
+      "concurrent_jobs": 4,
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 37.51383,
+        "2": 54.39882,
+        "3": 124.90413000000001,
+        "4": 0.69384,
+        "5": 0.01031,
+        "6": 35.04472,
+        "7": 4.83124,
+        "8": 0.00651
+      }
+    }
+  },
+  {
+    "marker": "feature_benchmark/Plot1/S1/complete.json",
+    "record": {
+      "label": "cold_extract_Plot1_multi_v3_refined_S1",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/tongji_trees/received/Tongji-Trees/Plot1/S1.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/cold_benchmark/Plot1/multi_v3_refined/S1",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 315.0995904829997,
+      "cpu_s": 814.167779,
+      "peak_rss_kib": 1980676,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "scan": "S1",
+      "seed": 31,
+      "concurrent_jobs": 1,
+      "reused_cold_extraction": true,
+      "reuse_policy": "first completed exact-config seed31 extraction in current runtime epoch; tree values already checked against canonical input; no timing-based selection",
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 17.74291,
+        "2": 9.81187,
+        "3": 181.90795,
+        "4": 0.8009400000000001,
+        "5": 0.01554,
+        "6": 54.63554,
+        "7": 8.76133,
+        "8": 0.022719999999999997
+      }
+    }
+  },
+  {
+    "marker": "feature_benchmark/Plot1/S2/complete.json",
+    "record": {
+      "label": "cold_extract_Plot1_multi_v3_refined_S2",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/tongji_trees/received/Tongji-Trees/Plot1/S2.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/cold_benchmark/Plot1/multi_v3_refined/S2",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 244.09437369099942,
+      "cpu_s": 687.8008699999999,
+      "peak_rss_kib": 2057276,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "scan": "S2",
+      "seed": 31,
+      "concurrent_jobs": 1,
+      "reused_cold_extraction": true,
+      "reuse_policy": "first completed exact-config seed31 extraction in current runtime epoch; tree values already checked against canonical input; no timing-based selection",
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 18.076880000000003,
+        "2": 12.935870000000001,
+        "3": 159.10769,
+        "4": 0.28707,
+        "5": 0.010029999999999999,
+        "6": 27.59968,
+        "7": 3.13381,
+        "8": 0.00376
+      }
+    }
+  },
+  {
+    "marker": "feature_benchmark/Plot1/S3/complete.json",
+    "record": {
+      "label": "feature_benchmark_Plot1_S3",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/tongji_trees/received/Tongji-Trees/Plot1/S3.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/feature_benchmark/Plot1/S3",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 234.70171341099922,
+      "cpu_s": 284.51640599999996,
+      "peak_rss_kib": 852404,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "scan": "S3",
+      "seed": 31,
+      "concurrent_jobs": 4,
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 9.48838,
+        "2": 5.98374,
+        "3": 88.44245,
+        "4": 1.4046500000000002,
+        "5": 0.0252,
+        "6": 99.25146000000001,
+        "7": 10.74287,
+        "8": 0.01858
+      }
+    }
+  },
+  {
+    "marker": "feature_benchmark/Plot1/S4/complete.json",
+    "record": {
+      "label": "feature_benchmark_Plot1_S4",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/tongji_trees/received/Tongji-Trees/Plot1/S4.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/feature_benchmark/Plot1/S4",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 727.640699132,
+      "cpu_s": 744.180706,
+      "peak_rss_kib": 2067964,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "scan": "S4",
+      "seed": 31,
+      "concurrent_jobs": 4,
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 71.15597,
+        "2": 39.00066,
+        "3": 442.86496999999997,
+        "4": 1.46352,
+        "5": 0.06963,
+        "6": 90.80616,
+        "7": 22.37776,
+        "8": 0.03514
+      }
+    }
+  },
+  {
+    "marker": "feature_benchmark/Plot1/S5/complete.json",
+    "record": {
+      "label": "feature_benchmark_Plot1_S5",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/tongji_trees/received/Tongji-Trees/Plot1/S5.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/feature_benchmark/Plot1/S5",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 617.2950109489993,
+      "cpu_s": 702.939168,
+      "peak_rss_kib": 2002792,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "scan": "S5",
+      "seed": 31,
+      "concurrent_jobs": 4,
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 57.40511,
+        "2": 23.388740000000002,
+        "3": 406.90599,
+        "4": 0.68169,
+        "5": 0.01042,
+        "6": 88.86523,
+        "7": 4.89817,
+        "8": 0.02026
+      }
+    }
+  },
+  {
+    "marker": "feature_benchmark/Plot2/S1/complete.json",
+    "record": {
+      "label": "feature_benchmark_Plot2_S1",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/tongji_trees/received/Tongji-Trees/Plot2/S1.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/feature_benchmark/Plot2/S1",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 506.55129027199837,
+      "cpu_s": 389.97920500000004,
+      "peak_rss_kib": 1995124,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "Tongji",
+      "scene": "Plot2",
+      "scan": "S1",
+      "seed": 31,
+      "concurrent_jobs": 4,
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 64.43164,
+        "2": 45.960730000000005,
+        "3": 206.98959,
+        "4": 1.8156199999999998,
+        "5": 0.02293,
+        "6": 102.00722,
+        "7": 19.34171,
+        "8": 0.01257
+      }
+    }
+  },
+  {
+    "marker": "feature_benchmark/Plot2/S2/complete.json",
+    "record": {
+      "label": "feature_benchmark_Plot2_S2",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/tongji_trees/received/Tongji-Trees/Plot2/S2.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/feature_benchmark/Plot2/S2",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 600.9642900359977,
+      "cpu_s": 595.025026,
+      "peak_rss_kib": 2036940,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "Tongji",
+      "scene": "Plot2",
+      "scan": "S2",
+      "seed": 31,
+      "concurrent_jobs": 4,
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 85.30713,
+        "2": 14.699879999999999,
+        "3": 287.30528999999996,
+        "4": 1.27294,
+        "5": 0.0319,
+        "6": 102.20331,
+        "7": 16.37151,
+        "8": 0.01748
+      }
+    }
+  },
+  {
+    "marker": "feature_benchmark/Plot2/S3/complete.json",
+    "record": {
+      "label": "feature_benchmark_Plot2_S3",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/tongji_trees/received/Tongji-Trees/Plot2/S3.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/feature_benchmark/Plot2/S3",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 608.2358343829983,
+      "cpu_s": 530.480229,
+      "peak_rss_kib": 1860396,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "Tongji",
+      "scene": "Plot2",
+      "scan": "S3",
+      "seed": 31,
+      "concurrent_jobs": 4,
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 43.46695,
+        "2": 23.617259999999998,
+        "3": 242.3366,
+        "4": 2.2334,
+        "5": 0.03071,
+        "6": 162.67398,
+        "7": 26.22407,
+        "8": 0.053590000000000006
+      }
+    }
+  },
+  {
+    "marker": "feature_benchmark/Plot2/S4/complete.json",
+    "record": {
+      "label": "feature_benchmark_Plot2_S4",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/tongji_trees/received/Tongji-Trees/Plot2/S4.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/feature_benchmark/Plot2/S4",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 645.0690647930023,
+      "cpu_s": 719.0001120000001,
+      "peak_rss_kib": 2039796,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "Tongji",
+      "scene": "Plot2",
+      "scan": "S4",
+      "seed": 31,
+      "concurrent_jobs": 4,
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 49.713620000000006,
+        "2": 19.07855,
+        "3": 367.50935,
+        "4": 1.66827,
+        "5": 0.023190000000000002,
+        "6": 133.46758,
+        "7": 6.44676,
+        "8": 0.06273
+      }
+    }
+  },
+  {
+    "marker": "feature_benchmark/Plot2/S5/complete.json",
+    "record": {
+      "label": "feature_benchmark_Plot2_S5",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/tongji_trees/received/Tongji-Trees/Plot2/S5.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/feature_benchmark/Plot2/S5",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 569.7285698369997,
+      "cpu_s": 553.2155319999999,
+      "peak_rss_kib": 1953480,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "Tongji",
+      "scene": "Plot2",
+      "scan": "S5",
+      "seed": 31,
+      "concurrent_jobs": 4,
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 64.30123,
+        "2": 36.86576,
+        "3": 271.7278,
+        "4": 0.49038,
+        "5": 0.01257,
+        "6": 76.0492,
+        "7": 18.789740000000002,
+        "8": 0.07662999999999999
+      }
+    }
+  },
+  {
+    "marker": "feature_benchmark/Plot3/S1/complete.json",
+    "record": {
+      "label": "feature_benchmark_Plot3_S1",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/tongji_trees/received/Tongji-Trees/Plot3/S1.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/feature_benchmark/Plot3/S1",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 443.60684224200304,
+      "cpu_s": 366.42006100000003,
+      "peak_rss_kib": 2172228,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "Tongji",
+      "scene": "Plot3",
+      "scan": "S1",
+      "seed": 31,
+      "concurrent_jobs": 4,
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 128.46116,
+        "2": 63.5605,
+        "3": 121.62634,
+        "4": 0.2875,
+        "5": 0.00455,
+        "6": 24.21543,
+        "7": 7.2843800000000005,
+        "8": 0.00428
+      }
+    }
+  },
+  {
+    "marker": "feature_benchmark/Plot3/S2/complete.json",
+    "record": {
+      "label": "feature_benchmark_Plot3_S2",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/tongji_trees/received/Tongji-Trees/Plot3/S2.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/feature_benchmark/Plot3/S2",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 364.398694331001,
+      "cpu_s": 459.656429,
+      "peak_rss_kib": 2156700,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "Tongji",
+      "scene": "Plot3",
+      "scan": "S2",
+      "seed": 31,
+      "concurrent_jobs": 4,
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 45.4465,
+        "2": 16.215139999999998,
+        "3": 175.42467000000002,
+        "4": 0.6190599999999999,
+        "5": 0.0065,
+        "6": 37.39738,
+        "7": 8.65109,
+        "8": 0.01431
+      }
+    }
+  },
+  {
+    "marker": "feature_benchmark/Plot3/S3/complete.json",
+    "record": {
+      "label": "feature_benchmark_Plot3_S3",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/tongji_trees/received/Tongji-Trees/Plot3/S3.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/feature_benchmark/Plot3/S3",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 454.509135256998,
+      "cpu_s": 456.508102,
+      "peak_rss_kib": 2073620,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "Tongji",
+      "scene": "Plot3",
+      "scan": "S3",
+      "seed": 31,
+      "concurrent_jobs": 4,
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 87.10531,
+        "2": 14.13383,
+        "3": 222.1892,
+        "4": 1.56411,
+        "5": 0.00881,
+        "6": 37.6165,
+        "7": 5.78024,
+        "8": 0.01075
+      }
+    }
+  },
+  {
+    "marker": "feature_benchmark/Plot3/S4/complete.json",
+    "record": {
+      "label": "feature_benchmark_Plot3_S4",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/tongji_trees/received/Tongji-Trees/Plot3/S4.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/feature_benchmark/Plot3/S4",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 455.16487473899906,
+      "cpu_s": 487.577083,
+      "peak_rss_kib": 2118216,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "Tongji",
+      "scene": "Plot3",
+      "scan": "S4",
+      "seed": 31,
+      "concurrent_jobs": 4,
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 83.06427000000001,
+        "2": 19.318099999999998,
+        "3": 231.67276999999999,
+        "4": 0.92565,
+        "5": 0.00833,
+        "6": 46.985519999999994,
+        "7": 6.45703,
+        "8": 0.00999
+      }
+    }
+  },
+  {
+    "marker": "feature_benchmark/Plot3/S5/complete.json",
+    "record": {
+      "label": "feature_benchmark_Plot3_S5",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/tongji_trees/received/Tongji-Trees/Plot3/S5.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/feature_benchmark/Plot3/S5",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 605.7249879079973,
+      "cpu_s": 577.426198,
+      "peak_rss_kib": 2321196,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "Tongji",
+      "scene": "Plot3",
+      "scan": "S5",
+      "seed": 31,
+      "concurrent_jobs": 4,
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 62.95921,
+        "2": 166.14401,
+        "3": 204.59076000000002,
+        "4": 1.47508,
+        "5": 0.0147,
+        "6": 31.45616,
+        "7": 9.227780000000001,
+        "8": 0.10639
+      }
+    }
+  },
+  {
+    "marker": "feature_benchmark/Plot4/S1/complete.json",
+    "record": {
+      "label": "feature_benchmark_Plot4_S1",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/tongji_trees/received/Tongji-Trees/Plot4/S1.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/feature_benchmark/Plot4/S1",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 596.3588259400021,
+      "cpu_s": 473.58254200000005,
+      "peak_rss_kib": 2224072,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "Tongji",
+      "scene": "Plot4",
+      "scan": "S1",
+      "seed": 31,
+      "concurrent_jobs": 4,
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 120.42238,
+        "2": 44.7229,
+        "3": 162.3909,
+        "4": 2.4663000000000004,
+        "5": 0.00883,
+        "6": 115.27969,
+        "7": 14.80593,
+        "8": 0.08794
+      }
+    }
+  },
+  {
+    "marker": "feature_benchmark/Plot4/S2/complete.json",
+    "record": {
+      "label": "feature_benchmark_Plot4_S2",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/tongji_trees/received/Tongji-Trees/Plot4/S2.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/feature_benchmark/Plot4/S2",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 483.657836716,
+      "cpu_s": 507.804118,
+      "peak_rss_kib": 2135732,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "Tongji",
+      "scene": "Plot4",
+      "scan": "S2",
+      "seed": 31,
+      "concurrent_jobs": 4,
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 58.390260000000005,
+        "2": 44.128589999999996,
+        "3": 238.94932999999997,
+        "4": 0.81164,
+        "5": 0.006900000000000001,
+        "6": 36.1424,
+        "7": 6.5423100000000005,
+        "8": 0.052700000000000004
+      }
+    }
+  },
+  {
+    "marker": "feature_benchmark/Plot4/S3/complete.json",
+    "record": {
+      "label": "feature_benchmark_Plot4_S3",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/tongji_trees/received/Tongji-Trees/Plot4/S3.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/feature_benchmark/Plot4/S3",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 520.3011124609984,
+      "cpu_s": 527.969731,
+      "peak_rss_kib": 2245548,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "Tongji",
+      "scene": "Plot4",
+      "scan": "S3",
+      "seed": 31,
+      "concurrent_jobs": 4,
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 57.82949,
+        "2": 59.60183,
+        "3": 237.20323000000002,
+        "4": 1.08826,
+        "5": 0.00859,
+        "6": 46.95574,
+        "7": 11.6154,
+        "8": 0.10055
+      }
+    }
+  },
+  {
+    "marker": "feature_benchmark/Plot4/S4/complete.json",
+    "record": {
+      "label": "feature_benchmark_Plot4_S4",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/tongji_trees/received/Tongji-Trees/Plot4/S4.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/feature_benchmark/Plot4/S4",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 582.592366541001,
+      "cpu_s": 510.250808,
+      "peak_rss_kib": 2157920,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "Tongji",
+      "scene": "Plot4",
+      "scan": "S4",
+      "seed": 31,
+      "concurrent_jobs": 4,
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 107.4856,
+        "2": 41.33895,
+        "3": 201.47598000000002,
+        "4": 1.35816,
+        "5": 0.01789,
+        "6": 81.83695,
+        "7": 7.19015,
+        "8": 0.015050000000000001
+      }
+    }
+  },
+  {
+    "marker": "feature_benchmark/Plot4/S5/complete.json",
+    "record": {
+      "label": "feature_benchmark_Plot4_S5",
+      "command": [
+        "/workspace/.circularmatch-env/run",
+        "/workspace/CircularMatch/build/cm_extract_batch",
+        "--input=/workspace/CircularMatch/data/tongji_trees/received/Tongji-Trees/Plot4/S5.ply",
+        "--out=/workspace/CircularMatch/results/unified_20261025/runs/feature_benchmark/Plot4/S5",
+        "--config=config/default.ini",
+        "--version=step",
+        "--cluster.tolerance=0.20",
+        "--scanner.x0=0",
+        "--scanner.y0=0",
+        "--scanner.z0=0",
+        "--experiment.seed_base=31",
+        "--experiment.n_seeds=1"
+      ],
+      "exit_code": 0,
+      "wall_s": 640.6826902590001,
+      "cpu_s": 599.1797809999999,
+      "peak_rss_kib": 2146732,
+      "runtime_epoch": "20261025T162801Z",
+      "dataset": "Tongji",
+      "scene": "Plot4",
+      "scan": "S5",
+      "seed": 31,
+      "concurrent_jobs": 4,
+      "stage_times_s": {
+        "0": 0.0,
+        "1": 64.67653,
+        "2": 50.45926,
+        "3": 353.34115,
+        "4": 2.4894000000000003,
+        "5": 0.05781,
+        "6": 32.69757,
+        "7": 14.41835,
+        "8": 0.03688
+      }
+    }
+  }
+]

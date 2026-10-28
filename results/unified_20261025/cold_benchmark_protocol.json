@@ -1,0 +1,36 @@
+{
+  "pairs": [
+    {
+      "dataset": "ETH",
+      "scene": "ETH",
+      "source": "s1",
+      "target": "s2",
+      "gt": "data/eth_trees/raw/trees/groundtruth/s1-s2.tfm",
+      "gt_sha256": "7ec1581ed7f3f4cdabd8619b5a1e1be00a103ed37b0ef20e6b907d717a551b92",
+      "direction": "source to target"
+    },
+    {
+      "dataset": "Tongji",
+      "scene": "Plot1",
+      "source": "S2",
+      "target": "S1",
+      "gt": "data/tongji_trees/received/Tongji-Trees/Plot1/S2_S1.txt",
+      "gt_sha256": "e153d1d472e8953359a0b73ca7eae8087636f8568869cfdc148d941622e684fa",
+      "direction": "source to target"
+    }
+  ],
+  "seed": 31,
+  "methods": [
+    "reference5_raw",
+    "reference5_refined",
+    "multi_refined",
+    "multi_v2_refined",
+    "reference5_refined_v3",
+    "multi_v3_refined"
+  ],
+  "order": "ETH forward; Tongji reverse (counterbalanced)",
+  "application_cache": "cold: re-extract both stations and rebuild geometry if needed",
+  "filesystem_cache": "uncontrolled/warm; no OS cache reset",
+  "threads": 4,
+  "workers": 1
+}

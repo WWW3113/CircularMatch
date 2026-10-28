@@ -1,0 +1,9 @@
+profile,solver,cases,success
+baseline,svd,50,18
+baseline,svd+ransac,50,18
+smooth,svd,50,20
+smooth,svd+ransac,50,24
+coarse,svd,50,20
+coarse,svd+ransac,50,21
+quantile1,svd,50,11
+quantile1,svd+ransac,50,15

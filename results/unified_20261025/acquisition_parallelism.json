@@ -1,0 +1,10 @@
+{
+  "started_utc": "2026-10-25T16:44:14.913420+00:00",
+  "extra_workers": 1,
+  "process_threads": 4,
+  "cpu_quota_cores": 4,
+  "scope": "accuracy collection only; cold timing remains serial; no algorithm/parameter changes",
+  "possible_duplicate_tail": "deduplicated by scene,pair,seed,method; never increases accuracy sample count",
+  "scoring_tail_assist": "ETH only, one independent full-source evaluator alongside main scorer; results copied atomically; duplicate deterministic rows must match; ends before cold benchmark",
+  "progress_workbook_rendering": "Overlapped legacy v1 Plot1 multi_refined cold case; not an exclusive speed sample. All four current-epoch v3 matched-control/primary cold cases finished before rendering. Native method/config unchanged."
+}

@@ -1,0 +1,13 @@
+group,method,solver,cases,gained,lost,common_success,mean_ep_change_m
+Plot2_all,position_only,svd,100,4,3,34,-0.029245933940882353
+Plot2_all,full_pipeline,svd,100,7,6,31,-0.045461548755483874
+Plot2_all,position_only,svd+ransac,100,21,7,27,-0.02483754848592593
+Plot2_all,full_pipeline,svd+ransac,100,23,9,25,-0.033632359353600004
+development,position_only,svd,50,3,1,17,-0.028464591215294117
+development,full_pipeline,svd,50,4,3,15,-0.051829995105333336
+development,position_only,svd+ransac,50,9,3,15,-0.03667809216533334
+development,full_pipeline,svd+ransac,50,12,3,15,-0.053643885354000005
+within_plot_validation,position_only,svd,50,1,2,17,-0.03002727666647059
+within_plot_validation,full_pipeline,svd,50,3,3,16,-0.039491130302500004
+within_plot_validation,position_only,svd+ransac,50,12,4,12,-0.010036868886666665
+within_plot_validation,full_pipeline,svd+ransac,50,11,6,10,-0.0036150703530000022

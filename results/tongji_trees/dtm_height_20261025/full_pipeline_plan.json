@@ -1,0 +1,24 @@
+{
+  "selected_profile": "smooth",
+  "plots": [
+    2
+  ],
+  "seeds": [
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40
+  ],
+  "fit_radius": 6,
+  "fill_max_radius": 6,
+  "selection_frozen_sha256": "f8f45efa3cacafcb3c372003fed75b1cc1d9b05d0736abf80de5a8b6e31e4756",
+  "scope": "post-selection full-pipeline follow-up; same Plot2, not new independent validation",
+  "parameters_reselected": false,
+  "frozen_at_utc": "2026-10-25T12:51:46.798793+00:00"
+}

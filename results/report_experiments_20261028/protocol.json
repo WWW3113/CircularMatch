@@ -1,0 +1,60 @@
+{
+  "seeds": [
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40
+  ],
+  "datasets": [
+    "Tongji-trees",
+    "ETH-tree"
+  ],
+  "pairs": 55,
+  "step": "Original step retention; scanner origin zero; same extraction unless full-smooth",
+  "thresholds": [
+    0.05,
+    0.1
+  ],
+  "solvers": [
+    "svd",
+    "svd+ransac"
+  ],
+  "recovery": "off for 4-cell coarse; evidence trigger6 for DTM",
+  "dtm": {
+    "baseline": {
+      "cell": 0.5,
+      "fit": 2,
+      "fill": 5
+    },
+    "smooth": {
+      "cell": 0.5,
+      "fit": 6,
+      "fill": 6
+    }
+  },
+  "success": "rotation<2deg AND translation<0.5m",
+  "ep": "All source points, finite failures retained; no-output failures retained in success denominator",
+  "method_selection": "No retuning or per-scene selection. Run frozen smooth profile on missing datasets, report regressions.",
+  "scope": "Development/retrospective benchmark, not unseen forests. Native inference does not use GT to choose poses.",
+  "workers": 2,
+  "omp_threads_per_child": 4,
+  "missing_work": [
+    "ETH four coarse configurations seed31–40",
+    "ETH baseline/smooth fixed-axis DTM",
+    "ETH and Tongji Plot1/3/4 full smooth extraction and registration"
+  ],
+  "source_sha256": {
+    "src/cn_recovery.cpp": "2d496347627b077ddccd409d91f4fbe8f5c186044be91f3fe990328bb183a428",
+    "src/registration.cpp": "9a9f33d15f20ff8191baf3544dbac20af0926c5897bd280803ccaf931c690970",
+    "src/dtm.cpp": "22efcd2db669ec49fe16c866ac629a616ff83fcefa2a701b553c889ed82b0975",
+    "config/default.ini": "bd94251c5eaca7c81b46826b517b2feaaf35deb5ff4a4299756c2c2a6651bb35",
+    "apps/cm_register.cpp": "4b1f915a1889003c22882a601a315bc8371080e9740d2652989d5b5fa4fb2f9d",
+    "apps/cm_dtm_reposition.cpp": "db24f232ef70994c943b4aaa6b014cd21ea96edf9a39f4b658cfbdae79fa487a"
+  }
+}

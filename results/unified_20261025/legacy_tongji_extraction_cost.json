@@ -1,0 +1,110 @@
+{
+  "scope": "Historical Tongji 10-seed feature acquisition, including recorded interrupted attempts; wall only, CPU and maxRSS were not measured; not a current-epoch speed comparison",
+  "attempts": [
+    {
+      "label": "extract_Plot1_S3",
+      "exit_code": 0,
+      "seconds": 385.8782155399999
+    },
+    {
+      "label": "extract_Plot1_S2",
+      "exit_code": 0,
+      "seconds": 520.0950113220001
+    },
+    {
+      "label": "extract_Plot1_S1",
+      "exit_code": 0,
+      "seconds": 828.3958376389999
+    },
+    {
+      "label": "extract_Plot4_S5",
+      "exit_code": 0,
+      "seconds": 272.84371437899995
+    },
+    {
+      "label": "extract_Plot1_S4",
+      "exit_code": 0,
+      "seconds": 651.1678304339998
+    },
+    {
+      "label": "extract_Plot1_S5",
+      "exit_code": 0,
+      "seconds": 584.214110118
+    },
+    {
+      "label": "extract_Plot4_S4",
+      "exit_code": 0,
+      "seconds": 366.7185377420001
+    },
+    {
+      "label": "extract_Plot2_S1",
+      "exit_code": 0,
+      "seconds": 576.0540171530001
+    },
+    {
+      "label": "extract_Plot2_S3",
+      "exit_code": 0,
+      "seconds": 613.7038289459997
+    },
+    {
+      "label": "extract_Plot4_S3",
+      "exit_code": 0,
+      "seconds": 425.979347729
+    },
+    {
+      "label": "extract_Plot2_S2",
+      "exit_code": 0,
+      "seconds": 767.39762471
+    },
+    {
+      "label": "extract_Plot2_S4",
+      "exit_code": 0,
+      "seconds": 688.5991389240003
+    },
+    {
+      "label": "extract_Plot3_S1",
+      "exit_code": 0,
+      "seconds": 351.7013370069999
+    },
+    {
+      "label": "extract_Plot4_S1",
+      "exit_code": 0,
+      "seconds": 324.5966451590002
+    },
+    {
+      "label": "extract_Plot3_S2",
+      "exit_code": 0,
+      "seconds": 263.6336752299999
+    },
+    {
+      "label": "extract_Plot2_S5",
+      "exit_code": 0,
+      "seconds": 644.6903717209998
+    },
+    {
+      "label": "extract_Plot3_S3",
+      "exit_code": 0,
+      "seconds": 238.20393231900016
+    },
+    {
+      "label": "extract_Plot4_S2",
+      "exit_code": -15,
+      "seconds": 353.1555096850002
+    },
+    {
+      "label": "extract_Plot3_S4",
+      "exit_code": 0,
+      "seconds": 293.1135267179998
+    },
+    {
+      "label": "extract_Plot3_S5",
+      "exit_code": 0,
+      "seconds": 366.93642816199963
+    },
+    {
+      "label": "extract_Plot4_S2",
+      "exit_code": 0,
+      "seconds": 367.3028148450003
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "scope": "Week 1 missing-data audit",
+  "datasets": [
+    "Tongji-trees (Plot1-4)",
+    "ETH-tree"
+  ],
+  "case_rows": 2200,
+  "seeds": "31-40",
+  "recovery": "off in all four combinations",
+  "local_results_missing": false,
+  "old_workbook_omissions_fixed": [
+    "Explicit paper/local parameter comparison",
+    "Paper matching/total timing references",
+    "All 20 combinations versus paper and local5cm/SVD success deltas",
+    "Error reductions with finite-population checks",
+    "Specific reasons for unavailable or incomparable values"
+  ],
+  "unavailable_from_paper": [
+    "Success threshold and explicit aggregation denominator",
+    "Exact rigid solver implementation",
+    "Actual OpenMP thread count",
+    "Separate e_R/e_t results"
+  ],
+  "not_comparable": [
+    "Cross-paper timing scopes/hardware",
+    "Whole-population error reduction when finite case sets differ"
+  ],
+  "workbook_tables": {
+    "main": {
+      "sheet": "四組結果比較",
+      "header": 5,
+      "start": 6,
+      "end": 10,
+      "columns": 8
+    },
+    "detail": {
+      "sheet": "精度時間與成對比較",
+      "header": 5,
+      "start": 6,
+      "end": 25,
+      "columns": 8
+    },
+    "direct_differences": {
+      "sheet": "精度時間與成對比較",
+      "header": 55,
+      "start": 56,
+      "end": 75,
+      "columns": 8
+    },
+    "paper_settings": {
+      "sheet": "設定與說明",
+      "header": 43,
+      "start": 44,
+      "end": 47,
+      "columns": 5
+    },
+    "paper_time": {
+      "sheet": "設定與說明",
+      "header": 51,
+      "start": 52,
+      "end": 56,
+      "columns": 6
+    }
+  },
+  "old_workbook_display_defects_fixed": [
+    "10cm/SVD 100/100 displayed ### due to insufficient column width",
+    "Chart overlapped the explanatory note"
+  ],
+  "xlsx_sha256": "232664b4cdfd35efb4e8b082f87505529932d2826f214ef91dc8b1dc6987f9c5",
+  "txt_sha256": "80bc5956f4f6349a8b66de70c7c3e5785d53ff74576f2fa90f3a558299bc5eb9",
+  "final_visual_check": {
+    "rendered_all_pages_no_hash_overflow": true,
+    "all_eight_Plot1_Plot3_success_counts_visible": true,
+    "preview_local_only": "runs/previews/final/report_01_CN距離容差與Solver.pdf"
+  },
+  "completed_groups": 20
+}

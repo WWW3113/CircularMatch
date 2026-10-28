@@ -1,0 +1,37 @@
+[
+  {
+    "name": "author_original",
+    "commit": "1e9623fd8893633770b689baf8bda66f7f36f307",
+    "status": "source_unavailable",
+    "source": "https://github.com/MercerSU/CircularMatch"
+  },
+  {
+    "name": "paper_inspired_reference",
+    "commit": "b8eefb0c677a56d55428c86cb43839eec74639a0",
+    "status": "runnable; not author executable",
+    "policy": "reference5_raw; see extra extraction checks"
+  },
+  {
+    "name": "ETH_frozen_improvement",
+    "source": "results/eth_trees/failure_followup_20261025/frozen_recovery.json",
+    "status": "preserved; first ETH-to-Tongji test immutable"
+  },
+  {
+    "name": "unified_v1",
+    "commit": "b8eefb0c677a56d55428c86cb43839eec74639a0",
+    "source": "method_frozen.json",
+    "status": "full five-scene results retained"
+  },
+  {
+    "name": "unified_v2",
+    "commit": "8b9b1ae",
+    "source": "method_v2_frozen.json",
+    "status": "same method evaluated on all five scenes; no scene-specific version stitching"
+  },
+  {
+    "name": "unified_v3",
+    "commit": "e0c573c42433b65588d0a6158c0f7ae3ea09ec99",
+    "source": "method_v3_frozen.json",
+    "status": "full five-scene evaluation completed; preselected primary retained, both matched refinement controls included"
+  }
+]

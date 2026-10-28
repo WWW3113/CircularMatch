@@ -1,0 +1,19 @@
+{
+  "frozen_at_utc": "2026-10-25T13:51:27.754487+00:00",
+  "reason": "v1 missed four weak-correspondence cases; retain v1 and evaluate broader coverage on all scenes",
+  "code_commit": "8b9b1ae3a84b75ff3261e06ef841b2605ac700e7",
+  "top_descriptor_candidates": 20,
+  "max_evidence_edges": 120,
+  "max_pair_seeds": 7140,
+  "max_3d_triples": 10000,
+  "max_diverse_poses": 256,
+  "refined_candidates": 8,
+  "initialization": "upright yaw from two horizontal correspondences; vertical translation median; existing full6DOF coarse estimate retained; final refinement full6DOF",
+  "selection": "bidirectional geometry quality times log1p(global horizontal tree support); no GT",
+  "sha256": {
+    "apps/cm_geometry_register_v2.cpp": "9a570d42c65563e8560f9c6c56b957d20977947e0e86a9b209bbbbede4bca3da",
+    "build/cm_geometry_register_v2": "998a4cac50b6954cb13457266d279ae705c9b382c2b6f442c5e8bc827f2eb23a",
+    "apps/geometry_refinement.cpp": "b634d90de1e542f96042ce61a6f18107127dfacf7da7fee4ea5321504db24dce",
+    "include/cm/geometry_refinement.hpp": "7c53d4b1c60296a5962423096318e8072a96463f90d6fd32c93da8978c3ef27d"
+  }
+}

@@ -1,0 +1,252 @@
+{
+  "dataset": "WHU-TLS / Park (YOHO public derivative)",
+  "not_fgi_forest": true,
+  "source": "https://github.com/HpWang-whu/YOHO",
+  "download": "https://drive.google.com/file/d/1QjlxIVMQPinNWt5LKhtaG9TTo2j3TGs_/view",
+  "archive_sha256": "33a7a29577faa631c2a3bec828f9552182dbcbfd0da67ce572c8c28df60caf0a",
+  "pair_convention": "YOHO utils/dataset.py: header target(id0),source(id1),N; matrix maps source to target",
+  "provided_pairs": [
+    [
+      23,
+      24
+    ],
+    [
+      22,
+      24
+    ],
+    [
+      11,
+      12
+    ],
+    [
+      8,
+      9
+    ],
+    [
+      27,
+      26
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      21,
+      16
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      10,
+      11
+    ],
+    [
+      18,
+      6
+    ],
+    [
+      17,
+      6
+    ],
+    [
+      31,
+      13
+    ],
+    [
+      9,
+      10
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      14,
+      13
+    ],
+    [
+      26,
+      29
+    ],
+    [
+      12,
+      13
+    ],
+    [
+      28,
+      27
+    ],
+    [
+      6,
+      4
+    ],
+    [
+      24,
+      25
+    ],
+    [
+      29,
+      30
+    ],
+    [
+      4,
+      5
+    ],
+    [
+      20,
+      19
+    ],
+    [
+      15,
+      14
+    ],
+    [
+      5,
+      8
+    ],
+    [
+      25,
+      27
+    ],
+    [
+      7,
+      5
+    ],
+    [
+      30,
+      31
+    ],
+    [
+      16,
+      15
+    ],
+    [
+      19,
+      18
+    ]
+  ],
+  "scans": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31
+  ],
+  "seeds": [
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30
+  ],
+  "extraction": {
+    "config": "config/default.ini",
+    "cluster_tolerance": 0.2,
+    "retention": "step",
+    "verticality": 0.9,
+    "scanner_origin": [
+      0,
+      0,
+      0
+    ]
+  },
+  "registration": {
+    "threshold": 0.1,
+    "primary_solver": "svd+ransac",
+    "recovery_mode": "evidence",
+    "recovery_trigger": 6
+  },
+  "success": "rotation<2deg AND translation<0.5m; full source-cloud e_p",
+  "no_new_dataset_tuning": true,
+  "physical_scanner_origin_independently_verified": false,
+  "limitations": [
+    "Public processed point clouds; source does not provide original scanner-center metadata",
+    "Park is a mixed park environment, not the FGI-Forest used in the paper",
+    "Keep fixed ETH settings even if density or extraction performance is poor"
+  ],
+  "inference_sha256": {
+    "src/cn_recovery.cpp": "2d496347627b077ddccd409d91f4fbe8f5c186044be91f3fe990328bb183a428",
+    "include/cm/cn_recovery.hpp": "db38c3000ae7f1605672d368b19ee0d710e0157495114c9552613895a52d3424",
+    "src/cn_matching.cpp": "5abe78ce4afd0d90909bed40e76ff746247c8246488031d92e925f88734ae122",
+    "include/cm/cn_matching.hpp": "16097744e3b0fdd95d34dcd33823eb1f94cc31af8e97560b14603ea7f886c561",
+    "src/cn_descriptor.cpp": "e5d9e1854ec573eebe117252f74c959299f63cd00842b28dede668388082c755",
+    "src/registration.cpp": "9a9f33d15f20ff8191baf3544dbac20af0926c5897bd280803ccaf931c690970",
+    "apps/cm_register.cpp": "4b1f915a1889003c22882a601a315bc8371080e9740d2652989d5b5fa4fb2f9d",
+    "config/default.ini": "bd94251c5eaca7c81b46826b517b2feaaf35deb5ff4a4299756c2c2a6651bb35",
+    "build/cm_register": "c1ecafd8d0c138e8b162b7acfd4f8683766fa407ef5f587d93f691dfded22878",
+    "build/cm_extract_batch": "b121477be1467800f6b3b5673f45d58959dfa895db882c2d2ad779975e73c1aa"
+  },
+  "input_sha256": {
+    "cloud_bin_0.ply": "53d713f56056da9ecf8ec4ea46115b2ed0fe0f235373941f392fcf351902f75e",
+    "cloud_bin_1.ply": "44e6865ed106894b8de511d833caa2d8ca4ade35e3933dbcfb30dabb5af4c9c7",
+    "cloud_bin_10.ply": "8c8bb5e364c8732c8e46976b91ff0338c772df978a7621bc98d7da44268c3cfc",
+    "cloud_bin_11.ply": "a291c109e791053e5aa9c080c593277fd99c1a850f0a78edf6bcac679437deac",
+    "cloud_bin_12.ply": "f4b1ab0bca266cec98c14d4255c79144b1000d05f663232c45e3508c5b1536d4",
+    "cloud_bin_13.ply": "5e7efff2b082bd6f80d62f269d00f87b484b9b3342dcc5a69d129c518cf207d8",
+    "cloud_bin_14.ply": "64bab1c9f7b2266d316d91f48e91cc0a456a312cea0c632863e7883a0bef9d8f",
+    "cloud_bin_15.ply": "38f8d63fe8d35f5c0dd9e12ea3311fca59ecfbeda6f9ec9c50bc00ef3eab5621",
+    "cloud_bin_16.ply": "641acf2d25e361c124f2a8580bef7a41768b455514e2cb9dbbdf1ed013b6c1af",
+    "cloud_bin_17.ply": "a54ee4176b213c3438eb39d636f651bc618b79dc708b39b067ae569b13570e15",
+    "cloud_bin_18.ply": "215e313fae85c37b9ef39f6c965f81ded2ae8dbc8d828399579afd6d52b8d4dc",
+    "cloud_bin_19.ply": "d07712992eac2f4afcee1db0352db42ba4197738980833430dcc5e9cf5e03b87",
+    "cloud_bin_2.ply": "40fca4b8d1e6c3a1b9fe95fe02c2a8946bffe35968d194178f0bf96acf28507f",
+    "cloud_bin_20.ply": "3ff7b8028c8119fb68091c7c408c965c25aef7de740c22eae651a0957a85c9c1",
+    "cloud_bin_21.ply": "f1b4cfc10fa6f542cc23af852d710ffd9bdddf00721239e9a0448a20e85a29a0",
+    "cloud_bin_22.ply": "b5193b5cd1ebb4f3877af3862f1b9936fb5ee26929a699e0cb2abdd7e94f4489",
+    "cloud_bin_23.ply": "0e3bc2cdc544ed59ebecc8a78bc2dc1bc5672002b21c32ce623aa68bc6d39e6b",
+    "cloud_bin_24.ply": "98a60bb90f753b6cec073668e81b97086c782e9b70568e79853d3b150691ff2b",
+    "cloud_bin_25.ply": "a0591d2c416360d2fbcc5e9a619fc7fb7837a26c96c00e236b82187200c04dd7",
+    "cloud_bin_26.ply": "a157a90e5e5186a15cddf9b03cb1a89e3a435236eddbafefc207a8c8fd930cb2",
+    "cloud_bin_27.ply": "2e9b68203413dc59a581d198943e57ae34ab9b187239f7d7a3c34e478cefd059",
+    "cloud_bin_28.ply": "d08d28e2bd14ca1da158bf418079bdecfa1c87375716ba707324e03d9f452e69",
+    "cloud_bin_29.ply": "58ab2fd3ec85f1c0f28db52408f796830b405e6f8a46612a5da64d6a44fbf032",
+    "cloud_bin_3.ply": "df4346baada698bcd4c984cc3fde195351f5d5ede08d5169d9e8a8ffd62fefaa",
+    "cloud_bin_30.ply": "bfd9a42353df4d57f5fd0511b45bba2035dd6264e08d00370505d1209bc75b65",
+    "cloud_bin_31.ply": "2ae098a4e26342706709e61bb78812ecbbca20f5d444a74681887b1813b9ea4d",
+    "cloud_bin_4.ply": "f69b1c1811b3e003a32976f25e4768b1869e3f2b3acf70795d874cf731146368",
+    "cloud_bin_5.ply": "1c6e55767705e3fc76412266253f57d3628890678d14e353721a8b5ce15c1515",
+    "cloud_bin_6.ply": "9bde74297065861c151ba535daac9abf042fc6496e60e7eda9f77a12e9d6d42a",
+    "cloud_bin_7.ply": "2da89bb5bc3049cfeae60b5bdd5728c44089046536a4d0637a752224b0a43437",
+    "cloud_bin_8.ply": "68eca5e3bb7130bdc146ef78a1bfb25d1295aa8259c7a4179eaaefacaf1e7513",
+    "cloud_bin_9.ply": "0668366316e27b05b282c63e083ac1994b917958143abf7f841fcd2e1c05cdff"
+  },
+  "gt_sha256": "1d6d79bcb730e95d2d72d9468849ec886cd31ff7b0ff782bedfef6d51cb1accc"
+}

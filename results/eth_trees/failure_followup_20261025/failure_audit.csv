@@ -1,0 +1,9 @@
+seed,pair,official,n_src,n_tgt,gt_proximity_mutual_trees,gt_proximity_pairs,true_gate_pass,true_dc3,true_retained_candidates,accepted_pairs,true_accepted_pairs,true_top3_evidence_pairs,best_score,used_triangle,matched_xy_minor_spread_m,matched_gt_xyz_median_m,mutual_gt_z_median_m,diagnosis
+11,s1-s6,0,55,80,13,18,8,6,6,5,5,13,59.0,0,9.599661777927688,0.2913078746,0.17467739106699992,transform_error_with_five_matches
+12,s1-s6,0,54,82,12,16,6,4,4,0,0,11,34.0,1,,,0.1421607598375002,too_few_matches
+14,s1-s5,0,53,89,19,25,9,9,7,1,1,15,43.0,0,,0.1895936009,0.10977793556100046,too_few_matches
+15,s1-s5,0,54,85,17,21,4,4,4,2,2,18,49.0,0,2.1566911383178449e-16,0.053693669815,0.09622381284699966,too_few_matches
+16,s1-s4,0,56,53,17,19,6,5,5,2,2,19,77.0,0,3.094892465243735e-16,0.039358183340000005,0.08374505496899998,too_few_matches
+18,s1-s6,0,56,89,12,14,5,5,5,1,1,13,43.0,0,,0.1700172933,0.10453809861800001,too_few_matches
+20,s1-s6,0,51,87,12,17,5,3,3,0,0,11,23.0,1,,,0.15214720371850016,too_few_matches
+14,s4-s5,1,59,89,32,45,8,6,6,2,2,27,58.0,0,7.354346837155907e-17,0.15606652062,0.024632361443807427,too_few_matches

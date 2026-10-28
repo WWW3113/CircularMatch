@@ -1,0 +1,56 @@
+{
+  "profiles": {
+    "baseline": {
+      "cell": 0.5,
+      "fit_radius": 2,
+      "fill_max_radius": 5,
+      "ground_select": "supported_lowest",
+      "percentile": 5
+    },
+    "smooth": {
+      "cell": 0.5,
+      "fit_radius": 6,
+      "fill_max_radius": 6,
+      "ground_select": "supported_lowest",
+      "percentile": 5
+    },
+    "coarse": {
+      "cell": 1.0,
+      "fit_radius": 3,
+      "fill_max_radius": 6,
+      "ground_select": "supported_lowest",
+      "percentile": 5
+    },
+    "quantile1": {
+      "cell": 0.5,
+      "fit_radius": 2,
+      "fill_max_radius": 5,
+      "ground_select": "percentile",
+      "percentile": 1
+    }
+  },
+  "development": "Plot2, all10 pairs, seeds31-35",
+  "within_plot_validation": "Plot2, same stations, seeds36-40; not independent forests",
+  "cross_plot_validation": "Plot1,3,4, all30 pairs, seeds31-40; their old baseline outcomes are already known",
+  "selection": "maximum development successes of svd+ransac; tie order smooth,coarse,quantile1; retain baseline unless strictly improved",
+  "primary_solver": "svd+ransac",
+  "secondary_solver": "svd",
+  "threshold": 0.1,
+  "recovery": "evidence",
+  "recovery_trigger": 6,
+  "success": "rotation<2deg AND translation<0.5m",
+  "isolation": "same existing cylinders and accepted tree list; only recompute axis/DTM intersection; not a full extraction rerun",
+  "failed_intersections": "drop from candidate output; preserve baseline; expose every drop",
+  "evaluation": "development skips point error; selected profile gets full source-cloud point error after freeze",
+  "no_gt_in_repositioning": true,
+  "no_gt_in_inference": true,
+  "previous_plan_sha256": "dafa826475ce7b0f28793038075ef1424a679687199a3c2954c01b952193e944",
+  "fixed_sha256": {
+    "build/cm_dtm_reposition": "17593aaa3e3363d2a66b9070101b093ae26619675efbda61e2ecff7f90960e84",
+    "apps/cm_dtm_reposition.cpp": "db24f232ef70994c943b4aaa6b014cd21ea96edf9a39f4b658cfbdae79fa487a",
+    "build/cm_register": "c1ecafd8d0c138e8b162b7acfd4f8683766fa407ef5f587d93f691dfded22878",
+    "config/default.ini": "bd94251c5eaca7c81b46826b517b2feaaf35deb5ff4a4299756c2c2a6651bb35"
+  },
+  "prior_results_sha256": "be80ea133faf080bae060279ab9401346bb3263f319589450ec998822f1913a1",
+  "frozen_at_utc": "2026-10-25T12:46:40.843850+00:00"
+}

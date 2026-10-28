@@ -1,0 +1,9 @@
+dataset,method,preprocessing,scans,pairs,seeds,cases,success,mean_success_ep_cm,limitations
+ETH原始森林,10cm＋配準RANSAC,固定ETH參數,6,15,21–30,150,142,8.618106527669015,ETH開發後保留seed驗證；同一片森林，不是新森林
+ETH原始森林,10cm＋配準RANSAC＋三維補救,固定ETH參數,6,15,21–30,150,150,7.615434894646667,ETH開發後保留seed驗證；同一片森林，不是新森林
+WHU-Park處理版,10cm＋配準RANSAC,固定ETH參數,32,31,21–30,310,0,,公開YOHO處理版；不是論文WHU-FGI；密度適配僅法向半徑10→20cm
+WHU-Park處理版,10cm＋配準RANSAC＋三維補救,固定ETH參數,32,31,21–30,310,0,,公開YOHO處理版；不是論文WHU-FGI；密度適配僅法向半徑10→20cm
+WHU-Park處理版,10cm＋配準RANSAC,密度適配探索,32,31,21–30,310,2,48.45809875,公開YOHO處理版；不是論文WHU-FGI；密度適配僅法向半徑10→20cm
+WHU-Park處理版,10cm＋配準RANSAC＋三維補救,密度適配探索,32,31,21–30,310,2,48.45809875,公開YOHO處理版；不是論文WHU-FGI；密度適配僅法向半徑10→20cm
+Tongji-Trees四樣區,10cm＋配準RANSAC,固定ETH參數,20,40,31–40,400,304,12.168148788383553,新資料直接測試；未依Tongji真值選參數
+Tongji-Trees四樣區,10cm＋配準RANSAC＋三維補救,固定ETH參數,20,40,31–40,400,329,12.309291558421277,新資料直接測試；未依Tongji真值選參數

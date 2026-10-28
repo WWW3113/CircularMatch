@@ -32,6 +32,12 @@
 
 namespace cm {
 
+struct CnCandidateScore {
+  int source = -1, target = -1, dc = 0, fm = 0;
+  double score = 0;
+  std::vector<std::pair<int, int>> evidence;
+};
+
 struct CnMatchResult {
   std::vector<std::pair<int, int>> pairs;  // (source keypoint, target keypoint)
   bool used_triangle = false;
@@ -40,6 +46,8 @@ struct CnMatchResult {
   double best_score = 0;          // MatchScore of the first pair
   int best_dc = 0, best_fm = 0;
   std::size_t triangle_set_src = 0, triangle_set_tgt = 0, triangle_matches = 0;
+  // Ranked candidates and descriptor evidence; contains no evaluation truth.
+  std::vector<CnCandidateScore> ranked_candidates;
 };
 
 CnMatchResult matchCn(const std::vector<CnDescriptor>& src, const std::vector<CnDescriptor>& tgt,

@@ -1,0 +1,69 @@
+[
+  {
+    "id": "ETH-Trees",
+    "family": "ETH Trees",
+    "scene": "Trees",
+    "available": true,
+    "scans": 6,
+    "points": 121489966,
+    "seeds": [
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "rows": [
+      "results/eth_trees/tuning_20261025/runs/fresh_rows.csv",
+      "results/eth_trees/tuning_20261025/runs/graph_rows.csv"
+    ],
+    "official_pairs": "data/eth_trees/raw/trees/pairs.txt",
+    "status": "已完成",
+    "source": "https://ethz.ch/content/dam/ethz/special-interest/baug/igp/photogrammetry-remote-sensing-dam/documents/sourcecode-and-datasets/PascalTheiler/trees.zip",
+    "sha256": "ecb3f5e8791804341a3e7837c29f25789987c99fdf575aa3ebfbfd67d3acd37c",
+    "reference": "Theiler et al., ISPRS J. 109 (2015); CircularMatch [11]"
+  },
+  {
+    "id": "Tongji-Trees",
+    "family": "Tongji-Trees",
+    "scene": "",
+    "available": false,
+    "status": "未執行：官方要求申請下載連結",
+    "source": "https://github.com/zexinyang/GlobalMatch",
+    "download": "https://forms.gle/c8BXMHYTqd1iULBv8",
+    "reference": "Wang et al., GlobalMatch, ISPRS J. 197 (2023); CircularMatch [9]"
+  },
+  {
+    "id": "WHU-FGI",
+    "family": "WHU-TLS / FGI-Forest",
+    "scene": "FGI-Forest（待核驗）",
+    "available": false,
+    "status": "未執行：公開整理版已下載，但不含FGI-Forest",
+    "source": "https://github.com/WHU-USI3DV/WHU-TLS",
+    "download": "https://drive.google.com/file/d/1QjlxIVMQPinNWt5LKhtaG9TTo2j3TGs_/view",
+    "candidate_source": "https://github.com/HpWang-whu/YOHO#-dataset--pretrained-model",
+    "reference": "Dong et al., ISPRS J. 163 (2020); CircularMatch [12]",
+    "note": "已取得YOHO公開WHU-TLS.tar.gz，387437741 bytes，SHA256 33a7a29577faa631c2a3bec828f9552182dbcbfd0da67ce572c8c28df60caf0a；gzip CRC已驗證。內容只有Campus/Mountain/Park/RiverBank/Tunnel/UndergroundExcavation，未含FGI-Forest；不能用這些場景代替論文FGI。"
+  },
+  {
+    "id": "Liang2018",
+    "family": "Liang et al. 2018",
+    "scene": "TreeTool處理後六樣區；原始分站資料待取得",
+    "available": false,
+    "status": "固定參數提取驗證180次已完成；配準缺少分站與真值",
+    "source": "https://laserscanning.fi/results-available-for-international-benchmarking-of-terrestrial-laser-scanning-methods/",
+    "download": "https://helsinkifi-my.sharepoint.com/:f:/g/personal/jpyorala_ad_helsinki_fi/EvL7Zbq8VOpCqWMViRlswsIB06GH3HyOAQ1rupwb3fOEXg?e=KdWmd7",
+    "reference": "Liang et al., ISPRS J. 144 (2018), DOI 10.1016/j.isprsjprs.2018.06.021; CircularMatch [13]",
+    "note": "已取得6份處理後PCD及6份LHD參考樹資料。此版本每樣區僅一份點雲，未附原始站點、姿態或配準真值；可做提取驗證，不能當作完整配準資料。原始作者SharePoint分享網頁403、公開API401。",
+    "acquired": true,
+    "extraction_completed": true,
+    "candidate_source": "https://github.com/porteratzo/TreeTool",
+    "processed_download": "https://drive.google.com/drive/folders/1AhYd8pwCrTAJCV4OIc9MWot8tjNgIJSx",
+    "points": 37777514
+  }
+]

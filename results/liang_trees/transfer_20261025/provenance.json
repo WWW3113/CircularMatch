@@ -1,0 +1,376 @@
+{
+  "source": "https://github.com/porteratzo/TreeTool",
+  "original_release": "https://laserscanning.fi/results-available-for-international-benchmarking-of-terrestrial-laser-scanning-methods/",
+  "public_folder": "https://drive.google.com/drive/folders/1AhYd8pwCrTAJCV4OIc9MWot8tjNgIJSx",
+  "version": "TreeTool downsampled PCD sample plots; not original scan pairs",
+  "publisher_checksums_available": false,
+  "files": [
+    {
+      "plot": 1,
+      "name": "downsampledlesscloudEURO1.pcd",
+      "bytes": 72913028,
+      "computed_sha256": "799e23912f7c2ad02abdd8dc951b29922b2f8a14724e20d173e41fb0a5798689",
+      "public_file_id": "1HKCyha5gJ0nyGgTKEKKimfXlhyM5iwnF",
+      "pcd": {
+        "VERSION": [
+          "0.7"
+        ],
+        "FIELDS": [
+          "x",
+          "y",
+          "z"
+        ],
+        "SIZE": [
+          "4",
+          "4",
+          "4"
+        ],
+        "TYPE": [
+          "F",
+          "F",
+          "F"
+        ],
+        "COUNT": [
+          "1",
+          "1",
+          "1"
+        ],
+        "WIDTH": [
+          "6076071"
+        ],
+        "HEIGHT": [
+          "1"
+        ],
+        "VIEWPOINT": [
+          "0",
+          "0",
+          "0",
+          "1",
+          "0",
+          "0",
+          "0"
+        ],
+        "POINTS": [
+          "6076071"
+        ],
+        "DATA": [
+          "binary"
+        ]
+      }
+    },
+    {
+      "plot": 1,
+      "name": "TLS_Benchmarking_Plot_1_LHD.txt",
+      "bytes": 1343,
+      "computed_sha256": "9adb412f73736d0f5887aae50d32a75f1b7f7f68bad2815196e25150ad3ba0b6",
+      "public_file_id": "1DngRKGKQTPAwFafQWGZ_zUtoYZd9Vbte",
+      "reference_trees": 51
+    },
+    {
+      "plot": 2,
+      "name": "downsampledlesscloudEURO2.pcd",
+      "bytes": 71715728,
+      "computed_sha256": "0f1b53c9c3f1cfb58d503817911fec3b3f3179e3473be7610dabc314337d8357",
+      "public_file_id": "1h3olwx2-8dunqsFFGuP7z6HB0mlfv71V",
+      "pcd": {
+        "VERSION": [
+          "0.7"
+        ],
+        "FIELDS": [
+          "x",
+          "y",
+          "z"
+        ],
+        "SIZE": [
+          "4",
+          "4",
+          "4"
+        ],
+        "TYPE": [
+          "F",
+          "F",
+          "F"
+        ],
+        "COUNT": [
+          "1",
+          "1",
+          "1"
+        ],
+        "WIDTH": [
+          "5976296"
+        ],
+        "HEIGHT": [
+          "1"
+        ],
+        "VIEWPOINT": [
+          "0",
+          "0",
+          "0",
+          "1",
+          "0",
+          "0",
+          "0"
+        ],
+        "POINTS": [
+          "5976296"
+        ],
+        "DATA": [
+          "binary"
+        ]
+      }
+    },
+    {
+      "plot": 2,
+      "name": "TLS_Benchmarking_Plot_2_LHD.txt",
+      "bytes": 2223,
+      "computed_sha256": "9c740d069b44def28af90121c36ba66dbca325c3d986fccc4d5d33048f069e20",
+      "public_file_id": "1ncwgpcWqAZJF66bVPgVMJHEyEK0XltqY",
+      "reference_trees": 84
+    },
+    {
+      "plot": 3,
+      "name": "downsampledlesscloudEURO3.pcd",
+      "bytes": 88128164,
+      "computed_sha256": "3c8ea08990486b651464c665a5dc69b098664467707847e91029ae3aeed227aa",
+      "public_file_id": "1iBy8JqRDnuPlnVws5yyv95bNzf_cYdbQ",
+      "pcd": {
+        "VERSION": [
+          "0.7"
+        ],
+        "FIELDS": [
+          "x",
+          "y",
+          "z"
+        ],
+        "SIZE": [
+          "4",
+          "4",
+          "4"
+        ],
+        "TYPE": [
+          "F",
+          "F",
+          "F"
+        ],
+        "COUNT": [
+          "1",
+          "1",
+          "1"
+        ],
+        "WIDTH": [
+          "7343999"
+        ],
+        "HEIGHT": [
+          "1"
+        ],
+        "VIEWPOINT": [
+          "0",
+          "0",
+          "0",
+          "1",
+          "0",
+          "0",
+          "0"
+        ],
+        "POINTS": [
+          "7343999"
+        ],
+        "DATA": [
+          "binary"
+        ]
+      }
+    },
+    {
+      "plot": 3,
+      "name": "TLS_Benchmarking_Plot_3_LHD.txt",
+      "bytes": 3958,
+      "computed_sha256": "fe0bccc464dada65aad62e86a4c63f6d3f2e05cda55b4267a990b656bf1adce5",
+      "public_file_id": "1UQGXrrGT3Z2arkR69PYMWcjELQpcUR2t",
+      "reference_trees": 148
+    },
+    {
+      "plot": 4,
+      "name": "downsampledlesscloudEURO4.pcd",
+      "bytes": 87089432,
+      "computed_sha256": "5be971024377dd3e37669c5b3bb3d3f8ecf3fcca46090378a5804471e919cf30",
+      "public_file_id": "1KqDhqsmXeXYD5zsmzl02F3BPO_3MnrIn",
+      "pcd": {
+        "VERSION": [
+          "0.7"
+        ],
+        "FIELDS": [
+          "x",
+          "y",
+          "z"
+        ],
+        "SIZE": [
+          "4",
+          "4",
+          "4"
+        ],
+        "TYPE": [
+          "F",
+          "F",
+          "F"
+        ],
+        "COUNT": [
+          "1",
+          "1",
+          "1"
+        ],
+        "WIDTH": [
+          "7257438"
+        ],
+        "HEIGHT": [
+          "1"
+        ],
+        "VIEWPOINT": [
+          "0",
+          "0",
+          "0",
+          "1",
+          "0",
+          "0",
+          "0"
+        ],
+        "POINTS": [
+          "7257438"
+        ],
+        "DATA": [
+          "binary"
+        ]
+      }
+    },
+    {
+      "plot": 4,
+      "name": "TLS_Benchmarking_Plot_4_LHD.txt",
+      "bytes": 2051,
+      "computed_sha256": "bd6c7a7db7833aeb49d3c5cbea33c5d965ef06ed947b7ead093fc46b8b47fb0a",
+      "public_file_id": "1yt1xNo7-63LfQwxteKgGXo0zxntvDZz3",
+      "reference_trees": 78
+    },
+    {
+      "plot": 5,
+      "name": "downsampledlesscloudEURO5.pcd",
+      "bytes": 69410240,
+      "computed_sha256": "c83af621b1f7c39e3f42f9e0f32ccaf34936d1023b3b87cbe00f94705d7fd0c3",
+      "public_file_id": "1WSWto-Q3q5p306r92ag003V8J3UfEibP",
+      "pcd": {
+        "VERSION": [
+          "0.7"
+        ],
+        "FIELDS": [
+          "x",
+          "y",
+          "z"
+        ],
+        "SIZE": [
+          "4",
+          "4",
+          "4"
+        ],
+        "TYPE": [
+          "F",
+          "F",
+          "F"
+        ],
+        "COUNT": [
+          "1",
+          "1",
+          "1"
+        ],
+        "WIDTH": [
+          "5784172"
+        ],
+        "HEIGHT": [
+          "1"
+        ],
+        "VIEWPOINT": [
+          "0",
+          "0",
+          "0",
+          "1",
+          "0",
+          "0",
+          "0"
+        ],
+        "POINTS": [
+          "5784172"
+        ],
+        "DATA": [
+          "binary"
+        ]
+      }
+    },
+    {
+      "plot": 5,
+      "name": "TLS_Benchmarking_Plot_5_LHD.txt",
+      "bytes": 3432,
+      "computed_sha256": "c39effc97699506d1f6207a4cea6697b778b59332b26904c1d899b04650c9f95",
+      "public_file_id": "1zT1ifpaDMPK8PADIRRL_7QB9H6Y0gmNB",
+      "reference_trees": 131
+    },
+    {
+      "plot": 6,
+      "name": "downsampledlesscloudEURO6.pcd",
+      "bytes": 64074632,
+      "computed_sha256": "52bbf667f32196e64466015cedf9fd443fd66643678756433d425ddd3bfd0930",
+      "public_file_id": "1oIuItFOYQmI_A-VNXj9-3DoAXTdX89ku",
+      "pcd": {
+        "VERSION": [
+          "0.7"
+        ],
+        "FIELDS": [
+          "x",
+          "y",
+          "z"
+        ],
+        "SIZE": [
+          "4",
+          "4",
+          "4"
+        ],
+        "TYPE": [
+          "F",
+          "F",
+          "F"
+        ],
+        "COUNT": [
+          "1",
+          "1",
+          "1"
+        ],
+        "WIDTH": [
+          "5339538"
+        ],
+        "HEIGHT": [
+          "1"
+        ],
+        "VIEWPOINT": [
+          "0",
+          "0",
+          "0",
+          "1",
+          "0",
+          "0",
+          "0"
+        ],
+        "POINTS": [
+          "5339538"
+        ],
+        "DATA": [
+          "binary"
+        ]
+      }
+    },
+    {
+      "plot": 6,
+      "name": "TLS_Benchmarking_Plot_6_LHD.txt",
+      "bytes": 6334,
+      "computed_sha256": "ea65ad37541378fa2b0ceba2ab238f05a55093b27a8737302b666abf983e9498",
+      "public_file_id": "1292wtKKivUYk90q2Hv3QUiUXi8qDnwH2",
+      "reference_trees": 236
+    }
+  ],
+  "contains_per_station_registration_ground_truth": false
+}

@@ -1,0 +1,10 @@
+method,trials,pairs,success,finite_error_cases,mean_finite_ep_m,median_finite_ep_m,p90_finite_ep_m,scope
+reference5_raw,100,10,87,92,0.09437951294311264,0.06614707346920237,0.16202328237482047,supplement only; primary ETH benchmark remains all15 pairs
+reference5_refined,100,10,92,92,0.005021357819145741,0.0040824562329985796,0.009262198457041102,supplement only; primary ETH benchmark remains all15 pairs
+eth10_raw,100,10,100,100,0.061461829339997893,0.05635176417799827,0.10638810305790909,supplement only; primary ETH benchmark remains all15 pairs
+eth10_refined,100,10,100,100,0.004974773580793559,0.004089258170266585,0.007242081086246435,supplement only; primary ETH benchmark remains all15 pairs
+multi_refined,100,10,100,100,0.004974773580793563,0.004089258170266585,0.007242081086246435,supplement only; primary ETH benchmark remains all15 pairs
+multi_v2_refined,100,10,100,100,0.004974773580793559,0.004089258170266585,0.007242081086246435,supplement only; primary ETH benchmark remains all15 pairs
+reference5_refined_v3,100,10,92,92,0.005021357819145741,0.0040824562329985796,0.009262198457041102,supplement only; primary ETH benchmark remains all15 pairs
+eth10_refined_v3,100,10,100,100,0.004974773580793559,0.004089258170266585,0.007242081086246435,supplement only; primary ETH benchmark remains all15 pairs
+multi_v3_refined,100,10,100,100,0.004974773580793559,0.004089258170266585,0.007242081086246435,supplement only; primary ETH benchmark remains all15 pairs

@@ -1,0 +1,22 @@
+[
+  {
+    "report": 1,
+    "main_cjk_characters": 2286,
+    "optional_qa": true
+  },
+  {
+    "report": 2,
+    "main_cjk_characters": 2147,
+    "optional_qa": true
+  },
+  {
+    "report": 3,
+    "main_cjk_characters": 2235,
+    "optional_qa": true
+  },
+  {
+    "report": 4,
+    "main_cjk_characters": 2186,
+    "optional_qa": true
+  }
+]

@@ -1,0 +1,105 @@
+{
+  "base_commit": "18a26c39e11101c6d8914db96c592482e73307bf",
+  "matching_profiles": [
+    {
+      "name": "control",
+      "threshold": 0.05
+    },
+    {
+      "name": "threshold075",
+      "threshold": 0.075
+    },
+    {
+      "name": "threshold100",
+      "threshold": 0.1
+    },
+    {
+      "name": "score20",
+      "threshold": 0.05,
+      "th_score": 20
+    },
+    {
+      "name": "score60",
+      "threshold": 0.05,
+      "th_score": 60
+    },
+    {
+      "name": "min_dc4",
+      "threshold": 0.05,
+      "min_dc": 4
+    },
+    {
+      "name": "sectors93",
+      "threshold": 0.05,
+      "N": 93
+    },
+    {
+      "name": "merge015",
+      "threshold": 0.05,
+      "merge_radius": 0.15
+    },
+    {
+      "name": "merge030",
+      "threshold": 0.05,
+      "merge_radius": 0.3
+    }
+  ],
+  "extraction_variants": {
+    "control": [],
+    "vertical085": [
+      "--normals.vert_threshold=0.85"
+    ],
+    "ransac999": [
+      "--cylinder.max_iterations=3000",
+      "--cylinder.probability=0.999"
+    ]
+  },
+  "discovery_seeds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "existing_seed_stability_check": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "fresh_seeds": [
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "pairs": "all 15 unordered; report official 10 separately",
+  "primary_success": "rotation < 2 degrees AND translation < 0.5 m",
+  "graph": "six-scan maximum spanning forest; 3D mutual nearest-neighbour support; no GT selection; separate multiview task",
+  "scope": "All ETH parameters are in-dataset/exploratory. Fresh seeds test randomness only, not unseen forests. Default configuration unchanged.",
+  "graph_parameters": {
+    "minimum_cn_matches": 4,
+    "minimum_mutual_3d_support": 6,
+    "support_distance_m": 0.3,
+    "maximum_median_residual_m": 0.15,
+    "quality": "support * overlap / (1 + median_residual / 0.10)",
+    "inference_ground_truth": false
+  },
+  "fresh_evaluation_arms": [
+    "control",
+    "matching",
+    "vertical085",
+    "ransac999",
+    "vertical085+matching",
+    "ransac999+matching",
+    "six-scan graph"
+  ],
+  "interaction_note": "The two extraction+matching combinations were specified before any fresh registration result was generated."
+}

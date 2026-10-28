@@ -1,0 +1,7 @@
+{
+  "previous_rows_checked": 300,
+  "instrumentation_changes_transforms_or_matches": false,
+  "failed_cases": 8,
+  "fewer_than_three_matches": 7,
+  "gt_use": "diagnosis only; nearby cross-scan stems are optimistic proxies, not annotated tree truth"
+}

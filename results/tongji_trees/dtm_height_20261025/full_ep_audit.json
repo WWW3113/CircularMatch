@@ -1,0 +1,20 @@
+[
+  {
+    "pair": "S2-S1",
+    "seed": 31,
+    "solver": "svd",
+    "source_points": 33889075,
+    "native_ep_m": 0.3113416703,
+    "independent_ep_m": 0.3113416688367058,
+    "absolute_difference_m": 1.4632942080261557e-09
+  },
+  {
+    "pair": "S2-S1",
+    "seed": 31,
+    "solver": "svd+ransac",
+    "source_points": 33889075,
+    "native_ep_m": 0.3947355456,
+    "independent_ep_m": 0.39473554540677713,
+    "absolute_difference_m": 1.9322288213885486e-10
+  }
+]

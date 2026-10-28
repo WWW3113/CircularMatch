@@ -1,0 +1,8 @@
+{
+  "reason": "Overlapping Plot4 S2 auxiliary worker stopped; main worker completed a clean full rerun",
+  "stopped_auxiliary_exit_code": -15,
+  "previous_outputs_compared": 24,
+  "identical_outputs": 24,
+  "different_outputs": [],
+  "final_completed_seeds": 10
+}

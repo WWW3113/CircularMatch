@@ -5,6 +5,8 @@
 //               [--thresholds=0.05,0.10,0.15] [--label=name] [--out=result.csv]
 //               [--N=183 --w=10 --th_score=40 --min_dc=3] [--merge_radius=0]
 //               [--ransac_iters=1000 --ransac_inlier=0.3 --ransac_seed=1] [--gt_match=0.3]
+//               [--diagnostics=DIR --skip_point_error=1] (audit; skip raw-cloud I/O / e_p only)
+//               [--recovery=off|triangles|evidence --recovery_trigger=3] (optional experiments)
 //   cm_register --batch=jobs.txt [same options]
 //     jobs.txt: one job per line "src_trees tgt_trees src_cloud gt out label" (whitespace separated);
 //     the source cloud is read once and reused while consecutive jobs share it (sort jobs by cloud).
@@ -14,7 +16,9 @@
 // One output row per (threshold, solver). threshold 0.05 = paper setting;
 // other thresholds are a sensitivity analysis (NOT the paper's setting).
 #include <Eigen/Core>
+#include <algorithm>
 #include <cmath>
+#include <filesystem>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
@@ -23,6 +27,7 @@
 #include "app_common.hpp"
 #include "cm/cn_descriptor.hpp"
 #include "cm/cn_matching.hpp"
+#include "cm/cn_recovery.hpp"
 #include "cm/io.hpp"
 #include "cm/registration.hpp"
 #include "cm/types.hpp"
@@ -92,7 +97,48 @@ struct Settings {
   double merge = 0, gt_match = 0.3;
   RansacParams rp;
   std::vector<double> thresholds;
+  bool skip_point_error = false;
+  std::string diagnostics;
+  CnRecoveryParams recovery;
+  std::string recovery_name = "off";
 };
+
+// Evaluation-only trace: GT errors never enter matching or transform estimation.
+void writeDiagnostics(const Job& job, const Settings& st, double threshold,
+                      const std::vector<CnDescriptor>& sd, const std::vector<CnDescriptor>& td,
+                      const std::vector<Eigen::Vector3d>& skp, const std::vector<Eigen::Vector3d>& tkp,
+                      const CnMatchResult& m, const RigidTransform& gt) {
+  if (st.diagnostics.empty()) return;
+  app::ensureDir(st.diagnostics);
+  const auto stem = std::filesystem::path(job.out.empty() ? job.label : job.out).stem().string();
+  const auto prefix = st.diagnostics + "/" + stem + "_thr" + std::to_string(threshold);
+  std::ofstream all(prefix + "_descriptors.csv"), evidence(prefix + "_evidence.csv");
+  if (!all || !evidence) throw std::runtime_error("cannot write diagnostic trace " + prefix);
+  all << std::setprecision(10);
+  all << "source,target,gate_pass,dc,retained_candidate,fm,score,accepted,gt_xy_m,gt_xyz_m\n";
+  for (const auto& a : sd) for (const auto& b : td) {
+    if (!a.valid || !b.valid) continue;
+    const auto c = std::find_if(m.ranked_candidates.begin(), m.ranked_candidates.end(), [&](const auto& x) {
+      return x.source == a.center && x.target == b.center;
+    });
+    const bool accepted = std::find(m.pairs.begin(), m.pairs.end(), std::make_pair(a.center, b.center)) != m.pairs.end();
+    const Eigen::Vector3d delta = gt.apply(skp[a.center]) - tkp[b.center];
+    all << a.center << ',' << b.center << ',' << cnGatekeeperPass(a, b, threshold) << ','
+        << cnDcScore(a, b, threshold) << ',' << (c != m.ranked_candidates.end()) << ','
+        << (c == m.ranked_candidates.end() ? 0 : c->fm) << ','
+        << (c == m.ranked_candidates.end() ? 0 : c->score) << ',' << accepted << ','
+        << delta.head<2>().norm() << ',' << delta.norm() << '\n';
+  }
+  evidence << "rank,center_src,center_tgt,source,target,gt_xy_m,gt_xyz_m\n" << std::setprecision(10);
+  for (std::size_t rank = 0; rank < m.ranked_candidates.size(); ++rank) {
+    const auto& c = m.ranked_candidates[rank];
+    for (const auto& [i, j] : c.evidence) {
+      const Eigen::Vector3d delta = gt.apply(skp[i]) - tkp[j];
+      evidence << rank << ',' << c.source << ',' << c.target << ',' << i << ',' << j << ','
+               << delta.head<2>().norm() << ',' << delta.norm() << '\n';
+    }
+  }
+}
 
 // Runs one pair; returns the CSV text (header + one row per threshold and solver).
 std::string runJob(const Job& job, const Settings& st, const RawCloud& cloud) {
@@ -109,7 +155,10 @@ std::string runJob(const Job& job, const Settings& st, const RawCloud& cloud) {
   o << "label,threshold,setting,solver,n_src_kp,n_tgt_kp,descriptors_src,descriptors_tgt,d12_enc2_s0_is_p1,"
        "d12_enc3_s0_is_p1p2,gate_passed,candidates,best_score,best_dc,best_fm,used_triangle,tri_set_src,"
        "tri_set_tgt,tri_matches,n_matches,n_correct_matches,ransac_inliers,transform_ok,rot_err_deg,trans_err_m,"
-       "e_p_m,success,time_ms,r00,r01,r02,r10,r11,r12,r20,r21,r22,t0,t1,t2\n";
+       "e_p_m,success,time_ms,r00,r01,r02,r10,r11,r12,r20,r21,r22,t0,t1,t2";
+  if (st.recovery.mode != CnRecoveryMode::Off)
+    o << ",recovery,recovery_triggered,recovery_accepted,recovery_hypotheses,recovery_support,recovery_median_m";
+  o << '\n';
   for (double thr : thresholds) {
     CnParams p = base;
     p.threshold = thr;
@@ -118,10 +167,12 @@ std::string runJob(const Job& job, const Settings& st, const RawCloud& cloud) {
     const auto sd = buildCnDescriptors(skp, p, &ss);
     const auto td = buildCnDescriptors(tkp, p, &ts);
     const CnMatchResult m = matchCn(sd, td, skp, tkp, p);
+    const auto recovery = recoverCn(m, skp, tkp, p, st.recovery);
     const double match_ms = tm.ms();
+    writeDiagnostics(job, st, thr, sd, td, skp, tkp, m, gt);
     std::vector<Eigen::Vector3d> ps, pt;
     std::size_t correct = 0;
-    for (const auto& [i, j] : m.pairs) {
+    for (const auto& [i, j] : recovery.pairs) {
       ps.push_back(skp[i]);
       pt.push_back(tkp[j]);
       const Eigen::Vector3d g = gt.apply(skp[i]);
@@ -149,11 +200,14 @@ std::string runJob(const Job& job, const Settings& st, const RawCloud& cloud) {
         << ss.enc3_sector0_is_p1_or_p2 + ts.enc3_sector0_is_p1_or_p2 << "," << m.gate_passed << ","
         << m.candidates << "," << m.best_score << "," << m.best_dc << "," << m.best_fm << "," << m.used_triangle
         << "," << m.triangle_set_src << "," << m.triangle_set_tgt << "," << m.triangle_matches << ","
-        << m.pairs.size() << "," << correct << "," << inl << "," << (T ? 1 : 0) << "," << e.rot_deg << ","
+        << recovery.pairs.size() << "," << correct << "," << inl << "," << (T ? 1 : 0) << "," << e.rot_deg << ","
         << e.trans_m << "," << e.e_p << "," << (T && e.success ? 1 : 0) << "," << ms;
       for (int r = 0; r < 3; ++r)
         for (int c = 0; c < 3; ++c) o << "," << Tv.R(r, c);
       for (int r = 0; r < 3; ++r) o << "," << Tv.t(r);
+      if (st.recovery.mode != CnRecoveryMode::Off)
+        o << ',' << st.recovery_name << ',' << recovery.triggered << ',' << recovery.accepted << ','
+          << recovery.hypotheses << ',' << recovery.support << ',' << recovery.median_residual;
       o << "\n";
     }
   }
@@ -167,7 +221,7 @@ int main(int argc, char** argv) {
     auto a = app::parseArgs(argc, argv,
                             {"src_trees", "tgt_trees", "src_cloud", "gt", "thresholds", "label", "out", "N", "w",
                              "th_score", "min_dc", "merge_radius", "ransac_iters", "ransac_inlier", "ransac_seed",
-                             "gt_match", "batch", "help"});
+                             "gt_match", "batch", "diagnostics", "skip_point_error", "recovery", "recovery_trigger", "help"});
     for (const char* k : {"src_trees", "tgt_trees", "src_cloud", "gt"})
       if (!a.opts.count("batch") && !a.opts.count(k)) {
         std::cout << "usage: cm_register --src_trees=CSV --tgt_trees=CSV --src_cloud=PLY --gt=TFM [options]\n";
@@ -194,6 +248,16 @@ int main(int argc, char** argv) {
     st.gt_match = gt_match;
     st.rp = rp;
     st.thresholds = thresholds;
+    st.skip_point_error = num("skip_point_error", 0) != 0;
+    if (a.opts.count("diagnostics")) st.diagnostics = a.opts.at("diagnostics");
+    if (a.opts.count("recovery")) st.recovery_name = a.opts.at("recovery");
+    if (st.recovery_name == "triangles") st.recovery.mode = CnRecoveryMode::Triangles;
+    else if (st.recovery_name == "evidence") st.recovery.mode = CnRecoveryMode::EvidenceConsensus;
+    else if (st.recovery_name != "off") throw std::invalid_argument("recovery must be off, triangles or evidence");
+    const double trigger = num("recovery_trigger", 3);
+    if (!std::isfinite(trigger) || trigger < 3 || trigger > 100000 || std::floor(trigger) != trigger)
+      throw std::invalid_argument("recovery_trigger must be an integer >= 3");
+    st.recovery.trigger_matches = static_cast<std::size_t>(trigger);
     std::vector<Job> jobs;
     if (a.opts.count("batch")) {
       std::ifstream in(a.opts["batch"]);
@@ -213,7 +277,7 @@ int main(int argc, char** argv) {
     std::string cloud_path;
     RawCloud cloud;
     for (const Job& job : jobs) {
-      if (job.src_cloud != cloud_path) {
+      if (!st.skip_point_error && job.src_cloud != cloud_path) {
         cloud = readPointCloud(job.src_cloud);
         cloud_path = job.src_cloud;
       }

@@ -1,0 +1,5 @@
+method,solver,cases,success,official_cases,official_success,median_success_ep_m,mean_match_solve_ms,median_match_solve_ms,p95_match_solve_ms,recovery_triggered,recovery_adopted,min_success_per_seed,max_success_per_seed
+baseline,svd,150,139,100,96,0.07233299884,3.37804984,3.0732705,5.424482,0,0,12,15
+baseline,svd+ransac,150,142,100,98,0.067380268495,4.3470338533333335,3.934507,6.503743,0,0,13,15
+recovery,svd,150,147,100,98,0.07111093477,4.71547284,3.1307359999999997,10.632216,31,31,14,15
+recovery,svd+ransac,150,150,100,100,0.0636536409,5.5307042,3.9122135,11.661867,31,31,15,15

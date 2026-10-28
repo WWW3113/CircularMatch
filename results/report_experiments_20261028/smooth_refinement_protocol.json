@@ -1,0 +1,26 @@
+{
+  "created_before_execution_utc": "2026-10-27T20:59:44.709416+00:00",
+  "source": "smooth full extraction from frozen profile",
+  "method": "same cm_geometry_register eth10_refined v1 backend, no multistart",
+  "seeds": [
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40
+  ],
+  "pairs": 55,
+  "parameters_reselected": false,
+  "geometry": "reuse identical original raw-cloud geometry caches; independent of DTM",
+  "selection": "one fixed policy on all scenes; GT evaluation only",
+  "sha256": {
+    "build/cm_geometry_register": "9d9ccf73a5726d46ae89965e4ef8032536cc5b1f68dc9eac1d903f4b04113df6",
+    "apps/geometry_refinement.cpp": "b634d90de1e542f96042ce61a6f18107127dfacf7da7fee4ea5321504db24dce",
+    "config/default.ini": "bd94251c5eaca7c81b46826b517b2feaaf35deb5ff4a4299756c2c2a6651bb35"
+  }
+}

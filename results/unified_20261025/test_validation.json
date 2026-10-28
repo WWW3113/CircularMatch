@@ -1,0 +1,10 @@
+{
+  "command": "/workspace/.circularmatch-env/run /usr/bin/ctest --test-dir build --output-on-failure",
+  "tests": 93,
+  "passed": 93,
+  "failed": 0,
+  "elapsed_s": 249.48,
+  "completed_at": "2026-10-26T01:31:25+08:00",
+  "full_test_log_sha256": "7731dac236ef8b6ad2370c0351c41af14b7881878108995caa46c12a18c4dba9",
+  "timing_scope": "Correctness check only; overlapped tail of accuracy inference and first scoring. All tests finished before serial cold benchmark; not used as a speed measurement."
+}

@@ -1,0 +1,49 @@
+{
+  "scans": [
+    {
+      "scan": 1,
+      "sparse_span_used": false,
+      "median_nearest_m": 0.00736889895052,
+      "identical_files": 30,
+      "total_files": 30
+    },
+    {
+      "scan": 2,
+      "sparse_span_used": false,
+      "median_nearest_m": 0.00734367780387,
+      "identical_files": 30,
+      "total_files": 30
+    },
+    {
+      "scan": 3,
+      "sparse_span_used": false,
+      "median_nearest_m": 0.00752272689715,
+      "identical_files": 30,
+      "total_files": 30
+    },
+    {
+      "scan": 4,
+      "sparse_span_used": false,
+      "median_nearest_m": 0.00759742362425,
+      "identical_files": 30,
+      "total_files": 30
+    },
+    {
+      "scan": 5,
+      "sparse_span_used": false,
+      "median_nearest_m": 0.00762983132154,
+      "identical_files": 30,
+      "total_files": 30
+    },
+    {
+      "scan": 6,
+      "sparse_span_used": false,
+      "median_nearest_m": 0.00746259931475,
+      "identical_files": 30,
+      "total_files": 30
+    }
+  ],
+  "primary_cases": 150,
+  "primary_success": 150,
+  "outputs_identical": true
+}

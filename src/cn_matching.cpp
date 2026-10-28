@@ -138,6 +138,10 @@ CnMatchResult matchCn(const std::vector<CnDescriptor>& src, const std::vector<Cn
   r.best_score = std::get<0>(scored[0]);
   r.best_dc = std::get<1>(scored[0]);
   r.best_fm = std::get<2>(scored[0]);
+  for (const auto& entry : scored) {
+    const auto& c = cands[std::get<4>(entry)];
+    r.ranked_candidates.push_back({c.i, c.j, c.dc, std::get<2>(entry), std::get<0>(entry), c.ip});
+  }
   // l. 26-31
   for (std::size_t k = 0; k < scored.size(); ++k) {
     const double s = std::get<0>(scored[k]);

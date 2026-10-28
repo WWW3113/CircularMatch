@@ -1,0 +1,8634 @@
+{
+  "report": 1,
+  "title": "CN距離容差與Solver",
+  "generated_at": "2026-10-28T10:41:03.625666+08:00",
+  "xlsx": "report_01_CN距離容差與Solver.xlsx",
+  "txt": "report_01_CN距離容差與Solver.txt",
+  "xlsx_sha256": "232664b4cdfd35efb4e8b082f87505529932d2826f214ef91dc8b1dc6987f9c5",
+  "txt_sha256": "80bc5956f4f6349a8b66de70c7c3e5785d53ff74576f2fa90f3a558299bc5eb9",
+  "sources": {
+    "F": {
+      "path": "results/six_week_reports_20261028/evidence/F_eth_coarse_rows.csv",
+      "sha256": "7d650dccaae06db5a5425d39e9b7844210caaca64422f3b7240e5adb18e8a876"
+    },
+    "T": {
+      "path": "results/six_week_reports_20261028/evidence/T_registration_rows.csv",
+      "sha256": "be80ea133faf080bae060279ab9401346bb3263f319589450ec998822f1913a1"
+    }
+  },
+  "groups": {
+    "F:0.05:svd": {
+      "id": "F:0.05:svd",
+      "source": "F",
+      "selector": {
+        "threshold": "0.05",
+        "solver": "svd"
+      },
+      "csv_lines": [
+        2,
+        6,
+        10,
+        14,
+        18,
+        22,
+        26,
+        30,
+        34,
+        38,
+        42,
+        46,
+        50,
+        54,
+        58,
+        62,
+        66,
+        70,
+        74,
+        78,
+        82,
+        86,
+        90,
+        94,
+        98,
+        102,
+        106,
+        110,
+        114,
+        118,
+        122,
+        126,
+        130,
+        134,
+        138,
+        142,
+        146,
+        150,
+        154,
+        158,
+        162,
+        166,
+        170,
+        174,
+        178,
+        182,
+        186,
+        190,
+        194,
+        198,
+        202,
+        206,
+        210,
+        214,
+        218,
+        222,
+        226,
+        230,
+        234,
+        238,
+        242,
+        246,
+        250,
+        254,
+        258,
+        262,
+        266,
+        270,
+        274,
+        278,
+        282,
+        286,
+        290,
+        294,
+        298,
+        302,
+        306,
+        310,
+        314,
+        318,
+        322,
+        326,
+        330,
+        334,
+        338,
+        342,
+        346,
+        350,
+        354,
+        358,
+        362,
+        366,
+        370,
+        374,
+        378,
+        382,
+        386,
+        390,
+        394,
+        398,
+        402,
+        406,
+        410,
+        414,
+        418,
+        422,
+        426,
+        430,
+        434,
+        438,
+        442,
+        446,
+        450,
+        454,
+        458,
+        462,
+        466,
+        470,
+        474,
+        478,
+        482,
+        486,
+        490,
+        494,
+        498,
+        502,
+        506,
+        510,
+        514,
+        518,
+        522,
+        526,
+        530,
+        534,
+        538,
+        542,
+        546,
+        550,
+        554,
+        558,
+        562,
+        566,
+        570,
+        574,
+        578,
+        582,
+        586,
+        590,
+        594,
+        598
+      ],
+      "n": 150,
+      "ok": 114,
+      "rate": 0.76,
+      "finite": 127,
+      "missing": 23,
+      "ep": 0.12620930210716536,
+      "ep_success": 0.09559662507815789,
+      "ep_median": 0.08065970826,
+      "rot": 0.8363256751958268,
+      "trans": 0.1109438364595748,
+      "time": 2.37528938,
+      "n_matches": 6.206666666666667,
+      "n_correct_matches": 6.206666666666667,
+      "ransac_inliers": null,
+      "recovery_triggered": null,
+      "recovery_accepted": null,
+      "recovery_hypotheses": null,
+      "recovery_support": null,
+      "proposal_count": null,
+      "refined_candidates": null,
+      "refine_ms": null,
+      "descriptor_ms": null,
+      "matching_ms": null,
+      "solve_ms": null,
+      "recovery_triggered_total": null,
+      "recovery_accepted_total": null
+    },
+    "F:0.05:svd+ransac": {
+      "id": "F:0.05:svd+ransac",
+      "source": "F",
+      "selector": {
+        "threshold": "0.05",
+        "solver": "svd+ransac"
+      },
+      "csv_lines": [
+        3,
+        7,
+        11,
+        15,
+        19,
+        23,
+        27,
+        31,
+        35,
+        39,
+        43,
+        47,
+        51,
+        55,
+        59,
+        63,
+        67,
+        71,
+        75,
+        79,
+        83,
+        87,
+        91,
+        95,
+        99,
+        103,
+        107,
+        111,
+        115,
+        119,
+        123,
+        127,
+        131,
+        135,
+        139,
+        143,
+        147,
+        151,
+        155,
+        159,
+        163,
+        167,
+        171,
+        175,
+        179,
+        183,
+        187,
+        191,
+        195,
+        199,
+        203,
+        207,
+        211,
+        215,
+        219,
+        223,
+        227,
+        231,
+        235,
+        239,
+        243,
+        247,
+        251,
+        255,
+        259,
+        263,
+        267,
+        271,
+        275,
+        279,
+        283,
+        287,
+        291,
+        295,
+        299,
+        303,
+        307,
+        311,
+        315,
+        319,
+        323,
+        327,
+        331,
+        335,
+        339,
+        343,
+        347,
+        351,
+        355,
+        359,
+        363,
+        367,
+        371,
+        375,
+        379,
+        383,
+        387,
+        391,
+        395,
+        399,
+        403,
+        407,
+        411,
+        415,
+        419,
+        423,
+        427,
+        431,
+        435,
+        439,
+        443,
+        447,
+        451,
+        455,
+        459,
+        463,
+        467,
+        471,
+        475,
+        479,
+        483,
+        487,
+        491,
+        495,
+        499,
+        503,
+        507,
+        511,
+        515,
+        519,
+        523,
+        527,
+        531,
+        535,
+        539,
+        543,
+        547,
+        551,
+        555,
+        559,
+        563,
+        567,
+        571,
+        575,
+        579,
+        583,
+        587,
+        591,
+        595,
+        599
+      ],
+      "n": 150,
+      "ok": 121,
+      "rate": 0.8066666666666666,
+      "finite": 127,
+      "missing": 23,
+      "ep": 0.10970508682716536,
+      "ep_success": 0.09634881233099174,
+      "ep_median": 0.07597823104,
+      "rot": 0.7161741301438582,
+      "trans": 0.09726951540952757,
+      "time": 2.8046476866666668,
+      "n_matches": 6.206666666666667,
+      "n_correct_matches": 6.206666666666667,
+      "ransac_inliers": 5.866666666666666,
+      "recovery_triggered": null,
+      "recovery_accepted": null,
+      "recovery_hypotheses": null,
+      "recovery_support": null,
+      "proposal_count": null,
+      "refined_candidates": null,
+      "refine_ms": null,
+      "descriptor_ms": null,
+      "matching_ms": null,
+      "solve_ms": null,
+      "recovery_triggered_total": null,
+      "recovery_accepted_total": null
+    },
+    "F:0.1:svd": {
+      "id": "F:0.1:svd",
+      "source": "F",
+      "selector": {
+        "threshold": "0.1",
+        "solver": "svd"
+      },
+      "csv_lines": [
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        28,
+        32,
+        36,
+        40,
+        44,
+        48,
+        52,
+        56,
+        60,
+        64,
+        68,
+        72,
+        76,
+        80,
+        84,
+        88,
+        92,
+        96,
+        100,
+        104,
+        108,
+        112,
+        116,
+        120,
+        124,
+        128,
+        132,
+        136,
+        140,
+        144,
+        148,
+        152,
+        156,
+        160,
+        164,
+        168,
+        172,
+        176,
+        180,
+        184,
+        188,
+        192,
+        196,
+        200,
+        204,
+        208,
+        212,
+        216,
+        220,
+        224,
+        228,
+        232,
+        236,
+        240,
+        244,
+        248,
+        252,
+        256,
+        260,
+        264,
+        268,
+        272,
+        276,
+        280,
+        284,
+        288,
+        292,
+        296,
+        300,
+        304,
+        308,
+        312,
+        316,
+        320,
+        324,
+        328,
+        332,
+        336,
+        340,
+        344,
+        348,
+        352,
+        356,
+        360,
+        364,
+        368,
+        372,
+        376,
+        380,
+        384,
+        388,
+        392,
+        396,
+        400,
+        404,
+        408,
+        412,
+        416,
+        420,
+        424,
+        428,
+        432,
+        436,
+        440,
+        444,
+        448,
+        452,
+        456,
+        460,
+        464,
+        468,
+        472,
+        476,
+        480,
+        484,
+        488,
+        492,
+        496,
+        500,
+        504,
+        508,
+        512,
+        516,
+        520,
+        524,
+        528,
+        532,
+        536,
+        540,
+        544,
+        548,
+        552,
+        556,
+        560,
+        564,
+        568,
+        572,
+        576,
+        580,
+        584,
+        588,
+        592,
+        596,
+        600
+      ],
+      "n": 150,
+      "ok": 138,
+      "rate": 0.92,
+      "finite": 145,
+      "missing": 5,
+      "ep": 0.10729408964524138,
+      "ep_success": 0.09746082000043478,
+      "ep_median": 0.07755009721,
+      "rot": 0.6919629266255173,
+      "trans": 0.0943978561142069,
+      "time": 2.4435332333333335,
+      "n_matches": 9.266666666666667,
+      "n_correct_matches": 9.266666666666667,
+      "ransac_inliers": null,
+      "recovery_triggered": null,
+      "recovery_accepted": null,
+      "recovery_hypotheses": null,
+      "recovery_support": null,
+      "proposal_count": null,
+      "refined_candidates": null,
+      "refine_ms": null,
+      "descriptor_ms": null,
+      "matching_ms": null,
+      "solve_ms": null,
+      "recovery_triggered_total": null,
+      "recovery_accepted_total": null
+    },
+    "F:0.1:svd+ransac": {
+      "id": "F:0.1:svd+ransac",
+      "source": "F",
+      "selector": {
+        "threshold": "0.1",
+        "solver": "svd+ransac"
+      },
+      "csv_lines": [
+        5,
+        9,
+        13,
+        17,
+        21,
+        25,
+        29,
+        33,
+        37,
+        41,
+        45,
+        49,
+        53,
+        57,
+        61,
+        65,
+        69,
+        73,
+        77,
+        81,
+        85,
+        89,
+        93,
+        97,
+        101,
+        105,
+        109,
+        113,
+        117,
+        121,
+        125,
+        129,
+        133,
+        137,
+        141,
+        145,
+        149,
+        153,
+        157,
+        161,
+        165,
+        169,
+        173,
+        177,
+        181,
+        185,
+        189,
+        193,
+        197,
+        201,
+        205,
+        209,
+        213,
+        217,
+        221,
+        225,
+        229,
+        233,
+        237,
+        241,
+        245,
+        249,
+        253,
+        257,
+        261,
+        265,
+        269,
+        273,
+        277,
+        281,
+        285,
+        289,
+        293,
+        297,
+        301,
+        305,
+        309,
+        313,
+        317,
+        321,
+        325,
+        329,
+        333,
+        337,
+        341,
+        345,
+        349,
+        353,
+        357,
+        361,
+        365,
+        369,
+        373,
+        377,
+        381,
+        385,
+        389,
+        393,
+        397,
+        401,
+        405,
+        409,
+        413,
+        417,
+        421,
+        425,
+        429,
+        433,
+        437,
+        441,
+        445,
+        449,
+        453,
+        457,
+        461,
+        465,
+        469,
+        473,
+        477,
+        481,
+        485,
+        489,
+        493,
+        497,
+        501,
+        505,
+        509,
+        513,
+        517,
+        521,
+        525,
+        529,
+        533,
+        537,
+        541,
+        545,
+        549,
+        553,
+        557,
+        561,
+        565,
+        569,
+        573,
+        577,
+        581,
+        585,
+        589,
+        593,
+        597,
+        601
+      ],
+      "n": 150,
+      "ok": 144,
+      "rate": 0.96,
+      "finite": 145,
+      "missing": 5,
+      "ep": 0.09095719413689655,
+      "ep_success": 0.09067214102881944,
+      "ep_median": 0.06610264558,
+      "rot": 0.53536225928,
+      "trans": 0.08136594117781379,
+      "time": 3.0463987666666665,
+      "n_matches": 9.266666666666667,
+      "n_correct_matches": 9.266666666666667,
+      "ransac_inliers": 8.926666666666666,
+      "recovery_triggered": null,
+      "recovery_accepted": null,
+      "recovery_hypotheses": null,
+      "recovery_support": null,
+      "proposal_count": null,
+      "refined_candidates": null,
+      "refine_ms": null,
+      "descriptor_ms": null,
+      "matching_ms": null,
+      "solve_ms": null,
+      "recovery_triggered_total": null,
+      "recovery_accepted_total": null
+    },
+    "T:Plot1:reference5cm:svd": {
+      "id": "T:Plot1:reference5cm:svd",
+      "source": "T",
+      "selector": {
+        "scene": "Plot1",
+        "method": "reference5cm",
+        "solver": "svd"
+      },
+      "csv_lines": [
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        16,
+        18,
+        20,
+        22,
+        24,
+        26,
+        28,
+        30,
+        32,
+        34,
+        36,
+        38,
+        40,
+        42,
+        44,
+        46,
+        48,
+        50,
+        52,
+        54,
+        56,
+        58,
+        60,
+        62,
+        64,
+        66,
+        68,
+        70,
+        72,
+        74,
+        76,
+        78,
+        80,
+        82,
+        84,
+        86,
+        88,
+        90,
+        92,
+        94,
+        96,
+        98,
+        100,
+        102,
+        104,
+        106,
+        108,
+        110,
+        112,
+        114,
+        116,
+        118,
+        120,
+        122,
+        124,
+        126,
+        128,
+        130,
+        132,
+        134,
+        136,
+        138,
+        140,
+        142,
+        144,
+        146,
+        148,
+        150,
+        152,
+        154,
+        156,
+        158,
+        160,
+        162,
+        164,
+        166,
+        168,
+        170,
+        172,
+        174,
+        176,
+        178,
+        180,
+        182,
+        184,
+        186,
+        188,
+        190,
+        192,
+        194,
+        196,
+        198,
+        200
+      ],
+      "n": 100,
+      "ok": 100,
+      "rate": 1.0,
+      "finite": 100,
+      "missing": 0,
+      "ep": 0.1681264811113,
+      "ep_success": 0.1681264811113,
+      "ep_median": 0.15811413935000002,
+      "rot": 0.653513343284,
+      "trans": 0.14659001371934,
+      "time": 24.15578572,
+      "n_matches": 21.52,
+      "n_correct_matches": 21.52,
+      "ransac_inliers": null,
+      "recovery_triggered": null,
+      "recovery_accepted": null,
+      "recovery_hypotheses": null,
+      "recovery_support": null,
+      "proposal_count": null,
+      "refined_candidates": null,
+      "refine_ms": null,
+      "descriptor_ms": null,
+      "matching_ms": null,
+      "solve_ms": null,
+      "recovery_triggered_total": null,
+      "recovery_accepted_total": null
+    },
+    "T:Plot1:reference5cm:svd+ransac": {
+      "id": "T:Plot1:reference5cm:svd+ransac",
+      "source": "T",
+      "selector": {
+        "scene": "Plot1",
+        "method": "reference5cm",
+        "solver": "svd+ransac"
+      },
+      "csv_lines": [
+        3,
+        5,
+        7,
+        9,
+        11,
+        13,
+        15,
+        17,
+        19,
+        21,
+        23,
+        25,
+        27,
+        29,
+        31,
+        33,
+        35,
+        37,
+        39,
+        41,
+        43,
+        45,
+        47,
+        49,
+        51,
+        53,
+        55,
+        57,
+        59,
+        61,
+        63,
+        65,
+        67,
+        69,
+        71,
+        73,
+        75,
+        77,
+        79,
+        81,
+        83,
+        85,
+        87,
+        89,
+        91,
+        93,
+        95,
+        97,
+        99,
+        101,
+        103,
+        105,
+        107,
+        109,
+        111,
+        113,
+        115,
+        117,
+        119,
+        121,
+        123,
+        125,
+        127,
+        129,
+        131,
+        133,
+        135,
+        137,
+        139,
+        141,
+        143,
+        145,
+        147,
+        149,
+        151,
+        153,
+        155,
+        157,
+        159,
+        161,
+        163,
+        165,
+        167,
+        169,
+        171,
+        173,
+        175,
+        177,
+        179,
+        181,
+        183,
+        185,
+        187,
+        189,
+        191,
+        193,
+        195,
+        197,
+        199,
+        201
+      ],
+      "n": 100,
+      "ok": 100,
+      "rate": 1.0,
+      "finite": 100,
+      "missing": 0,
+      "ep": 0.172083674392,
+      "ep_success": 0.172083674392,
+      "ep_median": 0.17563544795,
+      "rot": 0.675254389727,
+      "trans": 0.1498568778713,
+      "time": 26.64002224,
+      "n_matches": 21.52,
+      "n_correct_matches": 21.52,
+      "ransac_inliers": 21.07,
+      "recovery_triggered": null,
+      "recovery_accepted": null,
+      "recovery_hypotheses": null,
+      "recovery_support": null,
+      "proposal_count": null,
+      "refined_candidates": null,
+      "refine_ms": null,
+      "descriptor_ms": null,
+      "matching_ms": null,
+      "solve_ms": null,
+      "recovery_triggered_total": null,
+      "recovery_accepted_total": null
+    },
+    "T:Plot1:baseline10cm:svd": {
+      "id": "T:Plot1:baseline10cm:svd",
+      "source": "T",
+      "selector": {
+        "scene": "Plot1",
+        "method": "baseline10cm",
+        "solver": "svd"
+      },
+      "csv_lines": [
+        802,
+        804,
+        806,
+        808,
+        810,
+        812,
+        814,
+        816,
+        818,
+        820,
+        822,
+        824,
+        826,
+        828,
+        830,
+        832,
+        834,
+        836,
+        838,
+        840,
+        842,
+        844,
+        846,
+        848,
+        850,
+        852,
+        854,
+        856,
+        858,
+        860,
+        862,
+        864,
+        866,
+        868,
+        870,
+        872,
+        874,
+        876,
+        878,
+        880,
+        882,
+        884,
+        886,
+        888,
+        890,
+        892,
+        894,
+        896,
+        898,
+        900,
+        902,
+        904,
+        906,
+        908,
+        910,
+        912,
+        914,
+        916,
+        918,
+        920,
+        922,
+        924,
+        926,
+        928,
+        930,
+        932,
+        934,
+        936,
+        938,
+        940,
+        942,
+        944,
+        946,
+        948,
+        950,
+        952,
+        954,
+        956,
+        958,
+        960,
+        962,
+        964,
+        966,
+        968,
+        970,
+        972,
+        974,
+        976,
+        978,
+        980,
+        982,
+        984,
+        986,
+        988,
+        990,
+        992,
+        994,
+        996,
+        998,
+        1000
+      ],
+      "n": 100,
+      "ok": 100,
+      "rate": 1.0,
+      "finite": 100,
+      "missing": 0,
+      "ep": 0.1766683273383,
+      "ep_success": 0.1766683273383,
+      "ep_median": 0.16598178200000002,
+      "rot": 0.690407388888,
+      "trans": 0.1555320039561,
+      "time": 25.058204840000002,
+      "n_matches": 24.58,
+      "n_correct_matches": 24.57,
+      "ransac_inliers": null,
+      "recovery_triggered": null,
+      "recovery_accepted": null,
+      "recovery_hypotheses": null,
+      "recovery_support": null,
+      "proposal_count": null,
+      "refined_candidates": null,
+      "refine_ms": null,
+      "descriptor_ms": null,
+      "matching_ms": null,
+      "solve_ms": null,
+      "recovery_triggered_total": null,
+      "recovery_accepted_total": null
+    },
+    "T:Plot1:baseline10cm:svd+ransac": {
+      "id": "T:Plot1:baseline10cm:svd+ransac",
+      "source": "T",
+      "selector": {
+        "scene": "Plot1",
+        "method": "baseline10cm",
+        "solver": "svd+ransac"
+      },
+      "csv_lines": [
+        803,
+        805,
+        807,
+        809,
+        811,
+        813,
+        815,
+        817,
+        819,
+        821,
+        823,
+        825,
+        827,
+        829,
+        831,
+        833,
+        835,
+        837,
+        839,
+        841,
+        843,
+        845,
+        847,
+        849,
+        851,
+        853,
+        855,
+        857,
+        859,
+        861,
+        863,
+        865,
+        867,
+        869,
+        871,
+        873,
+        875,
+        877,
+        879,
+        881,
+        883,
+        885,
+        887,
+        889,
+        891,
+        893,
+        895,
+        897,
+        899,
+        901,
+        903,
+        905,
+        907,
+        909,
+        911,
+        913,
+        915,
+        917,
+        919,
+        921,
+        923,
+        925,
+        927,
+        929,
+        931,
+        933,
+        935,
+        937,
+        939,
+        941,
+        943,
+        945,
+        947,
+        949,
+        951,
+        953,
+        955,
+        957,
+        959,
+        961,
+        963,
+        965,
+        967,
+        969,
+        971,
+        973,
+        975,
+        977,
+        979,
+        981,
+        983,
+        985,
+        987,
+        989,
+        991,
+        993,
+        995,
+        997,
+        999,
+        1001
+      ],
+      "n": 100,
+      "ok": 100,
+      "rate": 1.0,
+      "finite": 100,
+      "missing": 0,
+      "ep": 0.17423531105600001,
+      "ep_success": 0.17423531105600001,
+      "ep_median": 0.1677981454,
+      "rot": 0.689562769167,
+      "trans": 0.152649956211,
+      "time": 27.09175617,
+      "n_matches": 24.58,
+      "n_correct_matches": 24.57,
+      "ransac_inliers": 24.05,
+      "recovery_triggered": null,
+      "recovery_accepted": null,
+      "recovery_hypotheses": null,
+      "recovery_support": null,
+      "proposal_count": null,
+      "refined_candidates": null,
+      "refine_ms": null,
+      "descriptor_ms": null,
+      "matching_ms": null,
+      "solve_ms": null,
+      "recovery_triggered_total": null,
+      "recovery_accepted_total": null
+    },
+    "T:Plot2:reference5cm:svd": {
+      "id": "T:Plot2:reference5cm:svd",
+      "source": "T",
+      "selector": {
+        "scene": "Plot2",
+        "method": "reference5cm",
+        "solver": "svd"
+      },
+      "csv_lines": [
+        202,
+        204,
+        206,
+        208,
+        210,
+        212,
+        214,
+        216,
+        218,
+        220,
+        222,
+        224,
+        226,
+        228,
+        230,
+        232,
+        234,
+        236,
+        238,
+        240,
+        242,
+        244,
+        246,
+        248,
+        250,
+        252,
+        254,
+        256,
+        258,
+        260,
+        262,
+        264,
+        266,
+        268,
+        270,
+        272,
+        274,
+        276,
+        278,
+        280,
+        282,
+        284,
+        286,
+        288,
+        290,
+        292,
+        294,
+        296,
+        298,
+        300,
+        302,
+        304,
+        306,
+        308,
+        310,
+        312,
+        314,
+        316,
+        318,
+        320,
+        322,
+        324,
+        326,
+        328,
+        330,
+        332,
+        334,
+        336,
+        338,
+        340,
+        342,
+        344,
+        346,
+        348,
+        350,
+        352,
+        354,
+        356,
+        358,
+        360,
+        362,
+        364,
+        366,
+        368,
+        370,
+        372,
+        374,
+        376,
+        378,
+        380,
+        382,
+        384,
+        386,
+        388,
+        390,
+        392,
+        394,
+        396,
+        398,
+        400
+      ],
+      "n": 100,
+      "ok": 33,
+      "rate": 0.33,
+      "finite": 100,
+      "missing": 0,
+      "ep": 0.5450497163931,
+      "ep_success": 0.24459190838818182,
+      "ep_median": 0.36449055350000004,
+      "rot": 3.010561498714,
+      "trans": 0.3437448410885,
+      "time": 66.57111264,
+      "n_matches": 27.61,
+      "n_correct_matches": 27.6,
+      "ransac_inliers": null,
+      "recovery_triggered": null,
+      "recovery_accepted": null,
+      "recovery_hypotheses": null,
+      "recovery_support": null,
+      "proposal_count": null,
+      "refined_candidates": null,
+      "refine_ms": null,
+      "descriptor_ms": null,
+      "matching_ms": null,
+      "solve_ms": null,
+      "recovery_triggered_total": null,
+      "recovery_accepted_total": null
+    },
+    "T:Plot2:reference5cm:svd+ransac": {
+      "id": "T:Plot2:reference5cm:svd+ransac",
+      "source": "T",
+      "selector": {
+        "scene": "Plot2",
+        "method": "reference5cm",
+        "solver": "svd+ransac"
+      },
+      "csv_lines": [
+        203,
+        205,
+        207,
+        209,
+        211,
+        213,
+        215,
+        217,
+        219,
+        221,
+        223,
+        225,
+        227,
+        229,
+        231,
+        233,
+        235,
+        237,
+        239,
+        241,
+        243,
+        245,
+        247,
+        249,
+        251,
+        253,
+        255,
+        257,
+        259,
+        261,
+        263,
+        265,
+        267,
+        269,
+        271,
+        273,
+        275,
+        277,
+        279,
+        281,
+        283,
+        285,
+        287,
+        289,
+        291,
+        293,
+        295,
+        297,
+        299,
+        301,
+        303,
+        305,
+        307,
+        309,
+        311,
+        313,
+        315,
+        317,
+        319,
+        321,
+        323,
+        325,
+        327,
+        329,
+        331,
+        333,
+        335,
+        337,
+        339,
+        341,
+        343,
+        345,
+        347,
+        349,
+        351,
+        353,
+        355,
+        357,
+        359,
+        361,
+        363,
+        365,
+        367,
+        369,
+        371,
+        373,
+        375,
+        377,
+        379,
+        381,
+        383,
+        385,
+        387,
+        389,
+        391,
+        393,
+        395,
+        397,
+        399,
+        401
+      ],
+      "n": 100,
+      "ok": 28,
+      "rate": 0.28,
+      "finite": 100,
+      "missing": 0,
+      "ep": 0.58201283144,
+      "ep_success": 0.25898553889642856,
+      "ep_median": 0.47020007045,
+      "rot": 2.996312875285,
+      "trans": 0.3843288652542,
+      "time": 69.86197643,
+      "n_matches": 27.61,
+      "n_correct_matches": 27.6,
+      "ransac_inliers": 19.18,
+      "recovery_triggered": null,
+      "recovery_accepted": null,
+      "recovery_hypotheses": null,
+      "recovery_support": null,
+      "proposal_count": null,
+      "refined_candidates": null,
+      "refine_ms": null,
+      "descriptor_ms": null,
+      "matching_ms": null,
+      "solve_ms": null,
+      "recovery_triggered_total": null,
+      "recovery_accepted_total": null
+    },
+    "T:Plot2:baseline10cm:svd": {
+      "id": "T:Plot2:baseline10cm:svd",
+      "source": "T",
+      "selector": {
+        "scene": "Plot2",
+        "method": "baseline10cm",
+        "solver": "svd"
+      },
+      "csv_lines": [
+        1002,
+        1004,
+        1006,
+        1008,
+        1010,
+        1012,
+        1014,
+        1016,
+        1018,
+        1020,
+        1022,
+        1024,
+        1026,
+        1028,
+        1030,
+        1032,
+        1034,
+        1036,
+        1038,
+        1040,
+        1042,
+        1044,
+        1046,
+        1048,
+        1050,
+        1052,
+        1054,
+        1056,
+        1058,
+        1060,
+        1062,
+        1064,
+        1066,
+        1068,
+        1070,
+        1072,
+        1074,
+        1076,
+        1078,
+        1080,
+        1082,
+        1084,
+        1086,
+        1088,
+        1090,
+        1092,
+        1094,
+        1096,
+        1098,
+        1100,
+        1102,
+        1104,
+        1106,
+        1108,
+        1110,
+        1112,
+        1114,
+        1116,
+        1118,
+        1120,
+        1122,
+        1124,
+        1126,
+        1128,
+        1130,
+        1132,
+        1134,
+        1136,
+        1138,
+        1140,
+        1142,
+        1144,
+        1146,
+        1148,
+        1150,
+        1152,
+        1154,
+        1156,
+        1158,
+        1160,
+        1162,
+        1164,
+        1166,
+        1168,
+        1170,
+        1172,
+        1174,
+        1176,
+        1178,
+        1180,
+        1182,
+        1184,
+        1186,
+        1188,
+        1190,
+        1192,
+        1194,
+        1196,
+        1198,
+        1200
+      ],
+      "n": 100,
+      "ok": 37,
+      "rate": 0.37,
+      "finite": 100,
+      "missing": 0,
+      "ep": 0.4725469538884,
+      "ep_success": 0.25178984000648647,
+      "ep_median": 0.36270242355000004,
+      "rot": 2.675081919836,
+      "trans": 0.2971202555179,
+      "time": 56.89672242,
+      "n_matches": 35.31,
+      "n_correct_matches": 35.31,
+      "ransac_inliers": null,
+      "recovery_triggered": null,
+      "recovery_accepted": null,
+      "recovery_hypotheses": null,
+      "recovery_support": null,
+      "proposal_count": null,
+      "refined_candidates": null,
+      "refine_ms": null,
+      "descriptor_ms": null,
+      "matching_ms": null,
+      "solve_ms": null,
+      "recovery_triggered_total": null,
+      "recovery_accepted_total": null
+    },
+    "T:Plot2:baseline10cm:svd+ransac": {
+      "id": "T:Plot2:baseline10cm:svd+ransac",
+      "source": "T",
+      "selector": {
+        "scene": "Plot2",
+        "method": "baseline10cm",
+        "solver": "svd+ransac"
+      },
+      "csv_lines": [
+        1003,
+        1005,
+        1007,
+        1009,
+        1011,
+        1013,
+        1015,
+        1017,
+        1019,
+        1021,
+        1023,
+        1025,
+        1027,
+        1029,
+        1031,
+        1033,
+        1035,
+        1037,
+        1039,
+        1041,
+        1043,
+        1045,
+        1047,
+        1049,
+        1051,
+        1053,
+        1055,
+        1057,
+        1059,
+        1061,
+        1063,
+        1065,
+        1067,
+        1069,
+        1071,
+        1073,
+        1075,
+        1077,
+        1079,
+        1081,
+        1083,
+        1085,
+        1087,
+        1089,
+        1091,
+        1093,
+        1095,
+        1097,
+        1099,
+        1101,
+        1103,
+        1105,
+        1107,
+        1109,
+        1111,
+        1113,
+        1115,
+        1117,
+        1119,
+        1121,
+        1123,
+        1125,
+        1127,
+        1129,
+        1131,
+        1133,
+        1135,
+        1137,
+        1139,
+        1141,
+        1143,
+        1145,
+        1147,
+        1149,
+        1151,
+        1153,
+        1155,
+        1157,
+        1159,
+        1161,
+        1163,
+        1165,
+        1167,
+        1169,
+        1171,
+        1173,
+        1175,
+        1177,
+        1179,
+        1181,
+        1183,
+        1185,
+        1187,
+        1189,
+        1191,
+        1193,
+        1195,
+        1197,
+        1199,
+        1201
+      ],
+      "n": 100,
+      "ok": 34,
+      "rate": 0.34,
+      "finite": 100,
+      "missing": 0,
+      "ep": 0.5090068114483,
+      "ep_success": 0.27735324254205884,
+      "ep_median": 0.4799694573,
+      "rot": 2.805820850935,
+      "trans": 0.3161299917308,
+      "time": 61.17425436,
+      "n_matches": 35.31,
+      "n_correct_matches": 35.31,
+      "ransac_inliers": 23.11,
+      "recovery_triggered": null,
+      "recovery_accepted": null,
+      "recovery_hypotheses": null,
+      "recovery_support": null,
+      "proposal_count": null,
+      "refined_candidates": null,
+      "refine_ms": null,
+      "descriptor_ms": null,
+      "matching_ms": null,
+      "solve_ms": null,
+      "recovery_triggered_total": null,
+      "recovery_accepted_total": null
+    },
+    "T:Plot3:reference5cm:svd": {
+      "id": "T:Plot3:reference5cm:svd",
+      "source": "T",
+      "selector": {
+        "scene": "Plot3",
+        "method": "reference5cm",
+        "solver": "svd"
+      },
+      "csv_lines": [
+        402,
+        404,
+        406,
+        408,
+        410,
+        412,
+        414,
+        416,
+        418,
+        420,
+        422,
+        424,
+        426,
+        428,
+        430,
+        432,
+        434,
+        436,
+        438,
+        440,
+        442,
+        444,
+        446,
+        448,
+        450,
+        452,
+        454,
+        456,
+        458,
+        460,
+        462,
+        464,
+        466,
+        468,
+        470,
+        472,
+        474,
+        476,
+        478,
+        480,
+        482,
+        484,
+        486,
+        488,
+        490,
+        492,
+        494,
+        496,
+        498,
+        500,
+        502,
+        504,
+        506,
+        508,
+        510,
+        512,
+        514,
+        516,
+        518,
+        520,
+        522,
+        524,
+        526,
+        528,
+        530,
+        532,
+        534,
+        536,
+        538,
+        540,
+        542,
+        544,
+        546,
+        548,
+        550,
+        552,
+        554,
+        556,
+        558,
+        560,
+        562,
+        564,
+        566,
+        568,
+        570,
+        572,
+        574,
+        576,
+        578,
+        580,
+        582,
+        584,
+        586,
+        588,
+        590,
+        592,
+        594,
+        596,
+        598,
+        600
+      ],
+      "n": 100,
+      "ok": 100,
+      "rate": 1.0,
+      "finite": 100,
+      "missing": 0,
+      "ep": 0.05376450884124,
+      "ep_success": 0.05376450884124,
+      "ep_median": 0.04550361249,
+      "rot": 0.2980301282526,
+      "trans": 0.049848060006150004,
+      "time": 6.04477203,
+      "n_matches": 28.77,
+      "n_correct_matches": 28.77,
+      "ransac_inliers": null,
+      "recovery_triggered": null,
+      "recovery_accepted": null,
+      "recovery_hypotheses": null,
+      "recovery_support": null,
+      "proposal_count": null,
+      "refined_candidates": null,
+      "refine_ms": null,
+      "descriptor_ms": null,
+      "matching_ms": null,
+      "solve_ms": null,
+      "recovery_triggered_total": null,
+      "recovery_accepted_total": null
+    },
+    "T:Plot3:reference5cm:svd+ransac": {
+      "id": "T:Plot3:reference5cm:svd+ransac",
+      "source": "T",
+      "selector": {
+        "scene": "Plot3",
+        "method": "reference5cm",
+        "solver": "svd+ransac"
+      },
+      "csv_lines": [
+        403,
+        405,
+        407,
+        409,
+        411,
+        413,
+        415,
+        417,
+        419,
+        421,
+        423,
+        425,
+        427,
+        429,
+        431,
+        433,
+        435,
+        437,
+        439,
+        441,
+        443,
+        445,
+        447,
+        449,
+        451,
+        453,
+        455,
+        457,
+        459,
+        461,
+        463,
+        465,
+        467,
+        469,
+        471,
+        473,
+        475,
+        477,
+        479,
+        481,
+        483,
+        485,
+        487,
+        489,
+        491,
+        493,
+        495,
+        497,
+        499,
+        501,
+        503,
+        505,
+        507,
+        509,
+        511,
+        513,
+        515,
+        517,
+        519,
+        521,
+        523,
+        525,
+        527,
+        529,
+        531,
+        533,
+        535,
+        537,
+        539,
+        541,
+        543,
+        545,
+        547,
+        549,
+        551,
+        553,
+        555,
+        557,
+        559,
+        561,
+        563,
+        565,
+        567,
+        569,
+        571,
+        573,
+        575,
+        577,
+        579,
+        581,
+        583,
+        585,
+        587,
+        589,
+        591,
+        593,
+        595,
+        597,
+        599,
+        601
+      ],
+      "n": 100,
+      "ok": 100,
+      "rate": 1.0,
+      "finite": 100,
+      "missing": 0,
+      "ep": 0.05291779501674,
+      "ep_success": 0.05291779501674,
+      "ep_median": 0.044632829974999996,
+      "rot": 0.2874627067643,
+      "trans": 0.04907486991115,
+      "time": 7.29747341,
+      "n_matches": 28.77,
+      "n_correct_matches": 28.77,
+      "ransac_inliers": 28.37,
+      "recovery_triggered": null,
+      "recovery_accepted": null,
+      "recovery_hypotheses": null,
+      "recovery_support": null,
+      "proposal_count": null,
+      "refined_candidates": null,
+      "refine_ms": null,
+      "descriptor_ms": null,
+      "matching_ms": null,
+      "solve_ms": null,
+      "recovery_triggered_total": null,
+      "recovery_accepted_total": null
+    },
+    "T:Plot3:baseline10cm:svd": {
+      "id": "T:Plot3:baseline10cm:svd",
+      "source": "T",
+      "selector": {
+        "scene": "Plot3",
+        "method": "baseline10cm",
+        "solver": "svd"
+      },
+      "csv_lines": [
+        1202,
+        1204,
+        1206,
+        1208,
+        1210,
+        1212,
+        1214,
+        1216,
+        1218,
+        1220,
+        1222,
+        1224,
+        1226,
+        1228,
+        1230,
+        1232,
+        1234,
+        1236,
+        1238,
+        1240,
+        1242,
+        1244,
+        1246,
+        1248,
+        1250,
+        1252,
+        1254,
+        1256,
+        1258,
+        1260,
+        1262,
+        1264,
+        1266,
+        1268,
+        1270,
+        1272,
+        1274,
+        1276,
+        1278,
+        1280,
+        1282,
+        1284,
+        1286,
+        1288,
+        1290,
+        1292,
+        1294,
+        1296,
+        1298,
+        1300,
+        1302,
+        1304,
+        1306,
+        1308,
+        1310,
+        1312,
+        1314,
+        1316,
+        1318,
+        1320,
+        1322,
+        1324,
+        1326,
+        1328,
+        1330,
+        1332,
+        1334,
+        1336,
+        1338,
+        1340,
+        1342,
+        1344,
+        1346,
+        1348,
+        1350,
+        1352,
+        1354,
+        1356,
+        1358,
+        1360,
+        1362,
+        1364,
+        1366,
+        1368,
+        1370,
+        1372,
+        1374,
+        1376,
+        1378,
+        1380,
+        1382,
+        1384,
+        1386,
+        1388,
+        1390,
+        1392,
+        1394,
+        1396,
+        1398,
+        1400
+      ],
+      "n": 100,
+      "ok": 100,
+      "rate": 1.0,
+      "finite": 100,
+      "missing": 0,
+      "ep": 0.04993702343056,
+      "ep_success": 0.04993702343056,
+      "ep_median": 0.039776062195,
+      "rot": 0.2973840962944,
+      "trans": 0.04555181305722,
+      "time": 6.71977696,
+      "n_matches": 33.51,
+      "n_correct_matches": 33.51,
+      "ransac_inliers": null,
+      "recovery_triggered": null,
+      "recovery_accepted": null,
+      "recovery_hypotheses": null,
+      "recovery_support": null,
+      "proposal_count": null,
+      "refined_candidates": null,
+      "refine_ms": null,
+      "descriptor_ms": null,
+      "matching_ms": null,
+      "solve_ms": null,
+      "recovery_triggered_total": null,
+      "recovery_accepted_total": null
+    },
+    "T:Plot3:baseline10cm:svd+ransac": {
+      "id": "T:Plot3:baseline10cm:svd+ransac",
+      "source": "T",
+      "selector": {
+        "scene": "Plot3",
+        "method": "baseline10cm",
+        "solver": "svd+ransac"
+      },
+      "csv_lines": [
+        1203,
+        1205,
+        1207,
+        1209,
+        1211,
+        1213,
+        1215,
+        1217,
+        1219,
+        1221,
+        1223,
+        1225,
+        1227,
+        1229,
+        1231,
+        1233,
+        1235,
+        1237,
+        1239,
+        1241,
+        1243,
+        1245,
+        1247,
+        1249,
+        1251,
+        1253,
+        1255,
+        1257,
+        1259,
+        1261,
+        1263,
+        1265,
+        1267,
+        1269,
+        1271,
+        1273,
+        1275,
+        1277,
+        1279,
+        1281,
+        1283,
+        1285,
+        1287,
+        1289,
+        1291,
+        1293,
+        1295,
+        1297,
+        1299,
+        1301,
+        1303,
+        1305,
+        1307,
+        1309,
+        1311,
+        1313,
+        1315,
+        1317,
+        1319,
+        1321,
+        1323,
+        1325,
+        1327,
+        1329,
+        1331,
+        1333,
+        1335,
+        1337,
+        1339,
+        1341,
+        1343,
+        1345,
+        1347,
+        1349,
+        1351,
+        1353,
+        1355,
+        1357,
+        1359,
+        1361,
+        1363,
+        1365,
+        1367,
+        1369,
+        1371,
+        1373,
+        1375,
+        1377,
+        1379,
+        1381,
+        1383,
+        1385,
+        1387,
+        1389,
+        1391,
+        1393,
+        1395,
+        1397,
+        1399,
+        1401
+      ],
+      "n": 100,
+      "ok": 100,
+      "rate": 1.0,
+      "finite": 100,
+      "missing": 0,
+      "ep": 0.04901756139286,
+      "ep_success": 0.04901756139286,
+      "ep_median": 0.041149433145,
+      "rot": 0.2756560181046,
+      "trans": 0.04498764577382,
+      "time": 8.32219845,
+      "n_matches": 33.51,
+      "n_correct_matches": 33.51,
+      "ransac_inliers": 32.91,
+      "recovery_triggered": null,
+      "recovery_accepted": null,
+      "recovery_hypotheses": null,
+      "recovery_support": null,
+      "proposal_count": null,
+      "refined_candidates": null,
+      "refine_ms": null,
+      "descriptor_ms": null,
+      "matching_ms": null,
+      "solve_ms": null,
+      "recovery_triggered_total": null,
+      "recovery_accepted_total": null
+    },
+    "T:Plot4:reference5cm:svd": {
+      "id": "T:Plot4:reference5cm:svd",
+      "source": "T",
+      "selector": {
+        "scene": "Plot4",
+        "method": "reference5cm",
+        "solver": "svd"
+      },
+      "csv_lines": [
+        602,
+        604,
+        606,
+        608,
+        610,
+        612,
+        614,
+        616,
+        618,
+        620,
+        622,
+        624,
+        626,
+        628,
+        630,
+        632,
+        634,
+        636,
+        638,
+        640,
+        642,
+        644,
+        646,
+        648,
+        650,
+        652,
+        654,
+        656,
+        658,
+        660,
+        662,
+        664,
+        666,
+        668,
+        670,
+        672,
+        674,
+        676,
+        678,
+        680,
+        682,
+        684,
+        686,
+        688,
+        690,
+        692,
+        694,
+        696,
+        698,
+        700,
+        702,
+        704,
+        706,
+        708,
+        710,
+        712,
+        714,
+        716,
+        718,
+        720,
+        722,
+        724,
+        726,
+        728,
+        730,
+        732,
+        734,
+        736,
+        738,
+        740,
+        742,
+        744,
+        746,
+        748,
+        750,
+        752,
+        754,
+        756,
+        758,
+        760,
+        762,
+        764,
+        766,
+        768,
+        770,
+        772,
+        774,
+        776,
+        778,
+        780,
+        782,
+        784,
+        786,
+        788,
+        790,
+        792,
+        794,
+        796,
+        798,
+        800
+      ],
+      "n": 100,
+      "ok": 76,
+      "rate": 0.76,
+      "finite": 83,
+      "missing": 17,
+      "ep": 1.2323467892978313,
+      "ep_success": 0.08705992042526316,
+      "ep_median": 0.06105125514,
+      "rot": 2.6389862409548193,
+      "trans": 1.2393923072873374,
+      "time": 6.01696067,
+      "n_matches": 7.78,
+      "n_correct_matches": 7.72,
+      "ransac_inliers": null,
+      "recovery_triggered": null,
+      "recovery_accepted": null,
+      "recovery_hypotheses": null,
+      "recovery_support": null,
+      "proposal_count": null,
+      "refined_candidates": null,
+      "refine_ms": null,
+      "descriptor_ms": null,
+      "matching_ms": null,
+      "solve_ms": null,
+      "recovery_triggered_total": null,
+      "recovery_accepted_total": null
+    },
+    "T:Plot4:reference5cm:svd+ransac": {
+      "id": "T:Plot4:reference5cm:svd+ransac",
+      "source": "T",
+      "selector": {
+        "scene": "Plot4",
+        "method": "reference5cm",
+        "solver": "svd+ransac"
+      },
+      "csv_lines": [
+        603,
+        605,
+        607,
+        609,
+        611,
+        613,
+        615,
+        617,
+        619,
+        621,
+        623,
+        625,
+        627,
+        629,
+        631,
+        633,
+        635,
+        637,
+        639,
+        641,
+        643,
+        645,
+        647,
+        649,
+        651,
+        653,
+        655,
+        657,
+        659,
+        661,
+        663,
+        665,
+        667,
+        669,
+        671,
+        673,
+        675,
+        677,
+        679,
+        681,
+        683,
+        685,
+        687,
+        689,
+        691,
+        693,
+        695,
+        697,
+        699,
+        701,
+        703,
+        705,
+        707,
+        709,
+        711,
+        713,
+        715,
+        717,
+        719,
+        721,
+        723,
+        725,
+        727,
+        729,
+        731,
+        733,
+        735,
+        737,
+        739,
+        741,
+        743,
+        745,
+        747,
+        749,
+        751,
+        753,
+        755,
+        757,
+        759,
+        761,
+        763,
+        765,
+        767,
+        769,
+        771,
+        773,
+        775,
+        777,
+        779,
+        781,
+        783,
+        785,
+        787,
+        789,
+        791,
+        793,
+        795,
+        797,
+        799,
+        801
+      ],
+      "n": 100,
+      "ok": 76,
+      "rate": 0.76,
+      "finite": 83,
+      "missing": 17,
+      "ep": 1.2323467892978313,
+      "ep_success": 0.08705992042526316,
+      "ep_median": 0.06105125514,
+      "rot": 2.6389862409548193,
+      "trans": 1.2393923072873374,
+      "time": 6.60275653,
+      "n_matches": 7.78,
+      "n_correct_matches": 7.72,
+      "ransac_inliers": 7.67,
+      "recovery_triggered": null,
+      "recovery_accepted": null,
+      "recovery_hypotheses": null,
+      "recovery_support": null,
+      "proposal_count": null,
+      "refined_candidates": null,
+      "refine_ms": null,
+      "descriptor_ms": null,
+      "matching_ms": null,
+      "solve_ms": null,
+      "recovery_triggered_total": null,
+      "recovery_accepted_total": null
+    },
+    "T:Plot4:baseline10cm:svd": {
+      "id": "T:Plot4:baseline10cm:svd",
+      "source": "T",
+      "selector": {
+        "scene": "Plot4",
+        "method": "baseline10cm",
+        "solver": "svd"
+      },
+      "csv_lines": [
+        1402,
+        1404,
+        1406,
+        1408,
+        1410,
+        1412,
+        1414,
+        1416,
+        1418,
+        1420,
+        1422,
+        1424,
+        1426,
+        1428,
+        1430,
+        1432,
+        1434,
+        1436,
+        1438,
+        1440,
+        1442,
+        1444,
+        1446,
+        1448,
+        1450,
+        1452,
+        1454,
+        1456,
+        1458,
+        1460,
+        1462,
+        1464,
+        1466,
+        1468,
+        1470,
+        1472,
+        1474,
+        1476,
+        1478,
+        1480,
+        1482,
+        1484,
+        1486,
+        1488,
+        1490,
+        1492,
+        1494,
+        1496,
+        1498,
+        1500,
+        1502,
+        1504,
+        1506,
+        1508,
+        1510,
+        1512,
+        1514,
+        1516,
+        1518,
+        1520,
+        1522,
+        1524,
+        1526,
+        1528,
+        1530,
+        1532,
+        1534,
+        1536,
+        1538,
+        1540,
+        1542,
+        1544,
+        1546,
+        1548,
+        1550,
+        1552,
+        1554,
+        1556,
+        1558,
+        1560,
+        1562,
+        1564,
+        1566,
+        1568,
+        1570,
+        1572,
+        1574,
+        1576,
+        1578,
+        1580,
+        1582,
+        1584,
+        1586,
+        1588,
+        1590,
+        1592,
+        1594,
+        1596,
+        1598,
+        1600
+      ],
+      "n": 100,
+      "ok": 69,
+      "rate": 0.69,
+      "finite": 81,
+      "missing": 19,
+      "ep": 2.994917599032963,
+      "ep_success": 0.07395330353434783,
+      "ep_median": 0.05704776447,
+      "rot": 11.59766951236,
+      "trans": 3.0326872194893704,
+      "time": 6.25656317,
+      "n_matches": 8.38,
+      "n_correct_matches": 8.16,
+      "ransac_inliers": null,
+      "recovery_triggered": null,
+      "recovery_accepted": null,
+      "recovery_hypotheses": null,
+      "recovery_support": null,
+      "proposal_count": null,
+      "refined_candidates": null,
+      "refine_ms": null,
+      "descriptor_ms": null,
+      "matching_ms": null,
+      "solve_ms": null,
+      "recovery_triggered_total": null,
+      "recovery_accepted_total": null
+    },
+    "T:Plot4:baseline10cm:svd+ransac": {
+      "id": "T:Plot4:baseline10cm:svd+ransac",
+      "source": "T",
+      "selector": {
+        "scene": "Plot4",
+        "method": "baseline10cm",
+        "solver": "svd+ransac"
+      },
+      "csv_lines": [
+        1403,
+        1405,
+        1407,
+        1409,
+        1411,
+        1413,
+        1415,
+        1417,
+        1419,
+        1421,
+        1423,
+        1425,
+        1427,
+        1429,
+        1431,
+        1433,
+        1435,
+        1437,
+        1439,
+        1441,
+        1443,
+        1445,
+        1447,
+        1449,
+        1451,
+        1453,
+        1455,
+        1457,
+        1459,
+        1461,
+        1463,
+        1465,
+        1467,
+        1469,
+        1471,
+        1473,
+        1475,
+        1477,
+        1479,
+        1481,
+        1483,
+        1485,
+        1487,
+        1489,
+        1491,
+        1493,
+        1495,
+        1497,
+        1499,
+        1501,
+        1503,
+        1505,
+        1507,
+        1509,
+        1511,
+        1513,
+        1515,
+        1517,
+        1519,
+        1521,
+        1523,
+        1525,
+        1527,
+        1529,
+        1531,
+        1533,
+        1535,
+        1537,
+        1539,
+        1541,
+        1543,
+        1545,
+        1547,
+        1549,
+        1551,
+        1553,
+        1555,
+        1557,
+        1559,
+        1561,
+        1563,
+        1565,
+        1567,
+        1569,
+        1571,
+        1573,
+        1575,
+        1577,
+        1579,
+        1581,
+        1583,
+        1585,
+        1587,
+        1589,
+        1591,
+        1593,
+        1595,
+        1597,
+        1599,
+        1601
+      ],
+      "n": 100,
+      "ok": 70,
+      "rate": 0.7,
+      "finite": 81,
+      "missing": 19,
+      "ep": 2.5216805173230865,
+      "ep_success": 0.074798211791,
+      "ep_median": 0.05704776447,
+      "rot": 9.392364444529136,
+      "trans": 2.5514528304869013,
+      "time": 7.46682261,
+      "n_matches": 8.38,
+      "n_correct_matches": 8.16,
+      "ransac_inliers": 8.11,
+      "recovery_triggered": null,
+      "recovery_accepted": null,
+      "recovery_hypotheses": null,
+      "recovery_support": null,
+      "proposal_count": null,
+      "refined_candidates": null,
+      "refine_ms": null,
+      "descriptor_ms": null,
+      "matching_ms": null,
+      "solve_ms": null,
+      "recovery_triggered_total": null,
+      "recovery_accepted_total": null
+    }
+  },
+  "paired": {
+    "T:Plot1:reference5cm:svd -> T:Plot1:baseline10cm:svd": {
+      "gained": 0,
+      "lost": 0,
+      "common": 100,
+      "before": 0.1681264811113,
+      "after": 0.1766683273383,
+      "same_finite": true
+    },
+    "T:Plot1:reference5cm:svd+ransac -> T:Plot1:baseline10cm:svd+ransac": {
+      "gained": 0,
+      "lost": 0,
+      "common": 100,
+      "before": 0.172083674392,
+      "after": 0.17423531105600001,
+      "same_finite": true
+    },
+    "T:Plot1:reference5cm:svd -> T:Plot1:reference5cm:svd+ransac": {
+      "gained": 0,
+      "lost": 0,
+      "common": 100,
+      "before": 0.1681264811113,
+      "after": 0.172083674392,
+      "same_finite": true
+    },
+    "T:Plot1:baseline10cm:svd -> T:Plot1:baseline10cm:svd+ransac": {
+      "gained": 0,
+      "lost": 0,
+      "common": 100,
+      "before": 0.1766683273383,
+      "after": 0.17423531105600001,
+      "same_finite": true
+    },
+    "T:Plot2:reference5cm:svd -> T:Plot2:baseline10cm:svd": {
+      "gained": 8,
+      "lost": 4,
+      "common": 29,
+      "before": 0.24320219195551723,
+      "after": 0.23770760751172415,
+      "same_finite": true
+    },
+    "T:Plot2:reference5cm:svd+ransac -> T:Plot2:baseline10cm:svd+ransac": {
+      "gained": 9,
+      "lost": 3,
+      "common": 25,
+      "before": 0.24426966728,
+      "after": 0.2424613362052,
+      "same_finite": true
+    },
+    "T:Plot2:reference5cm:svd -> T:Plot2:reference5cm:svd+ransac": {
+      "gained": 7,
+      "lost": 12,
+      "common": 21,
+      "before": 0.21772994335761905,
+      "after": 0.20282764585714286,
+      "same_finite": true
+    },
+    "T:Plot2:baseline10cm:svd -> T:Plot2:baseline10cm:svd+ransac": {
+      "gained": 9,
+      "lost": 12,
+      "common": 25,
+      "before": 0.2259478257216,
+      "after": 0.2156710227932,
+      "same_finite": true
+    },
+    "T:Plot3:reference5cm:svd -> T:Plot3:baseline10cm:svd": {
+      "gained": 0,
+      "lost": 0,
+      "common": 100,
+      "before": 0.05376450884124,
+      "after": 0.04993702343056,
+      "same_finite": true
+    },
+    "T:Plot3:reference5cm:svd+ransac -> T:Plot3:baseline10cm:svd+ransac": {
+      "gained": 0,
+      "lost": 0,
+      "common": 100,
+      "before": 0.05291779501674,
+      "after": 0.04901756139286,
+      "same_finite": true
+    },
+    "T:Plot3:reference5cm:svd -> T:Plot3:reference5cm:svd+ransac": {
+      "gained": 0,
+      "lost": 0,
+      "common": 100,
+      "before": 0.05376450884124,
+      "after": 0.05291779501674,
+      "same_finite": true
+    },
+    "T:Plot3:baseline10cm:svd -> T:Plot3:baseline10cm:svd+ransac": {
+      "gained": 0,
+      "lost": 0,
+      "common": 100,
+      "before": 0.04993702343056,
+      "after": 0.04901756139286,
+      "same_finite": true
+    },
+    "T:Plot4:reference5cm:svd -> T:Plot4:baseline10cm:svd": {
+      "gained": 6,
+      "lost": 13,
+      "common": 63,
+      "before": 0.06914644631380952,
+      "after": 0.07018932233142858,
+      "same_finite": false
+    },
+    "T:Plot4:reference5cm:svd+ransac -> T:Plot4:baseline10cm:svd+ransac": {
+      "gained": 6,
+      "lost": 12,
+      "common": 64,
+      "before": 0.07010373222453126,
+      "after": 0.0711722529434375,
+      "same_finite": false
+    },
+    "T:Plot4:reference5cm:svd -> T:Plot4:reference5cm:svd+ransac": {
+      "gained": 0,
+      "lost": 0,
+      "common": 76,
+      "before": 0.08705992042526316,
+      "after": 0.08705992042526316,
+      "same_finite": true
+    },
+    "T:Plot4:baseline10cm:svd -> T:Plot4:baseline10cm:svd+ransac": {
+      "gained": 1,
+      "lost": 0,
+      "common": 69,
+      "before": 0.07395330353434783,
+      "after": 0.07395330353434783,
+      "same_finite": true
+    },
+    "F:0.05:svd -> F:0.1:svd": {
+      "gained": 28,
+      "lost": 4,
+      "common": 110,
+      "before": 0.09489490134990909,
+      "after": 0.08842029700663637,
+      "same_finite": false
+    },
+    "F:0.05:svd+ransac -> F:0.1:svd+ransac": {
+      "gained": 25,
+      "lost": 2,
+      "common": 119,
+      "before": 0.09519133282310924,
+      "after": 0.08297936695739495,
+      "same_finite": false
+    },
+    "F:0.05:svd -> F:0.05:svd+ransac": {
+      "gained": 7,
+      "lost": 0,
+      "common": 114,
+      "before": 0.09559662507815789,
+      "after": 0.09598285944078948,
+      "same_finite": true
+    },
+    "F:0.1:svd -> F:0.1:svd+ransac": {
+      "gained": 6,
+      "lost": 0,
+      "common": 138,
+      "before": 0.09746082000043478,
+      "after": 0.0896531325555797,
+      "same_finite": true
+    },
+    "T:Plot1:reference5cm:svd -> T:Plot1:reference5cm:svd": {
+      "gained": 0,
+      "lost": 0,
+      "common": 100,
+      "before": 0.1681264811113,
+      "after": 0.1681264811113,
+      "same_finite": true
+    },
+    "T:Plot1:reference5cm:svd -> T:Plot1:baseline10cm:svd+ransac": {
+      "gained": 0,
+      "lost": 0,
+      "common": 100,
+      "before": 0.1681264811113,
+      "after": 0.17423531105600001,
+      "same_finite": true
+    },
+    "T:Plot2:reference5cm:svd -> T:Plot2:reference5cm:svd": {
+      "gained": 0,
+      "lost": 0,
+      "common": 33,
+      "before": 0.24459190838818182,
+      "after": 0.24459190838818182,
+      "same_finite": true
+    },
+    "T:Plot2:reference5cm:svd -> T:Plot2:baseline10cm:svd+ransac": {
+      "gained": 12,
+      "lost": 11,
+      "common": 22,
+      "before": 0.2246681117640909,
+      "after": 0.19960971896954546,
+      "same_finite": true
+    },
+    "T:Plot3:reference5cm:svd -> T:Plot3:reference5cm:svd": {
+      "gained": 0,
+      "lost": 0,
+      "common": 100,
+      "before": 0.05376450884124,
+      "after": 0.05376450884124,
+      "same_finite": true
+    },
+    "T:Plot3:reference5cm:svd -> T:Plot3:baseline10cm:svd+ransac": {
+      "gained": 0,
+      "lost": 0,
+      "common": 100,
+      "before": 0.05376450884124,
+      "after": 0.04901756139286,
+      "same_finite": true
+    },
+    "T:Plot4:reference5cm:svd -> T:Plot4:reference5cm:svd": {
+      "gained": 0,
+      "lost": 0,
+      "common": 76,
+      "before": 0.08705992042526316,
+      "after": 0.08705992042526316,
+      "same_finite": true
+    },
+    "T:Plot4:reference5cm:svd -> T:Plot4:baseline10cm:svd+ransac": {
+      "gained": 6,
+      "lost": 12,
+      "common": 64,
+      "before": 0.07010373222453126,
+      "after": 0.0711722529434375,
+      "same_finite": false
+    },
+    "F:0.05:svd -> F:0.05:svd": {
+      "gained": 0,
+      "lost": 0,
+      "common": 114,
+      "before": 0.09559662507815789,
+      "after": 0.09559662507815789,
+      "same_finite": true
+    },
+    "F:0.05:svd -> F:0.1:svd+ransac": {
+      "gained": 32,
+      "lost": 2,
+      "common": 112,
+      "before": 0.09435337118580357,
+      "after": 0.081151508385625,
+      "same_finite": false
+    }
+  },
+  "checks": [
+    {
+      "sheet": "四組結果比較",
+      "row": 5,
+      "col": 0,
+      "expected": "dataset／場景"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 5,
+      "col": 1,
+      "expected": "案例組成"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 5,
+      "col": 2,
+      "expected": "5cm／SVD"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 5,
+      "col": 3,
+      "expected": "5cm／RANSAC"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 5,
+      "col": 4,
+      "expected": "10cm／SVD"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 5,
+      "col": 5,
+      "expected": "10cm／RANSAC"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 5,
+      "col": 6,
+      "expected": "論文成功率\n分母待補"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 5,
+      "col": 7,
+      "expected": "論文e_p cm"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 6,
+      "col": 0,
+      "expected": "Tongji／Plot1"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 6,
+      "col": 1,
+      "expected": "10配對×10seed"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 6,
+      "col": 2,
+      "expected": 1.0,
+      "formula": "=100/100"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 6,
+      "col": 3,
+      "expected": 1.0,
+      "formula": "=100/100"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 6,
+      "col": 4,
+      "expected": 1.0,
+      "formula": "=100/100"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 6,
+      "col": 5,
+      "expected": 1.0,
+      "formula": "=100/100"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 6,
+      "col": 6,
+      "expected": 1
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 6,
+      "col": 7,
+      "expected": 5.2558
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 7,
+      "col": 0,
+      "expected": "Tongji／Plot2"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 7,
+      "col": 1,
+      "expected": "10配對×10seed"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 7,
+      "col": 2,
+      "expected": 0.33,
+      "formula": "=33/100"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 7,
+      "col": 3,
+      "expected": 0.28,
+      "formula": "=28/100"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 7,
+      "col": 4,
+      "expected": 0.37,
+      "formula": "=37/100"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 7,
+      "col": 5,
+      "expected": 0.34,
+      "formula": "=34/100"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 7,
+      "col": 6,
+      "expected": 1
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 7,
+      "col": 7,
+      "expected": 11.480799999999999
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 8,
+      "col": 0,
+      "expected": "Tongji／Plot3"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 8,
+      "col": 1,
+      "expected": "10配對×10seed"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 8,
+      "col": 2,
+      "expected": 1.0,
+      "formula": "=100/100"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 8,
+      "col": 3,
+      "expected": 1.0,
+      "formula": "=100/100"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 8,
+      "col": 4,
+      "expected": 1.0,
+      "formula": "=100/100"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 8,
+      "col": 5,
+      "expected": 1.0,
+      "formula": "=100/100"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 8,
+      "col": 6,
+      "expected": 1
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 8,
+      "col": 7,
+      "expected": 4.8756
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 9,
+      "col": 0,
+      "expected": "Tongji／Plot4"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 9,
+      "col": 1,
+      "expected": "10配對×10seed"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 9,
+      "col": 2,
+      "expected": 0.76,
+      "formula": "=76/100"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 9,
+      "col": 3,
+      "expected": 0.76,
+      "formula": "=76/100"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 9,
+      "col": 4,
+      "expected": 0.69,
+      "formula": "=69/100"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 9,
+      "col": 5,
+      "expected": 0.7,
+      "formula": "=70/100"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 9,
+      "col": 6,
+      "expected": 1
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 9,
+      "col": 7,
+      "expected": 4.356
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 10,
+      "col": 0,
+      "expected": "ETH-tree"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 10,
+      "col": 1,
+      "expected": "15配對×10seed"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 10,
+      "col": 2,
+      "expected": 0.76,
+      "formula": "=114/150"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 10,
+      "col": 3,
+      "expected": 0.8066666666666666,
+      "formula": "=121/150"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 10,
+      "col": 4,
+      "expected": 0.92,
+      "formula": "=138/150"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 10,
+      "col": 5,
+      "expected": 0.96,
+      "formula": "=144/150"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 10,
+      "col": 6,
+      "expected": 1
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 10,
+      "col": 7,
+      "expected": 15.3427
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 16,
+      "col": 0,
+      "expected": "dataset／場景"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 16,
+      "col": 1,
+      "expected": "5cm／SVD"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 16,
+      "col": 2,
+      "expected": "5cm／RANSAC"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 16,
+      "col": 3,
+      "expected": "10cm／SVD"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 16,
+      "col": 4,
+      "expected": "10cm／RANSAC"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 16,
+      "col": 5,
+      "expected": "論文e_p cm"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 17,
+      "col": 0,
+      "expected": "Tongji／Plot1"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 17,
+      "col": 1,
+      "expected": 16.81264811113
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 17,
+      "col": 2,
+      "expected": 17.2083674392
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 17,
+      "col": 3,
+      "expected": 17.666832733830002
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 17,
+      "col": 4,
+      "expected": 17.423531105600002
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 17,
+      "col": 5,
+      "expected": 5.2558
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 18,
+      "col": 0,
+      "expected": "Tongji／Plot2"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 18,
+      "col": 1,
+      "expected": 54.50497163930999
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 18,
+      "col": 2,
+      "expected": 58.201283144
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 18,
+      "col": 3,
+      "expected": 47.25469538884
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 18,
+      "col": 4,
+      "expected": 50.900681144829996
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 18,
+      "col": 5,
+      "expected": 11.480799999999999
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 19,
+      "col": 0,
+      "expected": "Tongji／Plot3"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 19,
+      "col": 1,
+      "expected": 5.376450884124
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 19,
+      "col": 2,
+      "expected": 5.291779501674
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 19,
+      "col": 3,
+      "expected": 4.993702343056
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 19,
+      "col": 4,
+      "expected": 4.901756139286
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 19,
+      "col": 5,
+      "expected": 4.8756
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 20,
+      "col": 0,
+      "expected": "Tongji／Plot4"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 20,
+      "col": 1,
+      "expected": 123.23467892978313
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 20,
+      "col": 2,
+      "expected": 123.23467892978313
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 20,
+      "col": 3,
+      "expected": 299.49175990329627
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 20,
+      "col": 4,
+      "expected": 252.16805173230864
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 20,
+      "col": 5,
+      "expected": 4.356
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 21,
+      "col": 0,
+      "expected": "ETH-tree"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 21,
+      "col": 1,
+      "expected": 12.620930210716535
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 21,
+      "col": 2,
+      "expected": 10.970508682716536
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 21,
+      "col": 3,
+      "expected": 10.729408964524138
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 21,
+      "col": 4,
+      "expected": 9.095719413689656
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 21,
+      "col": 5,
+      "expected": 15.3427
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 25,
+      "col": 0,
+      "expected": "dataset／場景"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 25,
+      "col": 1,
+      "expected": "5cm／SVD"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 25,
+      "col": 2,
+      "expected": "5cm／RANSAC"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 25,
+      "col": 3,
+      "expected": "10cm／SVD"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 25,
+      "col": 4,
+      "expected": "10cm／RANSAC"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 26,
+      "col": 0,
+      "expected": "Tongji／Plot1"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 26,
+      "col": 1,
+      "expected": 100
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 26,
+      "col": 2,
+      "expected": 100
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 26,
+      "col": 3,
+      "expected": 100
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 26,
+      "col": 4,
+      "expected": 100
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 27,
+      "col": 0,
+      "expected": "Tongji／Plot2"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 27,
+      "col": 1,
+      "expected": 100
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 27,
+      "col": 2,
+      "expected": 100
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 27,
+      "col": 3,
+      "expected": 100
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 27,
+      "col": 4,
+      "expected": 100
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 28,
+      "col": 0,
+      "expected": "Tongji／Plot3"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 28,
+      "col": 1,
+      "expected": 100
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 28,
+      "col": 2,
+      "expected": 100
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 28,
+      "col": 3,
+      "expected": 100
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 28,
+      "col": 4,
+      "expected": 100
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 29,
+      "col": 0,
+      "expected": "Tongji／Plot4"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 29,
+      "col": 1,
+      "expected": 83
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 29,
+      "col": 2,
+      "expected": 83
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 29,
+      "col": 3,
+      "expected": 81
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 29,
+      "col": 4,
+      "expected": 81
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 30,
+      "col": 0,
+      "expected": "ETH-tree"
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 30,
+      "col": 1,
+      "expected": 127
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 30,
+      "col": 2,
+      "expected": 127
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 30,
+      "col": 3,
+      "expected": 145
+    },
+    {
+      "sheet": "四組結果比較",
+      "row": 30,
+      "col": 4,
+      "expected": 145
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 5,
+      "col": 0,
+      "expected": "項目"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 5,
+      "col": 1,
+      "expected": "前／設定A"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 5,
+      "col": 2,
+      "expected": "後／設定B"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 5,
+      "col": 3,
+      "expected": "作用與固定條件"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 6,
+      "col": 0,
+      "expected": "CN距離容差"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 6,
+      "col": 1,
+      "expected": "0.05m"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 6,
+      "col": 2,
+      "expected": "0.10m"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 6,
+      "col": 3,
+      "expected": "允許descriptor距離差更大；也可能增加錯配"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 7,
+      "col": 0,
+      "expected": "Solver"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 7,
+      "col": 1,
+      "expected": "Kabsch／SVD"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 7,
+      "col": 2,
+      "expected": "Kabsch＋RANSAC"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 7,
+      "col": 3,
+      "expected": "先尋找3D一致群，再估剛體變換"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 8,
+      "col": 0,
+      "expected": "弱配對補救"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 8,
+      "col": 1,
+      "expected": "關閉"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 8,
+      "col": 2,
+      "expected": "關閉"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 8,
+      "col": 3,
+      "expected": "第一週固定，不介紹或歸因此模組"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 9,
+      "col": 0,
+      "expected": "提取與descriptor"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 9,
+      "col": 1,
+      "expected": "同一批樹位"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 9,
+      "col": 2,
+      "expected": "同前"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 9,
+      "col": 3,
+      "expected": "step、分群0.20m、verticality>0.9；N183/w10/Thscore40固定"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 13,
+      "col": 0,
+      "expected": "場景"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 13,
+      "col": 1,
+      "expected": "固定條件"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 13,
+      "col": 2,
+      "expected": "唯一改動"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 13,
+      "col": 3,
+      "expected": "前成功數"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 13,
+      "col": 4,
+      "expected": "後成功數"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 13,
+      "col": 5,
+      "expected": "後−前 pp"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 13,
+      "col": 6,
+      "expected": "成功數淨增加"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 13,
+      "col": 7,
+      "expected": "比較限制"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 14,
+      "col": 0,
+      "expected": "Tongji／Plot1"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 14,
+      "col": 1,
+      "expected": "SVD固定"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 14,
+      "col": 2,
+      "expected": "5→10cm"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 14,
+      "col": 3,
+      "expected": "100/100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 14,
+      "col": 4,
+      "expected": "100/100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 14,
+      "col": 5,
+      "expected": 0.0,
+      "formula": "=(100/100-100/100)*100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 14,
+      "col": 6,
+      "expected": 0
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 14,
+      "col": 7,
+      "expected": "只在同場景、同seed內比較"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 15,
+      "col": 0,
+      "expected": "Tongji／Plot1"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 15,
+      "col": 1,
+      "expected": "RANSAC固定"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 15,
+      "col": 2,
+      "expected": "5→10cm"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 15,
+      "col": 3,
+      "expected": "100/100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 15,
+      "col": 4,
+      "expected": "100/100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 15,
+      "col": 5,
+      "expected": 0.0,
+      "formula": "=(100/100-100/100)*100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 15,
+      "col": 6,
+      "expected": 0
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 15,
+      "col": 7,
+      "expected": "只在同場景、同seed內比較"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 16,
+      "col": 0,
+      "expected": "Tongji／Plot1"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 16,
+      "col": 1,
+      "expected": "5cm固定"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 16,
+      "col": 2,
+      "expected": "SVD→RANSAC"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 16,
+      "col": 3,
+      "expected": "100/100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 16,
+      "col": 4,
+      "expected": "100/100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 16,
+      "col": 5,
+      "expected": 0.0,
+      "formula": "=(100/100-100/100)*100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 16,
+      "col": 6,
+      "expected": 0
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 16,
+      "col": 7,
+      "expected": "只在同場景、同seed內比較"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 17,
+      "col": 0,
+      "expected": "Tongji／Plot1"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 17,
+      "col": 1,
+      "expected": "10cm固定"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 17,
+      "col": 2,
+      "expected": "SVD→RANSAC"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 17,
+      "col": 3,
+      "expected": "100/100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 17,
+      "col": 4,
+      "expected": "100/100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 17,
+      "col": 5,
+      "expected": 0.0,
+      "formula": "=(100/100-100/100)*100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 17,
+      "col": 6,
+      "expected": 0
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 17,
+      "col": 7,
+      "expected": "只在同場景、同seed內比較"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 18,
+      "col": 0,
+      "expected": "Tongji／Plot2"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 18,
+      "col": 1,
+      "expected": "SVD固定"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 18,
+      "col": 2,
+      "expected": "5→10cm"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 18,
+      "col": 3,
+      "expected": "33/100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 18,
+      "col": 4,
+      "expected": "37/100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 18,
+      "col": 5,
+      "expected": 3.9999999999999982,
+      "formula": "=(37/100-33/100)*100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 18,
+      "col": 6,
+      "expected": 4
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 18,
+      "col": 7,
+      "expected": "只在同場景、同seed內比較"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 19,
+      "col": 0,
+      "expected": "Tongji／Plot2"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 19,
+      "col": 1,
+      "expected": "RANSAC固定"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 19,
+      "col": 2,
+      "expected": "5→10cm"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 19,
+      "col": 3,
+      "expected": "28/100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 19,
+      "col": 4,
+      "expected": "34/100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 19,
+      "col": 5,
+      "expected": 6.0,
+      "formula": "=(34/100-28/100)*100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 19,
+      "col": 6,
+      "expected": 6
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 19,
+      "col": 7,
+      "expected": "只在同場景、同seed內比較"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 20,
+      "col": 0,
+      "expected": "Tongji／Plot2"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 20,
+      "col": 1,
+      "expected": "5cm固定"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 20,
+      "col": 2,
+      "expected": "SVD→RANSAC"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 20,
+      "col": 3,
+      "expected": "33/100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 20,
+      "col": 4,
+      "expected": "28/100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 20,
+      "col": 5,
+      "expected": -4.999999999999999,
+      "formula": "=(28/100-33/100)*100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 20,
+      "col": 6,
+      "expected": -5
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 20,
+      "col": 7,
+      "expected": "只在同場景、同seed內比較"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 21,
+      "col": 0,
+      "expected": "Tongji／Plot2"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 21,
+      "col": 1,
+      "expected": "10cm固定"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 21,
+      "col": 2,
+      "expected": "SVD→RANSAC"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 21,
+      "col": 3,
+      "expected": "37/100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 21,
+      "col": 4,
+      "expected": "34/100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 21,
+      "col": 5,
+      "expected": -2.9999999999999973,
+      "formula": "=(34/100-37/100)*100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 21,
+      "col": 6,
+      "expected": -3
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 21,
+      "col": 7,
+      "expected": "只在同場景、同seed內比較"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 22,
+      "col": 0,
+      "expected": "Tongji／Plot3"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 22,
+      "col": 1,
+      "expected": "SVD固定"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 22,
+      "col": 2,
+      "expected": "5→10cm"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 22,
+      "col": 3,
+      "expected": "100/100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 22,
+      "col": 4,
+      "expected": "100/100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 22,
+      "col": 5,
+      "expected": 0.0,
+      "formula": "=(100/100-100/100)*100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 22,
+      "col": 6,
+      "expected": 0
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 22,
+      "col": 7,
+      "expected": "只在同場景、同seed內比較"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 23,
+      "col": 0,
+      "expected": "Tongji／Plot3"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 23,
+      "col": 1,
+      "expected": "RANSAC固定"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 23,
+      "col": 2,
+      "expected": "5→10cm"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 23,
+      "col": 3,
+      "expected": "100/100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 23,
+      "col": 4,
+      "expected": "100/100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 23,
+      "col": 5,
+      "expected": 0.0,
+      "formula": "=(100/100-100/100)*100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 23,
+      "col": 6,
+      "expected": 0
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 23,
+      "col": 7,
+      "expected": "只在同場景、同seed內比較"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 24,
+      "col": 0,
+      "expected": "Tongji／Plot3"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 24,
+      "col": 1,
+      "expected": "5cm固定"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 24,
+      "col": 2,
+      "expected": "SVD→RANSAC"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 24,
+      "col": 3,
+      "expected": "100/100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 24,
+      "col": 4,
+      "expected": "100/100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 24,
+      "col": 5,
+      "expected": 0.0,
+      "formula": "=(100/100-100/100)*100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 24,
+      "col": 6,
+      "expected": 0
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 24,
+      "col": 7,
+      "expected": "只在同場景、同seed內比較"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 25,
+      "col": 0,
+      "expected": "Tongji／Plot3"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 25,
+      "col": 1,
+      "expected": "10cm固定"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 25,
+      "col": 2,
+      "expected": "SVD→RANSAC"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 25,
+      "col": 3,
+      "expected": "100/100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 25,
+      "col": 4,
+      "expected": "100/100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 25,
+      "col": 5,
+      "expected": 0.0,
+      "formula": "=(100/100-100/100)*100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 25,
+      "col": 6,
+      "expected": 0
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 25,
+      "col": 7,
+      "expected": "只在同場景、同seed內比較"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 26,
+      "col": 0,
+      "expected": "Tongji／Plot4"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 26,
+      "col": 1,
+      "expected": "SVD固定"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 26,
+      "col": 2,
+      "expected": "5→10cm"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 26,
+      "col": 3,
+      "expected": "76/100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 26,
+      "col": 4,
+      "expected": "69/100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 26,
+      "col": 5,
+      "expected": -7.000000000000006,
+      "formula": "=(69/100-76/100)*100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 26,
+      "col": 6,
+      "expected": -7
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 26,
+      "col": 7,
+      "expected": "只在同場景、同seed內比較"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 27,
+      "col": 0,
+      "expected": "Tongji／Plot4"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 27,
+      "col": 1,
+      "expected": "RANSAC固定"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 27,
+      "col": 2,
+      "expected": "5→10cm"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 27,
+      "col": 3,
+      "expected": "76/100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 27,
+      "col": 4,
+      "expected": "70/100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 27,
+      "col": 5,
+      "expected": -6.000000000000005,
+      "formula": "=(70/100-76/100)*100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 27,
+      "col": 6,
+      "expected": -6
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 27,
+      "col": 7,
+      "expected": "只在同場景、同seed內比較"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 28,
+      "col": 0,
+      "expected": "Tongji／Plot4"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 28,
+      "col": 1,
+      "expected": "5cm固定"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 28,
+      "col": 2,
+      "expected": "SVD→RANSAC"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 28,
+      "col": 3,
+      "expected": "76/100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 28,
+      "col": 4,
+      "expected": "76/100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 28,
+      "col": 5,
+      "expected": 0.0,
+      "formula": "=(76/100-76/100)*100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 28,
+      "col": 6,
+      "expected": 0
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 28,
+      "col": 7,
+      "expected": "只在同場景、同seed內比較"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 29,
+      "col": 0,
+      "expected": "Tongji／Plot4"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 29,
+      "col": 1,
+      "expected": "10cm固定"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 29,
+      "col": 2,
+      "expected": "SVD→RANSAC"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 29,
+      "col": 3,
+      "expected": "69/100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 29,
+      "col": 4,
+      "expected": "70/100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 29,
+      "col": 5,
+      "expected": 1.0000000000000009,
+      "formula": "=(70/100-69/100)*100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 29,
+      "col": 6,
+      "expected": 1
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 29,
+      "col": 7,
+      "expected": "只在同場景、同seed內比較"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 30,
+      "col": 0,
+      "expected": "ETH-tree"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 30,
+      "col": 1,
+      "expected": "SVD固定"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 30,
+      "col": 2,
+      "expected": "5→10cm"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 30,
+      "col": 3,
+      "expected": "114/150"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 30,
+      "col": 4,
+      "expected": "138/150"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 30,
+      "col": 5,
+      "expected": 16.000000000000004,
+      "formula": "=(138/150-114/150)*100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 30,
+      "col": 6,
+      "expected": 24
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 30,
+      "col": 7,
+      "expected": "只在同場景、同seed內比較"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 31,
+      "col": 0,
+      "expected": "ETH-tree"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 31,
+      "col": 1,
+      "expected": "RANSAC固定"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 31,
+      "col": 2,
+      "expected": "5→10cm"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 31,
+      "col": 3,
+      "expected": "121/150"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 31,
+      "col": 4,
+      "expected": "144/150"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 31,
+      "col": 5,
+      "expected": 15.333333333333332,
+      "formula": "=(144/150-121/150)*100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 31,
+      "col": 6,
+      "expected": 23
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 31,
+      "col": 7,
+      "expected": "只在同場景、同seed內比較"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 32,
+      "col": 0,
+      "expected": "ETH-tree"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 32,
+      "col": 1,
+      "expected": "5cm固定"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 32,
+      "col": 2,
+      "expected": "SVD→RANSAC"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 32,
+      "col": 3,
+      "expected": "114/150"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 32,
+      "col": 4,
+      "expected": "121/150"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 32,
+      "col": 5,
+      "expected": 4.666666666666663,
+      "formula": "=(121/150-114/150)*100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 32,
+      "col": 6,
+      "expected": 7
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 32,
+      "col": 7,
+      "expected": "只在同場景、同seed內比較"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 33,
+      "col": 0,
+      "expected": "ETH-tree"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 33,
+      "col": 1,
+      "expected": "10cm固定"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 33,
+      "col": 2,
+      "expected": "SVD→RANSAC"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 33,
+      "col": 3,
+      "expected": "138/150"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 33,
+      "col": 4,
+      "expected": "144/150"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 33,
+      "col": 5,
+      "expected": 3.9999999999999925,
+      "formula": "=(144/150-138/150)*100"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 33,
+      "col": 6,
+      "expected": 6
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 33,
+      "col": 7,
+      "expected": "只在同場景、同seed內比較"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 43,
+      "col": 0,
+      "expected": "項目"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 43,
+      "col": 1,
+      "expected": "原論文"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 43,
+      "col": 2,
+      "expected": "本地修改前"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 43,
+      "col": 3,
+      "expected": "本地修改後"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 43,
+      "col": 4,
+      "expected": "比較限制"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 44,
+      "col": 0,
+      "expected": "CN距離容差"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 44,
+      "col": 1,
+      "expected": "0.05m"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 44,
+      "col": 2,
+      "expected": "0.05m"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 44,
+      "col": 3,
+      "expected": "0.10m"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 44,
+      "col": 4,
+      "expected": "不是成功門檻或voxel尺寸"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 45,
+      "col": 0,
+      "expected": "剛體Solver"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 45,
+      "col": 1,
+      "expected": "Euclidean transform；細節未交代"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 45,
+      "col": 2,
+      "expected": "Kabsch／SVD"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 45,
+      "col": 3,
+      "expected": "Kabsch＋RANSAC"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 45,
+      "col": 4,
+      "expected": "論文未說明，不把SVD稱作作者原始實作"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 46,
+      "col": 0,
+      "expected": "新增弱配對補救"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 46,
+      "col": 1,
+      "expected": "未描述本地evidence recovery"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 46,
+      "col": 2,
+      "expected": "關閉"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 46,
+      "col": 3,
+      "expected": "關閉"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 46,
+      "col": 4,
+      "expected": "論文本身的triangle fallback仍在；與新增補救不同"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 47,
+      "col": 0,
+      "expected": "N／w／Thscore"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 47,
+      "col": 1,
+      "expected": "183／10／40"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 47,
+      "col": 2,
+      "expected": "183／10／40"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 47,
+      "col": 3,
+      "expected": "183／10／40"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 47,
+      "col": 4,
+      "expected": "三項固定；沒有新增第三個實驗變數"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 51,
+      "col": 0,
+      "expected": "場景"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 51,
+      "col": 1,
+      "expected": "論文matching ms"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 51,
+      "col": 2,
+      "expected": "論文total s"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 51,
+      "col": 3,
+      "expected": "論文e_R／e_t"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 51,
+      "col": 4,
+      "expected": "論文成功分母／門檻"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 51,
+      "col": 5,
+      "expected": "時間可比性"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 52,
+      "col": 0,
+      "expected": "Tongji／Plot1"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 52,
+      "col": 1,
+      "expected": 20.718
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 52,
+      "col": 2,
+      "expected": 11.657
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 52,
+      "col": 3,
+      "expected": "未單獨報告；Table I用e_p"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 52,
+      "col": 4,
+      "expected": "待補：本文未明確交代"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 52,
+      "col": 5,
+      "expected": "i7-9700F 3GHz；實際threads未交代；本地計時範圍不同，不算加速比"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 53,
+      "col": 0,
+      "expected": "Tongji／Plot2"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 53,
+      "col": 1,
+      "expected": 30.699
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 53,
+      "col": 2,
+      "expected": 16.712
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 53,
+      "col": 3,
+      "expected": "未單獨報告；Table I用e_p"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 53,
+      "col": 4,
+      "expected": "待補：本文未明確交代"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 53,
+      "col": 5,
+      "expected": "i7-9700F 3GHz；實際threads未交代；本地計時範圍不同，不算加速比"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 54,
+      "col": 0,
+      "expected": "Tongji／Plot3"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 54,
+      "col": 1,
+      "expected": 4.5596
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 54,
+      "col": 2,
+      "expected": 8.3584
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 54,
+      "col": 3,
+      "expected": "未單獨報告；Table I用e_p"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 54,
+      "col": 4,
+      "expected": "待補：本文未明確交代"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 54,
+      "col": 5,
+      "expected": "i7-9700F 3GHz；實際threads未交代；本地計時範圍不同，不算加速比"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 55,
+      "col": 0,
+      "expected": "Tongji／Plot4"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 55,
+      "col": 1,
+      "expected": 19.522
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 55,
+      "col": 2,
+      "expected": 9.4516
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 55,
+      "col": 3,
+      "expected": "未單獨報告；Table I用e_p"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 55,
+      "col": 4,
+      "expected": "待補：本文未明確交代"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 55,
+      "col": 5,
+      "expected": "i7-9700F 3GHz；實際threads未交代；本地計時範圍不同，不算加速比"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 56,
+      "col": 0,
+      "expected": "ETH-tree"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 56,
+      "col": 1,
+      "expected": 3.0405
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 56,
+      "col": 2,
+      "expected": 8.6992
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 56,
+      "col": 3,
+      "expected": "未單獨報告；Table I用e_p"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 56,
+      "col": 4,
+      "expected": "待補：本文未明確交代"
+    },
+    {
+      "sheet": "設定與說明",
+      "row": 56,
+      "col": 5,
+      "expected": "i7-9700F 3GHz；實際threads未交代；本地計時範圍不同，不算加速比"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 5,
+      "col": 0,
+      "expected": "場景"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 5,
+      "col": 1,
+      "expected": "組合"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 5,
+      "col": 2,
+      "expected": "finite mean e_p cm"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 5,
+      "col": 3,
+      "expected": "有限N"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 5,
+      "col": 4,
+      "expected": "mean e_R °"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 5,
+      "col": 5,
+      "expected": "mean e_t cm"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 5,
+      "col": 6,
+      "expected": "平均time_ms"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 5,
+      "col": 7,
+      "expected": "成功／總數"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 6,
+      "col": 0,
+      "expected": "Tongji／Plot1"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 6,
+      "col": 1,
+      "expected": "5cm／SVD"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 6,
+      "col": 2,
+      "expected": 16.81264811113
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 6,
+      "col": 3,
+      "expected": 100
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 6,
+      "col": 4,
+      "expected": 0.653513343284
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 6,
+      "col": 5,
+      "expected": 14.659001371934
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 6,
+      "col": 6,
+      "expected": 24.15578572
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 6,
+      "col": 7,
+      "expected": "100/100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 7,
+      "col": 0,
+      "expected": "Tongji／Plot1"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 7,
+      "col": 1,
+      "expected": "5cm／RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 7,
+      "col": 2,
+      "expected": 17.2083674392
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 7,
+      "col": 3,
+      "expected": 100
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 7,
+      "col": 4,
+      "expected": 0.675254389727
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 7,
+      "col": 5,
+      "expected": 14.98568778713
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 7,
+      "col": 6,
+      "expected": 26.64002224
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 7,
+      "col": 7,
+      "expected": "100/100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 8,
+      "col": 0,
+      "expected": "Tongji／Plot1"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 8,
+      "col": 1,
+      "expected": "10cm／SVD"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 8,
+      "col": 2,
+      "expected": 17.666832733830002
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 8,
+      "col": 3,
+      "expected": 100
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 8,
+      "col": 4,
+      "expected": 0.690407388888
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 8,
+      "col": 5,
+      "expected": 15.55320039561
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 8,
+      "col": 6,
+      "expected": 25.058204840000002
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 8,
+      "col": 7,
+      "expected": "100/100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 9,
+      "col": 0,
+      "expected": "Tongji／Plot1"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 9,
+      "col": 1,
+      "expected": "10cm／RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 9,
+      "col": 2,
+      "expected": 17.423531105600002
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 9,
+      "col": 3,
+      "expected": 100
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 9,
+      "col": 4,
+      "expected": 0.689562769167
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 9,
+      "col": 5,
+      "expected": 15.2649956211
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 9,
+      "col": 6,
+      "expected": 27.09175617
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 9,
+      "col": 7,
+      "expected": "100/100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 10,
+      "col": 0,
+      "expected": "Tongji／Plot2"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 10,
+      "col": 1,
+      "expected": "5cm／SVD"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 10,
+      "col": 2,
+      "expected": 54.50497163930999
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 10,
+      "col": 3,
+      "expected": 100
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 10,
+      "col": 4,
+      "expected": 3.010561498714
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 10,
+      "col": 5,
+      "expected": 34.37448410885
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 10,
+      "col": 6,
+      "expected": 66.57111264
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 10,
+      "col": 7,
+      "expected": "33/100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 11,
+      "col": 0,
+      "expected": "Tongji／Plot2"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 11,
+      "col": 1,
+      "expected": "5cm／RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 11,
+      "col": 2,
+      "expected": 58.201283144
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 11,
+      "col": 3,
+      "expected": 100
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 11,
+      "col": 4,
+      "expected": 2.996312875285
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 11,
+      "col": 5,
+      "expected": 38.43288652542
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 11,
+      "col": 6,
+      "expected": 69.86197643
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 11,
+      "col": 7,
+      "expected": "28/100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 12,
+      "col": 0,
+      "expected": "Tongji／Plot2"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 12,
+      "col": 1,
+      "expected": "10cm／SVD"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 12,
+      "col": 2,
+      "expected": 47.25469538884
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 12,
+      "col": 3,
+      "expected": 100
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 12,
+      "col": 4,
+      "expected": 2.675081919836
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 12,
+      "col": 5,
+      "expected": 29.71202555179
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 12,
+      "col": 6,
+      "expected": 56.89672242
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 12,
+      "col": 7,
+      "expected": "37/100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 13,
+      "col": 0,
+      "expected": "Tongji／Plot2"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 13,
+      "col": 1,
+      "expected": "10cm／RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 13,
+      "col": 2,
+      "expected": 50.900681144829996
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 13,
+      "col": 3,
+      "expected": 100
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 13,
+      "col": 4,
+      "expected": 2.805820850935
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 13,
+      "col": 5,
+      "expected": 31.61299917308
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 13,
+      "col": 6,
+      "expected": 61.17425436
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 13,
+      "col": 7,
+      "expected": "34/100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 14,
+      "col": 0,
+      "expected": "Tongji／Plot3"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 14,
+      "col": 1,
+      "expected": "5cm／SVD"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 14,
+      "col": 2,
+      "expected": 5.376450884124
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 14,
+      "col": 3,
+      "expected": 100
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 14,
+      "col": 4,
+      "expected": 0.2980301282526
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 14,
+      "col": 5,
+      "expected": 4.984806000615
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 14,
+      "col": 6,
+      "expected": 6.04477203
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 14,
+      "col": 7,
+      "expected": "100/100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 15,
+      "col": 0,
+      "expected": "Tongji／Plot3"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 15,
+      "col": 1,
+      "expected": "5cm／RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 15,
+      "col": 2,
+      "expected": 5.291779501674
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 15,
+      "col": 3,
+      "expected": 100
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 15,
+      "col": 4,
+      "expected": 0.2874627067643
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 15,
+      "col": 5,
+      "expected": 4.907486991115
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 15,
+      "col": 6,
+      "expected": 7.29747341
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 15,
+      "col": 7,
+      "expected": "100/100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 16,
+      "col": 0,
+      "expected": "Tongji／Plot3"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 16,
+      "col": 1,
+      "expected": "10cm／SVD"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 16,
+      "col": 2,
+      "expected": 4.993702343056
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 16,
+      "col": 3,
+      "expected": 100
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 16,
+      "col": 4,
+      "expected": 0.2973840962944
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 16,
+      "col": 5,
+      "expected": 4.555181305722
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 16,
+      "col": 6,
+      "expected": 6.71977696
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 16,
+      "col": 7,
+      "expected": "100/100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 17,
+      "col": 0,
+      "expected": "Tongji／Plot3"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 17,
+      "col": 1,
+      "expected": "10cm／RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 17,
+      "col": 2,
+      "expected": 4.901756139286
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 17,
+      "col": 3,
+      "expected": 100
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 17,
+      "col": 4,
+      "expected": 0.2756560181046
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 17,
+      "col": 5,
+      "expected": 4.498764577382
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 17,
+      "col": 6,
+      "expected": 8.32219845
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 17,
+      "col": 7,
+      "expected": "100/100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 18,
+      "col": 0,
+      "expected": "Tongji／Plot4"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 18,
+      "col": 1,
+      "expected": "5cm／SVD"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 18,
+      "col": 2,
+      "expected": 123.23467892978313
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 18,
+      "col": 3,
+      "expected": 83
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 18,
+      "col": 4,
+      "expected": 2.6389862409548193
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 18,
+      "col": 5,
+      "expected": 123.93923072873375
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 18,
+      "col": 6,
+      "expected": 6.01696067
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 18,
+      "col": 7,
+      "expected": "76/100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 19,
+      "col": 0,
+      "expected": "Tongji／Plot4"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 19,
+      "col": 1,
+      "expected": "5cm／RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 19,
+      "col": 2,
+      "expected": 123.23467892978313
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 19,
+      "col": 3,
+      "expected": 83
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 19,
+      "col": 4,
+      "expected": 2.6389862409548193
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 19,
+      "col": 5,
+      "expected": 123.93923072873375
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 19,
+      "col": 6,
+      "expected": 6.60275653
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 19,
+      "col": 7,
+      "expected": "76/100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 20,
+      "col": 0,
+      "expected": "Tongji／Plot4"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 20,
+      "col": 1,
+      "expected": "10cm／SVD"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 20,
+      "col": 2,
+      "expected": 299.49175990329627
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 20,
+      "col": 3,
+      "expected": 81
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 20,
+      "col": 4,
+      "expected": 11.59766951236
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 20,
+      "col": 5,
+      "expected": 303.268721948937
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 20,
+      "col": 6,
+      "expected": 6.25656317
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 20,
+      "col": 7,
+      "expected": "69/100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 21,
+      "col": 0,
+      "expected": "Tongji／Plot4"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 21,
+      "col": 1,
+      "expected": "10cm／RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 21,
+      "col": 2,
+      "expected": 252.16805173230864
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 21,
+      "col": 3,
+      "expected": 81
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 21,
+      "col": 4,
+      "expected": 9.392364444529136
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 21,
+      "col": 5,
+      "expected": 255.14528304869012
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 21,
+      "col": 6,
+      "expected": 7.46682261
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 21,
+      "col": 7,
+      "expected": "70/100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 22,
+      "col": 0,
+      "expected": "ETH-tree"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 22,
+      "col": 1,
+      "expected": "5cm／SVD"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 22,
+      "col": 2,
+      "expected": 12.620930210716535
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 22,
+      "col": 3,
+      "expected": 127
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 22,
+      "col": 4,
+      "expected": 0.8363256751958268
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 22,
+      "col": 5,
+      "expected": 11.09438364595748
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 22,
+      "col": 6,
+      "expected": 2.37528938
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 22,
+      "col": 7,
+      "expected": "114/150"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 23,
+      "col": 0,
+      "expected": "ETH-tree"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 23,
+      "col": 1,
+      "expected": "5cm／RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 23,
+      "col": 2,
+      "expected": 10.970508682716536
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 23,
+      "col": 3,
+      "expected": 127
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 23,
+      "col": 4,
+      "expected": 0.7161741301438582
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 23,
+      "col": 5,
+      "expected": 9.726951540952756
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 23,
+      "col": 6,
+      "expected": 2.8046476866666668
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 23,
+      "col": 7,
+      "expected": "121/150"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 24,
+      "col": 0,
+      "expected": "ETH-tree"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 24,
+      "col": 1,
+      "expected": "10cm／SVD"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 24,
+      "col": 2,
+      "expected": 10.729408964524138
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 24,
+      "col": 3,
+      "expected": 145
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 24,
+      "col": 4,
+      "expected": 0.6919629266255173
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 24,
+      "col": 5,
+      "expected": 9.439785611420689
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 24,
+      "col": 6,
+      "expected": 2.4435332333333335
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 24,
+      "col": 7,
+      "expected": "138/150"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 25,
+      "col": 0,
+      "expected": "ETH-tree"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 25,
+      "col": 1,
+      "expected": "10cm／RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 25,
+      "col": 2,
+      "expected": 9.095719413689656
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 25,
+      "col": 3,
+      "expected": 145
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 25,
+      "col": 4,
+      "expected": 0.53536225928
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 25,
+      "col": 5,
+      "expected": 8.136594117781378
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 25,
+      "col": 6,
+      "expected": 3.0463987666666665
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 25,
+      "col": 7,
+      "expected": "144/150"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 31,
+      "col": 0,
+      "expected": "比較"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 31,
+      "col": 1,
+      "expected": "新增成功"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 31,
+      "col": 2,
+      "expected": "退步失敗"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 31,
+      "col": 3,
+      "expected": "共同成功N"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 31,
+      "col": 4,
+      "expected": "前e_p cm"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 31,
+      "col": 5,
+      "expected": "後e_p cm"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 31,
+      "col": 6,
+      "expected": "下降率"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 31,
+      "col": 7,
+      "expected": "限制"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 32,
+      "col": 0,
+      "expected": "Tongji／Plot1；SVD固定；5→10cm"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 32,
+      "col": 1,
+      "expected": 0
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 32,
+      "col": 2,
+      "expected": 0
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 32,
+      "col": 3,
+      "expected": 100
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 32,
+      "col": 4,
+      "expected": 16.81264811113
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 32,
+      "col": 5,
+      "expected": 17.666832733830002
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 32,
+      "col": 6,
+      "expected": -0.050806072728931416,
+      "formula": "=IF(AND(ISNUMBER(E33),ISNUMBER(F33),E33<>0),(E33-F33)/E33,\"待補\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 32,
+      "col": 7,
+      "expected": "僅共同成功；不取代全體成功率"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 33,
+      "col": 0,
+      "expected": "Tongji／Plot1；RANSAC固定；5→10cm"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 33,
+      "col": 1,
+      "expected": 0
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 33,
+      "col": 2,
+      "expected": 0
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 33,
+      "col": 3,
+      "expected": 100
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 33,
+      "col": 4,
+      "expected": 17.2083674392
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 33,
+      "col": 5,
+      "expected": 17.423531105600002
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 33,
+      "col": 6,
+      "expected": -0.012503432830581362,
+      "formula": "=IF(AND(ISNUMBER(E34),ISNUMBER(F34),E34<>0),(E34-F34)/E34,\"待補\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 33,
+      "col": 7,
+      "expected": "僅共同成功；不取代全體成功率"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 34,
+      "col": 0,
+      "expected": "Tongji／Plot1；5cm固定；SVD→RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 34,
+      "col": 1,
+      "expected": 0
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 34,
+      "col": 2,
+      "expected": 0
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 34,
+      "col": 3,
+      "expected": 100
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 34,
+      "col": 4,
+      "expected": 16.81264811113
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 34,
+      "col": 5,
+      "expected": 17.2083674392
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 34,
+      "col": 6,
+      "expected": -0.02353700175334276,
+      "formula": "=IF(AND(ISNUMBER(E35),ISNUMBER(F35),E35<>0),(E35-F35)/E35,\"待補\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 34,
+      "col": 7,
+      "expected": "僅共同成功；不取代全體成功率"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 35,
+      "col": 0,
+      "expected": "Tongji／Plot1；10cm固定；SVD→RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 35,
+      "col": 1,
+      "expected": 0
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 35,
+      "col": 2,
+      "expected": 0
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 35,
+      "col": 3,
+      "expected": 100
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 35,
+      "col": 4,
+      "expected": 17.666832733830002
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 35,
+      "col": 5,
+      "expected": 17.423531105600002
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 35,
+      "col": 6,
+      "expected": 0.013771660823170901,
+      "formula": "=IF(AND(ISNUMBER(E36),ISNUMBER(F36),E36<>0),(E36-F36)/E36,\"待補\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 35,
+      "col": 7,
+      "expected": "僅共同成功；不取代全體成功率"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 36,
+      "col": 0,
+      "expected": "Tongji／Plot2；SVD固定；5→10cm"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 36,
+      "col": 1,
+      "expected": 8
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 36,
+      "col": 2,
+      "expected": 4
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 36,
+      "col": 3,
+      "expected": 29
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 36,
+      "col": 4,
+      "expected": 24.320219195551722
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 36,
+      "col": 5,
+      "expected": 23.770760751172414
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 36,
+      "col": 6,
+      "expected": 0.02259266003983248,
+      "formula": "=IF(AND(ISNUMBER(E37),ISNUMBER(F37),E37<>0),(E37-F37)/E37,\"待補\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 36,
+      "col": 7,
+      "expected": "僅共同成功；不取代全體成功率"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 37,
+      "col": 0,
+      "expected": "Tongji／Plot2；RANSAC固定；5→10cm"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 37,
+      "col": 1,
+      "expected": 9
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 37,
+      "col": 2,
+      "expected": 3
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 37,
+      "col": 3,
+      "expected": 25
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 37,
+      "col": 4,
+      "expected": 24.426966728
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 37,
+      "col": 5,
+      "expected": 24.24613362052
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 37,
+      "col": 6,
+      "expected": 0.007403011167682776,
+      "formula": "=IF(AND(ISNUMBER(E38),ISNUMBER(F38),E38<>0),(E38-F38)/E38,\"待補\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 37,
+      "col": 7,
+      "expected": "僅共同成功；不取代全體成功率"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 38,
+      "col": 0,
+      "expected": "Tongji／Plot2；5cm固定；SVD→RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 38,
+      "col": 1,
+      "expected": 7
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 38,
+      "col": 2,
+      "expected": 12
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 38,
+      "col": 3,
+      "expected": 21
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 38,
+      "col": 4,
+      "expected": 21.772994335761904
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 38,
+      "col": 5,
+      "expected": 20.282764585714286
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 38,
+      "col": 6,
+      "expected": 0.06844395066047179,
+      "formula": "=IF(AND(ISNUMBER(E39),ISNUMBER(F39),E39<>0),(E39-F39)/E39,\"待補\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 38,
+      "col": 7,
+      "expected": "僅共同成功；不取代全體成功率"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 39,
+      "col": 0,
+      "expected": "Tongji／Plot2；10cm固定；SVD→RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 39,
+      "col": 1,
+      "expected": 9
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 39,
+      "col": 2,
+      "expected": 12
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 39,
+      "col": 3,
+      "expected": 25
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 39,
+      "col": 4,
+      "expected": 22.59478257216
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 39,
+      "col": 5,
+      "expected": 21.56710227932
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 39,
+      "col": 6,
+      "expected": 0.04548307953652312,
+      "formula": "=IF(AND(ISNUMBER(E40),ISNUMBER(F40),E40<>0),(E40-F40)/E40,\"待補\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 39,
+      "col": 7,
+      "expected": "僅共同成功；不取代全體成功率"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 40,
+      "col": 0,
+      "expected": "Tongji／Plot3；SVD固定；5→10cm"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 40,
+      "col": 1,
+      "expected": 0
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 40,
+      "col": 2,
+      "expected": 0
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 40,
+      "col": 3,
+      "expected": 100
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 40,
+      "col": 4,
+      "expected": 5.376450884124
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 40,
+      "col": 5,
+      "expected": 4.993702343056
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 40,
+      "col": 6,
+      "expected": 0.07118981449234645,
+      "formula": "=IF(AND(ISNUMBER(E41),ISNUMBER(F41),E41<>0),(E41-F41)/E41,\"待補\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 40,
+      "col": 7,
+      "expected": "僅共同成功；不取代全體成功率"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 41,
+      "col": 0,
+      "expected": "Tongji／Plot3；RANSAC固定；5→10cm"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 41,
+      "col": 1,
+      "expected": 0
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 41,
+      "col": 2,
+      "expected": 0
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 41,
+      "col": 3,
+      "expected": 100
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 41,
+      "col": 4,
+      "expected": 5.291779501674
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 41,
+      "col": 5,
+      "expected": 4.901756139286
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 41,
+      "col": 6,
+      "expected": 0.07370363074739225,
+      "formula": "=IF(AND(ISNUMBER(E42),ISNUMBER(F42),E42<>0),(E42-F42)/E42,\"待補\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 41,
+      "col": 7,
+      "expected": "僅共同成功；不取代全體成功率"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 42,
+      "col": 0,
+      "expected": "Tongji／Plot3；5cm固定；SVD→RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 42,
+      "col": 1,
+      "expected": 0
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 42,
+      "col": 2,
+      "expected": 0
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 42,
+      "col": 3,
+      "expected": 100
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 42,
+      "col": 4,
+      "expected": 5.376450884124
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 42,
+      "col": 5,
+      "expected": 5.291779501674
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 42,
+      "col": 6,
+      "expected": 0.015748564299178053,
+      "formula": "=IF(AND(ISNUMBER(E43),ISNUMBER(F43),E43<>0),(E43-F43)/E43,\"待補\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 42,
+      "col": 7,
+      "expected": "僅共同成功；不取代全體成功率"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 43,
+      "col": 0,
+      "expected": "Tongji／Plot3；10cm固定；SVD→RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 43,
+      "col": 1,
+      "expected": 0
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 43,
+      "col": 2,
+      "expected": 0
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 43,
+      "col": 3,
+      "expected": 100
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 43,
+      "col": 4,
+      "expected": 4.993702343056
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 43,
+      "col": 5,
+      "expected": 4.901756139286
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 43,
+      "col": 6,
+      "expected": 0.018412431789783346,
+      "formula": "=IF(AND(ISNUMBER(E44),ISNUMBER(F44),E44<>0),(E44-F44)/E44,\"待補\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 43,
+      "col": 7,
+      "expected": "僅共同成功；不取代全體成功率"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 44,
+      "col": 0,
+      "expected": "Tongji／Plot4；SVD固定；5→10cm"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 44,
+      "col": 1,
+      "expected": 6
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 44,
+      "col": 2,
+      "expected": 13
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 44,
+      "col": 3,
+      "expected": 63
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 44,
+      "col": 4,
+      "expected": 6.914644631380952
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 44,
+      "col": 5,
+      "expected": 7.018932233142857
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 44,
+      "col": 6,
+      "expected": -0.015082134704163098,
+      "formula": "=IF(AND(ISNUMBER(E45),ISNUMBER(F45),E45<>0),(E45-F45)/E45,\"待補\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 44,
+      "col": 7,
+      "expected": "僅共同成功；不取代全體成功率"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 45,
+      "col": 0,
+      "expected": "Tongji／Plot4；RANSAC固定；5→10cm"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 45,
+      "col": 1,
+      "expected": 6
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 45,
+      "col": 2,
+      "expected": 12
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 45,
+      "col": 3,
+      "expected": 64
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 45,
+      "col": 4,
+      "expected": 7.010373222453126
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 45,
+      "col": 5,
+      "expected": 7.11722529434375
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 45,
+      "col": 6,
+      "expected": -0.015241994755485188,
+      "formula": "=IF(AND(ISNUMBER(E46),ISNUMBER(F46),E46<>0),(E46-F46)/E46,\"待補\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 45,
+      "col": 7,
+      "expected": "僅共同成功；不取代全體成功率"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 46,
+      "col": 0,
+      "expected": "Tongji／Plot4；5cm固定；SVD→RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 46,
+      "col": 1,
+      "expected": 0
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 46,
+      "col": 2,
+      "expected": 0
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 46,
+      "col": 3,
+      "expected": 76
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 46,
+      "col": 4,
+      "expected": 8.705992042526315
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 46,
+      "col": 5,
+      "expected": 8.705992042526315
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 46,
+      "col": 6,
+      "expected": 0.0,
+      "formula": "=IF(AND(ISNUMBER(E47),ISNUMBER(F47),E47<>0),(E47-F47)/E47,\"待補\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 46,
+      "col": 7,
+      "expected": "僅共同成功；不取代全體成功率"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 47,
+      "col": 0,
+      "expected": "Tongji／Plot4；10cm固定；SVD→RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 47,
+      "col": 1,
+      "expected": 1
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 47,
+      "col": 2,
+      "expected": 0
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 47,
+      "col": 3,
+      "expected": 69
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 47,
+      "col": 4,
+      "expected": 7.395330353434783
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 47,
+      "col": 5,
+      "expected": 7.395330353434783
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 47,
+      "col": 6,
+      "expected": 0.0,
+      "formula": "=IF(AND(ISNUMBER(E48),ISNUMBER(F48),E48<>0),(E48-F48)/E48,\"待補\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 47,
+      "col": 7,
+      "expected": "僅共同成功；不取代全體成功率"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 48,
+      "col": 0,
+      "expected": "ETH-tree；SVD固定；5→10cm"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 48,
+      "col": 1,
+      "expected": 28
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 48,
+      "col": 2,
+      "expected": 4
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 48,
+      "col": 3,
+      "expected": 110
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 48,
+      "col": 4,
+      "expected": 9.489490134990909
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 48,
+      "col": 5,
+      "expected": 8.842029700663637
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 48,
+      "col": 6,
+      "expected": 0.06822921201423354,
+      "formula": "=IF(AND(ISNUMBER(E49),ISNUMBER(F49),E49<>0),(E49-F49)/E49,\"待補\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 48,
+      "col": 7,
+      "expected": "僅共同成功；不取代全體成功率"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 49,
+      "col": 0,
+      "expected": "ETH-tree；RANSAC固定；5→10cm"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 49,
+      "col": 1,
+      "expected": 25
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 49,
+      "col": 2,
+      "expected": 2
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 49,
+      "col": 3,
+      "expected": 119
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 49,
+      "col": 4,
+      "expected": 9.519133282310923
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 49,
+      "col": 5,
+      "expected": 8.297936695739496
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 49,
+      "col": 6,
+      "expected": 0.1282886319955973,
+      "formula": "=IF(AND(ISNUMBER(E50),ISNUMBER(F50),E50<>0),(E50-F50)/E50,\"待補\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 49,
+      "col": 7,
+      "expected": "僅共同成功；不取代全體成功率"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 50,
+      "col": 0,
+      "expected": "ETH-tree；5cm固定；SVD→RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 50,
+      "col": 1,
+      "expected": 7
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 50,
+      "col": 2,
+      "expected": 0
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 50,
+      "col": 3,
+      "expected": 114
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 50,
+      "col": 4,
+      "expected": 9.559662507815789
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 50,
+      "col": 5,
+      "expected": 9.598285944078947
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 50,
+      "col": 6,
+      "expected": -0.004040251026809923,
+      "formula": "=IF(AND(ISNUMBER(E51),ISNUMBER(F51),E51<>0),(E51-F51)/E51,\"待補\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 50,
+      "col": 7,
+      "expected": "僅共同成功；不取代全體成功率"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 51,
+      "col": 0,
+      "expected": "ETH-tree；10cm固定；SVD→RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 51,
+      "col": 1,
+      "expected": 6
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 51,
+      "col": 2,
+      "expected": 0
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 51,
+      "col": 3,
+      "expected": 138
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 51,
+      "col": 4,
+      "expected": 9.746082000043478
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 51,
+      "col": 5,
+      "expected": 8.96531325555797
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 51,
+      "col": 6,
+      "expected": 0.08011103790036085,
+      "formula": "=IF(AND(ISNUMBER(E52),ISNUMBER(F52),E52<>0),(E52-F52)/E52,\"待補\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 51,
+      "col": 7,
+      "expected": "僅共同成功；不取代全體成功率"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 55,
+      "col": 0,
+      "expected": "場景"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 55,
+      "col": 1,
+      "expected": "組合"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 55,
+      "col": 2,
+      "expected": "論文e_p cm"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 55,
+      "col": 3,
+      "expected": "本地e_p cm"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 55,
+      "col": 4,
+      "expected": "vs論文誤差下降率"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 55,
+      "col": 5,
+      "expected": "vs修改前誤差下降率"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 55,
+      "col": 6,
+      "expected": "vs論文成功率 pp"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 55,
+      "col": 7,
+      "expected": "vs修改前成功率 pp"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 56,
+      "col": 0,
+      "expected": "Tongji／Plot1"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 56,
+      "col": 1,
+      "expected": "5cm／SVD"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 56,
+      "col": 2,
+      "expected": 5.2558
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 56,
+      "col": 3,
+      "expected": 16.81264811113
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 56,
+      "col": 4,
+      "expected": -2.198875168600403,
+      "formula": "=IF(AND(ISNUMBER(C57),ISNUMBER(D57),C57<>0),(C57-D57)/C57,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 56,
+      "col": 5,
+      "expected": 0.0,
+      "formula": "=IF(AND(ISNUMBER(D57),16.81264811113<>0),(16.81264811113-D57)/16.81264811113,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 56,
+      "col": 6,
+      "expected": 0.0,
+      "formula": "=(100/100-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 56,
+      "col": 7,
+      "expected": 0.0,
+      "formula": "=(100/100-100/100)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 57,
+      "col": 0,
+      "expected": "Tongji／Plot1"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 57,
+      "col": 1,
+      "expected": "5cm／RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 57,
+      "col": 2,
+      "expected": 5.2558
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 57,
+      "col": 3,
+      "expected": 17.2083674392
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 57,
+      "col": 4,
+      "expected": -2.274167099052476,
+      "formula": "=IF(AND(ISNUMBER(C58),ISNUMBER(D58),C58<>0),(C58-D58)/C58,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 57,
+      "col": 5,
+      "expected": -0.02353700175334276,
+      "formula": "=IF(AND(ISNUMBER(D58),16.81264811113<>0),(16.81264811113-D58)/16.81264811113,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 57,
+      "col": 6,
+      "expected": 0.0,
+      "formula": "=(100/100-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 57,
+      "col": 7,
+      "expected": 0.0,
+      "formula": "=(100/100-100/100)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 58,
+      "col": 0,
+      "expected": "Tongji／Plot1"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 58,
+      "col": 1,
+      "expected": "10cm／SVD"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 58,
+      "col": 2,
+      "expected": 5.2558
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 58,
+      "col": 3,
+      "expected": 17.666832733830002
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 58,
+      "col": 4,
+      "expected": -2.361397453067088,
+      "formula": "=IF(AND(ISNUMBER(C59),ISNUMBER(D59),C59<>0),(C59-D59)/C59,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 58,
+      "col": 5,
+      "expected": -0.050806072728931416,
+      "formula": "=IF(AND(ISNUMBER(D59),16.81264811113<>0),(16.81264811113-D59)/16.81264811113,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 58,
+      "col": 6,
+      "expected": 0.0,
+      "formula": "=(100/100-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 58,
+      "col": 7,
+      "expected": 0.0,
+      "formula": "=(100/100-100/100)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 59,
+      "col": 0,
+      "expected": "Tongji／Plot1"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 59,
+      "col": 1,
+      "expected": "10cm／RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 59,
+      "col": 2,
+      "expected": 5.2558
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 59,
+      "col": 3,
+      "expected": 17.423531105600002
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 59,
+      "col": 4,
+      "expected": -2.3151054274515777,
+      "formula": "=IF(AND(ISNUMBER(C60),ISNUMBER(D60),C60<>0),(C60-D60)/C60,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 59,
+      "col": 5,
+      "expected": -0.03633472790438032,
+      "formula": "=IF(AND(ISNUMBER(D60),16.81264811113<>0),(16.81264811113-D60)/16.81264811113,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 59,
+      "col": 6,
+      "expected": 0.0,
+      "formula": "=(100/100-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 59,
+      "col": 7,
+      "expected": 0.0,
+      "formula": "=(100/100-100/100)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 60,
+      "col": 0,
+      "expected": "Tongji／Plot2"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 60,
+      "col": 1,
+      "expected": "5cm／SVD"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 60,
+      "col": 2,
+      "expected": 11.480799999999999
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 60,
+      "col": 3,
+      "expected": 54.50497163930999
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 60,
+      "col": 4,
+      "expected": -3.7474889937382407,
+      "formula": "=IF(AND(ISNUMBER(C61),ISNUMBER(D61),C61<>0),(C61-D61)/C61,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 60,
+      "col": 5,
+      "expected": 0.0,
+      "formula": "=IF(AND(ISNUMBER(D61),54.50497163930999<>0),(54.50497163930999-D61)/54.50497163930999,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 60,
+      "col": 6,
+      "expected": -67.0,
+      "formula": "=(33/100-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 60,
+      "col": 7,
+      "expected": 0.0,
+      "formula": "=(33/100-33/100)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 61,
+      "col": 0,
+      "expected": "Tongji／Plot2"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 61,
+      "col": 1,
+      "expected": "5cm／RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 61,
+      "col": 2,
+      "expected": 11.480799999999999
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 61,
+      "col": 3,
+      "expected": 58.201283144
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 61,
+      "col": 4,
+      "expected": -4.069444911852833,
+      "formula": "=IF(AND(ISNUMBER(C62),ISNUMBER(D62),C62<>0),(C62-D62)/C62,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 61,
+      "col": 5,
+      "expected": -0.06781604307861266,
+      "formula": "=IF(AND(ISNUMBER(D62),54.50497163930999<>0),(54.50497163930999-D62)/54.50497163930999,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 61,
+      "col": 6,
+      "expected": -72.0,
+      "formula": "=(28/100-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 61,
+      "col": 7,
+      "expected": -4.999999999999999,
+      "formula": "=(28/100-33/100)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 62,
+      "col": 0,
+      "expected": "Tongji／Plot2"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 62,
+      "col": 1,
+      "expected": "10cm／SVD"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 62,
+      "col": 2,
+      "expected": 11.480799999999999
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 62,
+      "col": 3,
+      "expected": 47.25469538884
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 62,
+      "col": 4,
+      "expected": -3.115975836948645,
+      "formula": "=IF(AND(ISNUMBER(C63),ISNUMBER(D63),C63<>0),(C63-D63)/C63,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 62,
+      "col": 5,
+      "expected": 0.13302045726120443,
+      "formula": "=IF(AND(ISNUMBER(D63),54.50497163930999<>0),(54.50497163930999-D63)/54.50497163930999,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 62,
+      "col": 6,
+      "expected": -63.0,
+      "formula": "=(37/100-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 62,
+      "col": 7,
+      "expected": 3.9999999999999982,
+      "formula": "=(37/100-33/100)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 63,
+      "col": 0,
+      "expected": "Tongji／Plot2"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 63,
+      "col": 1,
+      "expected": "10cm／RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 63,
+      "col": 2,
+      "expected": 11.480799999999999
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 63,
+      "col": 3,
+      "expected": 50.900681144829996
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 63,
+      "col": 4,
+      "expected": -3.433548284512403,
+      "formula": "=IF(AND(ISNUMBER(C64),ISNUMBER(D64),C64<>0),(C64-D64)/C64,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 63,
+      "col": 5,
+      "expected": 0.06612773818747425,
+      "formula": "=IF(AND(ISNUMBER(D64),54.50497163930999<>0),(54.50497163930999-D64)/54.50497163930999,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 63,
+      "col": 6,
+      "expected": -65.99999999999999,
+      "formula": "=(34/100-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 63,
+      "col": 7,
+      "expected": 1.0000000000000009,
+      "formula": "=(34/100-33/100)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 64,
+      "col": 0,
+      "expected": "Tongji／Plot3"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 64,
+      "col": 1,
+      "expected": "5cm／SVD"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 64,
+      "col": 2,
+      "expected": 4.8756
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 64,
+      "col": 3,
+      "expected": 5.376450884124
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 64,
+      "col": 4,
+      "expected": -0.10272599969726795,
+      "formula": "=IF(AND(ISNUMBER(C65),ISNUMBER(D65),C65<>0),(C65-D65)/C65,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 64,
+      "col": 5,
+      "expected": 0.0,
+      "formula": "=IF(AND(ISNUMBER(D65),5.376450884124<>0),(5.376450884124-D65)/5.376450884124,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 64,
+      "col": 6,
+      "expected": 0.0,
+      "formula": "=(100/100-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 64,
+      "col": 7,
+      "expected": 0.0,
+      "formula": "=(100/100-100/100)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 65,
+      "col": 0,
+      "expected": "Tongji／Plot3"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 65,
+      "col": 1,
+      "expected": "5cm／RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 65,
+      "col": 2,
+      "expected": 4.8756
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 65,
+      "col": 3,
+      "expected": 5.291779501674
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 65,
+      "col": 4,
+      "expected": -0.08535964838666013,
+      "formula": "=IF(AND(ISNUMBER(C66),ISNUMBER(D66),C66<>0),(C66-D66)/C66,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 65,
+      "col": 5,
+      "expected": 0.015748564299178053,
+      "formula": "=IF(AND(ISNUMBER(D66),5.376450884124<>0),(5.376450884124-D66)/5.376450884124,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 65,
+      "col": 6,
+      "expected": 0.0,
+      "formula": "=(100/100-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 65,
+      "col": 7,
+      "expected": 0.0,
+      "formula": "=(100/100-100/100)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 66,
+      "col": 0,
+      "expected": "Tongji／Plot3"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 66,
+      "col": 1,
+      "expected": "10cm／SVD"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 66,
+      "col": 2,
+      "expected": 4.8756
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 66,
+      "col": 3,
+      "expected": 4.993702343056
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 66,
+      "col": 4,
+      "expected": -0.024223140342932166,
+      "formula": "=IF(AND(ISNUMBER(C67),ISNUMBER(D67),C67<>0),(C67-D67)/C67,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 66,
+      "col": 5,
+      "expected": 0.07118981449234645,
+      "formula": "=IF(AND(ISNUMBER(D67),5.376450884124<>0),(5.376450884124-D67)/5.376450884124,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 66,
+      "col": 6,
+      "expected": 0.0,
+      "formula": "=(100/100-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 66,
+      "col": 7,
+      "expected": 0.0,
+      "formula": "=(100/100-100/100)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 67,
+      "col": 0,
+      "expected": "Tongji／Plot3"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 67,
+      "col": 1,
+      "expected": "10cm／RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 67,
+      "col": 2,
+      "expected": 4.8756
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 67,
+      "col": 3,
+      "expected": 4.901756139286
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 67,
+      "col": 4,
+      "expected": -0.005364701633850232,
+      "formula": "=IF(AND(ISNUMBER(C68),ISNUMBER(D68),C68<>0),(C68-D68)/C68,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 67,
+      "col": 5,
+      "expected": 0.08829146867866212,
+      "formula": "=IF(AND(ISNUMBER(D68),5.376450884124<>0),(5.376450884124-D68)/5.376450884124,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 67,
+      "col": 6,
+      "expected": 0.0,
+      "formula": "=(100/100-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 67,
+      "col": 7,
+      "expected": 0.0,
+      "formula": "=(100/100-100/100)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 68,
+      "col": 0,
+      "expected": "Tongji／Plot4"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 68,
+      "col": 1,
+      "expected": "5cm／SVD"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 68,
+      "col": 2,
+      "expected": 4.356
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 68,
+      "col": 3,
+      "expected": 123.23467892978313
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 68,
+      "col": 4,
+      "expected": "不可比：本地缺變換；有限N見前表"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 68,
+      "col": 5,
+      "expected": 0.0,
+      "formula": "=IF(AND(ISNUMBER(D69),123.23467892978313<>0),(123.23467892978313-D69)/123.23467892978313,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 68,
+      "col": 6,
+      "expected": -24.0,
+      "formula": "=(76/100-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 68,
+      "col": 7,
+      "expected": 0.0,
+      "formula": "=(76/100-76/100)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 69,
+      "col": 0,
+      "expected": "Tongji／Plot4"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 69,
+      "col": 1,
+      "expected": "5cm／RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 69,
+      "col": 2,
+      "expected": 4.356
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 69,
+      "col": 3,
+      "expected": 123.23467892978313
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 69,
+      "col": 4,
+      "expected": "不可比：本地缺變換；有限N見前表"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 69,
+      "col": 5,
+      "expected": 0.0,
+      "formula": "=IF(AND(ISNUMBER(D70),123.23467892978313<>0),(123.23467892978313-D70)/123.23467892978313,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 69,
+      "col": 6,
+      "expected": -24.0,
+      "formula": "=(76/100-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 69,
+      "col": 7,
+      "expected": 0.0,
+      "formula": "=(76/100-76/100)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 70,
+      "col": 0,
+      "expected": "Tongji／Plot4"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 70,
+      "col": 1,
+      "expected": "10cm／SVD"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 70,
+      "col": 2,
+      "expected": 4.356
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 70,
+      "col": 3,
+      "expected": 299.49175990329627
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 70,
+      "col": 4,
+      "expected": "不可比：本地缺變換；有限N見前表"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 70,
+      "col": 5,
+      "expected": "不可比：前後有限案例集合不同"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 70,
+      "col": 6,
+      "expected": -31.000000000000007,
+      "formula": "=(69/100-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 70,
+      "col": 7,
+      "expected": -7.000000000000006,
+      "formula": "=(69/100-76/100)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 71,
+      "col": 0,
+      "expected": "Tongji／Plot4"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 71,
+      "col": 1,
+      "expected": "10cm／RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 71,
+      "col": 2,
+      "expected": 4.356
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 71,
+      "col": 3,
+      "expected": 252.16805173230864
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 71,
+      "col": 4,
+      "expected": "不可比：本地缺變換；有限N見前表"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 71,
+      "col": 5,
+      "expected": "不可比：前後有限案例集合不同"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 71,
+      "col": 6,
+      "expected": -30.000000000000004,
+      "formula": "=(70/100-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 71,
+      "col": 7,
+      "expected": -6.000000000000005,
+      "formula": "=(70/100-76/100)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 72,
+      "col": 0,
+      "expected": "ETH-tree"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 72,
+      "col": 1,
+      "expected": "5cm／SVD"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 72,
+      "col": 2,
+      "expected": 15.3427
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 72,
+      "col": 3,
+      "expected": 12.620930210716535
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 72,
+      "col": 4,
+      "expected": "不可比：本地缺變換；有限N見前表"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 72,
+      "col": 5,
+      "expected": 0.0,
+      "formula": "=IF(AND(ISNUMBER(D73),12.620930210716535<>0),(12.620930210716535-D73)/12.620930210716535,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 72,
+      "col": 6,
+      "expected": -24.0,
+      "formula": "=(114/150-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 72,
+      "col": 7,
+      "expected": 0.0,
+      "formula": "=(114/150-114/150)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 73,
+      "col": 0,
+      "expected": "ETH-tree"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 73,
+      "col": 1,
+      "expected": "5cm／RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 73,
+      "col": 2,
+      "expected": 15.3427
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 73,
+      "col": 3,
+      "expected": 10.970508682716536
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 73,
+      "col": 4,
+      "expected": "不可比：本地缺變換；有限N見前表"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 73,
+      "col": 5,
+      "expected": 0.13076861217397537,
+      "formula": "=IF(AND(ISNUMBER(D74),12.620930210716535<>0),(12.620930210716535-D74)/12.620930210716535,\"不可比\")"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 73,
+      "col": 6,
+      "expected": -19.333333333333336,
+      "formula": "=(121/150-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 73,
+      "col": 7,
+      "expected": 4.666666666666663,
+      "formula": "=(121/150-114/150)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 74,
+      "col": 0,
+      "expected": "ETH-tree"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 74,
+      "col": 1,
+      "expected": "10cm／SVD"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 74,
+      "col": 2,
+      "expected": 15.3427
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 74,
+      "col": 3,
+      "expected": 10.729408964524138
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 74,
+      "col": 4,
+      "expected": "不可比：本地缺變換；有限N見前表"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 74,
+      "col": 5,
+      "expected": "不可比：前後有限案例集合不同"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 74,
+      "col": 6,
+      "expected": -7.9999999999999964,
+      "formula": "=(138/150-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 74,
+      "col": 7,
+      "expected": 16.000000000000004,
+      "formula": "=(138/150-114/150)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 75,
+      "col": 0,
+      "expected": "ETH-tree"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 75,
+      "col": 1,
+      "expected": "10cm／RANSAC"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 75,
+      "col": 2,
+      "expected": 15.3427
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 75,
+      "col": 3,
+      "expected": 9.095719413689656
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 75,
+      "col": 4,
+      "expected": "不可比：本地缺變換；有限N見前表"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 75,
+      "col": 5,
+      "expected": "不可比：前後有限案例集合不同"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 75,
+      "col": 6,
+      "expected": -4.0000000000000036,
+      "formula": "=(144/150-1)*100"
+    },
+    {
+      "sheet": "精度時間與成對比較",
+      "row": 75,
+      "col": 7,
+      "expected": 19.999999999999996,
+      "formula": "=(144/150-114/150)*100"
+    }
+  ],
+  "tables": {
+    "_widths_四組結果比較": [
+      27,
+      22,
+      24,
+      24,
+      24,
+      24,
+      24,
+      24
+    ],
+    "_widths_設定與說明": [
+      27,
+      21,
+      20,
+      20,
+      18,
+      20,
+      20,
+      30
+    ],
+    "_widths_精度時間與成對比較": [
+      27,
+      21,
+      20,
+      20,
+      18,
+      20,
+      20,
+      30
+    ],
+    "main": {
+      "sheet": "四組結果比較",
+      "header": 5,
+      "start": 6,
+      "end": 10,
+      "columns": 8
+    },
+    "errors": {
+      "sheet": "四組結果比較",
+      "header": 16,
+      "start": 17,
+      "end": 21,
+      "columns": 6
+    },
+    "finite": {
+      "sheet": "四組結果比較",
+      "header": 25,
+      "start": 26,
+      "end": 30,
+      "columns": 5
+    },
+    "settings": {
+      "sheet": "設定與說明",
+      "header": 5,
+      "start": 6,
+      "end": 9,
+      "columns": 4
+    },
+    "effects": {
+      "sheet": "設定與說明",
+      "header": 13,
+      "start": 14,
+      "end": 33,
+      "columns": 8
+    },
+    "paper_settings": {
+      "sheet": "設定與說明",
+      "header": 43,
+      "start": 44,
+      "end": 47,
+      "columns": 5
+    },
+    "paper_time": {
+      "sheet": "設定與說明",
+      "header": 51,
+      "start": 52,
+      "end": 56,
+      "columns": 6
+    },
+    "detail": {
+      "sheet": "精度時間與成對比較",
+      "header": 5,
+      "start": 6,
+      "end": 25,
+      "columns": 8
+    },
+    "paired": {
+      "sheet": "精度時間與成對比較",
+      "header": 31,
+      "start": 32,
+      "end": 51,
+      "columns": 8
+    },
+    "direct_differences": {
+      "sheet": "精度時間與成對比較",
+      "header": 55,
+      "start": 56,
+      "end": 75,
+      "columns": 8
+    }
+  },
+  "charts": 2
+}

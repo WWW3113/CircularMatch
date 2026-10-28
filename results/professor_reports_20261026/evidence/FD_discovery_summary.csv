@@ -1,0 +1,5 @@
+method,cases,success,official_cases,official_success,recovery_triggered,recovery_adopted
+baseline,150,142,100,99,0,0
+triangle_scarce,150,149,100,100,7,7
+evidence_scarce,150,149,100,100,7,7
+evidence_weak,150,150,100,100,31,31

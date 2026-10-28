@@ -1,0 +1,27 @@
+{
+  "profile": {
+    "name": "threshold100",
+    "threshold": 0.1
+  },
+  "solver": "svd+ransac",
+  "discovery_success": 70,
+  "discovery_seeds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "fresh_seeds": [
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+  ]
+}

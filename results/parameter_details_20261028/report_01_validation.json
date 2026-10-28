@@ -1,0 +1,13 @@
+{
+  "report": 1,
+  "parameters": 26,
+  "paired_comparisons": 56,
+  "independent_before_after_groups": 112,
+  "formula_count": 970,
+  "cell_checks": 8122,
+  "sheets": 3,
+  "charts": 2,
+  "libreoffice_independent_recalculation_passed": true,
+  "no_new_registration_experiment": true,
+  "sha256": "dc7ac9f69fa7abbb86a22f1639abac98342f865a13bbc4a31090d9bbf07dd4a0"
+}

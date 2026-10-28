@@ -1,0 +1,21 @@
+{
+  "full_sheets": 31,
+  "preserved_prior_sheets": 17,
+  "preserved_prior_cells_checked": 81288,
+  "new_validation_rows": 600,
+  "old_candidate_rows": 1200,
+  "prior_registration_rows": 1950,
+  "external_extraction_rows": 180,
+  "summary_formulas_recalculated": true,
+  "excel_error_cells": 0,
+  "files": {
+    "comparison_full.xlsx": {
+      "bytes": 1052799,
+      "sha256": "6533616fffed707a44dc67f058891da56093d59a06aa164a3b867e134f0479f8"
+    },
+    "comparison_simple.xlsx": {
+      "bytes": 17096,
+      "sha256": "9077cc62f6574696460e43e70f8b9edf2704d72c76de94885c4a72ad5d2a76b5"
+    }
+  }
+}
