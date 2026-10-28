@@ -13,3 +13,5 @@ Paper original executable remains unavailable (public repo README only); paper v
 After finalizer exits successfully, compare validation hashes and every ZIP member to current files, render sample pages, commit/push scalar evidence and13files/manifests/ZIP, verify immutable GitHub downloads and write DELIVERY.json. Do not upload private runs/raw clouds/tree coordinates/Drive IDs.
 
 FINAL VALIDATION COMPLETE: 2026-10-28T10:43:32.236691+08:00;2624 cell/formula checks,125 independently reaggregated groups,12 charts. Reopened/recalculated all six workbooks with Calc. ZIP13/current bytes identical. First-week rendered with no ###;8 Plot1/3 full-success cells visible. See validation.json and report_01_completeness.json. Only publish/download verification metadata remains.
+
+DELIVERY COMPLETE. Immutable artifact commit b839f64ecc9385321168771847f1efea4b00d8ad. All13 files plus ZIP downloaded from GitHub HTTP200 and SHA256 matched at 2026-10-28T10:45:10.616171+08:00. See DELIVERY.json for links. No further experiments or rebuilds required unless the user requests a new change.

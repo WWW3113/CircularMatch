@@ -1,0 +1,105 @@
+{
+  "commit": "b839f64ecc9385321168771847f1efea4b00d8ad",
+  "verified_at": "2026-10-28T10:45:10.616171+08:00",
+  "distributed_files": 13,
+  "downloads": {
+    "報告安排總覽.txt": {
+      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/b839f64ecc9385321168771847f1efea4b00d8ad/results/six_week_reports_20261028/%E5%A0%B1%E5%91%8A%E5%AE%89%E6%8E%92%E7%B8%BD%E8%A6%BD.txt",
+      "sha256": "594b05f412e744b4ae9cd6cb1e4f5dc0f8d9c296f5ec0b7d005a7d94b2893dca",
+      "bytes": 4314,
+      "http_status": 200,
+      "verified": true
+    },
+    "report_01_CN距離容差與Solver.txt": {
+      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/b839f64ecc9385321168771847f1efea4b00d8ad/results/six_week_reports_20261028/report_01_CN%E8%B7%9D%E9%9B%A2%E5%AE%B9%E5%B7%AE%E8%88%87Solver.txt",
+      "sha256": "80bc5956f4f6349a8b66de70c7c3e5785d53ff74576f2fa90f3a558299bc5eb9",
+      "bytes": 11580,
+      "http_status": 200,
+      "verified": true
+    },
+    "report_01_CN距離容差與Solver.xlsx": {
+      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/b839f64ecc9385321168771847f1efea4b00d8ad/results/six_week_reports_20261028/report_01_CN%E8%B7%9D%E9%9B%A2%E5%AE%B9%E5%B7%AE%E8%88%87Solver.xlsx",
+      "sha256": "232664b4cdfd35efb4e8b082f87505529932d2826f214ef91dc8b1dc6987f9c5",
+      "bytes": 23426,
+      "http_status": 200,
+      "verified": true
+    },
+    "report_02_弱配對補救.txt": {
+      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/b839f64ecc9385321168771847f1efea4b00d8ad/results/six_week_reports_20261028/report_02_%E5%BC%B1%E9%85%8D%E5%B0%8D%E8%A3%9C%E6%95%91.txt",
+      "sha256": "bb41088a68fde391884e36ef75774cca19ca10ce35529e07dfa842ac6eeed511",
+      "bytes": 9976,
+      "http_status": 200,
+      "verified": true
+    },
+    "report_02_弱配對補救.xlsx": {
+      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/b839f64ecc9385321168771847f1efea4b00d8ad/results/six_week_reports_20261028/report_02_%E5%BC%B1%E9%85%8D%E5%B0%8D%E8%A3%9C%E6%95%91.xlsx",
+      "sha256": "d38a14ce9b4fdd585d09de3ea3fb5f14dd90943e41ca1e6b0f6783918e7e5c11",
+      "bytes": 17296,
+      "http_status": 200,
+      "verified": true
+    },
+    "report_03_DTM平滑與樹位高度.txt": {
+      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/b839f64ecc9385321168771847f1efea4b00d8ad/results/six_week_reports_20261028/report_03_DTM%E5%B9%B3%E6%BB%91%E8%88%87%E6%A8%B9%E4%BD%8D%E9%AB%98%E5%BA%A6.txt",
+      "sha256": "4319ab358aefba25e8f6446a924a691cf1b6b388d7e32ba3d708cfae84f7cb79",
+      "bytes": 11068,
+      "http_status": 200,
+      "verified": true
+    },
+    "report_03_DTM平滑與樹位高度.xlsx": {
+      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/b839f64ecc9385321168771847f1efea4b00d8ad/results/six_week_reports_20261028/report_03_DTM%E5%B9%B3%E6%BB%91%E8%88%87%E6%A8%B9%E4%BD%8D%E9%AB%98%E5%BA%A6.xlsx",
+      "sha256": "c04e1b54486d108ad3ddfbd106771ac412a77deb2d859067e9a78147c6bbb419",
+      "bytes": 19221,
+      "http_status": 200,
+      "verified": true
+    },
+    "report_04_加入幾何微調.txt": {
+      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/b839f64ecc9385321168771847f1efea4b00d8ad/results/six_week_reports_20261028/report_04_%E5%8A%A0%E5%85%A5%E5%B9%BE%E4%BD%95%E5%BE%AE%E8%AA%BF.txt",
+      "sha256": "b350778a2e96ac75fec279e8204edde70bcd5f9851d1a303edb7171132a3f6bf",
+      "bytes": 11426,
+      "http_status": 200,
+      "verified": true
+    },
+    "report_04_加入幾何微調.xlsx": {
+      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/b839f64ecc9385321168771847f1efea4b00d8ad/results/six_week_reports_20261028/report_04_%E5%8A%A0%E5%85%A5%E5%B9%BE%E4%BD%95%E5%BE%AE%E8%AA%BF.xlsx",
+      "sha256": "63b8335f19cc45a5f9917fd4cfadb2b8181b20f58b0cef25d5a73330702abde7",
+      "bytes": 19506,
+      "http_status": 200,
+      "verified": true
+    },
+    "report_05_擴大候選搜尋的退步.txt": {
+      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/b839f64ecc9385321168771847f1efea4b00d8ad/results/six_week_reports_20261028/report_05_%E6%93%B4%E5%A4%A7%E5%80%99%E9%81%B8%E6%90%9C%E5%B0%8B%E7%9A%84%E9%80%80%E6%AD%A5.txt",
+      "sha256": "afafe39588624e972a6317136833c4a9cea9a8aa6a8d3e86d256dc3188da734a",
+      "bytes": 9666,
+      "http_status": 200,
+      "verified": true
+    },
+    "report_05_擴大候選搜尋的退步.xlsx": {
+      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/b839f64ecc9385321168771847f1efea4b00d8ad/results/six_week_reports_20261028/report_05_%E6%93%B4%E5%A4%A7%E5%80%99%E9%81%B8%E6%90%9C%E5%B0%8B%E7%9A%84%E9%80%80%E6%AD%A5.xlsx",
+      "sha256": "a53a107c428c64b81393e6c437f0e81396814d02a2408a1e72495265177122e8",
+      "bytes": 18142,
+      "http_status": 200,
+      "verified": true
+    },
+    "report_06_結構驗證與最終比較.txt": {
+      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/b839f64ecc9385321168771847f1efea4b00d8ad/results/six_week_reports_20261028/report_06_%E7%B5%90%E6%A7%8B%E9%A9%97%E8%AD%89%E8%88%87%E6%9C%80%E7%B5%82%E6%AF%94%E8%BC%83.txt",
+      "sha256": "a28b79077bc53fba1806b5d64841386dd2182254f0eff6d5cf91c87a18cea89b",
+      "bytes": 9436,
+      "http_status": 200,
+      "verified": true
+    },
+    "report_06_結構驗證與最終比較.xlsx": {
+      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/b839f64ecc9385321168771847f1efea4b00d8ad/results/six_week_reports_20261028/report_06_%E7%B5%90%E6%A7%8B%E9%A9%97%E8%AD%89%E8%88%87%E6%9C%80%E7%B5%82%E6%AF%94%E8%BC%83.xlsx",
+      "sha256": "ecbd29343b61f2c5763112f62f09a7e948c02f188c5eeddb376772574927fc4b",
+      "bytes": 18680,
+      "http_status": 200,
+      "verified": true
+    },
+    "six_week_reports_20261028.zip": {
+      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/b839f64ecc9385321168771847f1efea4b00d8ad/results/six_week_reports_20261028/six_week_reports_20261028.zip",
+      "sha256": "318e68cfe35271265521a99b8e2ebf3f6d1fec4dfd898c929d135b4a23847d45",
+      "bytes": 144147,
+      "http_status": 200,
+      "verified": true
+    }
+  }
+}

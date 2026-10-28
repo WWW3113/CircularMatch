@@ -8,9 +8,8 @@ import json
 from pathlib import Path
 import re
 from urllib.parse import quote
+from urllib.request import urlopen
 from zoneinfo import ZoneInfo
-
-import requests
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / 'results/six_week_reports_20261028'
@@ -34,11 +33,12 @@ def main():
 
     def check(name):
         url = 'https://raw.githubusercontent.com/WWW3113/CircularMatch/' + args.commit + '/' + quote(str((OUT / name).relative_to(ROOT)))
-        response = requests.get(url, timeout=60)
-        response.raise_for_status()
+        with urlopen(url, timeout=60) as response:
+            status = response.status
+            content = response.read()
         expected = hashlib.sha256((OUT / name).read_bytes()).hexdigest()
-        assert hashlib.sha256(response.content).hexdigest() == expected, name
-        return name, dict(url=url, sha256=expected, bytes=len(response.content), http_status=response.status_code, verified=True)
+        assert hashlib.sha256(content).hexdigest() == expected, name
+        return name, dict(url=url, sha256=expected, bytes=len(content), http_status=status, verified=True)
 
     with ThreadPoolExecutor(max_workers=4) as executor:
         verified = dict(executor.map(check, files))
