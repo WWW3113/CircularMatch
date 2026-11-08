@@ -55,5 +55,11 @@
   "main_and_backup_one_page_each": true,
   "independent_csv_and_paired_validation": true,
   "zip_sha256": "da6921a719cf040785835a75ff1aca3de81cc83365b0acbf160c3fa515379c3f",
-  "zip_bytes": 66739
+  "zip_bytes": 66739,
+  "no_cell_comments_or_yellow_indicators": true,
+  "raw_cloud_sha256_verified": 26,
+  "feature_and_geometry_hashes_verified": 286,
+  "legacy_source_hashes_matched": 9,
+  "legacy_endpoint_reproductions_matched": 4,
+  "new_ablation_trials": 1100
 }

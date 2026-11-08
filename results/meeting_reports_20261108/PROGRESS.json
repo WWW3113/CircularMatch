@@ -3,7 +3,9 @@
   "expected": 1100,
   "experiments_in_progress": false,
   "private_runs_not_published": true,
-  "status": "all_workbooks_validated_pending_upload",
+  "status": "complete_delivered",
   "workbooks": 6,
-  "cell_comments_removed": true
+  "cell_comments_removed": true,
+  "artifact_commit": "9878caa4f1c7fc0604e0bbcceab6126723bbc0eb",
+  "delivery": "DELIVERY.json"
 }

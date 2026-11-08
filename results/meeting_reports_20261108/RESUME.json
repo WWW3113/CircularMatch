@@ -1,7 +1,7 @@
 {
   "goal": "Six minimal meeting XLSX files only; two sheets each",
   "branch": "reports/meeting-20261108",
-  "status": "all_workbooks_validated_pending_upload",
+  "status": "complete_delivered",
   "experiment_resume": "python -u scripts/eth_trees/meeting_ablation.py run",
   "generation": "python scripts/eth_trees/make_meeting_reports.py",
   "verification": "python scripts/eth_trees/verify_meeting_reports.py",
@@ -17,5 +17,8 @@
   "completed_trials": 1100,
   "cell_comments": false,
   "validation": "validation.json",
-  "main_and_backup_one_page_each": true
+  "main_and_backup_one_page_each": true,
+  "artifact_commit": "9878caa4f1c7fc0604e0bbcceab6126723bbc0eb",
+  "delivery": "DELIVERY.json",
+  "experiments_in_progress": false
 }
