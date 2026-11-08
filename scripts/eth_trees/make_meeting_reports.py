@@ -73,8 +73,11 @@ def setup(i):
  elif i==6:
   assert (OUT/'ABLATION_COMPLETE.json').exists(),'The two missing factor controls must finish before report6.'
   groups=[('都不改（v2）',{s:d.get('U:'+s+':multi_v2_refined') for s in SCENES}),('只篩垂直結構',{s:d.new(s,'v1g0') for s in SCENES}),('只收緊距離門檻',{s:d.new(s,'v0g1') for s in SCENES}),('兩項都改（v3）',{s:d.get('U:'+s+':multi_v3_refined') for s in SCENES})];primary=(0,3)
-  question='垂直結構篩選與嚴格距離門檻，各自貢獻多少？';verdict='完整v3：550/550通過；相對v2新增22次成功，均在Plot4。兩個單項效果見四組矩陣。'
-  settings='v2候選引擎、原DTM與6DOF optimizer固定。驗證表面：全方向／|normal.z|<0.30；gate：3h／min(h,0.20m)。'
+  question='垂直結構篩選與嚴格距離門檻，各自貢獻多少？'
+  vertical=sum(g['ok'] for g in groups[1][1].values());tight=sum(g['ok'] for g in groups[2][1].values())
+  verdict=f'只篩垂直：{vertical}/550；只收緊gate：{tight}/550；兩項合用：550/550。'
+  verdict+= '成功率上不能說兩項都必要。' if max(vertical,tight)==550 else '單項與合用的差異，按五場景完整列出。'
+  settings='v2候選引擎、原DTM與6DOF optimizer固定。垂直篩選：|normal.z|<0.30；驗證gate（三尺度）：1.50/0.60/0.30→0.20/0.20/0.10m。'
  return d,groups,primary,question,verdict,settings
 
 class Book:
@@ -188,7 +191,8 @@ def build(i):
   row+=1
  if i==5:
   row=b.delta_table(s,row,'補充：候選v1→v2，不能將整組效果歸因於top-k單一參數',groups,(1,2))
-  b.line(s,row,'反例｜Plot4 S4–S2 seed31：v1 overlap=16.7%、e_p=0.086m；v2 overlap=33.8%、e_p=45.94m。分數較高卻嚴重錯位。',height=37);row+=2
+  x,y=[next(r for r in groups[k][1]['Plot4']['rows'] if r['pair']=='S4-S2' and r['seed']=='31') for k in [1,2]]
+  b.line(s,row,f'反例｜Plot4 S4–S2 seed31：v1 overlap={100*float(x["geo_overlap"]):.1f}%、e_p={float(x["e_p_m"]):.3f}m；v2 overlap={100*float(y["geo_overlap"]):.1f}%、e_p={float(y["e_p_m"]):.2f}m。分數較高卻嚴重錯位。',height=37);row+=2
  if i==6:
   b.line(s,row,'同一v3 backend的公平控制：額外4次改善才是完整候選對單初值的增益','head',25);row+=1
   for scene in SCENES:
@@ -197,12 +201,14 @@ def build(i):
    for c,name,g in zip([2,5,8],['5cm/SVD','10cm/補救','完整候選'],gs):b.merge(s,row,c,c+2,f'{name}：{g["ok"]}/{g["n"]}','text',27)
    row+=1
   row+=1
- mechanisms={1:'機制：容差放寬可接納較不一致的距離，也可能增加錯配；RANSAC只在既有對應中找3D一致群。不能把兩項一起改的增益全算給容差。',2:'機制：原CN不足6對才啟動；回收CN候選證據，以相容三元組產生Kabsch姿態，再以一對一3D支持驗證。是新增方法整組，不是發明RANSAC。',3:'證據邊界：fit與fill一起變動，只能歸因DTM設定整組；尚無兩參數各自的完整流程消融。樹位數改變已觀察到，不能直接認定樹更多就是改善原因。',4:'機制：coarse提供初始姿態，表面point-to-plane微調估完整6DOF。四組完整控制顯示微調效果不靠回復DTM解釋；平滑＋微調也保留。第5週沿原DTM研究支線。',5:'證據邊界：候選池、yaw初值、支持分數與beam同時變動，是搜尋策略整組比較。v1/v2共用舊驗證分數；新候選可能放大假重疊的影響，不能只怪候選數。',6:'機制：驗證優先看垂直表面，減少共同地面的假重疊；收緊NN距離避免把偏移表面算作支持。兩項效果用四組隔離；改動作用於排序、接受與最終選擇，optimizer仍用全方向6DOF。'}
+ mechanisms={1:'機制：容差放寬可接納較不一致的距離，也可能增加錯配；RANSAC只在既有對應中找3D一致群。不能把兩項一起改的增益全算給容差。',2:'機制：原CN不足6對才啟動；回收CN候選證據，以相容三元組產生Kabsch姿態，再以一對一3D支持驗證。是新增方法整組，不是發明RANSAC。',3:'fit_radius控制地面局部擬合鄰域；fill_max_radius控制缺格補洞範圍，單位為格（cell=0.50m）。兩項一起改，只能歸因DTM設定整組，沒有各自完整流程消融；樹位數改變不能直接證明改善原因。',4:'機制：coarse提供初始姿態，表面point-to-plane微調估完整6DOF。四組完整控制顯示微調效果不靠回復DTM解釋；平滑＋微調也保留。第5週沿原DTM研究支線。',5:'證據邊界：候選池、yaw初值、支持分數與beam同時變動，是搜尋策略整組比較。v1/v2共用舊驗證分數；新候選可能放大假重疊的影響，不能只怪候選數。',6:'機制：驗證優先看垂直表面，減少共同地面的假重疊；收緊NN距離避免把偏移表面算作支持。兩項效果用四組隔離；改動作用於排序、接受與最終選擇，optimizer仍用全方向6DOF。'}
  b.line(s,row,mechanisms[i],height=44);row+=1
  b.line(s,row,'時間／代價：舊批次與新補跑的硬體或並行、計時範圍不齊，不計跨批次加速比。原論文i7-9700F 3GHz、實際threads未交代；本地原生OMP4。',height=36);row+=1
  b.line(s,row,'論文對照：Table I／PDF p4；時間見Table II／p4、Table III／p5。作者公開程式在2026-10-28查核僅README，未取得同環境作者baseline。',height=32);row+=1
  b.line(s,row,'追溯：主頁數值格的註解附CSV路徑、行號、篩選與SHA256。既有來源固定於Git commit '+PIN[:12]+'；新消融見ablation_protocol.json。',height=34)
- meta=dict(week=i,title=TITLES[i],generated_at=datetime.now(ZoneInfo('Asia/Taipei')).isoformat(),source_commit=PIN,groups=[dict(label=name,scenes={s:{k:v for k,v in g.items() if k!='rows'} for s,g in gs.items()}) for name,gs in groups],primary=primary,main_last_row=last_main+1,backup_last_row=row+1)
+ primary_ids={id(g) for _,gs in groups for g in gs.values()}
+ extra={name:{k:v for k,v in g.items() if k!='rows'} for name,g in d.groups.items() if id(g) not in primary_ids}
+ meta=dict(week=i,title=TITLES[i],generated_at=datetime.now(ZoneInfo('Asia/Taipei')).isoformat(),source_commit=PIN,groups=[dict(label=name,scenes={s:{k:v for k,v in g.items() if k!='rows'} for s,g in gs.items()}) for name,gs in groups],auxiliary_groups=extra,primary=primary,main_last_row=last_main+1,backup_last_row=row+1)
  return b.finish(last_main,row,meta)
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('--weeks',nargs='+',type=int,default=list(range(1,7)));a=ap.parse_args()

@@ -38,6 +38,12 @@ def verify(weeks):
     close(main.cell(positions[1],col).value,100*sum(ep)/len(ep));assert main.cell(positions[1],col+1).value==len(rows)-len(ep)
     group_checks+=1
    loaded.append(by_scene)
+  for name,g in m.get('auxiliary_groups',{}).items():
+   src=g['source'];path=ROOT/src['path'];assert sha(path)==src['sha256']
+   if str(path) not in source_cache:source_cache[str(path)]=list(csv.DictReader(path.open()))
+   rr=[source_cache[str(path)][n-2] for n in src['csv_lines']]
+   assert len(rr)==g['n'] and sum(r['success']=='1' for r in rr)==g['ok']
+   ep=[float(r['e_p_m']) for r in rr if math.isfinite(float(r['e_p_m']))];assert len(ep)==g['finite'];close(sum(ep)/len(ep),g['ep']);group_checks+=1
   a,z=[loaded[k] for k in m['primary']];sheet=wb['必要對照']
   for n,scene in enumerate(['Plot1','Plot2','Plot3','Plot4','ETH'],6):
    aa={(r['pair'],r['seed']):r for r in a[scene]};bb={(r['pair'],r['seed']):r for r in z[scene]};assert aa.keys()==bb.keys()
