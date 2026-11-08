@@ -1,0 +1,49 @@
+{
+  "validated_at": "2026-11-09T00:09:52.973213+08:00",
+  "reports": [
+    {
+      "week": 1,
+      "file": "week_01_CN容差與Solver.xlsx",
+      "sha256": "e1764e7917aabfc17054e56c41622c9fdb3bbaedd3a1483c384f161ba0040416",
+      "checks": 179,
+      "pdf_pages": 2,
+      "calc_recalculation_passed": true
+    },
+    {
+      "week": 2,
+      "file": "week_02_弱配對補救.xlsx",
+      "sha256": "6c69d8810ba56369c1f4ca0b4d791a36fb1448f28440683d8c526611ba48ee6b",
+      "checks": 119,
+      "pdf_pages": 2,
+      "calc_recalculation_passed": true
+    },
+    {
+      "week": 3,
+      "file": "week_03_DTM設定整組對照.xlsx",
+      "sha256": "ddc48a1272d3fe5a2d7b91177cbe65aeee08c801030c25ea3151cb96650ce548",
+      "checks": 119,
+      "pdf_pages": 2,
+      "calc_recalculation_passed": true
+    },
+    {
+      "week": 4,
+      "file": "week_04_DTM與幾何微調.xlsx",
+      "sha256": "38fbc763a317e28a63d4e490d02dec61633e29e543223da81febf3f25b0247ce",
+      "checks": 179,
+      "pdf_pages": 2,
+      "calc_recalculation_passed": true
+    },
+    {
+      "week": 5,
+      "file": "week_05_擴大候選的退步.xlsx",
+      "sha256": "6d60824edcb11304fc2aadfb9ca6b4e175692a7f28db28d87521290f6faf42bc",
+      "checks": 178,
+      "pdf_pages": 2,
+      "calc_recalculation_passed": true
+    }
+  ],
+  "independent_groups": 75,
+  "cell_checks": 774,
+  "main_and_backup_one_page_each": true,
+  "independent_csv_and_paired_validation": true
+}

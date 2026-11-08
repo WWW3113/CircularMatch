@@ -1,5 +1,7 @@
 build/
 # Raw datasets and large intermediates are never committed.
 data/
+data
 results/**/runs/
+results/**/runs
 __pycache__/

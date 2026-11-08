@@ -1,0 +1,51 @@
+{
+  "frozen_at": "2026-11-08T16:02:05.002066+00:00",
+  "factors": {
+    "vertical": [
+      "all orientations",
+      "abs(normal.z)<0.30; fallback if either side<30 points"
+    ],
+    "gate": [
+      "3*voxel",
+      "min(voxel,0.20m)"
+    ]
+  },
+  "missing": [
+    "v1g0",
+    "v0g1"
+  ],
+  "existing_endpoints": {
+    "v0g0": "multi_v2_refined",
+    "v1g1": "multi_v3_refined"
+  },
+  "seeds": [
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40
+  ],
+  "pairs": 55,
+  "trials_per_variant": 550,
+  "workers": 4,
+  "omp_threads": 4,
+  "omp_wait_policy": "PASSIVE",
+  "gt_scope": "Evaluation only; no retuning, pair filtering or GT pose selection",
+  "source_sha256": {
+    "apps/geometry_refinement_ablation.cpp": "da7c21c235cf657655e026bad1c00cae1eb03b72a831f5f965e342221b690abe",
+    "apps/cm_geometry_register_v3.cpp": "e8428c89198a41c88ba6b39777024211e297918bc5e29405e895f9d30ff85234",
+    "config/default.ini": "bd94251c5eaca7c81b46826b517b2feaaf35deb5ff4a4299756c2c2a6651bb35"
+  },
+  "binary_sha256": {
+    "v0g0": "b115729391a89f653b465e9a37719bdae8dfb054587148dbc6aaa3113d4a72e3",
+    "v1g1": "68b8c92b3f7365320dddfc7d8e20645c5602ed69729369bab018a860896e8250",
+    "v1g0": "5894a529a9f1cc7f3ed9d7a4d952c61fcc6446582a4fd45a2a6fc93d56190faf",
+    "v0g1": "996ae176cb14229c79b2a440ae593cbe336fbd16a2597657bb9e0b007be7473f"
+  },
+  "timing": "Concurrent controls; no fair runtime ranking versus old epochs"
+}

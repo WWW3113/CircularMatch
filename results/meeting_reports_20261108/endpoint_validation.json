@@ -1,0 +1,30 @@
+[
+  {
+    "scene": "Plot4",
+    "pair": "S4-S2",
+    "variant": "v0g0",
+    "success": "0",
+    "ep_difference_m": 0.0
+  },
+  {
+    "scene": "Plot4",
+    "pair": "S4-S2",
+    "variant": "v1g1",
+    "success": "1",
+    "ep_difference_m": 0.0
+  },
+  {
+    "scene": "ETH",
+    "pair": "s1-s2",
+    "variant": "v0g0",
+    "success": "1",
+    "ep_difference_m": 0.0
+  },
+  {
+    "scene": "ETH",
+    "pair": "s1-s2",
+    "variant": "v1g1",
+    "success": "1",
+    "ep_difference_m": 0.0
+  }
+]
