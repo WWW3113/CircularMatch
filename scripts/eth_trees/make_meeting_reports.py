@@ -76,14 +76,17 @@ def setup(i):
   question='垂直結構篩選與嚴格距離門檻，各自貢獻多少？'
   vertical=sum(g['ok'] for g in groups[1][1].values());tight=sum(g['ok'] for g in groups[2][1].values())
   verdict=f'只篩垂直：{vertical}/550；只收緊gate：{tight}/550；兩項合用：550/550。'
-  verdict+= '成功率上不能說兩項都必要。' if max(vertical,tight)==550 else '單項與合用的差異，按五場景完整列出。'
+  if vertical==tight==550:verdict+='兩個單項都已達100%，成功率沒有合用增益。'
+  elif vertical==550:verdict+='垂直篩選已達100%，收緊gate未再增加成功。'
+  elif tight==550:verdict+='收緊gate已達100%，垂直篩選未再增加成功。'
+  else:verdict+='單項與合用的差異，按五場景完整列出。'
   settings='v2候選引擎、原DTM與6DOF optimizer固定。垂直篩選：|normal.z|<0.30；驗證gate（三尺度）：1.50/0.60/0.30→0.20/0.20/0.10m。'
  return d,groups,primary,question,verdict,settings
 
 class Book:
  def __init__(self,i):
   OUT.mkdir(parents=True,exist_ok=True);self.path=OUT/f'week_{i:02d}_{TITLES[i]}.xlsx';self.w=xlsxwriter.Workbook(self.path);self.checks=[];self.sources={};self.i=i
-  opts={'title':dict(bold=True,font_size=20),'verdict':dict(bold=True,font_size=15,bottom=1),'head':dict(bold=True,bg_color='#EDEDED',align='center'),'label':dict(bold=True,align='left'),'text':{},'note':dict(font_size=11,font_color='#444444'),'num':dict(num_format='0.00',align='center'),'integer':dict(num_format='0',align='center'),'count':dict(align='center'),'pct':dict(num_format='0.0%',align='center'),'pp':dict(num_format='+0.0" pp";-0.0" pp";0.0" pp"',align='center')}
+  opts={'title':dict(bold=True,font_size=20),'verdict':dict(bold=True,font_size=15,bottom=1),'head':dict(bold=True,bg_color='#EDEDED',align='center'),'subhead':dict(bold=True,font_size=12,bg_color='#EDEDED',align='center'),'label':dict(bold=True,align='left'),'text':{},'note':dict(font_size=11,font_color='#444444'),'num':dict(num_format='0.00',align='center'),'integer':dict(num_format='0',align='center'),'count':dict(align='center'),'pct':dict(num_format='0.0%',align='center'),'pp':dict(num_format='+0.0" pp";-0.0" pp";0.0" pp"',align='center')}
   self.f={k:self.w.add_format(dict(font_name='Microsoft JhengHei',font_size=14,valign='vcenter',text_wrap=True)|v) for k,v in opts.items()}
   self.s={n:self.w.add_worksheet(n) for n in ['Meeting主頁','必要對照']}
   for name,s in self.s.items():
@@ -97,9 +100,9 @@ class Book:
   self.checks.append(dict(sheet=s,row=r+1,col=c+1,value=value,formula=formula))
   if source:
    h=source['sha256'];self.sources[h]=source
-   ws.write_comment(r,c,'來源：'+source['path']+'\nSHA256：'+h+'\n篩選：'+json.dumps(source.get('selector',{}),ensure_ascii=False)+'\nCSV行號：'+','.join(map(str,source['csv_lines'])),{'width':480,'height':150})
  def merge(self,s,r,c,end,value,style='text',height=25):
   self.s[s].merge_range(r,c,r,end,value,self.f[style]);self.s[s].set_row(r,height)
+  self.checks.append(dict(sheet=s,row=r+1,col=c+1,value=value,formula=None))
  def line(self,s,r,value,style='note',height=30):self.merge(s,r,0,11,value,style,height)
  def matrix(self,s,row,title,groups,metric,source_map=None):
   self.line(s,row,title,'head',23);row+=1
@@ -107,7 +110,7 @@ class Book:
   for j,scene in enumerate(SCENES):self.merge(s,row,2+j*2,3+j*2,'ETH-tree' if scene=='ETH' else 'Tongji '+scene,'head',23)
   row+=1;self.merge(s,row,0,1,'','head',20)
   for j in range(5):
-   for k,name in enumerate(['成功/總數','成功率'] if metric=='success' else ['誤差(cm)','無輸出']):self.cell(s,row,2+j*2+k,name,'head')
+   for k,name in enumerate(['成功/總數','成功率'] if metric=='success' else ['誤差(cm)','無輸出']):self.cell(s,row,2+j*2+k,name,'subhead')
   self.s[s].set_row(row,24);row+=1
   records=[('論文報告值',None)]+groups
   for name,gs in records:
@@ -117,7 +120,6 @@ class Book:
     if gs is None:
      self.cell(s,row,c,'未交代' if metric=='success' else PAPER[scene],'note' if metric=='success' else 'num')
      self.cell(s,row,c+1,1 if metric=='success' else '未交代','pct' if metric=='success' else 'note')
-     for k in [c,c+1]:self.s[s].write_comment(row,k,'CircularMatch DOI10.1109/LGRS.2025.3650098，PDF p4 Table I。論文成功門檻／統計分母未齊，不能視為本地同條件重跑。')
     else:
      g=gs[scene]
      if metric=='success':
@@ -143,6 +145,7 @@ class Book:
   self.line(s,row,'誤差下降率=(前−後)/前。共同成功只回答同一批成功案例的精度，不取代全體成功率。',height=27)
   return row+2
  def finish(self,last_main,last_backup,meta):
+  self.checks=list({(x['sheet'],x['row'],x['col']):x for x in self.checks}.values())
   self.s['Meeting主頁'].print_area(0,0,last_main,11);self.s['必要對照'].print_area(0,0,last_backup,11)
   self.w.close();meta.update(file=self.path.name,sha256=sha(self.path),checks=self.checks,sources=self.sources)
   audit=OUT/'audit';audit.mkdir(exist_ok=True);(audit/f'week_{self.i:02d}.json').write_text(json.dumps(meta,ensure_ascii=False,indent=2)+'\n')
@@ -154,18 +157,19 @@ def validate(path,meta):
  assert f.sheetnames==['Meeting主頁','必要對照'] and not f._external_links
  for x in meta['checks']:
   c=v[x['sheet']].cell(x['row'],x['col']);a=c.value;b=x['value']
-  assert math.isclose(a,b,rel_tol=1e-10,abs_tol=1e-9) if isinstance(b,(int,float)) else a==b,(x,a)
+  assert math.isclose(a,b,rel_tol=1e-10,abs_tol=1e-9) if isinstance(b,(int,float)) else a==b or b=='' and a is None,(x,a)
   if x['formula']:assert f[x['sheet']].cell(x['row'],x['col']).data_type=='f'
  for s in v:
   assert not any(c.data_type=='e' for row in s for c in row)
+  assert not any(c.comment is not None for row in s for c in row)
  f.close();v.close()
 
 def build(i):
  d,groups,primary,q,verdict,settings=setup(i);b=Book(i);s='Meeting主頁'
  b.line(s,0,f'第{i}週｜{TITLES[i]}','title',32);b.line(s,1,q,'text',25);b.line(s,2,verdict,'verdict',37);b.line(s,3,settings,'note',37)
  row=b.matrix(s,5,'① 可靠性：成功／總次數與成功率（越高越好）',groups,'success');row+=1
- row=b.matrix(s,row,'② 精度與失敗代價：有輸出的全部案例平均誤差（含配錯）',groups,'error')
- b.line(s,row,'無輸出仍算失敗；誤差不填0。誤差平均分母＝總次數−無輸出次數；各組分母不同時，不直接計算整體誤差改善率。',height=32);row+=1
+ row=b.matrix(s,row,'② 平均點誤差 e_p（cm，越低越好；包含有輸出的失敗案例）',groups,'error')
+ b.line(s,row,'e_p：同一來源點經估計／GT變換後，兩個位置的平均距離。無輸出仍算失敗、不填0；平均分母＝總數−無輸出。分母不同不直接計算整體誤差改善率。',height=32);row+=1
  b.line(s,row,'Tongji四Plot＝同一dataset；各100次（10配對×10seed）。ETH＝另一dataset，150次（15×10）。seed31–40；成功門檻：旋轉<2°且平移<0.5m。',height=33);row+=1
  b.line(s,row,'論文值僅供參考：成功門檻與分母未齊。GT只用於評分；曾用於開發選參。這是已知場景的比較，不是未見森林盲測。',height=29)
  last_main=row;s='必要對照';b.line(s,0,'同配對、同seed的消融證據','title',30);b.line(s,1,f'修改前：{groups[primary[0]][0]}　→　修改後：{groups[primary[1]][0]}','text',30)
@@ -201,11 +205,14 @@ def build(i):
    for c,name,g in zip([2,5,8],['5cm/SVD','10cm/補救','完整候選'],gs):b.merge(s,row,c,c+2,f'{name}：{g["ok"]}/{g["n"]}','text',27)
    row+=1
   row+=1
+  diff={scene:1000*(groups[3][1][scene]['ep']-groups[1][1][scene]['ep']) for scene in SCENES}
+  assert max(abs(diff[s]) for s in ['Plot1','Plot2','ETH'])<.001
+  b.line(s,row,f'合用−只篩垂直的平均e_p：Plot3 {diff["Plot3"]:+.3f}mm、Plot4 {diff["Plot4"]:+.3f}mm；其餘<0.001mm。主頁四捨五入後相同，不代表逐筆完全相同。',height=32);row+=1
  mechanisms={1:'機制：容差放寬可接納較不一致的距離，也可能增加錯配；RANSAC只在既有對應中找3D一致群。不能把兩項一起改的增益全算給容差。',2:'機制：原CN不足6對才啟動；回收CN候選證據，以相容三元組產生Kabsch姿態，再以一對一3D支持驗證。是新增方法整組，不是發明RANSAC。',3:'fit_radius控制地面局部擬合鄰域；fill_max_radius控制缺格補洞範圍，單位為格（cell=0.50m）。兩項一起改，只能歸因DTM設定整組，沒有各自完整流程消融；樹位數改變不能直接證明改善原因。',4:'機制：coarse提供初始姿態，表面point-to-plane微調估完整6DOF。四組完整控制顯示微調效果不靠回復DTM解釋；平滑＋微調也保留。第5週沿原DTM研究支線。',5:'證據邊界：候選池、yaw初值、支持分數與beam同時變動，是搜尋策略整組比較。v1/v2共用舊驗證分數；新候選可能放大假重疊的影響，不能只怪候選數。',6:'機制：驗證優先看垂直表面，減少共同地面的假重疊；收緊NN距離避免把偏移表面算作支持。兩項效果用四組隔離；改動作用於排序、接受與最終選擇，optimizer仍用全方向6DOF。'}
  b.line(s,row,mechanisms[i],height=44);row+=1
  b.line(s,row,'時間／代價：舊批次與新補跑的硬體或並行、計時範圍不齊，不計跨批次加速比。原論文i7-9700F 3GHz、實際threads未交代；本地原生OMP4。',height=36);row+=1
  b.line(s,row,'論文對照：Table I／PDF p4；時間見Table II／p4、Table III／p5。作者公開程式在2026-10-28查核僅README，未取得同環境作者baseline。',height=32);row+=1
- b.line(s,row,'追溯：主頁數值格的註解附CSV路徑、行號、篩選與SHA256。既有來源固定於Git commit '+PIN[:12]+'；新消融見ablation_protocol.json。',height=34)
+ b.line(s,row,'資料來源：CircularMatch repo／results/six_week_reports_20261028 與 professor_reports_20261026 的 evidence；既有版本 '+PIN[:12]+'。新消融：meeting_reports_20261108/verification_ablation_rows.csv。',height=34)
  primary_ids={id(g) for _,gs in groups for g in gs.values()}
  extra={name:{k:v for k,v in g.items() if k!='rows'} for name,g in d.groups.items() if id(g) not in primary_ids}
  meta=dict(week=i,title=TITLES[i],generated_at=datetime.now(ZoneInfo('Asia/Taipei')).isoformat(),source_commit=PIN,groups=[dict(label=name,scenes={s:{k:v for k,v in g.items() if k!='rows'} for s,g in gs.items()}) for name,gs in groups],auxiliary_groups=extra,primary=primary,main_last_row=last_main+1,backup_last_row=row+1)

@@ -81,6 +81,10 @@ def validate_endpoints():
  (OUT/'endpoint_validation.json').write_text(json.dumps(checks,indent=2)+'\n')
  print('ENDPOINTS VALIDATED',flush=True)
 def run():
+ complete=OUT/'ABLATION_COMPLETE.json';scalars=OUT/'verification_ablation_rows.csv'
+ if complete.exists() and scalars.exists() and sha(scalars)==json.loads(complete.read_text())['sha256']:
+  assert len(read(scalars))==1100
+  print('ALREADY COMPLETE 1100; no native experiments rerun',flush=True);return
  restore_partial();build();validate_endpoints();tasks=[(p,v) for p in MAN['pairs'] for v in ['v1g0','v0g1']]
  def job(t):
   p,v=t;r=infer(p,v)

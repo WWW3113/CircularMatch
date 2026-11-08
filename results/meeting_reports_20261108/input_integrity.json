@@ -347,5 +347,34 @@
     "data/eth_trees/raw/trees/groundtruth/s5-s6.tfm": "d50510027bf65fa426bffb21b74a30ec1e579be7bf7ec412e7e9085b064fba49"
   },
   "native_evaluator_sha256": "7d15a14e667390d6c69b01bc2b08da7c6332096fab43938f8490c26c1aea608d",
-  "private_coordinates_exported": false
+  "private_coordinates_exported": false,
+  "raw_clouds_verified_sha256": {
+    "data/tongji_trees/received/Tongji-Trees/Plot1/S1.ply": "d4ac5067d329f4cc0ca74f32368855c7ab3232dc435ecccd704294834147bec2",
+    "data/tongji_trees/received/Tongji-Trees/Plot1/S2.ply": "f729f5ee8158149bb376ced5d1ef588b880bedb5f6c4f526dd38aae1c45e0ae8",
+    "data/tongji_trees/received/Tongji-Trees/Plot1/S3.ply": "fe43fb3764fad97544575ec19119becee13c6db88e3a67aa22f570391140244b",
+    "data/tongji_trees/received/Tongji-Trees/Plot1/S4.ply": "5d9dfbbee24b1c6d3f84004fee3fc015a037a60c6fade2cfb130048215c791a0",
+    "data/tongji_trees/received/Tongji-Trees/Plot1/S5.ply": "316243c693983368c4886ef3cae6d1660dc9c6beb98519f568ad1384b69e26a2",
+    "data/tongji_trees/received/Tongji-Trees/Plot2/S1.ply": "0b5a6f1b711ef47d0aa29e163f615144b69904f4bf032068934bf7ca2ccaca69",
+    "data/tongji_trees/received/Tongji-Trees/Plot2/S2.ply": "98782c5ae8035a836f5eed0badadedbaa06a7bbb5bee9e9b2227270b32a003b3",
+    "data/tongji_trees/received/Tongji-Trees/Plot2/S3.ply": "acc62fea93d7defd80b3a046dc70e288ab249d0eeda04bd098052a5f6c705b52",
+    "data/tongji_trees/received/Tongji-Trees/Plot2/S4.ply": "d257318b04871362e10867d489a11d18c2d33635a51b578bae43117b7df7ea53",
+    "data/tongji_trees/received/Tongji-Trees/Plot2/S5.ply": "a69d62209746b75c9ac7cd1efaa73f557b4c90c36bc68394f410823ca63f45a4",
+    "data/tongji_trees/received/Tongji-Trees/Plot3/S1.ply": "d1ca6128a9e687a0685d65db9c7fcd06362ad6c3ea85f32005be263725cf0280",
+    "data/tongji_trees/received/Tongji-Trees/Plot3/S2.ply": "c5bd4ba589b61b3cff5a60be8225e317733297f035238fd920f770dca172edaa",
+    "data/tongji_trees/received/Tongji-Trees/Plot3/S3.ply": "8e2b9062f02f39179ad3e10137ae9d2c7811cb749f813b7214335410768c1cf4",
+    "data/tongji_trees/received/Tongji-Trees/Plot3/S4.ply": "3f8f6b76612e990524d0710892de1f706966a8dadb7c03b822643cc586be4011",
+    "data/tongji_trees/received/Tongji-Trees/Plot3/S5.ply": "c4c9966d35f49f03066ebeb932f674f6d12ee944129d311b0b2f8522aabf5f16",
+    "data/tongji_trees/received/Tongji-Trees/Plot4/S1.ply": "1a6156d5940c721b2da60d2df05f778ce4c14fa0d2fac996fd42899e1573998b",
+    "data/tongji_trees/received/Tongji-Trees/Plot4/S2.ply": "f86a4ef0e94962b3dd55fd9f0e8ca4f36124d673da36002177c708ecb01f0490",
+    "data/tongji_trees/received/Tongji-Trees/Plot4/S3.ply": "56571bbbb2184cc9d734142f86f2e84651bc714404d7a09f029d221cc267936d",
+    "data/tongji_trees/received/Tongji-Trees/Plot4/S4.ply": "b14838d3bce43c551c70b27e5bd3a79ef76f79df398d6677cfb23d4957a82d79",
+    "data/tongji_trees/received/Tongji-Trees/Plot4/S5.ply": "0660e7bcdb36046a7a5af8c793f5179d53b9d96268bdbd07e30b54f7121d0262",
+    "data/eth_trees/raw/trees/s1.ply": "f9740acd1520dcf5285216379d7e48a2b329659f510686085c4eb5717a4937b3",
+    "data/eth_trees/raw/trees/s2.ply": "eb20ec19669273333cc4b787c689438d2929a0f5096b0c3ae76a7c6883ac9740",
+    "data/eth_trees/raw/trees/s3.ply": "774ca4c6bf422b988c4ad98a3ef6f4e77c6b67835cf02b22c747b471b8dfecf2",
+    "data/eth_trees/raw/trees/s4.ply": "56aae680b9abdb879fdc09b9103d8d57a224f36df805a5ce0b635b1ca96264db",
+    "data/eth_trees/raw/trees/s5.ply": "88aab27f2fdcc0f2798c0bd8bfeb0ef3e2e1fa4aaedc0b1c21e4cd4031e381d9",
+    "data/eth_trees/raw/trees/s6.ply": "1c03e8aa1e864aad81f511572c5e0245eb5b3dbc7611fedc1a1557a3084fe5fd"
+  },
+  "raw_clouds_checked_at_utc": "2026-11-08T16:19:51.079714+00:00"
 }

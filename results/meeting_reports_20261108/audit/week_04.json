@@ -1,7 +1,7 @@
 {
   "week": 4,
   "title": "DTM與幾何微調",
-  "generated_at": "2026-11-09T00:03:41.039988+08:00",
+  "generated_at": "2026-11-09T00:31:28.916701+08:00",
   "source_commit": "b839f64ecc9385321168771847f1efea4b00d8ad",
   "groups": [
     {
@@ -2580,6 +2580,7 @@
       }
     }
   ],
+  "auxiliary_groups": {},
   "primary": [
     2,
     3
@@ -2587,10 +2588,94 @@
   "main_last_row": 25,
   "backup_last_row": 24,
   "file": "week_04_DTM與幾何微調.xlsx",
-  "sha256": "38fbc763a317e28a63d4e490d02dec61633e29e543223da81febf3f25b0247ce",
+  "sha256": "b963a54433d7c551a8aa6e24e161fbdd9e57183bda76249cceeaeb428b88e56b",
   "checks": [
     {
       "sheet": "Meeting主頁",
+      "row": 1,
+      "col": 1,
+      "value": "第4週｜DTM與幾何微調",
+      "formula": null
+    },
+    {
+      "sheet": "Meeting主頁",
+      "row": 2,
+      "col": 1,
+      "value": "精度改善來自微調，還是改DTM？用四組拆開看。",
+      "formula": null
+    },
+    {
+      "sheet": "Meeting主頁",
+      "row": 3,
+      "col": 1,
+      "value": "承接第3週平滑DTM：494→547/550；原DTM加微調546/550，並非更好的分支。",
+      "formula": null
+    },
+    {
+      "sheet": "Meeting主頁",
+      "row": 4,
+      "col": 1,
+      "value": "兩種DTM × 微調關閉／開啟。微調為6DOF、多尺度0.50→0.20→0.10m、30/25/20次；coarse與輸入點雲固定。",
+      "formula": null
+    },
+    {
+      "sheet": "Meeting主頁",
+      "row": 6,
+      "col": 1,
+      "value": "① 可靠性：成功／總次數與成功率（越高越好）",
+      "formula": null
+    },
+    {
+      "sheet": "Meeting主頁",
+      "row": 7,
+      "col": 1,
+      "value": "設定／版本",
+      "formula": null
+    },
+    {
+      "sheet": "Meeting主頁",
+      "row": 7,
+      "col": 3,
+      "value": "Tongji Plot1",
+      "formula": null
+    },
+    {
+      "sheet": "Meeting主頁",
+      "row": 7,
+      "col": 5,
+      "value": "Tongji Plot2",
+      "formula": null
+    },
+    {
+      "sheet": "Meeting主頁",
+      "row": 7,
+      "col": 7,
+      "value": "Tongji Plot3",
+      "formula": null
+    },
+    {
+      "sheet": "Meeting主頁",
+      "row": 7,
+      "col": 9,
+      "value": "Tongji Plot4",
+      "formula": null
+    },
+    {
+      "sheet": "Meeting主頁",
+      "row": 7,
+      "col": 11,
+      "value": "ETH-tree",
+      "formula": null
+    },
+    {
+      "sheet": "Meeting主頁",
+      "row": 8,
+      "col": 1,
+      "value": "",
+      "formula": null
+    },
+    {
+      "sheet": "Meeting主頁",
       "row": 8,
       "col": 3,
       "value": "成功/總數",
@@ -2662,6 +2747,13 @@
     {
       "sheet": "Meeting主頁",
       "row": 9,
+      "col": 1,
+      "value": "論文報告值",
+      "formula": null
+    },
+    {
+      "sheet": "Meeting主頁",
+      "row": 9,
       "col": 3,
       "value": "未交代",
       "formula": null
@@ -2727,6 +2819,13 @@
       "row": 9,
       "col": 12,
       "value": 1,
+      "formula": null
+    },
+    {
+      "sheet": "Meeting主頁",
+      "row": 10,
+      "col": 1,
+      "value": "原DTM・無微調",
       "formula": null
     },
     {
@@ -2802,6 +2901,13 @@
     {
       "sheet": "Meeting主頁",
       "row": 11,
+      "col": 1,
+      "value": "原DTM・加微調",
+      "formula": null
+    },
+    {
+      "sheet": "Meeting主頁",
+      "row": 11,
       "col": 3,
       "value": "100/100",
       "formula": null
@@ -2868,6 +2974,13 @@
       "col": 12,
       "value": 1.0,
       "formula": "=150/150"
+    },
+    {
+      "sheet": "Meeting主頁",
+      "row": 12,
+      "col": 1,
+      "value": "平滑DTM・無微調",
+      "formula": null
     },
     {
       "sheet": "Meeting主頁",
@@ -2942,6 +3055,13 @@
     {
       "sheet": "Meeting主頁",
       "row": 13,
+      "col": 1,
+      "value": "平滑DTM・加微調",
+      "formula": null
+    },
+    {
+      "sheet": "Meeting主頁",
+      "row": 13,
       "col": 3,
       "value": "100/100",
       "formula": null
@@ -3011,6 +3131,62 @@
     },
     {
       "sheet": "Meeting主頁",
+      "row": 15,
+      "col": 1,
+      "value": "② 平均點誤差 e_p（cm，越低越好；包含有輸出的失敗案例）",
+      "formula": null
+    },
+    {
+      "sheet": "Meeting主頁",
+      "row": 16,
+      "col": 1,
+      "value": "設定／版本",
+      "formula": null
+    },
+    {
+      "sheet": "Meeting主頁",
+      "row": 16,
+      "col": 3,
+      "value": "Tongji Plot1",
+      "formula": null
+    },
+    {
+      "sheet": "Meeting主頁",
+      "row": 16,
+      "col": 5,
+      "value": "Tongji Plot2",
+      "formula": null
+    },
+    {
+      "sheet": "Meeting主頁",
+      "row": 16,
+      "col": 7,
+      "value": "Tongji Plot3",
+      "formula": null
+    },
+    {
+      "sheet": "Meeting主頁",
+      "row": 16,
+      "col": 9,
+      "value": "Tongji Plot4",
+      "formula": null
+    },
+    {
+      "sheet": "Meeting主頁",
+      "row": 16,
+      "col": 11,
+      "value": "ETH-tree",
+      "formula": null
+    },
+    {
+      "sheet": "Meeting主頁",
+      "row": 17,
+      "col": 1,
+      "value": "",
+      "formula": null
+    },
+    {
+      "sheet": "Meeting主頁",
       "row": 17,
       "col": 3,
       "value": "誤差(cm)",
@@ -3077,6 +3253,13 @@
       "row": 17,
       "col": 12,
       "value": "無輸出",
+      "formula": null
+    },
+    {
+      "sheet": "Meeting主頁",
+      "row": 18,
+      "col": 1,
+      "value": "論文報告值",
       "formula": null
     },
     {
@@ -3152,6 +3335,13 @@
     {
       "sheet": "Meeting主頁",
       "row": 19,
+      "col": 1,
+      "value": "原DTM・無微調",
+      "formula": null
+    },
+    {
+      "sheet": "Meeting主頁",
+      "row": 19,
       "col": 3,
       "value": 17.42353110611136,
       "formula": null
@@ -3217,6 +3407,13 @@
       "row": 19,
       "col": 12,
       "value": 0,
+      "formula": null
+    },
+    {
+      "sheet": "Meeting主頁",
+      "row": 20,
+      "col": 1,
+      "value": "原DTM・加微調",
       "formula": null
     },
     {
@@ -3292,6 +3489,13 @@
     {
       "sheet": "Meeting主頁",
       "row": 21,
+      "col": 1,
+      "value": "平滑DTM・無微調",
+      "formula": null
+    },
+    {
+      "sheet": "Meeting主頁",
+      "row": 21,
       "col": 3,
       "value": 17.10438362471,
       "formula": null
@@ -3357,6 +3561,13 @@
       "row": 21,
       "col": 12,
       "value": 0,
+      "formula": null
+    },
+    {
+      "sheet": "Meeting主頁",
+      "row": 22,
+      "col": 1,
+      "value": "平滑DTM・加微調",
       "formula": null
     },
     {
@@ -3430,6 +3641,62 @@
       "formula": null
     },
     {
+      "sheet": "Meeting主頁",
+      "row": 23,
+      "col": 1,
+      "value": "e_p：同一來源點經估計／GT變換後，兩個位置的平均距離。無輸出仍算失敗、不填0；平均分母＝總數−無輸出。分母不同不直接計算整體誤差改善率。",
+      "formula": null
+    },
+    {
+      "sheet": "Meeting主頁",
+      "row": 24,
+      "col": 1,
+      "value": "Tongji四Plot＝同一dataset；各100次（10配對×10seed）。ETH＝另一dataset，150次（15×10）。seed31–40；成功門檻：旋轉<2°且平移<0.5m。",
+      "formula": null
+    },
+    {
+      "sheet": "Meeting主頁",
+      "row": 25,
+      "col": 1,
+      "value": "論文值僅供參考：成功門檻與分母未齊。GT只用於評分；曾用於開發選參。這是已知場景的比較，不是未見森林盲測。",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 1,
+      "col": 1,
+      "value": "同配對、同seed的消融證據",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 2,
+      "col": 1,
+      "value": "修改前：平滑DTM・無微調　→　修改後：平滑DTM・加微調",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 4,
+      "col": 1,
+      "value": "逐場景配對比較：新增與退步都保留",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 5,
+      "col": 1,
+      "value": "場景",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 5,
+      "col": 3,
+      "value": "vs修改前成功率",
+      "formula": null
+    },
+    {
       "sheet": "必要對照",
       "row": 5,
       "col": 5,
@@ -3453,8 +3720,29 @@
     {
       "sheet": "必要對照",
       "row": 5,
+      "col": 8,
+      "value": "共同成功前cm",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 5,
+      "col": 10,
+      "value": "共同成功後cm",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 5,
       "col": 12,
       "value": "誤差下降率",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 6,
+      "col": 1,
+      "value": "Plot1",
       "formula": null
     },
     {
@@ -3509,6 +3797,13 @@
     {
       "sheet": "必要對照",
       "row": 7,
+      "col": 1,
+      "value": "Plot2",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 7,
       "col": 3,
       "value": 52.0,
       "formula": "=(100/100-48/100)*100"
@@ -3554,6 +3849,13 @@
       "col": 12,
       "value": 0.9522726629822519,
       "formula": "=IF(AND(ISNUMBER(H7),ISNUMBER(J7),H7<>0),(H7-J7)/H7,\"不可比\")"
+    },
+    {
+      "sheet": "必要對照",
+      "row": 8,
+      "col": 1,
+      "value": "Plot3",
+      "formula": null
     },
     {
       "sheet": "必要對照",
@@ -3607,6 +3909,13 @@
     {
       "sheet": "必要對照",
       "row": 9,
+      "col": 1,
+      "value": "Plot4",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 9,
       "col": 3,
       "value": 0.0,
       "formula": "=(97/100-97/100)*100"
@@ -3652,6 +3961,13 @@
       "col": 12,
       "value": 0.5440704824786315,
       "formula": "=IF(AND(ISNUMBER(H9),ISNUMBER(J9),H9<>0),(H9-J9)/H9,\"不可比\")"
+    },
+    {
+      "sheet": "必要對照",
+      "row": 10,
+      "col": 1,
+      "value": "ETH",
+      "formula": null
     },
     {
       "sheet": "必要對照",
@@ -3704,6 +4020,69 @@
     },
     {
       "sheet": "必要對照",
+      "row": 11,
+      "col": 1,
+      "value": "誤差下降率=(前−後)/前。共同成功只回答同一批成功案例的精度，不取代全體成功率。",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 13,
+      "col": 1,
+      "value": "固定另一項：各因素的成功率變化（後−前，pp）",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 14,
+      "col": 1,
+      "value": "場景",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 14,
+      "col": 3,
+      "value": "原DTM：加微調",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 14,
+      "col": 5,
+      "value": "平滑DTM：加微調",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 14,
+      "col": 7,
+      "value": "無微調：換DTM",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 14,
+      "col": 9,
+      "value": "有微調：換DTM",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 14,
+      "col": 11,
+      "value": "讀法",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 15,
+      "col": 1,
+      "value": "Plot1",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
       "row": 15,
       "col": 3,
       "value": 0.0,
@@ -3729,6 +4108,20 @@
       "col": 9,
       "value": 0.0,
       "formula": "=(100/100-100/100)*100"
+    },
+    {
+      "sheet": "必要對照",
+      "row": 15,
+      "col": 11,
+      "value": "正值改善；負值退步",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 16,
+      "col": 1,
+      "value": "Plot2",
+      "formula": null
     },
     {
       "sheet": "必要對照",
@@ -3760,6 +4153,20 @@
     },
     {
       "sheet": "必要對照",
+      "row": 16,
+      "col": 11,
+      "value": "正值改善；負值退步",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 17,
+      "col": 1,
+      "value": "Plot3",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
       "row": 17,
       "col": 3,
       "value": 0.0,
@@ -3785,6 +4192,20 @@
       "col": 9,
       "value": 0.0,
       "formula": "=(100/100-100/100)*100"
+    },
+    {
+      "sheet": "必要對照",
+      "row": 17,
+      "col": 11,
+      "value": "正值改善；負值退步",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 18,
+      "col": 1,
+      "value": "Plot4",
+      "formula": null
     },
     {
       "sheet": "必要對照",
@@ -3816,6 +4237,20 @@
     },
     {
       "sheet": "必要對照",
+      "row": 18,
+      "col": 11,
+      "value": "正值改善；負值退步",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 19,
+      "col": 1,
+      "value": "ETH",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
       "row": 19,
       "col": 3,
       "value": 0.0,
@@ -3841,6 +4276,41 @@
       "col": 9,
       "value": 0.0,
       "formula": "=(150/150-150/150)*100"
+    },
+    {
+      "sheet": "必要對照",
+      "row": 19,
+      "col": 11,
+      "value": "正值改善；負值退步",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 21,
+      "col": 1,
+      "value": "機制：coarse提供初始姿態，表面point-to-plane微調估完整6DOF。四組完整控制顯示微調效果不靠回復DTM解釋；平滑＋微調也保留。第5週沿原DTM研究支線。",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 22,
+      "col": 1,
+      "value": "時間／代價：舊批次與新補跑的硬體或並行、計時範圍不齊，不計跨批次加速比。原論文i7-9700F 3GHz、實際threads未交代；本地原生OMP4。",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 23,
+      "col": 1,
+      "value": "論文對照：Table I／PDF p4；時間見Table II／p4、Table III／p5。作者公開程式在2026-10-28查核僅README，未取得同環境作者baseline。",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 24,
+      "col": 1,
+      "value": "資料來源：CircularMatch repo／results/six_week_reports_20261028 與 professor_reports_20261026 的 evidence；既有版本 b839f64ecc93。新消融：meeting_reports_20261108/verification_ablation_rows.csv。",
+      "formula": null
     }
   ],
   "sources": {

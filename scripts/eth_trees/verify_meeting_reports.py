@@ -11,6 +11,7 @@ from make_meeting_reports import ROOT,OUT,TITLES,validate
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 def close(a,b):assert math.isclose(a,b,rel_tol=1e-10,abs_tol=1e-9),(a,b)
 def verify(weeks):
+ manifest=json.loads((ROOT/'results/unified_20261025/dataset_manifest.json').read_text())
  recalculated=OUT/'runs/recalculated';recalculated.mkdir(parents=True,exist_ok=True)
  previews=OUT/'runs/previews';previews.mkdir(parents=True,exist_ok=True)
  all_meta=[];source_cache={};group_checks=0
@@ -24,9 +25,15 @@ def verify(weeks):
     s=g['source'];path=ROOT/s['path'];assert sha(path)==s['sha256']
     if str(path) not in source_cache:source_cache[str(path)]=list(csv.DictReader(path.open()))
     rows=[source_cache[str(path)][n-2] for n in s['csv_lines']];by_scene[scene]=rows
+    for r in rows:
+     for k,wanted in s.get('selector',{}).items():
+      actual=(r.get('scene') or ('Plot'+r['plot'] if r.get('plot') else 'ETH')) if k=='scene' else r[k]
+      assert str(actual)==str(wanted),(k,actual,wanted)
     assert len(rows)==g['n']==(150 if scene=='ETH' else 100)
     assert len({(r['pair'],r['seed']) for r in rows})==g['n']
     assert {int(r['seed']) for r in rows}==set(range(31,41))
+    pairs={p['source']+'-'+p['target'] for p in manifest['pairs'] if p['scene']==scene}
+    assert {(r['pair'],int(r['seed'])) for r in rows}=={(p,k) for p in pairs for k in range(31,41)}
     ok=sum(r['success']=='1' for r in rows);assert ok==g['ok']
     ep=[float(r['e_p_m']) for r in rows if math.isfinite(float(r['e_p_m']))];assert len(ep)==g['finite'];close(sum(ep)/len(ep),g['ep'])
     for r in rows:
@@ -64,7 +71,7 @@ def verify(weeks):
  audit=dict(validated_at=datetime.now(ZoneInfo('Asia/Taipei')).isoformat(),reports=all_meta,independent_groups=group_checks,cell_checks=sum(m['checks'] for m in all_meta),main_and_backup_one_page_each=True,independent_csv_and_paired_validation=True)
  dest=OUT/('validation.json' if weeks==list(range(1,7)) else 'validation_partial.json');dest.write_text(json.dumps(audit,ensure_ascii=False,indent=2)+'\n')
  if weeks==list(range(1,7)):
-  zip_path=OUT/'meeting_6weeks.xlsx.zip'
+  zip_path=OUT/'meeting_6weeks.zip'
   with zipfile.ZipFile(zip_path,'w',zipfile.ZIP_DEFLATED) as z:
    for m in all_meta:z.write(OUT/m['file'],m['file'])
   with zipfile.ZipFile(zip_path) as z:

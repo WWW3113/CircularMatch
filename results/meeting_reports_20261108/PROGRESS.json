@@ -1,6 +1,9 @@
 {
-  "completed_trials": 710,
+  "completed_trials": 1100,
   "expected": 1100,
-  "experiments_in_progress": true,
-  "private_runs_not_published": true
+  "experiments_in_progress": false,
+  "private_runs_not_published": true,
+  "status": "all_workbooks_validated_pending_upload",
+  "workbooks": 6,
+  "cell_comments_removed": true
 }

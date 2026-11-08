@@ -1,0 +1,14 @@
+{
+  "all_sources_match_frozen_legacy": true,
+  "sha256": {
+    "src/cn_recovery.cpp": "2d496347627b077ddccd409d91f4fbe8f5c186044be91f3fe990328bb183a428",
+    "src/registration.cpp": "9a9f33d15f20ff8191baf3544dbac20af0926c5897bd280803ccaf931c690970",
+    "src/dtm.cpp": "22efcd2db669ec49fe16c866ac629a616ff83fcefa2a701b553c889ed82b0975",
+    "config/default.ini": "bd94251c5eaca7c81b46826b517b2feaaf35deb5ff4a4299756c2c2a6651bb35",
+    "apps/cm_register.cpp": "4b1f915a1889003c22882a601a315bc8371080e9740d2652989d5b5fa4fb2f9d",
+    "apps/cm_dtm_reposition.cpp": "db24f232ef70994c943b4aaa6b014cd21ea96edf9a39f4b658cfbdae79fa487a",
+    "apps/cm_geometry_register_v3.cpp": "e8428c89198a41c88ba6b39777024211e297918bc5e29405e895f9d30ff85234",
+    "apps/geometry_refinement_structural.cpp": "e3b24aa787a30df9df89234ad53ae02ebfa76e94a032a17c2094c89525a660f3",
+    "include/cm/geometry_refinement.hpp": "7c53d4b1c60296a5962423096318e8072a96463f90d6fd32c93da8978c3ef27d"
+  }
+}

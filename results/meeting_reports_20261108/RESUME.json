@@ -1,7 +1,7 @@
 {
   "goal": "Six minimal meeting XLSX files only; two sheets each",
   "branch": "reports/meeting-20261108",
-  "status": "first_five_built_core_ablation_running",
+  "status": "all_workbooks_validated_pending_upload",
   "experiment_resume": "python -u scripts/eth_trees/meeting_ablation.py run",
   "generation": "python scripts/eth_trees/make_meeting_reports.py",
   "verification": "python scripts/eth_trees/verify_meeting_reports.py",
@@ -10,6 +10,12 @@
     "Week3 DTM profile and week5 search are bundle comparisons, not individual-internal-parameter attribution",
     "Week4 smooth-refined547/550 retained alongside original546/550",
     "New week6 v1g0/v0g1 controls each550; frozen protocol; four endpoint validations passed",
-    "Do not upload private data symlinks or runs; scalar CSV, metadata, workbooks only"
-  ]
+    "Do not upload private data symlinks or runs; scalar CSV, metadata, workbooks only",
+    "User explicitly requested no yellow comment indicators. Cell comments removed from all6 XLSX. Source summaries on backup sheet; full audit in audit/week_XX.json."
+  ],
+  "new_scalar_file": "verification_ablation_rows.csv",
+  "completed_trials": 1100,
+  "cell_comments": false,
+  "validation": "validation.json",
+  "main_and_backup_one_page_each": true
 }
