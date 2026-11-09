@@ -1,65 +1,64 @@
 {
-  "validated_at": "2026-11-09T00:35:12.171306+08:00",
+  "validated_at": "2026-11-09T12:20:07.098853+08:00",
   "reports": [
     {
       "week": 1,
       "file": "week_01_CN容差與Solver.xlsx",
-      "sha256": "0798829a33dc6630bf4f492b9515aee9b07a035810e35107f04f536ec077c335",
-      "checks": 246,
+      "sha256": "e87a6db6d3be1380788ccd2591ccc446ce23f5f132cd2446bbfae42f2d6c2185",
+      "checks": 242,
       "pdf_pages": 2,
       "calc_recalculation_passed": true
     },
     {
       "week": 2,
       "file": "week_02_弱配對補救.xlsx",
-      "sha256": "03793816fdd1027925aedd231bccb8c3c05944fc15151448b3c36655fd7c4545",
-      "checks": 165,
+      "sha256": "74c4622697aecb0890ad5a064c151ab437dadda696897a694a4f7bdbe476168d",
+      "checks": 161,
       "pdf_pages": 2,
       "calc_recalculation_passed": true
     },
     {
       "week": 3,
       "file": "week_03_DTM設定整組對照.xlsx",
-      "sha256": "e63e2136b818aa60d7825a8d7f78741d2956c0cee6e9a0b61b757b30e1ea7410",
-      "checks": 181,
+      "sha256": "e60f92dc536f0b4957eec3c695bed0cd51432ec81f88433ce4dd0307b7089888",
+      "checks": 177,
       "pdf_pages": 2,
       "calc_recalculation_passed": true
     },
     {
       "week": 4,
       "file": "week_04_DTM與幾何微調.xlsx",
-      "sha256": "b963a54433d7c551a8aa6e24e161fbdd9e57183bda76249cceeaeb428b88e56b",
-      "checks": 246,
+      "sha256": "92ba444723158722b6bbad04a320c616e275a78745cd3e33c13b31f2de18b212",
+      "checks": 242,
       "pdf_pages": 2,
       "calc_recalculation_passed": true
     },
     {
       "week": 5,
       "file": "week_05_擴大候選的退步.xlsx",
-      "sha256": "3692f159463fa83cee0850e30d39c2d26a789f927d741d745a7a0f8fa60f85bf",
-      "checks": 238,
+      "sha256": "3a1c3bd3d1b59a45e9a052e984bb33efed21622a3d15e710d982fa50cb1cc972",
+      "checks": 234,
       "pdf_pages": 2,
       "calc_recalculation_passed": true
     },
     {
       "week": 6,
       "file": "week_06_結構驗證因素消融.xlsx",
-      "sha256": "f344944e8f591181ac4800b1611536be784feed5d2b1a265f55757eb2eb8ba8d",
-      "checks": 268,
+      "sha256": "25bb562e844a73facac486659e952d7e056bece78a76df70d57046023caab3f4",
+      "checks": 264,
       "pdf_pages": 2,
       "calc_recalculation_passed": true
     }
   ],
   "independent_groups": 110,
-  "cell_checks": 1344,
+  "cell_checks": 1320,
   "main_and_backup_one_page_each": true,
   "independent_csv_and_paired_validation": true,
-  "zip_sha256": "da6921a719cf040785835a75ff1aca3de81cc83365b0acbf160c3fa515379c3f",
-  "zip_bytes": 66739,
+  "zip_sha256": "30fccca8c25438f97d8177e3da4bb2b804a7208da76b541a313a8b373a77334b",
+  "zip_bytes": 64300,
+  "rotation_error_verified_on_all_main_sheets": true,
   "no_cell_comments_or_yellow_indicators": true,
-  "raw_cloud_sha256_verified": 26,
-  "feature_and_geometry_hashes_verified": 286,
-  "legacy_source_hashes_matched": 9,
-  "legacy_endpoint_reproductions_matched": 4,
-  "new_ablation_trials": 1100
+  "main_layout": "one summary row plus two contiguous comparison matrices",
+  "rotation_unit": "degrees",
+  "rotation_population": "all finite-output cases including failures"
 }

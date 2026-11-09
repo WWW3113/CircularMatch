@@ -1,7 +1,7 @@
 {
   "week": 5,
   "title": "擴大候選的退步",
-  "generated_at": "2026-11-09T00:31:29.079819+08:00",
+  "generated_at": "2026-11-09T12:16:52.385151+08:00",
   "source_commit": "b839f64ecc9385321168771847f1efea4b00d8ad",
   "groups": [
     {
@@ -12,6 +12,7 @@
           "ok": 100,
           "finite": 100,
           "ep": 0.02886600508789238,
+          "rot": 0.0356799496337756,
           "rate": 1.0,
           "source": {
             "path": "results/professor_reports_20261026/evidence/U_registration_rows.csv",
@@ -130,6 +131,7 @@
           "ok": 100,
           "finite": 100,
           "ep": 0.011854158585288406,
+          "rot": 0.055756468034214,
           "rate": 1.0,
           "source": {
             "path": "results/professor_reports_20261026/evidence/U_registration_rows.csv",
@@ -248,6 +250,7 @@
           "ok": 100,
           "finite": 100,
           "ep": 0.011056593589684945,
+          "rot": 0.01954336228675064,
           "rate": 1.0,
           "source": {
             "path": "results/professor_reports_20261026/evidence/U_registration_rows.csv",
@@ -366,6 +369,7 @@
           "ok": 96,
           "finite": 99,
           "ep": 1.0347557353747636,
+          "rot": 3.6463489752226277,
           "rate": 0.96,
           "source": {
             "path": "results/professor_reports_20261026/evidence/U_registration_rows.csv",
@@ -484,6 +488,7 @@
           "ok": 150,
           "finite": 150,
           "ep": 0.006038135170910868,
+          "rot": 0.05416013956404717,
           "rate": 1.0,
           "source": {
             "path": "results/professor_reports_20261026/evidence/U_registration_rows.csv",
@@ -657,6 +662,7 @@
           "ok": 100,
           "finite": 100,
           "ep": 0.02886600508789238,
+          "rot": 0.0356799496337756,
           "rate": 1.0,
           "source": {
             "path": "results/professor_reports_20261026/evidence/U_registration_rows.csv",
@@ -775,6 +781,7 @@
           "ok": 100,
           "finite": 100,
           "ep": 0.011854158585288406,
+          "rot": 0.055756468034214,
           "rate": 1.0,
           "source": {
             "path": "results/professor_reports_20261026/evidence/U_registration_rows.csv",
@@ -893,6 +900,7 @@
           "ok": 100,
           "finite": 100,
           "ep": 0.011056593589684945,
+          "rot": 0.01954336228675064,
           "rate": 1.0,
           "source": {
             "path": "results/professor_reports_20261026/evidence/U_registration_rows.csv",
@@ -1011,6 +1019,7 @@
           "ok": 96,
           "finite": 100,
           "ep": 1.7258395618849636,
+          "rot": 5.415546641231679,
           "rate": 0.96,
           "source": {
             "path": "results/professor_reports_20261026/evidence/U_registration_rows.csv",
@@ -1129,6 +1138,7 @@
           "ok": 150,
           "finite": 150,
           "ep": 0.006038135170963769,
+          "rot": 0.054160139569478176,
           "rate": 1.0,
           "source": {
             "path": "results/professor_reports_20261026/evidence/U_registration_rows.csv",
@@ -1302,6 +1312,7 @@
           "ok": 100,
           "finite": 100,
           "ep": 0.02886600508789238,
+          "rot": 0.0356799496337756,
           "rate": 1.0,
           "source": {
             "path": "results/professor_reports_20261026/evidence/U_registration_rows.csv",
@@ -1420,6 +1431,7 @@
           "ok": 100,
           "finite": 100,
           "ep": 0.011854158585288406,
+          "rot": 0.055756468034214,
           "rate": 1.0,
           "source": {
             "path": "results/professor_reports_20261026/evidence/U_registration_rows.csv",
@@ -1538,6 +1550,7 @@
           "ok": 100,
           "finite": 100,
           "ep": 0.011056593589684945,
+          "rot": 0.01954336228675064,
           "rate": 1.0,
           "source": {
             "path": "results/professor_reports_20261026/evidence/U_registration_rows.csv",
@@ -1656,6 +1669,7 @@
           "ok": 78,
           "finite": 100,
           "ep": 8.647622010386872,
+          "rot": 28.79554128389449,
           "rate": 0.78,
           "source": {
             "path": "results/professor_reports_20261026/evidence/U_registration_rows.csv",
@@ -1774,6 +1788,7 @@
           "ok": 150,
           "finite": 150,
           "ep": 0.006038135171016774,
+          "rot": 0.05416013956593288,
           "rate": 1.0,
           "source": {
             "path": "results/professor_reports_20261026/evidence/U_registration_rows.csv",
@@ -1945,1070 +1960,987 @@
     0,
     2
   ],
-  "main_last_row": 23,
-  "backup_last_row": 27,
+  "paired_data_first_row": 7,
+  "main_last_row": 15,
+  "backup_last_row": 28,
   "file": "week_05_擴大候選的退步.xlsx",
-  "sha256": "3692f159463fa83cee0850e30d39c2d26a789f927d741d745a7a0f8fa60f85bf",
+  "sha256": "3a1c3bd3d1b59a45e9a052e984bb33efed21622a3d15e710d982fa50cb1cc972",
   "checks": [
     {
       "sheet": "Meeting主頁",
       "row": 1,
       "col": 1,
-      "value": "第5週｜擴大候選的退步",
+      "value": "Plot4：單初值與候選v1均96/100；候選v2為78/100。",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
       "row": 2,
       "col": 1,
-      "value": "擴大候選範圍，是否一定選到更好的姿態？",
+      "value": "① 可靠性：成功／總次數與成功率（成功數下方為無輸出次數）",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
       "row": 3,
       "col": 1,
-      "value": "Plot4：96→78/100（−18pp）。候選更多，舊幾何分數卻可能偏好嚴重錯位。",
-      "formula": null
-    },
-    {
-      "sheet": "Meeting主頁",
-      "row": 4,
-      "col": 1,
-      "value": "沿原DTM支線與相同舊微調backend。v1→v2：top5→20、60→120邊、替代pose16→256、微調3→8，另加yaw初值；整組比較。",
-      "formula": null
-    },
-    {
-      "sheet": "Meeting主頁",
-      "row": 6,
-      "col": 1,
-      "value": "① 可靠性：成功／總次數與成功率（越高越好）",
-      "formula": null
-    },
-    {
-      "sheet": "Meeting主頁",
-      "row": 7,
-      "col": 1,
       "value": "設定／版本",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 7,
+      "row": 3,
       "col": 3,
       "value": "Tongji Plot1",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 7,
+      "row": 3,
       "col": 5,
       "value": "Tongji Plot2",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 7,
+      "row": 3,
       "col": 7,
       "value": "Tongji Plot3",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 7,
+      "row": 3,
       "col": 9,
       "value": "Tongji Plot4",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 7,
+      "row": 3,
       "col": 11,
       "value": "ETH-tree",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 8,
+      "row": 4,
       "col": 1,
       "value": "",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 8,
+      "row": 4,
       "col": 3,
       "value": "成功/總數",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 8,
+      "row": 4,
       "col": 4,
       "value": "成功率",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 8,
+      "row": 4,
       "col": 5,
       "value": "成功/總數",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 8,
+      "row": 4,
       "col": 6,
       "value": "成功率",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 8,
+      "row": 4,
       "col": 7,
       "value": "成功/總數",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 8,
+      "row": 4,
       "col": 8,
       "value": "成功率",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 8,
+      "row": 4,
       "col": 9,
       "value": "成功/總數",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 8,
+      "row": 4,
       "col": 10,
       "value": "成功率",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 8,
+      "row": 4,
       "col": 11,
       "value": "成功/總數",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 8,
+      "row": 4,
       "col": 12,
       "value": "成功率",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 9,
+      "row": 5,
       "col": 1,
       "value": "論文報告值",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 9,
+      "row": 5,
       "col": 3,
       "value": "未交代",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 9,
+      "row": 5,
       "col": 4,
       "value": 1,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 9,
+      "row": 5,
       "col": 5,
       "value": "未交代",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 9,
+      "row": 5,
       "col": 6,
       "value": 1,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 9,
+      "row": 5,
       "col": 7,
       "value": "未交代",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 9,
+      "row": 5,
       "col": 8,
       "value": 1,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 9,
+      "row": 5,
       "col": 9,
       "value": "未交代",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 9,
+      "row": 5,
       "col": 10,
       "value": 1,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 9,
+      "row": 5,
       "col": 11,
       "value": "未交代",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 9,
+      "row": 5,
       "col": 12,
       "value": 1,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 10,
+      "row": 6,
       "col": 1,
       "value": "單初值＋微調",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 10,
+      "row": 6,
       "col": 3,
-      "value": "100/100",
+      "value": "100/100\n無輸出0",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 10,
+      "row": 6,
       "col": 4,
       "value": 1.0,
       "formula": "=100/100"
     },
     {
       "sheet": "Meeting主頁",
-      "row": 10,
+      "row": 6,
       "col": 5,
-      "value": "100/100",
+      "value": "100/100\n無輸出0",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 10,
+      "row": 6,
       "col": 6,
       "value": 1.0,
       "formula": "=100/100"
     },
     {
       "sheet": "Meeting主頁",
-      "row": 10,
+      "row": 6,
       "col": 7,
-      "value": "100/100",
+      "value": "100/100\n無輸出0",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 10,
+      "row": 6,
       "col": 8,
       "value": 1.0,
       "formula": "=100/100"
     },
     {
       "sheet": "Meeting主頁",
-      "row": 10,
+      "row": 6,
       "col": 9,
-      "value": "96/100",
+      "value": "96/100\n無輸出1",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 10,
+      "row": 6,
       "col": 10,
       "value": 0.96,
       "formula": "=96/100"
     },
     {
       "sheet": "Meeting主頁",
-      "row": 10,
+      "row": 6,
       "col": 11,
-      "value": "150/150",
+      "value": "150/150\n無輸出0",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 10,
+      "row": 6,
       "col": 12,
       "value": 1.0,
       "formula": "=150/150"
     },
     {
       "sheet": "Meeting主頁",
-      "row": 11,
+      "row": 7,
       "col": 1,
       "value": "候選v1＋微調",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 11,
+      "row": 7,
       "col": 3,
-      "value": "100/100",
+      "value": "100/100\n無輸出0",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 11,
+      "row": 7,
       "col": 4,
       "value": 1.0,
       "formula": "=100/100"
     },
     {
       "sheet": "Meeting主頁",
-      "row": 11,
+      "row": 7,
       "col": 5,
-      "value": "100/100",
+      "value": "100/100\n無輸出0",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 11,
+      "row": 7,
       "col": 6,
       "value": 1.0,
       "formula": "=100/100"
     },
     {
       "sheet": "Meeting主頁",
-      "row": 11,
+      "row": 7,
       "col": 7,
-      "value": "100/100",
+      "value": "100/100\n無輸出0",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 11,
+      "row": 7,
       "col": 8,
       "value": 1.0,
       "formula": "=100/100"
     },
     {
       "sheet": "Meeting主頁",
-      "row": 11,
+      "row": 7,
       "col": 9,
-      "value": "96/100",
+      "value": "96/100\n無輸出0",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 11,
+      "row": 7,
       "col": 10,
       "value": 0.96,
       "formula": "=96/100"
     },
     {
       "sheet": "Meeting主頁",
-      "row": 11,
+      "row": 7,
       "col": 11,
-      "value": "150/150",
+      "value": "150/150\n無輸出0",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 11,
+      "row": 7,
       "col": 12,
       "value": 1.0,
       "formula": "=150/150"
     },
     {
       "sheet": "Meeting主頁",
-      "row": 12,
+      "row": 8,
       "col": 1,
       "value": "候選v2＋微調",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 12,
+      "row": 8,
       "col": 3,
-      "value": "100/100",
+      "value": "100/100\n無輸出0",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 12,
+      "row": 8,
       "col": 4,
       "value": 1.0,
       "formula": "=100/100"
     },
     {
       "sheet": "Meeting主頁",
-      "row": 12,
+      "row": 8,
       "col": 5,
-      "value": "100/100",
+      "value": "100/100\n無輸出0",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 12,
+      "row": 8,
       "col": 6,
       "value": 1.0,
       "formula": "=100/100"
     },
     {
       "sheet": "Meeting主頁",
-      "row": 12,
+      "row": 8,
       "col": 7,
-      "value": "100/100",
+      "value": "100/100\n無輸出0",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 12,
+      "row": 8,
       "col": 8,
       "value": 1.0,
       "formula": "=100/100"
     },
     {
       "sheet": "Meeting主頁",
-      "row": 12,
+      "row": 8,
       "col": 9,
-      "value": "78/100",
+      "value": "78/100\n無輸出0",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 12,
+      "row": 8,
       "col": 10,
       "value": 0.78,
       "formula": "=78/100"
     },
     {
       "sheet": "Meeting主頁",
-      "row": 12,
+      "row": 8,
       "col": 11,
-      "value": "150/150",
+      "value": "150/150\n無輸出0",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 12,
+      "row": 8,
       "col": 12,
       "value": 1.0,
       "formula": "=150/150"
     },
     {
       "sheet": "Meeting主頁",
-      "row": 14,
+      "row": 9,
       "col": 1,
-      "value": "② 平均點誤差 e_p（cm，越低越好；包含有輸出的失敗案例）",
+      "value": "② 平均點誤差 e_p（cm）與平均旋轉誤差 e_R（°）：越低越好；包含有輸出的失敗案例",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 15,
+      "row": 10,
       "col": 1,
       "value": "設定／版本",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 15,
+      "row": 10,
       "col": 3,
       "value": "Tongji Plot1",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 15,
+      "row": 10,
       "col": 5,
       "value": "Tongji Plot2",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 15,
+      "row": 10,
       "col": 7,
       "value": "Tongji Plot3",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 15,
+      "row": 10,
       "col": 9,
       "value": "Tongji Plot4",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 15,
+      "row": 10,
       "col": 11,
       "value": "ETH-tree",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 16,
+      "row": 11,
       "col": 1,
       "value": "",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 16,
+      "row": 11,
       "col": 3,
-      "value": "誤差(cm)",
+      "value": "e_p (cm)",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 16,
+      "row": 11,
       "col": 4,
-      "value": "無輸出",
+      "value": "e_R (°)",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 16,
+      "row": 11,
       "col": 5,
-      "value": "誤差(cm)",
+      "value": "e_p (cm)",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 16,
+      "row": 11,
       "col": 6,
-      "value": "無輸出",
+      "value": "e_R (°)",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 16,
+      "row": 11,
       "col": 7,
-      "value": "誤差(cm)",
+      "value": "e_p (cm)",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 16,
+      "row": 11,
       "col": 8,
-      "value": "無輸出",
+      "value": "e_R (°)",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 16,
+      "row": 11,
       "col": 9,
-      "value": "誤差(cm)",
+      "value": "e_p (cm)",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 16,
+      "row": 11,
       "col": 10,
-      "value": "無輸出",
+      "value": "e_R (°)",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 16,
+      "row": 11,
       "col": 11,
-      "value": "誤差(cm)",
+      "value": "e_p (cm)",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 16,
+      "row": 11,
       "col": 12,
-      "value": "無輸出",
+      "value": "e_R (°)",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 17,
+      "row": 12,
       "col": 1,
       "value": "論文報告值",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 17,
+      "row": 12,
       "col": 3,
       "value": 5.2558,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 17,
+      "row": 12,
       "col": 4,
-      "value": "未交代",
+      "value": "未報告",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 17,
+      "row": 12,
       "col": 5,
       "value": 11.4808,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 17,
+      "row": 12,
       "col": 6,
-      "value": "未交代",
+      "value": "未報告",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 17,
+      "row": 12,
       "col": 7,
       "value": 4.8756,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 17,
+      "row": 12,
       "col": 8,
-      "value": "未交代",
+      "value": "未報告",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 17,
+      "row": 12,
       "col": 9,
       "value": 4.356,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 17,
+      "row": 12,
       "col": 10,
-      "value": "未交代",
+      "value": "未報告",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 17,
+      "row": 12,
       "col": 11,
       "value": 15.3427,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 17,
+      "row": 12,
       "col": 12,
-      "value": "未交代",
+      "value": "未報告",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 18,
+      "row": 13,
       "col": 1,
       "value": "單初值＋微調",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 18,
+      "row": 13,
       "col": 3,
       "value": 2.886600508789238,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 18,
+      "row": 13,
       "col": 4,
-      "value": 0,
+      "value": 0.0356799496337756,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 18,
+      "row": 13,
       "col": 5,
       "value": 1.1854158585288406,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 18,
+      "row": 13,
       "col": 6,
-      "value": 0,
+      "value": 0.055756468034214,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 18,
+      "row": 13,
       "col": 7,
       "value": 1.1056593589684944,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 18,
+      "row": 13,
       "col": 8,
-      "value": 0,
+      "value": 0.01954336228675064,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 18,
+      "row": 13,
       "col": 9,
       "value": 103.47557353747636,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 18,
+      "row": 13,
       "col": 10,
-      "value": 1,
+      "value": 3.6463489752226277,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 18,
+      "row": 13,
       "col": 11,
       "value": 0.6038135170910868,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 18,
+      "row": 13,
       "col": 12,
-      "value": 0,
+      "value": 0.05416013956404717,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 19,
+      "row": 14,
       "col": 1,
       "value": "候選v1＋微調",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 19,
+      "row": 14,
       "col": 3,
       "value": 2.886600508789238,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 19,
+      "row": 14,
       "col": 4,
-      "value": 0,
+      "value": 0.0356799496337756,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 19,
+      "row": 14,
       "col": 5,
       "value": 1.1854158585288406,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 19,
+      "row": 14,
       "col": 6,
-      "value": 0,
+      "value": 0.055756468034214,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 19,
+      "row": 14,
       "col": 7,
       "value": 1.1056593589684944,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 19,
+      "row": 14,
       "col": 8,
-      "value": 0,
+      "value": 0.01954336228675064,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 19,
+      "row": 14,
       "col": 9,
       "value": 172.58395618849636,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 19,
+      "row": 14,
       "col": 10,
-      "value": 0,
+      "value": 5.415546641231679,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 19,
+      "row": 14,
       "col": 11,
       "value": 0.6038135170963769,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 19,
+      "row": 14,
       "col": 12,
-      "value": 0,
+      "value": 0.054160139569478176,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 20,
+      "row": 15,
       "col": 1,
       "value": "候選v2＋微調",
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 20,
+      "row": 15,
       "col": 3,
       "value": 2.886600508789238,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 20,
+      "row": 15,
       "col": 4,
-      "value": 0,
+      "value": 0.0356799496337756,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 20,
+      "row": 15,
       "col": 5,
       "value": 1.1854158585288406,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 20,
+      "row": 15,
       "col": 6,
-      "value": 0,
+      "value": 0.055756468034214,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 20,
+      "row": 15,
       "col": 7,
       "value": 1.1056593589684944,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 20,
+      "row": 15,
       "col": 8,
-      "value": 0,
+      "value": 0.01954336228675064,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 20,
+      "row": 15,
       "col": 9,
       "value": 864.7622010386872,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 20,
+      "row": 15,
       "col": 10,
-      "value": 0,
+      "value": 28.79554128389449,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 20,
+      "row": 15,
       "col": 11,
       "value": 0.6038135171016774,
       "formula": null
     },
     {
       "sheet": "Meeting主頁",
-      "row": 20,
+      "row": 15,
       "col": 12,
-      "value": 0,
-      "formula": null
-    },
-    {
-      "sheet": "Meeting主頁",
-      "row": 21,
-      "col": 1,
-      "value": "e_p：同一來源點經估計／GT變換後，兩個位置的平均距離。無輸出仍算失敗、不填0；平均分母＝總數−無輸出。分母不同不直接計算整體誤差改善率。",
-      "formula": null
-    },
-    {
-      "sheet": "Meeting主頁",
-      "row": 22,
-      "col": 1,
-      "value": "Tongji四Plot＝同一dataset；各100次（10配對×10seed）。ETH＝另一dataset，150次（15×10）。seed31–40；成功門檻：旋轉<2°且平移<0.5m。",
-      "formula": null
-    },
-    {
-      "sheet": "Meeting主頁",
-      "row": 23,
-      "col": 1,
-      "value": "論文值僅供參考：成功門檻與分母未齊。GT只用於評分；曾用於開發選參。這是已知場景的比較，不是未見森林盲測。",
+      "value": 0.05416013956593288,
       "formula": null
     },
     {
       "sheet": "必要對照",
       "row": 1,
       "col": 1,
-      "value": "同配對、同seed的消融證據",
+      "value": "第5週｜擴大候選的退步",
       "formula": null
     },
     {
       "sheet": "必要對照",
       "row": 2,
       "col": 1,
-      "value": "修改前：單初值＋微調　→　修改後：候選v2＋微調",
+      "value": "沿原DTM支線與相同舊微調backend。v1→v2：top5→20、60→120邊、替代pose16→256、微調3→8，另加yaw初值；整組比較。",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 3,
+      "col": 1,
+      "value": "Plot4：96→78/100（−18pp）。候選更多，舊幾何分數卻可能偏好嚴重錯位。",
       "formula": null
     },
     {
       "sheet": "必要對照",
       "row": 4,
       "col": 1,
-      "value": "逐場景配對比較：新增與退步都保留",
+      "value": "修改前：單初值＋微調　→　修改後：候選v2＋微調",
       "formula": null
     },
     {
       "sheet": "必要對照",
       "row": 5,
+      "col": 1,
+      "value": "逐場景配對比較：新增與退步都保留",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 6,
       "col": 1,
       "value": "場景",
       "formula": null
     },
     {
       "sheet": "必要對照",
-      "row": 5,
+      "row": 6,
       "col": 3,
       "value": "vs修改前成功率",
       "formula": null
     },
     {
       "sheet": "必要對照",
-      "row": 5,
+      "row": 6,
       "col": 5,
       "value": "新增成功",
       "formula": null
     },
     {
       "sheet": "必要對照",
-      "row": 5,
+      "row": 6,
       "col": 6,
       "value": "退步失敗",
       "formula": null
     },
     {
       "sheet": "必要對照",
-      "row": 5,
+      "row": 6,
       "col": 7,
       "value": "共同成功N",
       "formula": null
     },
     {
       "sheet": "必要對照",
-      "row": 5,
+      "row": 6,
       "col": 8,
       "value": "共同成功前cm",
       "formula": null
     },
     {
       "sheet": "必要對照",
-      "row": 5,
+      "row": 6,
       "col": 10,
       "value": "共同成功後cm",
       "formula": null
     },
     {
       "sheet": "必要對照",
-      "row": 5,
+      "row": 6,
       "col": 12,
       "value": "誤差下降率",
       "formula": null
     },
     {
       "sheet": "必要對照",
-      "row": 6,
+      "row": 7,
       "col": 1,
       "value": "Plot1",
       "formula": null
     },
     {
       "sheet": "必要對照",
-      "row": 6,
-      "col": 3,
-      "value": 0.0,
-      "formula": "=(100/100-100/100)*100"
-    },
-    {
-      "sheet": "必要對照",
-      "row": 6,
-      "col": 5,
-      "value": 0,
-      "formula": null
-    },
-    {
-      "sheet": "必要對照",
-      "row": 6,
-      "col": 6,
-      "value": 0,
-      "formula": null
-    },
-    {
-      "sheet": "必要對照",
-      "row": 6,
-      "col": 7,
-      "value": 100,
-      "formula": null
-    },
-    {
-      "sheet": "必要對照",
-      "row": 6,
-      "col": 8,
-      "value": 2.8866005087892384,
-      "formula": null
-    },
-    {
-      "sheet": "必要對照",
-      "row": 6,
-      "col": 10,
-      "value": 2.8866005087892384,
-      "formula": null
-    },
-    {
-      "sheet": "必要對照",
-      "row": 6,
-      "col": 12,
-      "value": 0.0,
-      "formula": "=IF(AND(ISNUMBER(H6),ISNUMBER(J6),H6<>0),(H6-J6)/H6,\"不可比\")"
-    },
-    {
-      "sheet": "必要對照",
-      "row": 7,
-      "col": 1,
-      "value": "Plot2",
-      "formula": null
-    },
-    {
-      "sheet": "必要對照",
       "row": 7,
       "col": 3,
       "value": 0.0,
@@ -3039,14 +2971,14 @@
       "sheet": "必要對照",
       "row": 7,
       "col": 8,
-      "value": 1.1854158585288406,
+      "value": 2.8866005087892384,
       "formula": null
     },
     {
       "sheet": "必要對照",
       "row": 7,
       "col": 10,
-      "value": 1.1854158585288406,
+      "value": 2.8866005087892384,
       "formula": null
     },
     {
@@ -3060,7 +2992,7 @@
       "sheet": "必要對照",
       "row": 8,
       "col": 1,
-      "value": "Plot3",
+      "value": "Plot2",
       "formula": null
     },
     {
@@ -3095,14 +3027,14 @@
       "sheet": "必要對照",
       "row": 8,
       "col": 8,
-      "value": 1.1056593589684944,
+      "value": 1.1854158585288406,
       "formula": null
     },
     {
       "sheet": "必要對照",
       "row": 8,
       "col": 10,
-      "value": 1.1056593589684944,
+      "value": 1.1854158585288406,
       "formula": null
     },
     {
@@ -3116,49 +3048,49 @@
       "sheet": "必要對照",
       "row": 9,
       "col": 1,
-      "value": "Plot4",
+      "value": "Plot3",
       "formula": null
     },
     {
       "sheet": "必要對照",
       "row": 9,
       "col": 3,
-      "value": -17.999999999999993,
-      "formula": "=(78/100-96/100)*100"
+      "value": 0.0,
+      "formula": "=(100/100-100/100)*100"
     },
     {
       "sheet": "必要對照",
       "row": 9,
       "col": 5,
-      "value": 1,
+      "value": 0,
       "formula": null
     },
     {
       "sheet": "必要對照",
       "row": 9,
       "col": 6,
-      "value": 19,
+      "value": 0,
       "formula": null
     },
     {
       "sheet": "必要對照",
       "row": 9,
       "col": 7,
-      "value": 77,
+      "value": 100,
       "formula": null
     },
     {
       "sheet": "必要對照",
       "row": 9,
       "col": 8,
-      "value": 2.2079068208741224,
+      "value": 1.1056593589684944,
       "formula": null
     },
     {
       "sheet": "必要對照",
       "row": 9,
       "col": 10,
-      "value": 2.2079068208741224,
+      "value": 1.1056593589684944,
       "formula": null
     },
     {
@@ -3172,193 +3104,193 @@
       "sheet": "必要對照",
       "row": 10,
       "col": 1,
-      "value": "ETH",
+      "value": "Plot4",
       "formula": null
     },
     {
       "sheet": "必要對照",
       "row": 10,
       "col": 3,
-      "value": 0.0,
-      "formula": "=(150/150-150/150)*100"
+      "value": -17.999999999999993,
+      "formula": "=(78/100-96/100)*100"
     },
     {
       "sheet": "必要對照",
       "row": 10,
       "col": 5,
-      "value": 0,
+      "value": 1,
       "formula": null
     },
     {
       "sheet": "必要對照",
       "row": 10,
       "col": 6,
-      "value": 0,
+      "value": 19,
       "formula": null
     },
     {
       "sheet": "必要對照",
       "row": 10,
       "col": 7,
-      "value": 150,
+      "value": 77,
       "formula": null
     },
     {
       "sheet": "必要對照",
       "row": 10,
       "col": 8,
-      "value": 0.6038135170910868,
+      "value": 2.2079068208741224,
       "formula": null
     },
     {
       "sheet": "必要對照",
       "row": 10,
       "col": 10,
-      "value": 0.6038135171016774,
+      "value": 2.2079068208741224,
       "formula": null
     },
     {
       "sheet": "必要對照",
       "row": 10,
       "col": 12,
-      "value": -1.7539586605356946e-11,
+      "value": 0.0,
       "formula": "=IF(AND(ISNUMBER(H10),ISNUMBER(J10),H10<>0),(H10-J10)/H10,\"不可比\")"
     },
     {
       "sheet": "必要對照",
       "row": 11,
       "col": 1,
+      "value": "ETH",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 11,
+      "col": 3,
+      "value": 0.0,
+      "formula": "=(150/150-150/150)*100"
+    },
+    {
+      "sheet": "必要對照",
+      "row": 11,
+      "col": 5,
+      "value": 0,
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 11,
+      "col": 6,
+      "value": 0,
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 11,
+      "col": 7,
+      "value": 150,
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 11,
+      "col": 8,
+      "value": 0.6038135170910868,
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 11,
+      "col": 10,
+      "value": 0.6038135171016774,
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 11,
+      "col": 12,
+      "value": -1.7539586605356946e-11,
+      "formula": "=IF(AND(ISNUMBER(H11),ISNUMBER(J11),H11<>0),(H11-J11)/H11,\"不可比\")"
+    },
+    {
+      "sheet": "必要對照",
+      "row": 12,
+      "col": 1,
       "value": "誤差下降率=(前−後)/前。共同成功只回答同一批成功案例的精度，不取代全體成功率。",
       "formula": null
     },
     {
       "sheet": "必要對照",
-      "row": 13,
+      "row": 14,
       "col": 1,
       "value": "補充：候選v1→v2，不能將整組效果歸因於top-k單一參數",
       "formula": null
     },
     {
       "sheet": "必要對照",
-      "row": 14,
+      "row": 15,
       "col": 1,
       "value": "場景",
       "formula": null
     },
     {
       "sheet": "必要對照",
-      "row": 14,
+      "row": 15,
       "col": 3,
       "value": "vs修改前成功率",
       "formula": null
     },
     {
       "sheet": "必要對照",
-      "row": 14,
+      "row": 15,
       "col": 5,
       "value": "新增成功",
       "formula": null
     },
     {
       "sheet": "必要對照",
-      "row": 14,
+      "row": 15,
       "col": 6,
       "value": "退步失敗",
       "formula": null
     },
     {
       "sheet": "必要對照",
-      "row": 14,
+      "row": 15,
       "col": 7,
       "value": "共同成功N",
       "formula": null
     },
     {
       "sheet": "必要對照",
-      "row": 14,
+      "row": 15,
       "col": 8,
       "value": "共同成功前cm",
       "formula": null
     },
     {
       "sheet": "必要對照",
-      "row": 14,
+      "row": 15,
       "col": 10,
       "value": "共同成功後cm",
       "formula": null
     },
     {
       "sheet": "必要對照",
-      "row": 14,
+      "row": 15,
       "col": 12,
       "value": "誤差下降率",
       "formula": null
     },
     {
       "sheet": "必要對照",
-      "row": 15,
+      "row": 16,
       "col": 1,
       "value": "Plot1",
       "formula": null
     },
     {
       "sheet": "必要對照",
-      "row": 15,
-      "col": 3,
-      "value": 0.0,
-      "formula": "=(100/100-100/100)*100"
-    },
-    {
-      "sheet": "必要對照",
-      "row": 15,
-      "col": 5,
-      "value": 0,
-      "formula": null
-    },
-    {
-      "sheet": "必要對照",
-      "row": 15,
-      "col": 6,
-      "value": 0,
-      "formula": null
-    },
-    {
-      "sheet": "必要對照",
-      "row": 15,
-      "col": 7,
-      "value": 100,
-      "formula": null
-    },
-    {
-      "sheet": "必要對照",
-      "row": 15,
-      "col": 8,
-      "value": 2.8866005087892384,
-      "formula": null
-    },
-    {
-      "sheet": "必要對照",
-      "row": 15,
-      "col": 10,
-      "value": 2.8866005087892384,
-      "formula": null
-    },
-    {
-      "sheet": "必要對照",
-      "row": 15,
-      "col": 12,
-      "value": 0.0,
-      "formula": "=IF(AND(ISNUMBER(H15),ISNUMBER(J15),H15<>0),(H15-J15)/H15,\"不可比\")"
-    },
-    {
-      "sheet": "必要對照",
-      "row": 16,
-      "col": 1,
-      "value": "Plot2",
-      "formula": null
-    },
-    {
-      "sheet": "必要對照",
       "row": 16,
       "col": 3,
       "value": 0.0,
@@ -3389,14 +3321,14 @@
       "sheet": "必要對照",
       "row": 16,
       "col": 8,
-      "value": 1.1854158585288406,
+      "value": 2.8866005087892384,
       "formula": null
     },
     {
       "sheet": "必要對照",
       "row": 16,
       "col": 10,
-      "value": 1.1854158585288406,
+      "value": 2.8866005087892384,
       "formula": null
     },
     {
@@ -3410,7 +3342,7 @@
       "sheet": "必要對照",
       "row": 17,
       "col": 1,
-      "value": "Plot3",
+      "value": "Plot2",
       "formula": null
     },
     {
@@ -3445,14 +3377,14 @@
       "sheet": "必要對照",
       "row": 17,
       "col": 8,
-      "value": 1.1056593589684944,
+      "value": 1.1854158585288406,
       "formula": null
     },
     {
       "sheet": "必要對照",
       "row": 17,
       "col": 10,
-      "value": 1.1056593589684944,
+      "value": 1.1854158585288406,
       "formula": null
     },
     {
@@ -3466,15 +3398,15 @@
       "sheet": "必要對照",
       "row": 18,
       "col": 1,
-      "value": "Plot4",
+      "value": "Plot3",
       "formula": null
     },
     {
       "sheet": "必要對照",
       "row": 18,
       "col": 3,
-      "value": -17.999999999999993,
-      "formula": "=(78/100-96/100)*100"
+      "value": 0.0,
+      "formula": "=(100/100-100/100)*100"
     },
     {
       "sheet": "必要對照",
@@ -3487,50 +3419,50 @@
       "sheet": "必要對照",
       "row": 18,
       "col": 6,
-      "value": 18,
+      "value": 0,
       "formula": null
     },
     {
       "sheet": "必要對照",
       "row": 18,
       "col": 7,
-      "value": 78,
+      "value": 100,
       "formula": null
     },
     {
       "sheet": "必要對照",
       "row": 18,
       "col": 8,
-      "value": 2.1852955801066285,
+      "value": 1.1056593589684944,
       "formula": null
     },
     {
       "sheet": "必要對照",
       "row": 18,
       "col": 10,
-      "value": 2.185295580106832,
+      "value": 1.1056593589684944,
       "formula": null
     },
     {
       "sheet": "必要對照",
       "row": 18,
       "col": 12,
-      "value": -9.307338556983875e-14,
+      "value": 0.0,
       "formula": "=IF(AND(ISNUMBER(H18),ISNUMBER(J18),H18<>0),(H18-J18)/H18,\"不可比\")"
     },
     {
       "sheet": "必要對照",
       "row": 19,
       "col": 1,
-      "value": "ETH",
+      "value": "Plot4",
       "formula": null
     },
     {
       "sheet": "必要對照",
       "row": 19,
       "col": 3,
-      "value": 0.0,
-      "formula": "=(150/150-150/150)*100"
+      "value": -17.999999999999993,
+      "formula": "=(78/100-96/100)*100"
     },
     {
       "sheet": "必要對照",
@@ -3543,77 +3475,133 @@
       "sheet": "必要對照",
       "row": 19,
       "col": 6,
-      "value": 0,
+      "value": 18,
       "formula": null
     },
     {
       "sheet": "必要對照",
       "row": 19,
       "col": 7,
-      "value": 150,
+      "value": 78,
       "formula": null
     },
     {
       "sheet": "必要對照",
       "row": 19,
       "col": 8,
-      "value": 0.6038135170963769,
+      "value": 2.1852955801066285,
       "formula": null
     },
     {
       "sheet": "必要對照",
       "row": 19,
       "col": 10,
-      "value": 0.6038135171016774,
+      "value": 2.185295580106832,
       "formula": null
     },
     {
       "sheet": "必要對照",
       "row": 19,
       "col": 12,
-      "value": -8.778435123408882e-12,
+      "value": -9.307338556983875e-14,
       "formula": "=IF(AND(ISNUMBER(H19),ISNUMBER(J19),H19<>0),(H19-J19)/H19,\"不可比\")"
     },
     {
       "sheet": "必要對照",
       "row": 20,
       "col": 1,
+      "value": "ETH",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 20,
+      "col": 3,
+      "value": 0.0,
+      "formula": "=(150/150-150/150)*100"
+    },
+    {
+      "sheet": "必要對照",
+      "row": 20,
+      "col": 5,
+      "value": 0,
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 20,
+      "col": 6,
+      "value": 0,
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 20,
+      "col": 7,
+      "value": 150,
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 20,
+      "col": 8,
+      "value": 0.6038135170963769,
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 20,
+      "col": 10,
+      "value": 0.6038135171016774,
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 20,
+      "col": 12,
+      "value": -8.778435123408882e-12,
+      "formula": "=IF(AND(ISNUMBER(H20),ISNUMBER(J20),H20<>0),(H20-J20)/H20,\"不可比\")"
+    },
+    {
+      "sheet": "必要對照",
+      "row": 21,
+      "col": 1,
       "value": "誤差下降率=(前−後)/前。共同成功只回答同一批成功案例的精度，不取代全體成功率。",
       "formula": null
     },
     {
       "sheet": "必要對照",
-      "row": 22,
+      "row": 23,
       "col": 1,
       "value": "反例｜Plot4 S4–S2 seed31：v1 overlap=16.7%、e_p=0.086m；v2 overlap=33.8%、e_p=45.94m。分數較高卻嚴重錯位。",
       "formula": null
     },
     {
       "sheet": "必要對照",
-      "row": 24,
+      "row": 25,
       "col": 1,
       "value": "證據邊界：候選池、yaw初值、支持分數與beam同時變動，是搜尋策略整組比較。v1/v2共用舊驗證分數；新候選可能放大假重疊的影響，不能只怪候選數。",
       "formula": null
     },
     {
       "sheet": "必要對照",
-      "row": 25,
-      "col": 1,
-      "value": "時間／代價：舊批次與新補跑的硬體或並行、計時範圍不齊，不計跨批次加速比。原論文i7-9700F 3GHz、實際threads未交代；本地原生OMP4。",
-      "formula": null
-    },
-    {
-      "sheet": "必要對照",
       "row": 26,
       "col": 1,
-      "value": "論文對照：Table I／PDF p4；時間見Table II／p4、Table III／p5。作者公開程式在2026-10-28查核僅README，未取得同環境作者baseline。",
+      "value": "e_p：同一來源點經估計／GT變換後的平均距離；e_R：估計與GT旋轉的夾角。兩者平均全部有輸出案例（含失敗），分母＝總數−無輸出；無輸出不填0。不同分母不直接算整體誤差改善率。",
       "formula": null
     },
     {
       "sheet": "必要對照",
       "row": 27,
       "col": 1,
-      "value": "資料來源：CircularMatch repo／results/six_week_reports_20261028 與 professor_reports_20261026 的 evidence；既有版本 b839f64ecc93。新消融：meeting_reports_20261108/verification_ablation_rows.csv。",
+      "value": "Tongji四Plot同dataset，各100次（10對×10seed）；ETH為另一dataset，150次（15×10），seed31–40。成功：旋轉<2°且平移<0.5m。GT曾用於開發；本結果不是未見森林盲測。",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 28,
+      "col": 1,
+      "value": "論文Table I／p4僅參考：成功門檻、分母未齊，e_R未單獨報告；作者程式未取得。不同比較硬體／計時範圍不做速度排名。來源：CircularMatch repo，既有版本 b839f64ecc93；逐數據核對見 meeting_reports_20261108/audit/week_05.json。",
       "formula": null
     }
   ],

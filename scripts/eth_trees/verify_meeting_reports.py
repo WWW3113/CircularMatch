@@ -36,13 +36,14 @@ def verify(weeks):
     assert {(r['pair'],int(r['seed'])) for r in rows}=={(p,k) for p in pairs for k in range(31,41)}
     ok=sum(r['success']=='1' for r in rows);assert ok==g['ok']
     ep=[float(r['e_p_m']) for r in rows if math.isfinite(float(r['e_p_m']))];assert len(ep)==g['finite'];close(sum(ep)/len(ep),g['ep'])
+    rot=[float(r['rot_err_deg']) for r in rows if math.isfinite(float(r['rot_err_deg']))];assert len(rot)==len(ep);close(sum(rot)/len(rot),g['rot'])
     for r in rows:
      assert (r['success']=='1')==(float(r['rot_err_deg'])<2 and float(r['trans_err_m'])<.5)
     # Bind the actual main-page displayed cells directly to independent CSV sums.
     main=wb['Meeting主頁'];positions=[r[0].row for r in main if r[0].value==group['label']];assert len(positions)==2
     col=3+2*['Plot1','Plot2','Plot3','Plot4','ETH'].index(scene)
-    assert main.cell(positions[0],col).value==f'{ok}/{len(rows)}';close(main.cell(positions[0],col+1).value,ok/len(rows))
-    close(main.cell(positions[1],col).value,100*sum(ep)/len(ep));assert main.cell(positions[1],col+1).value==len(rows)-len(ep)
+    assert main.cell(positions[0],col).value==f'{ok}/{len(rows)}\n無輸出{len(rows)-len(ep)}';close(main.cell(positions[0],col+1).value,ok/len(rows))
+    close(main.cell(positions[1],col).value,100*sum(ep)/len(ep));close(main.cell(positions[1],col+1).value,sum(rot)/len(rot))
     group_checks+=1
    loaded.append(by_scene)
   for name,g in m.get('auxiliary_groups',{}).items():
@@ -52,7 +53,7 @@ def verify(weeks):
    assert len(rr)==g['n'] and sum(r['success']=='1' for r in rr)==g['ok']
    ep=[float(r['e_p_m']) for r in rr if math.isfinite(float(r['e_p_m']))];assert len(ep)==g['finite'];close(sum(ep)/len(ep),g['ep']);group_checks+=1
   a,z=[loaded[k] for k in m['primary']];sheet=wb['必要對照']
-  for n,scene in enumerate(['Plot1','Plot2','Plot3','Plot4','ETH'],6):
+  for n,scene in enumerate(['Plot1','Plot2','Plot3','Plot4','ETH'],m['paired_data_first_row']):
    aa={(r['pair'],r['seed']):r for r in a[scene]};bb={(r['pair'],r['seed']):r for r in z[scene]};assert aa.keys()==bb.keys()
    gained=sum(aa[k]['success']=='0' and bb[k]['success']=='1' for k in aa);lost=sum(aa[k]['success']=='1' and bb[k]['success']=='0' for k in aa)
    both=[k for k in aa if aa[k]['success']==bb[k]['success']=='1']

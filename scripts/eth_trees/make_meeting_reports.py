@@ -25,7 +25,9 @@ def aggregate(rows,source):
   rot=finite(r.get('rot_err_deg'));t=finite(r.get('trans_err_m'))
   assert (r['success']=='1')==(rot is not None and t is not None and rot<2 and t<.5)
  errors=[finite(r['e_p_m']) for r in rows];errors=[x for x in errors if x is not None]
- return dict(rows=rows,n=n,ok=sum(r['success']=='1' for r in rows),finite=len(errors),ep=average(errors),rate=sum(r['success']=='1' for r in rows)/n,source=source)
+ rotations=[finite(r['rot_err_deg']) for r in rows];rotations=[x for x in rotations if x is not None]
+ assert len(rotations)==len(errors) and all((finite(r['e_p_m']) is None)==(finite(r['rot_err_deg']) is None) for r in rows)
+ return dict(rows=rows,n=n,ok=sum(r['success']=='1' for r in rows),finite=len(errors),ep=average(errors),rot=average(rotations),rate=sum(r['success']=='1' for r in rows)/n,source=source)
 class Data:
  def __init__(self,i):
   self.m=json.loads((OLD/f'report_{i:02d}_manifest.json').read_text());self.tables={};self.groups={}
@@ -86,12 +88,13 @@ def setup(i):
 class Book:
  def __init__(self,i):
   OUT.mkdir(parents=True,exist_ok=True);self.path=OUT/f'week_{i:02d}_{TITLES[i]}.xlsx';self.w=xlsxwriter.Workbook(self.path);self.checks=[];self.sources={};self.i=i
-  opts={'title':dict(bold=True,font_size=20),'verdict':dict(bold=True,font_size=15,bottom=1),'head':dict(bold=True,bg_color='#EDEDED',align='center'),'subhead':dict(bold=True,font_size=12,bg_color='#EDEDED',align='center'),'label':dict(bold=True,align='left'),'text':{},'note':dict(font_size=11,font_color='#444444'),'num':dict(num_format='0.00',align='center'),'integer':dict(num_format='0',align='center'),'count':dict(align='center'),'pct':dict(num_format='0.0%',align='center'),'pp':dict(num_format='+0.0" pp";-0.0" pp";0.0" pp"',align='center')}
+  opts={'title':dict(bold=True,font_size=20),'verdict':dict(bold=True,font_size=15,bottom=1),'head':dict(bold=True,bg_color='#EDEDED',align='center'),'subhead':dict(bold=True,font_size=12,bg_color='#EDEDED',align='center'),'label':dict(bold=True,align='left'),'text':{},'note':dict(font_size=11,font_color='#444444'),'num':dict(num_format='0.00',align='center'),'integer':dict(num_format='0',align='center'),'count':dict(align='center'),'count_detail':dict(align='center',font_size=12),'pct':dict(num_format='0.0%',align='center'),'pp':dict(num_format='+0.0" pp";-0.0" pp";0.0" pp"',align='center')}
   self.f={k:self.w.add_format(dict(font_name='Microsoft JhengHei',font_size=14,valign='vcenter',text_wrap=True)|v) for k,v in opts.items()}
   self.s={n:self.w.add_worksheet(n) for n in ['Meeting主頁','必要對照']}
   for name,s in self.s.items():
    s.hide_gridlines(2);s.set_zoom(85);s.set_column('A:A',15);s.set_column('B:B',13);s.set_column('C:L',12)
-   s.set_landscape();s.set_paper(8);s.fit_to_pages(1,1);s.set_margins(.2,.2,.3,.3);s.set_footer('&L單位依欄名；pp＝百分點&R&P / &N');s.freeze_panes(5,2)
+   s.set_landscape();s.set_paper(8);s.fit_to_pages(1,1);s.set_margins(.2,.2,.3,.3);s.set_footer('&L單位依欄名；pp＝百分點&R&P / &N')
+   if name=='必要對照':s.freeze_panes(5,2)
  def cell(self,s,r,c,value,style='text',formula=None,source=None):
   if value is None:value='不可比'
   ws=self.s[s]
@@ -110,22 +113,22 @@ class Book:
   for j,scene in enumerate(SCENES):self.merge(s,row,2+j*2,3+j*2,'ETH-tree' if scene=='ETH' else 'Tongji '+scene,'head',23)
   row+=1;self.merge(s,row,0,1,'','head',20)
   for j in range(5):
-   for k,name in enumerate(['成功/總數','成功率'] if metric=='success' else ['誤差(cm)','無輸出']):self.cell(s,row,2+j*2+k,name,'subhead')
+   for k,name in enumerate(['成功/總數','成功率'] if metric=='success' else ['e_p (cm)','e_R (°)']):self.cell(s,row,2+j*2+k,name,'subhead')
   self.s[s].set_row(row,24);row+=1
   records=[('論文報告值',None)]+groups
   for name,gs in records:
-   self.merge(s,row,0,1,name,'label',29)
+   self.merge(s,row,0,1,name,'label',35 if metric=='success' else 29)
    for j,scene in enumerate(SCENES):
     c=2+j*2
     if gs is None:
      self.cell(s,row,c,'未交代' if metric=='success' else PAPER[scene],'note' if metric=='success' else 'num')
-     self.cell(s,row,c+1,1 if metric=='success' else '未交代','pct' if metric=='success' else 'note')
+     self.cell(s,row,c+1,1 if metric=='success' else '未報告','pct' if metric=='success' else 'note')
     else:
      g=gs[scene]
      if metric=='success':
-      self.cell(s,row,c,f'{g["ok"]}/{g["n"]}','count',source=g['source']);self.cell(s,row,c+1,g['rate'],'pct',f'={g["ok"]}/{g["n"]}',g['source'])
+      self.cell(s,row,c,f'{g["ok"]}/{g["n"]}\n無輸出{g["n"]-g["finite"]}','count_detail',source=g['source']);self.cell(s,row,c+1,g['rate'],'pct',f'={g["ok"]}/{g["n"]}',g['source'])
      else:
-      self.cell(s,row,c,100*g['ep'],'num',source=g['source']);self.cell(s,row,c+1,g['n']-g['finite'],'integer',source=g['source'])
+      self.cell(s,row,c,100*g['ep'],'num',source=g['source']);self.cell(s,row,c+1,g['rot'],'num',source=g['source'])
    row+=1
   return row
  def delta_table(self,s,row,title,groups,primary):
@@ -166,14 +169,14 @@ def validate(path,meta):
 
 def build(i):
  d,groups,primary,q,verdict,settings=setup(i);b=Book(i);s='Meeting主頁'
- b.line(s,0,f'第{i}週｜{TITLES[i]}','title',32);b.line(s,1,q,'text',25);b.line(s,2,verdict,'verdict',37);b.line(s,3,settings,'note',37)
- row=b.matrix(s,5,'① 可靠性：成功／總次數與成功率（越高越好）',groups,'success');row+=1
- row=b.matrix(s,row,'② 平均點誤差 e_p（cm，越低越好；包含有輸出的失敗案例）',groups,'error')
- b.line(s,row,'e_p：同一來源點經估計／GT變換後，兩個位置的平均距離。無輸出仍算失敗、不填0；平均分母＝總數−無輸出。分母不同不直接計算整體誤差改善率。',height=32);row+=1
- b.line(s,row,'Tongji四Plot＝同一dataset；各100次（10配對×10seed）。ETH＝另一dataset，150次（15×10）。seed31–40；成功門檻：旋轉<2°且平移<0.5m。',height=33);row+=1
- b.line(s,row,'論文值僅供參考：成功門檻與分母未齊。GT只用於評分；曾用於開發選參。這是已知場景的比較，不是未見森林盲測。',height=29)
- last_main=row;s='必要對照';b.line(s,0,'同配對、同seed的消融證據','title',30);b.line(s,1,f'修改前：{groups[primary[0]][0]}　→　修改後：{groups[primary[1]][0]}','text',30)
- row=b.delta_table(s,3,'逐場景配對比較：新增與退步都保留',groups,primary)
+ summaries={1:'ETH：114→144/150；Tongji：309→304/400。',2:'補救開啟：Tongji 304→329/400；ETH 144→150/150。',3:'DTM平滑：Tongji 329→345/400；ETH 150→149/150。',4:'平滑DTM加微調：494→547/550；原DTM加微調：546/550。',5:'Plot4：單初值與候選v1均96/100；候選v2為78/100。',6:verdict.split('。')[0]+'。'}
+ b.line(s,0,summaries[i],'text',27)
+ row=b.matrix(s,1,'① 可靠性：成功／總次數與成功率（成功數下方為無輸出次數）',groups,'success')
+ row=b.matrix(s,row,'② 平均點誤差 e_p（cm）與平均旋轉誤差 e_R（°）：越低越好；包含有輸出的失敗案例',groups,'error')
+ last_main=row-1;s='必要對照';b.line(s,0,f'第{i}週｜{TITLES[i]}','title',30)
+ b.line(s,1,settings,'note',37);b.line(s,2,verdict,'text',37)
+ b.line(s,3,f'修改前：{groups[primary[0]][0]}　→　修改後：{groups[primary[1]][0]}','text',30)
+ row=b.delta_table(s,4,'逐場景配對比較：新增與退步都保留',groups,primary)
  if i in [1,4,6]:
   contrasts={1:[('固定SVD：5→10cm',0,2),('固定RANSAC：5→10cm',1,3),('固定5cm：換Solver',0,1),('固定10cm：換Solver',2,3)],4:[('原DTM：加微調',0,1),('平滑DTM：加微調',2,3),('無微調：換DTM',0,2),('有微調：換DTM',1,3)],6:[('舊gate：篩垂直',0,1),('新gate：篩垂直',2,3),('全方向：收緊gate',0,2),('垂直：收緊gate',1,3)]}[i]
   b.line(s,row,'固定另一項：各因素的成功率變化（後−前，pp）','head',24);row+=1
@@ -210,12 +213,12 @@ def build(i):
   b.line(s,row,f'合用−只篩垂直的平均e_p：Plot3 {diff["Plot3"]:+.3f}mm、Plot4 {diff["Plot4"]:+.3f}mm；其餘<0.001mm。主頁四捨五入後相同，不代表逐筆完全相同。',height=32);row+=1
  mechanisms={1:'機制：容差放寬可接納較不一致的距離，也可能增加錯配；RANSAC只在既有對應中找3D一致群。不能把兩項一起改的增益全算給容差。',2:'機制：原CN不足6對才啟動；回收CN候選證據，以相容三元組產生Kabsch姿態，再以一對一3D支持驗證。是新增方法整組，不是發明RANSAC。',3:'fit_radius控制地面局部擬合鄰域；fill_max_radius控制缺格補洞範圍，單位為格（cell=0.50m）。兩項一起改，只能歸因DTM設定整組，沒有各自完整流程消融；樹位數改變不能直接證明改善原因。',4:'機制：coarse提供初始姿態，表面point-to-plane微調估完整6DOF。四組完整控制顯示微調效果不靠回復DTM解釋；平滑＋微調也保留。第5週沿原DTM研究支線。',5:'證據邊界：候選池、yaw初值、支持分數與beam同時變動，是搜尋策略整組比較。v1/v2共用舊驗證分數；新候選可能放大假重疊的影響，不能只怪候選數。',6:'機制：驗證優先看垂直表面，減少共同地面的假重疊；收緊NN距離避免把偏移表面算作支持。兩項效果用四組隔離；改動作用於排序、接受與最終選擇，optimizer仍用全方向6DOF。'}
  b.line(s,row,mechanisms[i],height=44);row+=1
- b.line(s,row,'時間／代價：舊批次與新補跑的硬體或並行、計時範圍不齊，不計跨批次加速比。原論文i7-9700F 3GHz、實際threads未交代；本地原生OMP4。',height=36);row+=1
- b.line(s,row,'論文對照：Table I／PDF p4；時間見Table II／p4、Table III／p5。作者公開程式在2026-10-28查核僅README，未取得同環境作者baseline。',height=32);row+=1
- b.line(s,row,'資料來源：CircularMatch repo／results/six_week_reports_20261028 與 professor_reports_20261026 的 evidence；既有版本 '+PIN[:12]+'。新消融：meeting_reports_20261108/verification_ablation_rows.csv。',height=34)
+ b.line(s,row,'e_p：同一來源點經估計／GT變換後的平均距離；e_R：估計與GT旋轉的夾角。兩者平均全部有輸出案例（含失敗），分母＝總數−無輸出；無輸出不填0。不同分母不直接算整體誤差改善率。',height=40);row+=1
+ b.line(s,row,'Tongji四Plot同dataset，各100次（10對×10seed）；ETH為另一dataset，150次（15×10），seed31–40。成功：旋轉<2°且平移<0.5m。GT曾用於開發；本結果不是未見森林盲測。',height=40);row+=1
+ b.line(s,row,'論文Table I／p4僅參考：成功門檻、分母未齊，e_R未單獨報告；作者程式未取得。不同比較硬體／計時範圍不做速度排名。來源：CircularMatch repo，既有版本 '+PIN[:12]+'；逐數據核對見 meeting_reports_20261108/audit/week_'+f'{i:02d}'+'.json。',height=40)
  primary_ids={id(g) for _,gs in groups for g in gs.values()}
  extra={name:{k:v for k,v in g.items() if k!='rows'} for name,g in d.groups.items() if id(g) not in primary_ids}
- meta=dict(week=i,title=TITLES[i],generated_at=datetime.now(ZoneInfo('Asia/Taipei')).isoformat(),source_commit=PIN,groups=[dict(label=name,scenes={s:{k:v for k,v in g.items() if k!='rows'} for s,g in gs.items()}) for name,gs in groups],auxiliary_groups=extra,primary=primary,main_last_row=last_main+1,backup_last_row=row+1)
+ meta=dict(week=i,title=TITLES[i],generated_at=datetime.now(ZoneInfo('Asia/Taipei')).isoformat(),source_commit=PIN,groups=[dict(label=name,scenes={s:{k:v for k,v in g.items() if k!='rows'} for s,g in gs.items()}) for name,gs in groups],auxiliary_groups=extra,primary=primary,paired_data_first_row=7,main_last_row=last_main+1,backup_last_row=row+1)
  return b.finish(last_main,row,meta)
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('--weeks',nargs='+',type=int,default=list(range(1,7)));a=ap.parse_args()
