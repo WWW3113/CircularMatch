@@ -3,10 +3,12 @@
   "expected": 1100,
   "experiments_in_progress": false,
   "private_runs_not_published": true,
-  "status": "compact_layout_rotation_update_validating",
+  "status": "complete_delivered",
   "workbooks": 6,
   "cell_comments_removed": true,
-  "artifact_commit": "9878caa4f1c7fc0604e0bbcceab6126723bbc0eb",
+  "artifact_commit": "88b6b37673de2593d5a2b020277403833c78af49",
   "delivery": "DELIVERY.json",
-  "rotation_error_added": true
+  "rotation_error_added": true,
+  "compact_main_layout": true,
+  "cell_comments": false
 }

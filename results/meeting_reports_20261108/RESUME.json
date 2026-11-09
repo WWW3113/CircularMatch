@@ -18,7 +18,9 @@
   "cell_comments": false,
   "validation": "validation.json",
   "main_and_backup_one_page_each": true,
-  "artifact_commit": "9878caa4f1c7fc0604e0bbcceab6126723bbc0eb",
+  "artifact_commit": "88b6b37673de2593d5a2b020277403833c78af49",
   "delivery": "DELIVERY.json",
-  "experiments_in_progress": false
+  "experiments_in_progress": false,
+  "rotation_error_added": true,
+  "compact_main_layout": true
 }
