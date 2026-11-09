@@ -18,6 +18,10 @@ def main():
   assert sha(OUT/r['file'])==r['sha256'];files.append(r['file'])
  assert len(files)==6
  files.append('meeting_6weeks.zip');assert sha(OUT/files[-1])==validation['zip_sha256']
+ talks=OUT/'talks_validation.json'
+ if talks.exists():
+  for t in json.loads(talks.read_text())['talks']:
+   assert sha(OUT/t['file'])==t['sha256'] and sha(OUT/t['xlsx'])==t['xlsx_sha256'];files.append(t['file'])
  def fetch(name):
   p=OUT/name;url='https://raw.githubusercontent.com/WWW3113/CircularMatch/'+a.commit+'/'+quote(str(p.relative_to(ROOT)))
   with urlopen(url,timeout=60) as response:status=response.status;data=response.read()

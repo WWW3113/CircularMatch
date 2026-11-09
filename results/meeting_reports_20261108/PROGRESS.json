@@ -3,12 +3,17 @@
   "expected": 1100,
   "experiments_in_progress": false,
   "private_runs_not_published": true,
-  "status": "complete_delivered",
+  "status": "dataset_summary_and_talk_revision_validated_pending_upload",
   "workbooks": 6,
   "cell_comments_removed": true,
   "artifact_commit": "88b6b37673de2593d5a2b020277403833c78af49",
   "delivery": "DELIVERY.json",
   "rotation_error_added": true,
   "compact_main_layout": true,
-  "cell_comments": false
+  "cell_comments": false,
+  "separate_dataset_performance_totals": true,
+  "talks_updated": [
+    4,
+    6
+  ]
 }

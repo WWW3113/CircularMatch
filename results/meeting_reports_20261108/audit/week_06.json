@@ -1,7 +1,7 @@
 {
   "week": 6,
   "title": "結構驗證因素消融",
-  "generated_at": "2026-11-09T12:16:52.621705+08:00",
+  "generated_at": "2026-11-09T12:52:49.162513+08:00",
   "source_commit": "b839f64ecc9385321168771847f1efea4b00d8ad",
   "groups": [
     {
@@ -3895,13 +3895,13 @@
   "main_last_row": 17,
   "backup_last_row": 33,
   "file": "week_06_結構驗證因素消融.xlsx",
-  "sha256": "25bb562e844a73facac486659e952d7e056bece78a76df70d57046023caab3f4",
+  "sha256": "109008466a0473eac899859ca6a932e6f19933b925286186fb05e911e99037d5",
   "checks": [
     {
       "sheet": "Meeting主頁",
       "row": 1,
       "col": 1,
-      "value": "只篩垂直：550/550；只收緊gate：540/550；兩項合用：550/550。",
+      "value": "只篩垂直：Tongji 400/400、ETH 150/150；只收緊gate：Tongji 390/400、ETH 150/150。",
       "formula": null
     },
     {
@@ -4944,7 +4944,7 @@
       "sheet": "必要對照",
       "row": 3,
       "col": 1,
-      "value": "只篩垂直：550/550；只收緊gate：540/550；兩項合用：550/550。垂直篩選已達100%，收緊gate未再增加成功。",
+      "value": "只篩垂直：Tongji 400/400、ETH 150/150；只收緊gate：Tongji 390/400、ETH 150/150；兩項合用：Tongji 400/400、ETH 150/150。垂直篩選在各dataset已達100%，收緊gate未再增加成功。",
       "formula": null
     },
     {
@@ -5567,7 +5567,7 @@
       "sheet": "必要對照",
       "row": 22,
       "col": 1,
-      "value": "同一v3 backend的公平控制：額外4次改善才是完整候選對單初值的增益",
+      "value": "同一v3 backend公平控制：完整候選比單初值多救4次，均在Tongji Plot4",
       "formula": null
     },
     {

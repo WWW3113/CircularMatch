@@ -1,7 +1,7 @@
 {
   "week": 1,
   "title": "CN容差與Solver",
-  "generated_at": "2026-11-09T12:16:51.823138+08:00",
+  "generated_at": "2026-11-09T12:52:48.342673+08:00",
   "source_commit": "b839f64ecc9385321168771847f1efea4b00d8ad",
   "groups": [
     {
@@ -2630,7 +2630,7 @@
   "main_last_row": 17,
   "backup_last_row": 25,
   "file": "week_01_CN容差與Solver.xlsx",
-  "sha256": "e87a6db6d3be1380788ccd2591ccc446ce23f5f132cd2446bbfae42f2d6c2185",
+  "sha256": "73dee47f775366173166577cfa5cc17251a9be2a8524fec43a1337f4abaf0719",
   "checks": [
     {
       "sheet": "Meeting主頁",

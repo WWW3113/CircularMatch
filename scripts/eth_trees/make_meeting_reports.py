@@ -19,6 +19,13 @@ def finite(v):
  except (TypeError,ValueError):return None
 def key(r):return r['pair'],int(r['seed'])
 def average(a):return st.mean(a) if a else None
+def dataset_counts(gs):
+ t=[gs[s] for s in SCENES if s!='ETH'];e=gs['ETH']
+ return f'Tongji {sum(g["ok"] for g in t)}/{sum(g["n"] for g in t)}、ETH {e["ok"]}/{e["n"]}'
+def dataset_change(a,z):
+ ta=[a[s] for s in SCENES if s!='ETH'];tz=[z[s] for s in SCENES if s!='ETH']
+ assert sum(g['n'] for g in ta)==sum(g['n'] for g in tz) and a['ETH']['n']==z['ETH']['n']
+ return f'Tongji {sum(g["ok"] for g in ta)}→{sum(g["ok"] for g in tz)}/{sum(g["n"] for g in tz)}；ETH {a["ETH"]["ok"]}→{z["ETH"]["ok"]}/{z["ETH"]["n"]}'
 def aggregate(rows,source):
  n=len(rows);assert n>0 and len({key(r) for r in rows})==n
  for r in rows:
@@ -66,21 +73,21 @@ def setup(i):
   settings='DTM cell固定0.50m；fit_radius 2→6格、fill_max_radius 5→6格一起改。完整重提取；10cm／RANSAC／補救固定。'
  elif i==4:
   groups=[('原DTM・無微調',{s:d.get('U:'+s+':eth10_raw') for s in SCENES}),('原DTM・加微調',{s:d.get('U:'+s+':eth10_refined') for s in SCENES}),('平滑DTM・無微調',{s:d.get('FULL:'+s) for s in SCENES}),('平滑DTM・加微調',{s:d.get('SREF:'+s) for s in SCENES})];primary=(2,3)
-  question='精度改善來自微調，還是改DTM？用四組拆開看。';verdict='承接第3週平滑DTM：494→547/550；原DTM加微調546/550，並非更好的分支。'
+  question='精度改善來自微調，還是改DTM？用四組拆開看。';verdict='承接第3週平滑DTM：'+dataset_change(groups[2][1],groups[3][1])+'。原DTM加微調：'+dataset_counts(groups[1][1])+'；平滑加微調在Tongji淨多1次，不宣稱原DTM最佳。'
   settings='兩種DTM × 微調關閉／開啟。微調為6DOF、多尺度0.50→0.20→0.10m、30/25/20次；coarse與輸入點雲固定。'
  elif i==5:
   groups=[('單初值＋微調',{s:d.get('U:'+s+':eth10_refined') for s in SCENES}),('候選v1＋微調',{s:d.get('U:'+s+':multi_refined') for s in SCENES}),('候選v2＋微調',{s:d.get('U:'+s+':multi_v2_refined') for s in SCENES})];primary=(0,2)
   question='擴大候選範圍，是否一定選到更好的姿態？';verdict='Plot4：96→78/100（−18pp）。候選更多，舊幾何分數卻可能偏好嚴重錯位。'
-  settings='沿原DTM支線與相同舊微調backend。v1→v2：top5→20、60→120邊、替代pose16→256、微調3→8，另加yaw初值；整組比較。'
+  settings='候選搜尋原先在原DTM開發；固定此支線與微調後端，讓單初值／v1／v2／v3可比。v1→v2：top5→20、60→120邊、替代pose16→256、微調3→8，另加yaw初值；整組比較。'
  elif i==6:
   assert (OUT/'ABLATION_COMPLETE.json').exists(),'The two missing factor controls must finish before report6.'
   groups=[('都不改（v2）',{s:d.get('U:'+s+':multi_v2_refined') for s in SCENES}),('只篩垂直結構',{s:d.new(s,'v1g0') for s in SCENES}),('只收緊距離門檻',{s:d.new(s,'v0g1') for s in SCENES}),('兩項都改（v3）',{s:d.get('U:'+s+':multi_v3_refined') for s in SCENES})];primary=(0,3)
   question='垂直結構篩選與嚴格距離門檻，各自貢獻多少？'
-  vertical=sum(g['ok'] for g in groups[1][1].values());tight=sum(g['ok'] for g in groups[2][1].values())
-  verdict=f'只篩垂直：{vertical}/550；只收緊gate：{tight}/550；兩項合用：550/550。'
-  if vertical==tight==550:verdict+='兩個單項都已達100%，成功率沒有合用增益。'
-  elif vertical==550:verdict+='垂直篩選已達100%，收緊gate未再增加成功。'
-  elif tight==550:verdict+='收緊gate已達100%，垂直篩選未再增加成功。'
+  vertical=all(g['ok']==g['n'] for g in groups[1][1].values());tight=all(g['ok']==g['n'] for g in groups[2][1].values())
+  verdict='只篩垂直：'+dataset_counts(groups[1][1])+'；只收緊gate：'+dataset_counts(groups[2][1])+'；兩項合用：'+dataset_counts(groups[3][1])+'。'
+  if vertical and tight:verdict+='兩個單項在各dataset均已達100%，成功率沒有合用增益。'
+  elif vertical:verdict+='垂直篩選在各dataset已達100%，收緊gate未再增加成功。'
+  elif tight:verdict+='收緊gate在各dataset已達100%，垂直篩選未再增加成功。'
   else:verdict+='單項與合用的差異，按五場景完整列出。'
   settings='v2候選引擎、原DTM與6DOF optimizer固定。垂直篩選：|normal.z|<0.30；驗證gate（三尺度）：1.50/0.60/0.30→0.20/0.20/0.10m。'
  return d,groups,primary,question,verdict,settings
@@ -149,6 +156,7 @@ class Book:
   return row+2
  def finish(self,last_main,last_backup,meta):
   self.checks=list({(x['sheet'],x['row'],x['col']):x for x in self.checks}.values())
+  assert not any('/550' in str(x['value']) for x in self.checks),'Do not pool the datasets in performance summaries'
   self.s['Meeting主頁'].print_area(0,0,last_main,11);self.s['必要對照'].print_area(0,0,last_backup,11)
   self.w.close();meta.update(file=self.path.name,sha256=sha(self.path),checks=self.checks,sources=self.sources)
   audit=OUT/'audit';audit.mkdir(exist_ok=True);(audit/f'week_{self.i:02d}.json').write_text(json.dumps(meta,ensure_ascii=False,indent=2)+'\n')
@@ -169,12 +177,12 @@ def validate(path,meta):
 
 def build(i):
  d,groups,primary,q,verdict,settings=setup(i);b=Book(i);s='Meeting主頁'
- summaries={1:'ETH：114→144/150；Tongji：309→304/400。',2:'補救開啟：Tongji 304→329/400；ETH 144→150/150。',3:'DTM平滑：Tongji 329→345/400；ETH 150→149/150。',4:'平滑DTM加微調：494→547/550；原DTM加微調：546/550。',5:'Plot4：單初值與候選v1均96/100；候選v2為78/100。',6:verdict.split('。')[0]+'。'}
- b.line(s,0,summaries[i],'text',27)
+ summaries={1:'ETH：114→144/150；Tongji：309→304/400。',2:'補救開啟：Tongji 304→329/400；ETH 144→150/150。',3:'DTM平滑：Tongji 329→345/400；ETH 150→149/150。',4:('平滑DTM加微調：'+dataset_change(groups[2][1],groups[3][1])+'。') if i==4 else '',5:'固定原DTM支線比較：Plot4單初值與候選v1均96/100；候選v2為78/100。',6:('只篩垂直：'+dataset_counts(groups[1][1])+'；只收緊gate：'+dataset_counts(groups[2][1])+'。') if i==6 else ''}
+ b.line(s,0,summaries[i],'text',36 if i==6 else 27)
  row=b.matrix(s,1,'① 可靠性：成功／總次數與成功率（成功數下方為無輸出次數）',groups,'success')
  row=b.matrix(s,row,'② 平均點誤差 e_p（cm）與平均旋轉誤差 e_R（°）：越低越好；包含有輸出的失敗案例',groups,'error')
  last_main=row-1;s='必要對照';b.line(s,0,f'第{i}週｜{TITLES[i]}','title',30)
- b.line(s,1,settings,'note',37);b.line(s,2,verdict,'text',37)
+ b.line(s,1,settings,'note',44 if i==5 else 37);b.line(s,2,verdict,'text',58 if i in [4,6] else 37)
  b.line(s,3,f'修改前：{groups[primary[0]][0]}　→　修改後：{groups[primary[1]][0]}','text',30)
  row=b.delta_table(s,4,'逐場景配對比較：新增與退步都保留',groups,primary)
  if i in [1,4,6]:
@@ -190,6 +198,9 @@ def build(i):
     x,y=groups[a][1][scene],groups[z][1][scene];c=2+j*2;b.merge(s,row,c,c+1,'','text',27);b.cell(s,row,c,100*(y['rate']-x['rate']),'pp',f'=({y["ok"]}/{y["n"]}-{x["ok"]}/{x["n"]})*100')
    b.merge(s,row,10,11,'正值改善；負值退步','note',27);row+=1
   row+=1
+ if i==4:
+  x=paired(groups[1][1]['Plot4'],groups[3][1]['Plot4'])
+  b.line(s,row,f'同樣加微調，原DTM→平滑DTM：Plot4新增{x["gained"]}次成功、退步{x["lost"]}次，淨多{x["gained"]-x["lost"]}次；不是每個案例單向改善。',height=30);row+=1
  if i==3:
   b.line(s,row,'機制控制：固定舊樹幹軸線，只重算DTM交點（不是完整重提取）','head',25);row+=1
   for scene in SCENES:
@@ -201,7 +212,7 @@ def build(i):
   x,y=[next(r for r in groups[k][1]['Plot4']['rows'] if r['pair']=='S4-S2' and r['seed']=='31') for k in [1,2]]
   b.line(s,row,f'反例｜Plot4 S4–S2 seed31：v1 overlap={100*float(x["geo_overlap"]):.1f}%、e_p={float(x["e_p_m"]):.3f}m；v2 overlap={100*float(y["geo_overlap"]):.1f}%、e_p={float(y["e_p_m"]):.2f}m。分數較高卻嚴重錯位。',height=37);row+=2
  if i==6:
-  b.line(s,row,'同一v3 backend的公平控制：額外4次改善才是完整候選對單初值的增益','head',25);row+=1
+  b.line(s,row,'同一v3 backend公平控制：完整候選比單初值多救4次，均在Tongji Plot4','head',25);row+=1
   for scene in SCENES:
    gs=[d.get('U:'+scene+':'+m) for m in ['reference5_refined_v3','eth10_refined_v3','multi_v3_refined']]
    b.merge(s,row,0,1,scene,'label',27)
@@ -211,7 +222,7 @@ def build(i):
   diff={scene:1000*(groups[3][1][scene]['ep']-groups[1][1][scene]['ep']) for scene in SCENES}
   assert max(abs(diff[s]) for s in ['Plot1','Plot2','ETH'])<.001
   b.line(s,row,f'合用−只篩垂直的平均e_p：Plot3 {diff["Plot3"]:+.3f}mm、Plot4 {diff["Plot4"]:+.3f}mm；其餘<0.001mm。主頁四捨五入後相同，不代表逐筆完全相同。',height=32);row+=1
- mechanisms={1:'機制：容差放寬可接納較不一致的距離，也可能增加錯配；RANSAC只在既有對應中找3D一致群。不能把兩項一起改的增益全算給容差。',2:'機制：原CN不足6對才啟動；回收CN候選證據，以相容三元組產生Kabsch姿態，再以一對一3D支持驗證。是新增方法整組，不是發明RANSAC。',3:'fit_radius控制地面局部擬合鄰域；fill_max_radius控制缺格補洞範圍，單位為格（cell=0.50m）。兩項一起改，只能歸因DTM設定整組，沒有各自完整流程消融；樹位數改變不能直接證明改善原因。',4:'機制：coarse提供初始姿態，表面point-to-plane微調估完整6DOF。四組完整控制顯示微調效果不靠回復DTM解釋；平滑＋微調也保留。第5週沿原DTM研究支線。',5:'證據邊界：候選池、yaw初值、支持分數與beam同時變動，是搜尋策略整組比較。v1/v2共用舊驗證分數；新候選可能放大假重疊的影響，不能只怪候選數。',6:'機制：驗證優先看垂直表面，減少共同地面的假重疊；收緊NN距離避免把偏移表面算作支持。兩項效果用四組隔離；改動作用於排序、接受與最終選擇，optimizer仍用全方向6DOF。'}
+ mechanisms={1:'機制：容差放寬可接納較不一致的距離，也可能增加錯配；RANSAC只在既有對應中找3D一致群。不能把兩項一起改的增益全算給容差。',2:'機制：原CN不足6對才啟動；回收CN候選證據，以相容三元組產生Kabsch姿態，再以一對一3D支持驗證。是新增方法整組，不是發明RANSAC。',3:'fit_radius控制地面局部擬合鄰域；fill_max_radius控制缺格補洞範圍，單位為格（cell=0.50m）。兩項一起改，只能歸因DTM設定整組，沒有各自完整流程消融；樹位數改變不能直接證明改善原因。',4:'機制：coarse提供初始姿態，表面point-to-plane微調估完整6DOF。四組完整控制顯示微調效果不靠回復DTM解釋；平滑＋微調也保留。候選搜尋原先在原DTM開發；第5、6週固定該支線，為保持既有候選與驗證對照一致，並非原DTM較好；尚未完整測試平滑DTM搭所有候選。',5:'分支理由：候選搜尋原先在原DTM開發，固定此支線才能讓單初值／v1／v2／v3比較條件一致；不是認定原DTM較好。候選池、yaw、支持分數與beam同改，只能歸因搜尋策略整組；未完整驗證平滑DTM搭所有候選。',6:'機制：驗證優先看垂直表面，減少共同地面的假重疊；收緊NN距離避免把偏移表面算作支持。兩項效果用四組隔離；改動作用於排序、接受與最終選擇，optimizer仍用全方向6DOF。'}
  b.line(s,row,mechanisms[i],height=44);row+=1
  b.line(s,row,'e_p：同一來源點經估計／GT變換後的平均距離；e_R：估計與GT旋轉的夾角。兩者平均全部有輸出案例（含失敗），分母＝總數−無輸出；無輸出不填0。不同分母不直接算整體誤差改善率。',height=40);row+=1
  b.line(s,row,'Tongji四Plot同dataset，各100次（10對×10seed）；ETH為另一dataset，150次（15×10），seed31–40。成功：旋轉<2°且平移<0.5m。GT曾用於開發；本結果不是未見森林盲測。',height=40);row+=1

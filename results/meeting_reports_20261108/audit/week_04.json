@@ -1,7 +1,7 @@
 {
   "week": 4,
   "title": "DTM與幾何微調",
-  "generated_at": "2026-11-09T12:16:52.247301+08:00",
+  "generated_at": "2026-11-09T13:03:41.148709+08:00",
   "source_commit": "b839f64ecc9385321168771847f1efea4b00d8ad",
   "groups": [
     {
@@ -2607,15 +2607,15 @@
   ],
   "paired_data_first_row": 7,
   "main_last_row": 17,
-  "backup_last_row": 25,
+  "backup_last_row": 26,
   "file": "week_04_DTM與幾何微調.xlsx",
-  "sha256": "92ba444723158722b6bbad04a320c616e275a78745cd3e33c13b31f2de18b212",
+  "sha256": "852b8f7cf8ad3113c3daf9d91b2bbf78e48bd04944b0b6c2e5de94679ec75679",
   "checks": [
     {
       "sheet": "Meeting主頁",
       "row": 1,
       "col": 1,
-      "value": "平滑DTM加微調：494→547/550；原DTM加微調：546/550。",
+      "value": "平滑DTM加微調：Tongji 345→397/400；ETH 149→150/150。",
       "formula": null
     },
     {
@@ -3658,7 +3658,7 @@
       "sheet": "必要對照",
       "row": 3,
       "col": 1,
-      "value": "承接第3週平滑DTM：494→547/550；原DTM加微調546/550，並非更好的分支。",
+      "value": "承接第3週平滑DTM：Tongji 345→397/400；ETH 149→150/150。原DTM加微調：Tongji 396/400、ETH 150/150；平滑加微調在Tongji淨多1次，不宣稱原DTM最佳。",
       "formula": null
     },
     {
@@ -4281,26 +4281,33 @@
       "sheet": "必要對照",
       "row": 22,
       "col": 1,
-      "value": "機制：coarse提供初始姿態，表面point-to-plane微調估完整6DOF。四組完整控制顯示微調效果不靠回復DTM解釋；平滑＋微調也保留。第5週沿原DTM研究支線。",
+      "value": "同樣加微調，原DTM→平滑DTM：Plot4新增4次成功、退步3次，淨多1次；不是每個案例單向改善。",
       "formula": null
     },
     {
       "sheet": "必要對照",
       "row": 23,
       "col": 1,
-      "value": "e_p：同一來源點經估計／GT變換後的平均距離；e_R：估計與GT旋轉的夾角。兩者平均全部有輸出案例（含失敗），分母＝總數−無輸出；無輸出不填0。不同分母不直接算整體誤差改善率。",
+      "value": "機制：coarse提供初始姿態，表面point-to-plane微調估完整6DOF。四組完整控制顯示微調效果不靠回復DTM解釋；平滑＋微調也保留。候選搜尋原先在原DTM開發；第5、6週固定該支線，為保持既有候選與驗證對照一致，並非原DTM較好；尚未完整測試平滑DTM搭所有候選。",
       "formula": null
     },
     {
       "sheet": "必要對照",
       "row": 24,
       "col": 1,
-      "value": "Tongji四Plot同dataset，各100次（10對×10seed）；ETH為另一dataset，150次（15×10），seed31–40。成功：旋轉<2°且平移<0.5m。GT曾用於開發；本結果不是未見森林盲測。",
+      "value": "e_p：同一來源點經估計／GT變換後的平均距離；e_R：估計與GT旋轉的夾角。兩者平均全部有輸出案例（含失敗），分母＝總數−無輸出；無輸出不填0。不同分母不直接算整體誤差改善率。",
       "formula": null
     },
     {
       "sheet": "必要對照",
       "row": 25,
+      "col": 1,
+      "value": "Tongji四Plot同dataset，各100次（10對×10seed）；ETH為另一dataset，150次（15×10），seed31–40。成功：旋轉<2°且平移<0.5m。GT曾用於開發；本結果不是未見森林盲測。",
+      "formula": null
+    },
+    {
+      "sheet": "必要對照",
+      "row": 26,
       "col": 1,
       "value": "論文Table I／p4僅參考：成功門檻、分母未齊，e_R未單獨報告；作者程式未取得。不同比較硬體／計時範圍不做速度排名。來源：CircularMatch repo，既有版本 b839f64ecc93；逐數據核對見 meeting_reports_20261108/audit/week_04.json。",
       "formula": null

@@ -11,6 +11,8 @@ from make_meeting_reports import ROOT,OUT,TITLES,validate
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 def close(a,b):assert math.isclose(a,b,rel_tol=1e-10,abs_tol=1e-9),(a,b)
 def verify(weeks):
+ previous=OUT/'validation.json'
+ prior={r['file']:r['sha256'] for r in json.loads(previous.read_text()).get('reports',[])} if previous.exists() else {}
  manifest=json.loads((ROOT/'results/unified_20261025/dataset_manifest.json').read_text())
  recalculated=OUT/'runs/recalculated';recalculated.mkdir(parents=True,exist_ok=True)
  previews=OUT/'runs/previews';previews.mkdir(parents=True,exist_ok=True)
@@ -18,6 +20,7 @@ def verify(weeks):
  for i in weeks:
   m=json.loads((OUT/f'audit/week_{i:02d}.json').read_text());p=OUT/m['file'];assert sha(p)==m['sha256'];validate(p,m)
   wb=load_workbook(p,data_only=True)
+  assert not any('/550' in str(c.value) for s in wb for row in s for c in row)
   loaded=[]
   for group in m['groups']:
    by_scene={}
@@ -61,6 +64,8 @@ def verify(weeks):
    close(sheet.cell(n,8).value,sum(float(aa[k]['e_p_m'])*100 for k in both)/len(both));close(sheet.cell(n,10).value,sum(float(bb[k]['e_p_m'])*100 for k in both)/len(both))
   wb.close()
   for fmt,dest in [('xlsx',recalculated),('pdf',previews)]:
+   target=dest/(p.name if fmt=='xlsx' else p.stem+'.pdf')
+   if prior.get(p.name)==sha(p) and target.exists():continue
    proc=subprocess.run(['soffice','--headless','--convert-to',fmt,'--outdir',str(dest),str(p)],capture_output=True,text=True,timeout=180)
    assert proc.returncode==0,(proc.stdout,proc.stderr)
   validate(recalculated/p.name,m)
@@ -70,6 +75,19 @@ def verify(weeks):
    page.get_pixmap(matrix=fitz.Matrix(1.3,1.3)).save(previews/f'week_{i:02d}_page{n+1}.png')
   all_meta.append(dict(week=i,file=p.name,sha256=sha(p),checks=len(m['checks']),pdf_pages=len(pdf),calc_recalculation_passed=True));print('VERIFIED',i,flush=True)
  audit=dict(validated_at=datetime.now(ZoneInfo('Asia/Taipei')).isoformat(),reports=all_meta,independent_groups=group_checks,cell_checks=sum(m['checks'] for m in all_meta),main_and_backup_one_page_each=True,independent_csv_and_paired_validation=True)
+ talks=OUT/'talks_validation.json'
+ if weeks==list(range(1,7)) and talks.exists():
+  checked=[]
+  for talk in json.loads(talks.read_text())['talks']:
+   assert sha(OUT/talk['file'])==talk['sha256'] and sha(OUT/talk['xlsx'])==talk['xlsx_sha256']
+   body=(OUT/talk['file']).read_text();assert '/550' not in body and talk['xlsx'] in body
+   m=json.loads((OUT/f'audit/week_{talk["week"]:02d}.json').read_text())
+   for group in m['groups']:
+    for scene,g in group['scenes'].items():
+     line=f'{scene}：成功{g["ok"]}/{g["n"]}；平均e_p={100*g["ep"]:.6f}cm；平均e_R={g["rot"]:.6f}°；有輸出{g["finite"]}次、無輸出{g["n"]-g["finite"]}次。'
+     assert line in body,(talk['file'],line)
+   checked.append(talk['week'])
+  assert sorted(checked)==[4,6];audit['talks_matched_to_workbooks']=checked
  dest=OUT/('validation.json' if weeks==list(range(1,7)) else 'validation_partial.json');dest.write_text(json.dumps(audit,ensure_ascii=False,indent=2)+'\n')
  if weeks==list(range(1,7)):
   zip_path=OUT/'meeting_6weeks.zip'

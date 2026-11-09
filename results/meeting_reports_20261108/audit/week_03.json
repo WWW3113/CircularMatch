@@ -1,7 +1,7 @@
 {
   "week": 3,
   "title": "DTM設定整組對照",
-  "generated_at": "2026-11-09T12:16:52.092937+08:00",
+  "generated_at": "2026-11-09T12:52:48.635960+08:00",
   "source_commit": "b839f64ecc9385321168771847f1efea4b00d8ad",
   "groups": [
     {
@@ -1963,7 +1963,7 @@
   "main_last_row": 13,
   "backup_last_row": 24,
   "file": "week_03_DTM設定整組對照.xlsx",
-  "sha256": "e60f92dc536f0b4957eec3c695bed0cd51432ec81f88433ce4dd0307b7089888",
+  "sha256": "3528c85749efeaefc40fb42068424d277e076587dc5aefdd2c66933ac8d2d007",
   "checks": [
     {
       "sheet": "Meeting主頁",

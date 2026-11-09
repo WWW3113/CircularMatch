@@ -1,7 +1,7 @@
 {
   "week": 5,
   "title": "擴大候選的退步",
-  "generated_at": "2026-11-09T12:16:52.385151+08:00",
+  "generated_at": "2026-11-09T12:52:48.929372+08:00",
   "source_commit": "b839f64ecc9385321168771847f1efea4b00d8ad",
   "groups": [
     {
@@ -1964,13 +1964,13 @@
   "main_last_row": 15,
   "backup_last_row": 28,
   "file": "week_05_擴大候選的退步.xlsx",
-  "sha256": "3a1c3bd3d1b59a45e9a052e984bb33efed21622a3d15e710d982fa50cb1cc972",
+  "sha256": "80f33043d06d1f43501c36ff59780bbc0dcd9c420b0c83d65a8ca378589d20a5",
   "checks": [
     {
       "sheet": "Meeting主頁",
       "row": 1,
       "col": 1,
-      "value": "Plot4：單初值與候選v1均96/100；候選v2為78/100。",
+      "value": "固定原DTM支線比較：Plot4單初值與候選v1均96/100；候選v2為78/100。",
       "formula": null
     },
     {
@@ -2852,7 +2852,7 @@
       "sheet": "必要對照",
       "row": 2,
       "col": 1,
-      "value": "沿原DTM支線與相同舊微調backend。v1→v2：top5→20、60→120邊、替代pose16→256、微調3→8，另加yaw初值；整組比較。",
+      "value": "候選搜尋原先在原DTM開發；固定此支線與微調後端，讓單初值／v1／v2／v3可比。v1→v2：top5→20、60→120邊、替代pose16→256、微調3→8，另加yaw初值；整組比較。",
       "formula": null
     },
     {
@@ -3580,7 +3580,7 @@
       "sheet": "必要對照",
       "row": 25,
       "col": 1,
-      "value": "證據邊界：候選池、yaw初值、支持分數與beam同時變動，是搜尋策略整組比較。v1/v2共用舊驗證分數；新候選可能放大假重疊的影響，不能只怪候選數。",
+      "value": "分支理由：候選搜尋原先在原DTM開發，固定此支線才能讓單初值／v1／v2／v3比較條件一致；不是認定原DTM較好。候選池、yaw、支持分數與beam同改，只能歸因搜尋策略整組；未完整驗證平滑DTM搭所有候選。",
       "formula": null
     },
     {

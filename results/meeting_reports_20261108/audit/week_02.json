@@ -1,7 +1,7 @@
 {
   "week": 2,
   "title": "弱配對補救",
-  "generated_at": "2026-11-09T12:16:51.946338+08:00",
+  "generated_at": "2026-11-09T12:52:48.481546+08:00",
   "source_commit": "b839f64ecc9385321168771847f1efea4b00d8ad",
   "groups": [
     {
@@ -1318,7 +1318,7 @@
   "main_last_row": 13,
   "backup_last_row": 17,
   "file": "week_02_弱配對補救.xlsx",
-  "sha256": "74c4622697aecb0890ad5a064c151ab437dadda696897a694a4f7bdbe476168d",
+  "sha256": "9b1ab734dada4022c367f49bcfdcd841331c19465053abe47ef75036cf0a5afa",
   "checks": [
     {
       "sheet": "Meeting主頁",

@@ -1,7 +1,7 @@
 {
   "goal": "Six minimal meeting XLSX files only; two sheets each",
   "branch": "reports/meeting-20261108",
-  "status": "complete_delivered",
+  "status": "dataset_summary_and_talk_revision_validated_pending_upload",
   "experiment_resume": "python -u scripts/eth_trees/meeting_ablation.py run",
   "generation": "python scripts/eth_trees/make_meeting_reports.py",
   "verification": "python scripts/eth_trees/verify_meeting_reports.py",
@@ -11,7 +11,8 @@
     "Week4 smooth-refined547/550 retained alongside original546/550",
     "New week6 v1g0/v0g1 controls each550; frozen protocol; four endpoint validations passed",
     "Do not upload private data symlinks or runs; scalar CSV, metadata, workbooks only",
-    "User explicitly requested no yellow comment indicators. Cell comments removed from all6 XLSX. Source summaries on backup sheet; full audit in audit/week_XX.json."
+    "User explicitly requested no yellow comment indicators. Cell comments removed from all6 XLSX. Source summaries on backup sheet; full audit in audit/week_XX.json.",
+    "Current week4/6 talks are *_口述稿_新版.txt in this folder. Legacy six_week_reports talks are historical and do not match the current meeting workbooks."
   ],
   "new_scalar_file": "verification_ablation_rows.csv",
   "completed_trials": 1100,
@@ -22,5 +23,15 @@
   "delivery": "DELIVERY.json",
   "experiments_in_progress": false,
   "rotation_error_added": true,
-  "compact_main_layout": true
+  "compact_main_layout": true,
+  "separate_dataset_performance_totals": true,
+  "talks_updated": [
+    4,
+    6
+  ],
+  "generation_steps": [
+    "python scripts/eth_trees/make_meeting_reports.py",
+    "python scripts/eth_trees/make_meeting_talks.py",
+    "python scripts/eth_trees/verify_meeting_reports.py"
+  ]
 }
