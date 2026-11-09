@@ -1,52 +1,62 @@
 {
-  "commit": "88b6b37673de2593d5a2b020277403833c78af49",
-  "verified_at": "2026-11-09T12:22:20.015012+08:00",
+  "commit": "0fe939f7f76b920a2c4d5732bdc0c9c0982a9fe3",
+  "verified_at": "2026-11-09T13:07:04.116344+08:00",
   "workbooks": 6,
   "all_no_cell_comments": true,
   "downloads": {
     "week_01_CN容差與Solver.xlsx": {
-      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/88b6b37673de2593d5a2b020277403833c78af49/results/meeting_reports_20261108/week_01_CN%E5%AE%B9%E5%B7%AE%E8%88%87Solver.xlsx",
-      "sha256": "e87a6db6d3be1380788ccd2591ccc446ce23f5f132cd2446bbfae42f2d6c2185",
+      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/0fe939f7f76b920a2c4d5732bdc0c9c0982a9fe3/results/meeting_reports_20261108/week_01_CN%E5%AE%B9%E5%B7%AE%E8%88%87Solver.xlsx",
+      "sha256": "73dee47f775366173166577cfa5cc17251a9be2a8524fec43a1337f4abaf0719",
       "http_status": 200,
       "verified": true
     },
     "week_02_弱配對補救.xlsx": {
-      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/88b6b37673de2593d5a2b020277403833c78af49/results/meeting_reports_20261108/week_02_%E5%BC%B1%E9%85%8D%E5%B0%8D%E8%A3%9C%E6%95%91.xlsx",
-      "sha256": "74c4622697aecb0890ad5a064c151ab437dadda696897a694a4f7bdbe476168d",
+      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/0fe939f7f76b920a2c4d5732bdc0c9c0982a9fe3/results/meeting_reports_20261108/week_02_%E5%BC%B1%E9%85%8D%E5%B0%8D%E8%A3%9C%E6%95%91.xlsx",
+      "sha256": "9b1ab734dada4022c367f49bcfdcd841331c19465053abe47ef75036cf0a5afa",
       "http_status": 200,
       "verified": true
     },
     "week_03_DTM設定整組對照.xlsx": {
-      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/88b6b37673de2593d5a2b020277403833c78af49/results/meeting_reports_20261108/week_03_DTM%E8%A8%AD%E5%AE%9A%E6%95%B4%E7%B5%84%E5%B0%8D%E7%85%A7.xlsx",
-      "sha256": "e60f92dc536f0b4957eec3c695bed0cd51432ec81f88433ce4dd0307b7089888",
+      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/0fe939f7f76b920a2c4d5732bdc0c9c0982a9fe3/results/meeting_reports_20261108/week_03_DTM%E8%A8%AD%E5%AE%9A%E6%95%B4%E7%B5%84%E5%B0%8D%E7%85%A7.xlsx",
+      "sha256": "3528c85749efeaefc40fb42068424d277e076587dc5aefdd2c66933ac8d2d007",
       "http_status": 200,
       "verified": true
     },
     "week_04_DTM與幾何微調.xlsx": {
-      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/88b6b37673de2593d5a2b020277403833c78af49/results/meeting_reports_20261108/week_04_DTM%E8%88%87%E5%B9%BE%E4%BD%95%E5%BE%AE%E8%AA%BF.xlsx",
-      "sha256": "92ba444723158722b6bbad04a320c616e275a78745cd3e33c13b31f2de18b212",
+      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/0fe939f7f76b920a2c4d5732bdc0c9c0982a9fe3/results/meeting_reports_20261108/week_04_DTM%E8%88%87%E5%B9%BE%E4%BD%95%E5%BE%AE%E8%AA%BF.xlsx",
+      "sha256": "852b8f7cf8ad3113c3daf9d91b2bbf78e48bd04944b0b6c2e5de94679ec75679",
       "http_status": 200,
       "verified": true
     },
     "week_05_擴大候選的退步.xlsx": {
-      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/88b6b37673de2593d5a2b020277403833c78af49/results/meeting_reports_20261108/week_05_%E6%93%B4%E5%A4%A7%E5%80%99%E9%81%B8%E7%9A%84%E9%80%80%E6%AD%A5.xlsx",
-      "sha256": "3a1c3bd3d1b59a45e9a052e984bb33efed21622a3d15e710d982fa50cb1cc972",
+      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/0fe939f7f76b920a2c4d5732bdc0c9c0982a9fe3/results/meeting_reports_20261108/week_05_%E6%93%B4%E5%A4%A7%E5%80%99%E9%81%B8%E7%9A%84%E9%80%80%E6%AD%A5.xlsx",
+      "sha256": "80f33043d06d1f43501c36ff59780bbc0dcd9c420b0c83d65a8ca378589d20a5",
       "http_status": 200,
       "verified": true
     },
     "week_06_結構驗證因素消融.xlsx": {
-      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/88b6b37673de2593d5a2b020277403833c78af49/results/meeting_reports_20261108/week_06_%E7%B5%90%E6%A7%8B%E9%A9%97%E8%AD%89%E5%9B%A0%E7%B4%A0%E6%B6%88%E8%9E%8D.xlsx",
-      "sha256": "25bb562e844a73facac486659e952d7e056bece78a76df70d57046023caab3f4",
+      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/0fe939f7f76b920a2c4d5732bdc0c9c0982a9fe3/results/meeting_reports_20261108/week_06_%E7%B5%90%E6%A7%8B%E9%A9%97%E8%AD%89%E5%9B%A0%E7%B4%A0%E6%B6%88%E8%9E%8D.xlsx",
+      "sha256": "109008466a0473eac899859ca6a932e6f19933b925286186fb05e911e99037d5",
       "http_status": 200,
       "verified": true
     },
     "meeting_6weeks.zip": {
-      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/88b6b37673de2593d5a2b020277403833c78af49/results/meeting_reports_20261108/meeting_6weeks.zip",
-      "sha256": "30fccca8c25438f97d8177e3da4bb2b804a7208da76b541a313a8b373a77334b",
+      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/0fe939f7f76b920a2c4d5732bdc0c9c0982a9fe3/results/meeting_reports_20261108/meeting_6weeks.zip",
+      "sha256": "f79d99fc28ded370f175f7e18986a45d65a1bdd99851a54177dfc301913f139f",
+      "http_status": 200,
+      "verified": true
+    },
+    "week_04_DTM與幾何微調_口述稿_新版.txt": {
+      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/0fe939f7f76b920a2c4d5732bdc0c9c0982a9fe3/results/meeting_reports_20261108/week_04_DTM%E8%88%87%E5%B9%BE%E4%BD%95%E5%BE%AE%E8%AA%BF_%E5%8F%A3%E8%BF%B0%E7%A8%BF_%E6%96%B0%E7%89%88.txt",
+      "sha256": "ea7a2a40f1f019ec4d2edcebcc7742f5654fc84dbc689f4ee465a2299c328da3",
+      "http_status": 200,
+      "verified": true
+    },
+    "week_06_結構驗證因素消融_口述稿_新版.txt": {
+      "url": "https://raw.githubusercontent.com/WWW3113/CircularMatch/0fe939f7f76b920a2c4d5732bdc0c9c0982a9fe3/results/meeting_reports_20261108/week_06_%E7%B5%90%E6%A7%8B%E9%A9%97%E8%AD%89%E5%9B%A0%E7%B4%A0%E6%B6%88%E8%9E%8D_%E5%8F%A3%E8%BF%B0%E7%A8%BF_%E6%96%B0%E7%89%88.txt",
+      "sha256": "ad7b35e5a12b02d8f1de57e0542e50080ab431ab3ba034e0b9722c208dff8f88",
       "http_status": 200,
       "verified": true
     }
-  },
-  "rotation_error_on_main": true,
-  "compact_main_layout": true
+  }
 }

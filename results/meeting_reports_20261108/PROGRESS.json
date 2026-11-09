@@ -3,10 +3,10 @@
   "expected": 1100,
   "experiments_in_progress": false,
   "private_runs_not_published": true,
-  "status": "dataset_summary_and_talk_revision_validated_pending_upload",
+  "status": "complete_delivered",
   "workbooks": 6,
   "cell_comments_removed": true,
-  "artifact_commit": "88b6b37673de2593d5a2b020277403833c78af49",
+  "artifact_commit": "0fe939f7f76b920a2c4d5732bdc0c9c0982a9fe3",
   "delivery": "DELIVERY.json",
   "rotation_error_added": true,
   "compact_main_layout": true,
@@ -15,5 +15,6 @@
   "talks_updated": [
     4,
     6
-  ]
+  ],
+  "download_verification": "All 6 XLSX, ZIP and 2 current talks passed HTTP 200 and SHA256 verification"
 }
